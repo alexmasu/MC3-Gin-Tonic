@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2980F63E27B3D66E00C318DF /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2980F63D27B3D66E00C318DF /* GameScene.sks */; };
+		2984718927B571D400E88AA8 /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984718827B571D400E88AA8 /* EnemyNode.swift */; };
 		7F40022A27B271E2001182EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F40022927B271E2001182EB /* AppDelegate.swift */; };
-		7F40022C27B271E2001182EB /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7F40022B27B271E2001182EB /* GameScene.sks */; };
-		7F40022E27B271E2001182EB /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7F40022D27B271E2001182EB /* Actions.sks */; };
 		7F40023027B271E2001182EB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F40022F27B271E2001182EB /* GameScene.swift */; };
 		7F40023227B271E2001182EB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F40023127B271E2001182EB /* GameViewController.swift */; };
 		7F40023527B271E2001182EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F40023327B271E2001182EB /* Main.storyboard */; };
@@ -18,10 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2980F63D27B3D66E00C318DF /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		2984718827B571D400E88AA8 /* EnemyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
 		7F40022627B271E2001182EB /* MC3-Gin-Tonic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MC3-Gin-Tonic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F40022927B271E2001182EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7F40022B27B271E2001182EB /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		7F40022D27B271E2001182EB /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		7F40022F27B271E2001182EB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		7F40023127B271E2001182EB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		7F40023427B271E2001182EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,9 +60,9 @@
 			isa = PBXGroup;
 			children = (
 				7F40022927B271E2001182EB /* AppDelegate.swift */,
-				7F40022B27B271E2001182EB /* GameScene.sks */,
-				7F40022D27B271E2001182EB /* Actions.sks */,
 				7F40022F27B271E2001182EB /* GameScene.swift */,
+				2984718827B571D400E88AA8 /* EnemyNode.swift */,
+				2980F63D27B3D66E00C318DF /* GameScene.sks */,
 				7F40023127B271E2001182EB /* GameViewController.swift */,
 				7F40023327B271E2001182EB /* Main.storyboard */,
 				7F40023627B271E3001182EB /* Assets.xcassets */,
@@ -129,11 +129,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2980F63E27B3D66E00C318DF /* GameScene.sks in Resources */,
 				7F40023527B271E2001182EB /* Main.storyboard in Resources */,
-				7F40022C27B271E2001182EB /* GameScene.sks in Resources */,
 				7F40023727B271E3001182EB /* Assets.xcassets in Resources */,
 				7F40023A27B271E3001182EB /* LaunchScreen.storyboard in Resources */,
-				7F40022E27B271E2001182EB /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +145,7 @@
 			files = (
 				7F40023027B271E2001182EB /* GameScene.swift in Sources */,
 				7F40023227B271E2001182EB /* GameViewController.swift in Sources */,
+				2984718927B571D400E88AA8 /* EnemyNode.swift in Sources */,
 				7F40022A27B271E2001182EB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

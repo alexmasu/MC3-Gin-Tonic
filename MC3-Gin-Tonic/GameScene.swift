@@ -10,6 +10,9 @@ import SpriteKit
 enum CollisionType: UInt32 {
     case enemy = 1
     case enemyWeapon = 2
+    case player = 4
+    case shield = 8
+    case playerBullet = 16
 }
 
 func +(left: CGPoint, right: CGPoint) -> CGPoint {
@@ -49,11 +52,16 @@ class GameScene: SKScene {
 //    private var label : SKLabelNode?
 //    private var spinnyNode : SKShapeNode?
     
+    private var player = PlayerNode(imageNamed: "playerShip")
+    
     let enemy = SKSpriteNode(imageNamed: "enemy")
     var enemyLastFireTime: Double = 0
     
     override func didMove(to view: SKView) {
         physicsWorld.gravity = .zero
+        
+        self.addChild(player)
+        
         enemy.name = "enemy"
         enemy.position.y = frame.minY - 500
 //        enemy.position = .init(x: 0, y: -800)
@@ -129,11 +137,51 @@ class GameScene: SKScene {
 //        weapon.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
         
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else {return}
+        let touchLocation = touch.location(in: self) //will be calculated already as a delta x and y from the center, since the anchor for self is the center, so will be -100x or 100 x and same the y
+        
+        if touchLocation.y < -20 {
+            player.rotateControl(touchLocation: touchLocation, gestureType: .tapped)
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let firstTouch = touches.first else {return}
+        var touchLocation = firstTouch.location(in: self)
+
+        for touch in touches {
+            touchLocation = touch.location(in: self)
+            if touchLocation.y < -20 {
+                player.rotateControl(touchLocation: touchLocation, gestureType: .moved)
+            }
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        player.stopFire(touchesCount: touches.count)
+    }
+    
     override func update(_ currentTime: TimeInterval) {
+        
+        if player.isFiring {
+            if player.lastFiredTime + 0.6 <= currentTime {
+                player.lastFiredTime = currentTime
+                player.fire()
+            }
+        }
         if enemyLastFireTime + 0.8 <= currentTime {
             enemyLastFireTime = currentTime
             self.fire()
         }
         
+        for child in children {
+            if child.name == "playerBullet" {
+                if child.frame.minY > frame.maxY * 1.1 || abs(child.frame.minX) > abs(frame.maxX * 1.1) {
+                    child.removeFromParent()
+                }
+            }
+        }
     }
 }

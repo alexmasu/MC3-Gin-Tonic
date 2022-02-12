@@ -114,11 +114,6 @@ class GameScene: SKScene {
         weapon.name = "enemyWeapon"
         weapon.position = enemy.position
         weapon.zRotation = enemy.zRotation
-        let offset = aim - weapon.position
-        addChild(weapon)
-        let direction = offset.normalized()
-        let shootAmount = direction * 2000
-        let realDest = shootAmount + weapon.position
         
         
         weapon.physicsBody = SKPhysicsBody(rectangleOf: weapon.size)
@@ -126,6 +121,13 @@ class GameScene: SKScene {
 //        weapon.physicsBody?.collisionBitMask = CollisionType.player.rawValue
 //        weapon.physicsBody?.contactTestBitMask = CollisionType.player.rawValue
         weapon.physicsBody?.mass = 0.001
+        
+        addChild(weapon)
+
+        let offset = aim - weapon.position
+        let direction = offset.normalized()
+        let shootAmount = direction * 2000
+        let realDest = shootAmount + weapon.position
         
         let speed: CGFloat = 1
         let adjustedRotation = zRotation + (CGFloat.pi / 2)

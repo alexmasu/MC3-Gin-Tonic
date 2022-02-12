@@ -138,6 +138,9 @@ class GameScene: SKScene {
         weapon.run(actionMove)
 //        weapon.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
         
+        /*
+         If the enemy bullet follows a path at hight speed like here (instead of an impulse) it goes through the player, the contact is detected but the bullet continue the path. That's why if we add the collisions masks it seems like there's no collision, but if you run with a longer duration for the actionMove, like 10, you see that the contact it's happening
+         */
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

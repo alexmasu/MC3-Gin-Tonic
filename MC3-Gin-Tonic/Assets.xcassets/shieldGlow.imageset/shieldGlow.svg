@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="24px" viewBox="0 0 54 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Path</title>
+    <defs>
+        <filter x="-20.2%" y="-67.1%" width="140.3%" height="234.2%" filterUnits="objectBoundingBox" id="filter-1">
+            <feGaussianBlur stdDeviation="3" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-162.000000, -247.000000)" fill="#8BCDF1" fill-rule="nonzero">
+            <path d="M211.526444,259.188785 C211.918144,260.252485 211.389044,261.438085 210.321244,261.818585 C196.704744,266.671085 181.896144,266.608785 168.318254,261.641885 C167.253974,261.252585 166.734654,260.063185 167.134684,259.002885 L169.261244,253.366395 C169.674254,252.271695 170.906064,251.735205 172.007974,252.128565 C183.240444,256.138305 195.444344,256.189465 206.707844,252.274035 C207.812744,251.889975 209.039744,252.436265 209.443944,253.533885 L211.526444,259.188785 Z" id="Path" filter="url(#filter-1)"></path>
+        </g>
+    </g>
+</svg>

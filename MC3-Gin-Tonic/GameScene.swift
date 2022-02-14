@@ -67,7 +67,7 @@ class GameScene: SKScene {
         enemy.name = "enemy"
         enemy.position.y = frame.minY
 //        enemy.position = .init(x: 0, y: -800)
-        enemy.zPosition = 1
+        enemy.zPosition = 2
         addChild(enemy)
         
 //        enemy.physicsBody = SKPhysicsBody(texture: enemy.texture!, size: enemy.texture!.size())
@@ -115,7 +115,9 @@ class GameScene: SKScene {
         let weapon = SKSpriteNode(imageNamed: weaponType)
         weapon.name = "enemyWeapon"
         weapon.position = enemy.position
+        weapon.zPosition = 2
         weapon.zRotation = enemy.zRotation
+        weapon.size = CGSize(width: 10, height: 10)
         
         
         weapon.physicsBody = SKPhysicsBody(rectangleOf: weapon.size)

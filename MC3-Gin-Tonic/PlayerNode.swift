@@ -11,8 +11,7 @@ class PlayerNode: SKSpriteNode {
     
     var lastFiredTime: Double = 0
     var isFiring = false
-    var shield = ShieldNode(imageNamed: "shield")
-    
+    var jointAnchor : CGPoint = .zero
     init(imageNamed: String) {
         
         let texture = SKTexture(imageNamed: imageNamed)
@@ -22,14 +21,14 @@ class PlayerNode: SKSpriteNode {
         position = CGPoint(x: 0, y: 0)
         zPosition = 2
         
-        physicsBody = SKPhysicsBody(texture: texture, size: self.size)
+        physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2)
         physicsBody?.categoryBitMask = CollisionType.player.rawValue
-        physicsBody?.collisionBitMask = CollisionType.enemyWeapon.rawValue
+        physicsBody?.collisionBitMask = 0
         physicsBody?.contactTestBitMask = CollisionType.enemyWeapon.rawValue
-        physicsBody?.isDynamic = false
+        physicsBody?.pinned = true
+        physicsBody?.isDynamic = true
 
-        shield.position = CGPoint(x: self.frame.midX, y: self.frame.minY - shield.size.height * 0.5)
-        self.addChild(shield)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,7 +47,12 @@ class PlayerNode: SKSpriteNode {
         
         switch gestureType {
         case .tapped:
+            /*
+             velocità angolare = deltaAngle/deltaTime -> deltaTime = angle/velocità
+             */
+            let speed = 2
             let rotation = SKAction.rotate(toAngle: playerAngle, duration: 0.12, shortestUnitArc: true)
+            
             self.run(rotation) {
                 self.isFiring = true
             }
@@ -91,6 +95,7 @@ class PlayerNode: SKSpriteNode {
         let scale = SKAction.scale(by: 1.06, duration: 0.07)
         let scaleSequence = SKAction.sequence([scale, scale.reversed()])
         
+        //shield should not be child of player. Think about join them as separate objects.
         self.run(scaleSequence)
     }
     

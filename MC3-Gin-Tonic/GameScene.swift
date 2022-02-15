@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-extension GameScene: SKPhysicsContactDelegate {
+//extension GameScene: SKPhysicsContactDelegate {
 //  func didBegin(_ contact: SKPhysicsContact) {
 //    // 1
 //    var firstBody: SKPhysicsBody
@@ -35,7 +35,7 @@ extension GameScene: SKPhysicsContactDelegate {
 //      }
 //    }
 //  }
-}
+//}
 
 enum CollisionType: UInt32 {
     case enemy = 1
@@ -77,21 +77,8 @@ extension CGPoint {
   }
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
-<<<<<<< HEAD
-    struct PhysicsCategory {
-      static let none      : UInt32 = 0
-      static let all       : UInt32 = UInt32.max
-      static let player   : UInt32 = 0b1       // 1
-      static let enemyWeapon: UInt32 = 0b10      // 2
-    }
-    
-//    private var label : SKLabelNode?
-//    private var spinnyNode : SKShapeNode?
-    
-=======
->>>>>>> devEnni
     private var player = PlayerNode(imageNamed: "playerShip")
     private var shield = ShieldNode(imageNamed: "shield")
     
@@ -115,12 +102,8 @@ class GameScene: SKScene {
         enemy.name = "enemy"
         enemy.position.y = frame.minY
 //        enemy.position = .init(x: 0, y: -800)
-<<<<<<< HEAD
-        enemy.zPosition = 1
         
-=======
         enemy.zPosition = 2
->>>>>>> devEnni
         addChild(enemy)
         
         enemy.physicsBody = SKPhysicsBody(texture: enemy.texture!, size: enemy.texture!.size())
@@ -147,8 +130,6 @@ class GameScene: SKScene {
 //        pathNode2.position = enemy.position
         addChild(pathNode2)
         
-        
-        
         let followLine1 = SKAction.follow(bezierPath1.cgPath, asOffset: false, orientToPath: true, duration: 5)
 //        let reversedLine = followLine.reversed()
         let finalLine = SKAction.sequence([.run { self.enemy.xScale = 1
@@ -157,9 +138,6 @@ class GameScene: SKScene {
             self.enemy.xScale = -1
         }, followLine1.reversed()])
         let anotherAction = SKAction.repeatForever(finalLine)
-
-      
-                                         
         
         enemy.run(anotherAction)
     }
@@ -169,59 +147,39 @@ class GameScene: SKScene {
         let weaponType = "enemyWeapon"
         let weapon = SKSpriteNode(imageNamed: weaponType)
         weapon.name = "enemyWeapon"
-<<<<<<< HEAD
         
-        weapon.zPosition = enemy.zPosition
-=======
-        weapon.position = enemy.position
         weapon.zPosition = 2
->>>>>>> devEnni
         weapon.zRotation = enemy.zRotation
         weapon.size = CGSize(width: 10, height: 10)
-        
-        
+        weapon.position = enemy.position
+
         weapon.physicsBody = SKPhysicsBody(rectangleOf: weapon.size)
         weapon.physicsBody?.categoryBitMask = CollisionType.enemyWeapon.rawValue
-<<<<<<< HEAD
-        weapon.physicsBody?.collisionBitMask = CollisionType.player.rawValue
-        weapon.physicsBody?.contactTestBitMask = CollisionType.player.rawValue
+        weapon.physicsBody?.collisionBitMask = CollisionType.player.rawValue | CollisionType.shield.rawValue
+        weapon.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.shield.rawValue
         
 //        weapon.physicsBody?.categoryBitMask = PhysicsCategory.enemyWeapon
 //        weapon.physicsBody?.contactTestBitMask = PhysicsCategory.player
 //        weapon.physicsBody?.collisionBitMask = PhysicsCategory.none
         
-        weapon.physicsBody?.mass = 0.001
-=======
-        weapon.physicsBody?.collisionBitMask = CollisionType.shield.rawValue
-        weapon.physicsBody?.contactTestBitMask = CollisionType.player.rawValue
         weapon.physicsBody?.mass = 10
->>>>>>> devEnni
         
         let offset = aim - enemy.position
         let direction = offset.normalized()
         let shootAmount = direction * 2000
         let realDest = shootAmount + enemy.position
         
-        weapon.position = enemy.position
-        
 //        let speed: CGFloat = 1
 //        let adjustedRotation = zRotation + (CGFloat.pi / 2)
         let actionMove = SKAction.move(to: realDest, duration: 2.0)
         
-<<<<<<< HEAD
-        let dx = speed * cos(adjustedRotation)
-        let dy = speed * sin(adjustedRotation)
-        addChild(weapon)
-=======
 //        let dx = speed * cos(adjustedRotation)
 //        let dy = speed * sin(adjustedRotation)
->>>>>>> devEnni
+        addChild(weapon)
         weapon.run(actionMove)
+
 //        weapon.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
         
-        /*
-         If the enemy bullet follows a path at hight speed like here (instead of an impulse) it goes through the player, the contact is detected but the bullet continue the path. That's why if we add the collisions masks it seems like there's no collision, but if you run with a longer duration for the actionMove, like 10, you see that the contact it's happening
-         */
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -296,6 +254,7 @@ class GameScene: SKScene {
                 secondNode.isHidden = true
             }
         } else {
+            
 //            if let explosion = SKEmitterNode(fileNamed: "Explosion") {
 //                explosion.position = secondNode.position
 //                addChild(explosion)

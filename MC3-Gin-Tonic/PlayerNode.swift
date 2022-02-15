@@ -25,9 +25,7 @@ class PlayerNode: SKSpriteNode {
         physicsBody?.categoryBitMask = CollisionType.player.rawValue
         physicsBody?.collisionBitMask = 0
         physicsBody?.contactTestBitMask = CollisionType.enemyWeapon.rawValue
-        physicsBody?.pinned = true
-        physicsBody?.isDynamic = true
-
+        physicsBody?.isDynamic = false
         
     }
     
@@ -50,7 +48,6 @@ class PlayerNode: SKSpriteNode {
             /*
              velocità angolare = deltaAngle/deltaTime -> deltaTime = angle/velocità
              */
-            let speed = 2
             let rotation = SKAction.rotate(toAngle: playerAngle, duration: 0.12, shortestUnitArc: true)
             
             self.run(rotation) {

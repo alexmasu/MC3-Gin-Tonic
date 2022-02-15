@@ -26,7 +26,7 @@ class ShieldNode: SKSpriteNode {
         emitterShield?.particleSize = self.size
         emitterShield?.particleLifetime = self.size.width / 150
         emitterShield?.particleAlpha = 7
-        emitterShield?.zPosition = -1
+        emitterShield?.zPosition = 1
         emitterShield?.advanceSimulationTime(7)
         
         self.addChild(emitterShield!)

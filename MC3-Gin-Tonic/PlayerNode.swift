@@ -19,15 +19,13 @@ class PlayerNode: SKSpriteNode {
         
         name = "player"
         position = CGPoint(x: 0, y: 0)
-        zPosition = 2
+        zPosition = 1
         
         physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2)
         physicsBody?.categoryBitMask = CollisionType.player.rawValue
         physicsBody?.collisionBitMask = 0
         physicsBody?.contactTestBitMask = CollisionType.enemyWeapon.rawValue
-        physicsBody?.pinned = true
-        physicsBody?.isDynamic = true
-
+        physicsBody?.isDynamic = false
         
     }
     

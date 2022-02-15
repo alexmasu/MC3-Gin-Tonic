@@ -21,8 +21,8 @@ class ShieldNode: SKSpriteNode {
         physicsBody?.categoryBitMask = CollisionType.shield.rawValue
         physicsBody?.collisionBitMask = CollisionType.enemyWeapon.rawValue
         physicsBody?.contactTestBitMask = CollisionType.enemyWeapon.rawValue
-        physicsBody?.isDynamic = false
-        
+        physicsBody?.isDynamic = true
+
         emitterShield?.particleSize = self.size
         emitterShield?.particleLifetime = self.size.width / 150
         emitterShield?.particleAlpha = 7

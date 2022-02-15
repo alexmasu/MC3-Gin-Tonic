@@ -79,6 +79,7 @@ extension CGPoint {
 
 class GameScene: SKScene {
     
+<<<<<<< HEAD
     struct PhysicsCategory {
       static let none      : UInt32 = 0
       static let all       : UInt32 = UInt32.max
@@ -89,7 +90,10 @@ class GameScene: SKScene {
 //    private var label : SKLabelNode?
 //    private var spinnyNode : SKShapeNode?
     
+=======
+>>>>>>> devEnni
     private var player = PlayerNode(imageNamed: "playerShip")
+    private var shield = ShieldNode(imageNamed: "shield")
     
     var isPlayerAlive = true
     var playerLives = 3
@@ -103,12 +107,20 @@ class GameScene: SKScene {
         self.physicsWorld.contactDelegate = self
         
         self.addChild(player)
+        shield.position = CGPoint(x: player.frame.midX, y: player.frame.minY - shield.size.height * 0.5)
+        self.addChild(shield)
+        let join = SKPhysicsJointFixed.joint(withBodyA: player.physicsBody!, bodyB: shield.physicsBody!, anchor: CGPoint(x: player.frame.midX, y: player.frame.minY))
+        self.physicsWorld.add(join)
         
         enemy.name = "enemy"
-        enemy.position.y = frame.minY - 500
+        enemy.position.y = frame.minY
 //        enemy.position = .init(x: 0, y: -800)
+<<<<<<< HEAD
         enemy.zPosition = 1
         
+=======
+        enemy.zPosition = 2
+>>>>>>> devEnni
         addChild(enemy)
         
         enemy.physicsBody = SKPhysicsBody(texture: enemy.texture!, size: enemy.texture!.size())
@@ -120,8 +132,8 @@ class GameScene: SKScene {
         enemy.physicsBody?.isDynamic = false
 //        enemy.anchorPoint = CGPoint(x: 0.5, y: 1)
        
-        let bezierPath1 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -300), radius: 300, startAngle: CGFloat(0), endAngle: CGFloat(M_PI), clockwise: false)
-        let bezierPath2 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -300), radius: 300, startAngle: CGFloat(180), endAngle: CGFloat(0), clockwise: true)
+        let bezierPath1 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(self.size.height / 4.4)), radius: self.size.height / 4.4, startAngle: 0.0, endAngle: CGFloat.pi, clockwise: false)
+        let bezierPath2 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(self.size.height / 4.4)), radius: self.size.height / 4.4, startAngle: 180.0, endAngle: 0.0, clockwise: true)
         
         let pathNode1 = SKShapeNode(path: bezierPath1.cgPath)
         pathNode1.strokeColor = SKColor.blue
@@ -157,14 +169,20 @@ class GameScene: SKScene {
         let weaponType = "enemyWeapon"
         let weapon = SKSpriteNode(imageNamed: weaponType)
         weapon.name = "enemyWeapon"
+<<<<<<< HEAD
         
         weapon.zPosition = enemy.zPosition
+=======
+        weapon.position = enemy.position
+        weapon.zPosition = 2
+>>>>>>> devEnni
         weapon.zRotation = enemy.zRotation
         weapon.size = CGSize(width: 10, height: 10)
         
         
         weapon.physicsBody = SKPhysicsBody(rectangleOf: weapon.size)
         weapon.physicsBody?.categoryBitMask = CollisionType.enemyWeapon.rawValue
+<<<<<<< HEAD
         weapon.physicsBody?.collisionBitMask = CollisionType.player.rawValue
         weapon.physicsBody?.contactTestBitMask = CollisionType.player.rawValue
         
@@ -173,6 +191,11 @@ class GameScene: SKScene {
 //        weapon.physicsBody?.collisionBitMask = PhysicsCategory.none
         
         weapon.physicsBody?.mass = 0.001
+=======
+        weapon.physicsBody?.collisionBitMask = CollisionType.shield.rawValue
+        weapon.physicsBody?.contactTestBitMask = CollisionType.player.rawValue
+        weapon.physicsBody?.mass = 10
+>>>>>>> devEnni
         
         let offset = aim - enemy.position
         let direction = offset.normalized()
@@ -181,13 +204,18 @@ class GameScene: SKScene {
         
         weapon.position = enemy.position
         
-        let speed: CGFloat = 1
-        let adjustedRotation = zRotation + (CGFloat.pi / 2)
+//        let speed: CGFloat = 1
+//        let adjustedRotation = zRotation + (CGFloat.pi / 2)
         let actionMove = SKAction.move(to: realDest, duration: 2.0)
         
+<<<<<<< HEAD
         let dx = speed * cos(adjustedRotation)
         let dy = speed * sin(adjustedRotation)
         addChild(weapon)
+=======
+//        let dx = speed * cos(adjustedRotation)
+//        let dy = speed * sin(adjustedRotation)
+>>>>>>> devEnni
         weapon.run(actionMove)
 //        weapon.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
         

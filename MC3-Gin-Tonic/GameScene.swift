@@ -7,6 +7,36 @@
 
 import SpriteKit
 
+extension GameScene: SKPhysicsContactDelegate {
+//  func didBegin(_ contact: SKPhysicsContact) {
+//    // 1
+//    var firstBody: SKPhysicsBody
+//    var secondBody: SKPhysicsBody
+//    if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+//      firstBody = contact.bodyA
+//      secondBody = contact.bodyB
+//    } else {
+//      firstBody = contact.bodyB
+//      secondBody = contact.bodyA
+//    }
+//
+//    // 2
+//    if ((firstBody.categoryBitMask & PhysicsCategory.player != 0) &&
+//        (secondBody.categoryBitMask & PhysicsCategory.enemyWeapon != 0)) {
+//      if let player = firstBody.node as? SKSpriteNode,
+//        let enemyWeapon = secondBody.node as? SKSpriteNode {
+//          enemyHitPlayer(enemyWeapon: enemyWeapon, player: player)
+////        monstersDestroyed += 1
+////        if monstersDestroyed > 30 {
+////          let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+////          let gameOverScene = GameOverScene(size: self.size, won: true)
+////          view?.presentScene(gameOverScene, transition: reveal)
+////        }
+//      }
+//    }
+//  }
+}
+
 enum CollisionType: UInt32 {
     case enemy = 1
     case enemyWeapon = 2
@@ -49,16 +79,28 @@ extension CGPoint {
 
 class GameScene: SKScene {
     
+    struct PhysicsCategory {
+      static let none      : UInt32 = 0
+      static let all       : UInt32 = UInt32.max
+      static let player   : UInt32 = 0b1       // 1
+      static let enemyWeapon: UInt32 = 0b10      // 2
+    }
+    
 //    private var label : SKLabelNode?
 //    private var spinnyNode : SKShapeNode?
     
     private var player = PlayerNode(imageNamed: "playerShip")
+    
+    var isPlayerAlive = true
+    var playerLives = 3
+    var enemyLives = 3
     
     let enemy = SKSpriteNode(imageNamed: "enemy")
     var enemyLastFireTime: Double = 0
     
     override func didMove(to view: SKView) {
         physicsWorld.gravity = .zero
+        self.physicsWorld.contactDelegate = self
         
         self.addChild(player)
         
@@ -66,12 +108,15 @@ class GameScene: SKScene {
         enemy.position.y = frame.minY - 500
 //        enemy.position = .init(x: 0, y: -800)
         enemy.zPosition = 1
+        
         addChild(enemy)
         
-//        enemy.physicsBody = SKPhysicsBody(texture: enemy.texture!, size: enemy.texture!.size())
-//        enemy.physicsBody?.categoryBitMask = CollisionType.enemy.rawValue
-//        enemy.physicsBody?.categoryBitMask = CollisionType.enemy.rawValue | CollisionType.enemyWeapon.rawValue
-//        enemy.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue | CollisionType.enemyWeapon.rawValue
+        enemy.physicsBody = SKPhysicsBody(texture: enemy.texture!, size: enemy.texture!.size())
+        enemy.physicsBody?.categoryBitMask = CollisionType.enemy.rawValue
+        enemy.physicsBody?.collisionBitMask = CollisionType.player.rawValue
+    
+        enemy.physicsBody?.contactTestBitMask = CollisionType.player.rawValue
+//        | CollisionType.enemyWeapon.rawValue // here we need player's weapon against enemy
         enemy.physicsBody?.isDynamic = false
 //        enemy.anchorPoint = CGPoint(x: 0.5, y: 1)
        
@@ -112,22 +157,29 @@ class GameScene: SKScene {
         let weaponType = "enemyWeapon"
         let weapon = SKSpriteNode(imageNamed: weaponType)
         weapon.name = "enemyWeapon"
-        weapon.position = enemy.position
+        
+        weapon.zPosition = enemy.zPosition
         weapon.zRotation = enemy.zRotation
+        weapon.size = CGSize(width: 10, height: 10)
         
         
         weapon.physicsBody = SKPhysicsBody(rectangleOf: weapon.size)
         weapon.physicsBody?.categoryBitMask = CollisionType.enemyWeapon.rawValue
-//        weapon.physicsBody?.collisionBitMask = CollisionType.player.rawValue
-//        weapon.physicsBody?.contactTestBitMask = CollisionType.player.rawValue
+        weapon.physicsBody?.collisionBitMask = CollisionType.player.rawValue
+        weapon.physicsBody?.contactTestBitMask = CollisionType.player.rawValue
+        
+//        weapon.physicsBody?.categoryBitMask = PhysicsCategory.enemyWeapon
+//        weapon.physicsBody?.contactTestBitMask = PhysicsCategory.player
+//        weapon.physicsBody?.collisionBitMask = PhysicsCategory.none
+        
         weapon.physicsBody?.mass = 0.001
         
-        addChild(weapon)
-
-        let offset = aim - weapon.position
+        let offset = aim - enemy.position
         let direction = offset.normalized()
         let shootAmount = direction * 2000
-        let realDest = shootAmount + weapon.position
+        let realDest = shootAmount + enemy.position
+        
+        weapon.position = enemy.position
         
         let speed: CGFloat = 1
         let adjustedRotation = zRotation + (CGFloat.pi / 2)
@@ -135,6 +187,7 @@ class GameScene: SKScene {
         
         let dx = speed * cos(adjustedRotation)
         let dy = speed * sin(adjustedRotation)
+        addChild(weapon)
         weapon.run(actionMove)
 //        weapon.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
         
@@ -189,4 +242,47 @@ class GameScene: SKScene {
             }
         }
     }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        guard let nodeA = contact.bodyA.node else {return}
+        guard let nodeB = contact.bodyB.node else {return}
+
+        let sortedNodes = [nodeA, nodeB].sorted {$0.name ?? "" < $1.name ?? ""}
+        let firstNode = sortedNodes[0]
+        let secondNode = sortedNodes[1]
+
+        firstNode.removeFromParent()
+        
+        if secondNode.name == "player" {
+            guard isPlayerAlive else {return}
+
+            if let explosion = SKEmitterNode(fileNamed: "Explosion") {
+                explosion.position = secondNode.position
+                addChild(explosion)
+            }
+            playerLives -= 1
+
+            if playerLives == 0 {
+//                gameOver()
+                
+                secondNode.isHidden = true
+            }
+        } else {
+//            if let explosion = SKEmitterNode(fileNamed: "Explosion") {
+//                explosion.position = secondNode.position
+//                addChild(explosion)
+//            }
+        }
+    }
+    
+//    func enemyHitPlayer(enemyWeapon: SKSpriteNode, player: SKSpriteNode) {
+//      let explosion = SKEmitterNode(fileNamed: "Explosion")
+//        explosion?.position = player.position
+//      enemyWeapon.removeFromParent()
+//        playerLives -= 1
+//        if playerLives == 0 {
+//      player.removeFromParent()
+//        }
+//    }
+    
 }

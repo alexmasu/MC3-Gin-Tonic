@@ -249,7 +249,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             playerLives -= 1
 
             if playerLives == 0 {
-//                gameOver()
+                let gameOverScene = GameOverScene(size: self.size)
+                view?.presentScene(gameOverScene)
                 
                 secondNode.isHidden = true
             }
@@ -272,4 +273,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        }
 //    }
     
+    func gameOver() {
+        isPlayerAlive = false
+
+        if let explosion = SKEmitterNode(fileNamed: "Explosion") {
+            explosion.position = player.position
+            addChild(explosion)
+        }
+        
+        
+
+//        let gameOver = SKSpriteNode(imageNamed: "gameOver")
+//        gameOver.size = CGSize(width: 300, height: 100)
+//        addChild(gameOver)
+//
+//        let restartButton = SKSpriteNode()
+    }
 }

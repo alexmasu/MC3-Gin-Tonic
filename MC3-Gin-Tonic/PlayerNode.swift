@@ -12,6 +12,8 @@ class PlayerNode: SKSpriteNode {
     var lastFiredTime: Double = 0
     var isFiring = false
     var jointAnchor : CGPoint = .zero
+    var life: Int = 3
+
     init(imageNamed: String) {
         
         let texture = SKTexture(imageNamed: imageNamed)
@@ -48,7 +50,6 @@ class PlayerNode: SKSpriteNode {
             /*
              velocità angolare = deltaAngle/deltaTime -> deltaTime = angle/velocità
              */
-            let speed = 2
             let rotation = SKAction.rotate(toAngle: playerAngle, duration: 0.12, shortestUnitArc: true)
             
             self.run(rotation) {
@@ -82,7 +83,7 @@ class PlayerNode: SKSpriteNode {
         playerBullet.physicsBody?.contactTestBitMask = CollisionType.enemyWeapon.rawValue
         
         playerBullet.physicsBody?.mass = 0.02
-        let speed: CGFloat = 10
+        let speed: CGFloat = 12
         
         self.parent!.addChild(playerBullet)
 
@@ -106,5 +107,11 @@ class PlayerNode: SKSpriteNode {
             self.isFiring = false
         }
     }
-
+    
+    func reduceLife() {
+        self.life -= 1
+        if self.life == 0 {
+            print("YOU'RE DEAD")
+        }
+    }
 }

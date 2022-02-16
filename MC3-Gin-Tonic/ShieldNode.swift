@@ -13,7 +13,8 @@ class ShieldNode: SKSpriteNode {
     init(imageNamed: String) {
         let texture = SKTexture(imageNamed: imageNamed)
         super.init(texture: texture, color: .white, size: texture.size())
-        
+
+        self.size = CGSize(width: self.size.width / 1.5, height: self.size.height)
         name = "shield"
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         zPosition = 2

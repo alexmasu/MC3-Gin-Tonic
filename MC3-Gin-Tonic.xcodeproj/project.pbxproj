@@ -18,6 +18,7 @@
 		7F40023527B271E2001182EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F40023327B271E2001182EB /* Main.storyboard */; };
 		7F40023727B271E3001182EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F40023627B271E3001182EB /* Assets.xcassets */; };
 		7F40023A27B271E3001182EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F40023827B271E3001182EB /* LaunchScreen.storyboard */; };
+		7F6BC44227BCFC6200368A4E /* AsteroideNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6BC44127BCFC6200368A4E /* AsteroideNode.swift */; };
 		9533BC2027BC4D910048C7B3 /* CannonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533BC1F27BC4D910048C7B3 /* CannonNode.swift */; };
 		9548DBC727B71D7B002D5B12 /* PlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC627B71D7B002D5B12 /* PlayerNode.swift */; };
 		9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC827B71DB8002D5B12 /* ShieldNode.swift */; };
@@ -30,13 +31,14 @@
 		29514EEA27BC08C200E94576 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		2980F63D27B3D66E00C318DF /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		2984718827B571D400E88AA8 /* EnemyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
-		7F40022627B271E2001182EB /* MC3-Gin-Tonic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MC3-Gin-Tonic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F40022627B271E2001182EB /* Abissi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Abissi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F40022927B271E2001182EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F40022F27B271E2001182EB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		7F40023127B271E2001182EB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		7F40023427B271E2001182EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7F40023627B271E3001182EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F40023927B271E3001182EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7F6BC44127BCFC6200368A4E /* AsteroideNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroideNode.swift; sourceTree = "<group>"; };
 		9533BC1F27BC4D910048C7B3 /* CannonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonNode.swift; sourceTree = "<group>"; };
 		9548DBC627B71D7B002D5B12 /* PlayerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNode.swift; sourceTree = "<group>"; };
 		9548DBC827B71DB8002D5B12 /* ShieldNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldNode.swift; sourceTree = "<group>"; };
@@ -65,7 +67,7 @@
 		7F40022727B271E2001182EB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7F40022627B271E2001182EB /* MC3-Gin-Tonic.app */,
+				7F40022627B271E2001182EB /* Abissi.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,6 +90,7 @@
 				29514EE827BC074E00E94576 /* HUD.swift */,
 				29514EEA27BC08C200E94576 /* GameOverScene.swift */,
 				7F40023827B271E3001182EB /* LaunchScreen.storyboard */,
+				7F6BC44127BCFC6200368A4E /* AsteroideNode.swift */,
 			);
 			path = "MC3-Gin-Tonic";
 			sourceTree = "<group>";
@@ -109,7 +112,7 @@
 			);
 			name = "MC3-Gin-Tonic";
 			productName = "MC3-Gin-Tonic";
-			productReference = 7F40022627B271E2001182EB /* MC3-Gin-Tonic.app */;
+			productReference = 7F40022627B271E2001182EB /* Abissi.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -166,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F6BC44227BCFC6200368A4E /* AsteroideNode.swift in Sources */,
 				9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */,
 				7F40023027B271E2001182EB /* GameScene.swift in Sources */,
 				7F40023227B271E2001182EB /* GameViewController.swift in Sources */,
@@ -319,11 +323,12 @@
 		7F40023E27B271E3001182EB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V49YJHMDHJ;
+				DEVELOPMENT_TEAM = PLX9GGVS7R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -337,7 +342,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "appleacademy.MC3-Gin-Tonic";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Abissi;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -347,11 +352,12 @@
 		7F40023F27B271E3001182EB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V49YJHMDHJ;
+				DEVELOPMENT_TEAM = PLX9GGVS7R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -365,7 +371,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "appleacademy.MC3-Gin-Tonic";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Abissi;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

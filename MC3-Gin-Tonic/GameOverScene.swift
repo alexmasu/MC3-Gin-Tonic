@@ -9,16 +9,27 @@ import SpriteKit
 
 class GameOverScene: SKScene {
     
+    
     let restartButton = SKSpriteNode()
     
     override func didMove(to view: SKView) {
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        let gameOver = SKSpriteNode(imageNamed: "gameOver")
-        gameOver.size = CGSize(width: 300, height: 100)
-        gameOver.position = CGPoint(x: 0, y: 100)
-        self.addChild(gameOver)
+        let message = "Game Over"
+        
+        // 3
+        let label = SKLabelNode(fontNamed: "AdventPro-SemiBold")
+        label.text = message
+        label.fontSize = 40
+        label.fontColor = SKColor.red
+        label.position = CGPoint(x: 0, y: 100)
+        addChild(label)
+        
+//        let gameOver = SKSpriteNode(imageNamed: "gameOver")
+//        gameOver.size = CGSize(width: 300, height: 100)
+//        gameOver.position = CGPoint(x: 0, y: 100)
+//        self.addChild(gameOver)
         
         // Build the start game button:
         restartButton.texture = SKTexture(imageNamed: "button-restart")

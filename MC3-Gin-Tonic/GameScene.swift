@@ -87,7 +87,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemy.physicsBody?.isDynamic = false
        
         let bezierPath1 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(self.size.height / 4.4)), radius: self.size.height / 4.4, startAngle: 0.0, endAngle: CGFloat.pi, clockwise: false)
-        let bezierPath2 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(self.size.height / 4.4)), radius: self.size.height / 4.4, startAngle: 180.0, endAngle: 0.0, clockwise: true)
+        let bezierPath2 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(self.size.height / 4.4)), radius: self.size.height / 4.4, startAngle: CGFloat.pi, endAngle: 0.0, clockwise: true)
         
 //        let pathNode1 = SKShapeNode(path: bezierPath1.cgPath)
 //        pathNode1.strokeColor = SKColor.blue
@@ -101,13 +101,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 ////        pathNode2.position = enemy.position
 //        addChild(pathNode2)
         
-        let followLine1 = SKAction.follow(bezierPath1.cgPath, asOffset: false, orientToPath: true, duration: 5)
-//        let reversedLine = followLine.reversed()
-        let finalLine = SKAction.sequence([.run { self.enemy.xScale = 1
-            self.enemy.yScale = 1
-        }, followLine1, .run { self.enemy.yScale = -1
-            self.enemy.xScale = -1
-        }, followLine1.reversed()])
+        let followLine1 = SKAction.follow(bezierPath1.cgPath, asOffset: false, orientToPath: false, duration: 5)
+        let followLine2 = SKAction.follow(bezierPath2.cgPath, asOffset: false, orientToPath: false, duration: 5)
+        let finalLine = SKAction.sequence([followLine1, followLine2])
         let anotherAction = SKAction.repeatForever(finalLine)
         
         enemy.run(anotherAction)
@@ -183,6 +179,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        enemy.zRotation = (atan2(enemy.position.y, enemy.position.x) + CGFloat.pi)
         
         if player.isFiring {
             if player.lastFiredTime + 0.6 <= currentTime {

@@ -9,28 +9,66 @@ import SpriteKit
 
 class EnemyNode: SKSpriteNode {
     
-//    func fire() {
-//        let weaponType = "enemyWeapon"
-//        
-//        let weapon = SKSpriteNode(imageNamed: weaponType)
-//        weapon.name = "enemyWeapon"
-//        weapon.position = position
-//        weapon.zRotation = zRotation
-//        parent?.addChild(weapon)
-//        
-//        weapon.physicsBody = SKPhysicsBody(rectangleOf: weapon.size)
-//        weapon.physicsBody?.categoryBitMask = CollisionType.enemyWeapon.rawValue
-////        weapon.physicsBody?.collisionBitMask = CollisionType.player.rawValue
-////        weapon.physicsBody?.contactTestBitMask = CollisionType.player.rawValue
-//        weapon.physicsBody?.mass = 0.001
-//        
+    var lastFiredTime: Double = 0
+    var isFiring = true
+//    var jointAnchor : CGPoint = .zero
+    var life: Int = 3
+    
+    init(imageNamed: String) {
+        let texture = SKTexture(imageNamed: imageNamed)
+        super.init(texture: texture, color: .white, size: texture.size())
+        
+        name = "enemy"
+        position.y = frame.minY
+        zPosition = 2
+        
+        physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
+        physicsBody?.usesPreciseCollisionDetection = true
+        physicsBody?.categoryBitMask = CollisionType.enemy.rawValue
+        physicsBody?.collisionBitMask = CollisionType.cannonBullet.rawValue
+        
+        physicsBody?.contactTestBitMask = CollisionType.cannonBullet.rawValue
+        physicsBody?.isDynamic = false
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func fire() {
+        let aim = CGPoint.zero
+        let weaponType = "enemyWeapon"
+        let weapon = SKSpriteNode(imageNamed: weaponType)
+        weapon.name = "enemyWeapon"
+        
+        weapon.zPosition = zPosition
+        weapon.zRotation = zRotation
+        weapon.size = CGSize(width: 10, height: 10)
+        weapon.position = position
+
+        weapon.physicsBody = SKPhysicsBody(rectangleOf: weapon.size)
+        weapon.physicsBody?.usesPreciseCollisionDetection = true
+        weapon.physicsBody?.categoryBitMask = CollisionType.enemyWeapon.rawValue
+        weapon.physicsBody?.collisionBitMask = CollisionType.player.rawValue | CollisionType.shield.rawValue
+        weapon.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.shield.rawValue
+        
+        weapon.physicsBody?.mass = 10
+        
+        let offset = aim - position
+        let direction = offset.normalized()
+        let shootAmount = direction * 2000
+        let realDest = shootAmount + position
+        
 //        let speed: CGFloat = 1
 //        let adjustedRotation = zRotation + (CGFloat.pi / 2)
-//        
+        let actionMove = SKAction.move(to: realDest, duration: 2.0)
+        
 //        let dx = speed * cos(adjustedRotation)
 //        let dy = speed * sin(adjustedRotation)
-//        
+        self.parent!.addChild(weapon)
+        weapon.run(actionMove)
+
 //        weapon.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
-//        
-//    }
+        
+    }
 }

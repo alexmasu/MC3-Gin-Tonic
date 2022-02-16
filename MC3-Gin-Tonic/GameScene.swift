@@ -52,17 +52,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var player = PlayerNode(imageNamed: "playerShip")
     private var shield = ShieldNode(imageNamed: "shield")
+    private var enemy = EnemyNode(imageNamed: "enemy")
     private var cannon = CannonNode()
     
     var isPlayerAlive = true
-    var enemyLives = 3
-    
-    let enemy = SKSpriteNode(imageNamed: "enemy")
-    var enemyLastFireTime: Double = 0
+
     
     override func didMove(to view: SKView) {
         physicsWorld.gravity = .zero
         self.physicsWorld.contactDelegate = self
+        
+        self.addChild(enemy)
         
         self.addChild(player)
         shield.position = CGPoint(x: player.frame.midX, y: player.frame.minY - shield.size.height * 0.5)
@@ -72,19 +72,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(cannon)
         player.addChild(cannon.cannonChargeIndicator)
         
-        enemy.name = "enemy"
-        enemy.position.y = frame.minY
-        
-        enemy.zPosition = 2
-        addChild(enemy)
-        
-        enemy.physicsBody = SKPhysicsBody(texture: enemy.texture!, size: enemy.texture!.size())
-        enemy.physicsBody?.usesPreciseCollisionDetection = true
-        enemy.physicsBody?.categoryBitMask = CollisionType.enemy.rawValue
-        enemy.physicsBody?.collisionBitMask = CollisionType.cannonBullet.rawValue
-    
-        enemy.physicsBody?.contactTestBitMask = CollisionType.cannonBullet.rawValue
-        enemy.physicsBody?.isDynamic = false
        
         let bezierPath1 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(self.size.height / 4.4)), radius: self.size.height / 4.4, startAngle: 0.0, endAngle: CGFloat.pi, clockwise: false)
         let bezierPath2 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(self.size.height / 4.4)), radius: self.size.height / 4.4, startAngle: CGFloat.pi, endAngle: 0.0, clockwise: true)
@@ -107,43 +94,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let anotherAction = SKAction.repeatForever(finalLine)
         
         enemy.run(anotherAction)
-    }
-    
-    func fire() {
-        let aim = CGPoint(x: frame.midX, y: frame.midY)
-        let weaponType = "enemyWeapon"
-        let weapon = SKSpriteNode(imageNamed: weaponType)
-        weapon.name = "enemyWeapon"
-        
-        weapon.zPosition = 2
-        weapon.zRotation = enemy.zRotation
-        weapon.size = CGSize(width: 10, height: 10)
-        weapon.position = enemy.position
-
-        weapon.physicsBody = SKPhysicsBody(rectangleOf: weapon.size)
-        weapon.physicsBody?.usesPreciseCollisionDetection = true
-        weapon.physicsBody?.categoryBitMask = CollisionType.enemyWeapon.rawValue
-        weapon.physicsBody?.collisionBitMask = CollisionType.player.rawValue | CollisionType.shield.rawValue
-        weapon.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.shield.rawValue
-        
-        weapon.physicsBody?.mass = 10
-        
-        let offset = aim - enemy.position
-        let direction = offset.normalized()
-        let shootAmount = direction * 2000
-        let realDest = shootAmount + enemy.position
-        
-//        let speed: CGFloat = 1
-//        let adjustedRotation = zRotation + (CGFloat.pi / 2)
-        let actionMove = SKAction.move(to: realDest, duration: 2.0)
-        
-//        let dx = speed * cos(adjustedRotation)
-//        let dy = speed * sin(adjustedRotation)
-        addChild(weapon)
-        weapon.run(actionMove)
-
-//        weapon.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -187,9 +137,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.fire()
             }
         }
-        if enemyLastFireTime + 0.8 <= currentTime {
-            enemyLastFireTime = currentTime
-            self.fire()
+        if enemy.lastFiredTime + 0.8 <= currentTime {
+            enemy.lastFiredTime = currentTime
+            enemy.fire()
         }
         
         for child in children {
@@ -232,10 +182,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             makeExplosion(position: contact.contactPoint)
             
             if secondNode.name == "enemy" {
-                enemyLives -= 1
-                if enemyLives == 0 {
+                enemy.life -= 1
+                if enemy.life == 0 {
                     print("YOU WON")
-                    enemyLives = 3
+                    enemy.life = 3
                 }
             } else {
                 if secondNode.name == "enemyWeapon" {

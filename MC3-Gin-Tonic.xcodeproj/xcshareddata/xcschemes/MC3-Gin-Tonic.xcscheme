@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7F40022527B271E2001182EB"
-               BuildableName = "MC3-Gin-Tonic.app"
+               BuildableName = "Abissi.app"
                BlueprintName = "MC3-Gin-Tonic"
                ReferencedContainer = "container:MC3-Gin-Tonic.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7F40022527B271E2001182EB"
-            BuildableName = "MC3-Gin-Tonic.app"
+            BuildableName = "Abissi.app"
             BlueprintName = "MC3-Gin-Tonic"
             ReferencedContainer = "container:MC3-Gin-Tonic.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7F40022527B271E2001182EB"
-            BuildableName = "MC3-Gin-Tonic.app"
+            BuildableName = "Abissi.app"
             BlueprintName = "MC3-Gin-Tonic"
             ReferencedContainer = "container:MC3-Gin-Tonic.xcodeproj">
          </BuildableReference>

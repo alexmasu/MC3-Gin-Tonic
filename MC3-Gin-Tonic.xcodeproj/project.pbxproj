@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		291218D027BA9970006836F6 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 291218CF27BA9970006836F6 /* Explosion.sks */; };
+		2932F2A127BD127800A7ED80 /* AdventPro-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29927BD127800A7ED80 /* AdventPro-Thin.ttf */; };
+		2932F2A227BD127800A7ED80 /* AdventPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29A27BD127800A7ED80 /* AdventPro-Bold.ttf */; };
+		2932F2A327BD127800A7ED80 /* AdventPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29B27BD127800A7ED80 /* AdventPro-SemiBold.ttf */; };
+		2932F2A427BD127800A7ED80 /* AdventPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29C27BD127800A7ED80 /* AdventPro-Medium.ttf */; };
+		2932F2A527BD127800A7ED80 /* AdventPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29D27BD127800A7ED80 /* AdventPro-Regular.ttf */; };
+		2932F2A627BD127800A7ED80 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29E27BD127800A7ED80 /* OFL.txt */; };
+		2932F2A727BD127800A7ED80 /* AdventPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29F27BD127800A7ED80 /* AdventPro-Light.ttf */; };
+		2932F2A827BD127800A7ED80 /* AdventPro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F2A027BD127800A7ED80 /* AdventPro-ExtraLight.ttf */; };
 		29514EE927BC074E00E94576 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29514EE827BC074E00E94576 /* HUD.swift */; };
 		29514EEB27BC08C200E94576 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29514EEA27BC08C200E94576 /* GameOverScene.swift */; };
 		2980F63E27B3D66E00C318DF /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2980F63D27B3D66E00C318DF /* GameScene.sks */; };
@@ -22,10 +30,19 @@
 		9548DBC727B71D7B002D5B12 /* PlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC627B71D7B002D5B12 /* PlayerNode.swift */; };
 		9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC827B71DB8002D5B12 /* ShieldNode.swift */; };
 		9548DBCB27B71DF0002D5B12 /* ShieldBackGlow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */; };
+		95A93A4E27BD8E5E00515A06 /* MeteoriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		291218CF27BA9970006836F6 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
+		2932F29927BD127800A7ED80 /* AdventPro-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-Thin.ttf"; sourceTree = "<group>"; };
+		2932F29A27BD127800A7ED80 /* AdventPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-Bold.ttf"; sourceTree = "<group>"; };
+		2932F29B27BD127800A7ED80 /* AdventPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-SemiBold.ttf"; sourceTree = "<group>"; };
+		2932F29C27BD127800A7ED80 /* AdventPro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-Medium.ttf"; sourceTree = "<group>"; };
+		2932F29D27BD127800A7ED80 /* AdventPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-Regular.ttf"; sourceTree = "<group>"; };
+		2932F29E27BD127800A7ED80 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		2932F29F27BD127800A7ED80 /* AdventPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-Light.ttf"; sourceTree = "<group>"; };
+		2932F2A027BD127800A7ED80 /* AdventPro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-ExtraLight.ttf"; sourceTree = "<group>"; };
 		29514EE827BC074E00E94576 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		29514EEA27BC08C200E94576 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		2980F63D27B3D66E00C318DF /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -41,6 +58,7 @@
 		9548DBC627B71D7B002D5B12 /* PlayerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNode.swift; sourceTree = "<group>"; };
 		9548DBC827B71DB8002D5B12 /* ShieldNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldNode.swift; sourceTree = "<group>"; };
 		9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ShieldBackGlow.sks; sourceTree = "<group>"; };
+		95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +72,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2932F29827BD127800A7ED80 /* Advent_Pro */ = {
+			isa = PBXGroup;
+			children = (
+				2932F29927BD127800A7ED80 /* AdventPro-Thin.ttf */,
+				2932F29A27BD127800A7ED80 /* AdventPro-Bold.ttf */,
+				2932F29B27BD127800A7ED80 /* AdventPro-SemiBold.ttf */,
+				2932F29C27BD127800A7ED80 /* AdventPro-Medium.ttf */,
+				2932F29D27BD127800A7ED80 /* AdventPro-Regular.ttf */,
+				2932F29E27BD127800A7ED80 /* OFL.txt */,
+				2932F29F27BD127800A7ED80 /* AdventPro-Light.ttf */,
+				2932F2A027BD127800A7ED80 /* AdventPro-ExtraLight.ttf */,
+			);
+			path = Advent_Pro;
+			sourceTree = "<group>";
+		};
 		7F40021D27B271E2001182EB = {
 			isa = PBXGroup;
 			children = (
@@ -74,20 +107,22 @@
 			isa = PBXGroup;
 			children = (
 				7F40022927B271E2001182EB /* AppDelegate.swift */,
+				7F40023127B271E2001182EB /* GameViewController.swift */,
 				7F40022F27B271E2001182EB /* GameScene.swift */,
-				291218CF27BA9970006836F6 /* Explosion.sks */,
 				9548DBC627B71D7B002D5B12 /* PlayerNode.swift */,
 				9548DBC827B71DB8002D5B12 /* ShieldNode.swift */,
 				9533BC1F27BC4D910048C7B3 /* CannonNode.swift */,
 				2984718827B571D400E88AA8 /* EnemyNode.swift */,
-				9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */,
-				2980F63D27B3D66E00C318DF /* GameScene.sks */,
-				7F40023127B271E2001182EB /* GameViewController.swift */,
-				7F40023327B271E2001182EB /* Main.storyboard */,
-				7F40023627B271E3001182EB /* Assets.xcassets */,
+				95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */,
 				29514EE827BC074E00E94576 /* HUD.swift */,
 				29514EEA27BC08C200E94576 /* GameOverScene.swift */,
+				9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */,
+				2980F63D27B3D66E00C318DF /* GameScene.sks */,
+				291218CF27BA9970006836F6 /* Explosion.sks */,
+				7F40023327B271E2001182EB /* Main.storyboard */,
 				7F40023827B271E3001182EB /* LaunchScreen.storyboard */,
+				7F40023627B271E3001182EB /* Assets.xcassets */,
+				2932F29827BD127800A7ED80 /* Advent_Pro */,
 			);
 			path = "MC3-Gin-Tonic";
 			sourceTree = "<group>";
@@ -151,11 +186,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				2980F63E27B3D66E00C318DF /* GameScene.sks in Resources */,
+				2932F2A427BD127800A7ED80 /* AdventPro-Medium.ttf in Resources */,
 				9548DBCB27B71DF0002D5B12 /* ShieldBackGlow.sks in Resources */,
+				2932F2A527BD127800A7ED80 /* AdventPro-Regular.ttf in Resources */,
 				7F40023527B271E2001182EB /* Main.storyboard in Resources */,
 				7F40023727B271E3001182EB /* Assets.xcassets in Resources */,
+				2932F2A627BD127800A7ED80 /* OFL.txt in Resources */,
+				2932F2A127BD127800A7ED80 /* AdventPro-Thin.ttf in Resources */,
+				2932F2A327BD127800A7ED80 /* AdventPro-SemiBold.ttf in Resources */,
+				2932F2A727BD127800A7ED80 /* AdventPro-Light.ttf in Resources */,
+				2932F2A827BD127800A7ED80 /* AdventPro-ExtraLight.ttf in Resources */,
 				7F40023A27B271E3001182EB /* LaunchScreen.storyboard in Resources */,
 				291218D027BA9970006836F6 /* Explosion.sks in Resources */,
+				2932F2A227BD127800A7ED80 /* AdventPro-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95A93A4E27BD8E5E00515A06 /* MeteoriteNode.swift in Sources */,
 				9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */,
 				7F40023027B271E2001182EB /* GameScene.swift in Sources */,
 				7F40023227B271E2001182EB /* GameViewController.swift in Sources */,
@@ -330,7 +374,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -359,7 +403,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

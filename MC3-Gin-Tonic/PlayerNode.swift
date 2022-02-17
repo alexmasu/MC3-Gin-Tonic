@@ -64,13 +64,12 @@ class PlayerNode: SKSpriteNode {
     
     func fire() {
         let playerBullet = SKSpriteNode(imageNamed: "playerBullet")
-        playerBullet.name = "playerBullet"
         
         let playerAngleAdjusted = self.zRotation + CGFloat.pi / 2
         //Bullet angle adjusted
         let adjustedAngle = playerAngleAdjusted + CGFloat.pi / 2
         
-        playerBullet.anchorPoint = CGPoint(x: 0.5, y: 0)
+        playerBullet.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         playerBullet.size = CGSize(width: playerBullet.size.width, height: playerBullet.size.height)
         
         playerBullet.position = CGPoint(x: ((self.size.width / 2) * cos(playerAngleAdjusted)), y: ((self.size.width / 2) * sin(playerAngleAdjusted)))
@@ -79,13 +78,14 @@ class PlayerNode: SKSpriteNode {
         
         playerBullet.physicsBody = SKPhysicsBody(texture: playerBullet.texture!, size: playerBullet.size)
         playerBullet.physicsBody?.categoryBitMask = CollisionType.playerBullet.rawValue
-        playerBullet.physicsBody?.collisionBitMask = CollisionType.enemy.rawValue
-        playerBullet.physicsBody?.contactTestBitMask = CollisionType.enemyWeapon.rawValue
+        playerBullet.physicsBody?.collisionBitMask = CollisionType.meteorite.rawValue
+        playerBullet.physicsBody?.contactTestBitMask = CollisionType.meteorite.rawValue
         
         playerBullet.physicsBody?.mass = 0.02
         let speed: CGFloat = 12
         
         self.parent!.addChild(playerBullet)
+        playerBullet.name = "playerBullet"
 
         let dx = speed * cos(playerAngleAdjusted)
         let dy = speed * sin(playerAngleAdjusted)

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AdventPro-Thin.ttf</string>
+		<string>AdventPro-Bold.ttf</string>
+		<string>AdventPro-SemiBold.ttf</string>
+		<string>AdventPro-Medium.ttf</string>
+		<string>AdventPro-Regular.ttf</string>
+		<string>AdventPro-Light.ttf</string>
+		<string>AdventPro-ExtraLight.ttf</string>
+	</array>
+</dict>
+</plist>

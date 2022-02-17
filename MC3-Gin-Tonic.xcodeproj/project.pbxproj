@@ -18,7 +18,6 @@
 		7F40023527B271E2001182EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F40023327B271E2001182EB /* Main.storyboard */; };
 		7F40023727B271E3001182EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F40023627B271E3001182EB /* Assets.xcassets */; };
 		7F40023A27B271E3001182EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F40023827B271E3001182EB /* LaunchScreen.storyboard */; };
-		7F6BC44227BCFC6200368A4E /* AsteroideNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6BC44127BCFC6200368A4E /* AsteroideNode.swift */; };
 		9533BC2027BC4D910048C7B3 /* CannonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533BC1F27BC4D910048C7B3 /* CannonNode.swift */; };
 		9548DBC727B71D7B002D5B12 /* PlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC627B71D7B002D5B12 /* PlayerNode.swift */; };
 		9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC827B71DB8002D5B12 /* ShieldNode.swift */; };
@@ -38,7 +37,6 @@
 		7F40023427B271E2001182EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7F40023627B271E3001182EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F40023927B271E3001182EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7F6BC44127BCFC6200368A4E /* AsteroideNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroideNode.swift; sourceTree = "<group>"; };
 		9533BC1F27BC4D910048C7B3 /* CannonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonNode.swift; sourceTree = "<group>"; };
 		9548DBC627B71D7B002D5B12 /* PlayerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNode.swift; sourceTree = "<group>"; };
 		9548DBC827B71DB8002D5B12 /* ShieldNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldNode.swift; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 				29514EE827BC074E00E94576 /* HUD.swift */,
 				29514EEA27BC08C200E94576 /* GameOverScene.swift */,
 				7F40023827B271E3001182EB /* LaunchScreen.storyboard */,
-				7F6BC44127BCFC6200368A4E /* AsteroideNode.swift */,
 			);
 			path = "MC3-Gin-Tonic";
 			sourceTree = "<group>";
@@ -169,7 +166,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F6BC44227BCFC6200368A4E /* AsteroideNode.swift in Sources */,
 				9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */,
 				7F40023027B271E2001182EB /* GameScene.swift in Sources */,
 				7F40023227B271E2001182EB /* GameViewController.swift in Sources */,

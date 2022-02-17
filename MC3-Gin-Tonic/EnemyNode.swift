@@ -61,7 +61,7 @@ class EnemyNode: SKSpriteNode {
         
 //        let speed: CGFloat = 1
 //        let adjustedRotation = zRotation + (CGFloat.pi / 2)
-        let actionMove = SKAction.move(to: realDest, duration: 2.0)
+        let actionMove = SKAction.move(to: realDest, duration: 6.0)
         
 //        let dx = speed * cos(adjustedRotation)
 //        let dy = speed * sin(adjustedRotation)

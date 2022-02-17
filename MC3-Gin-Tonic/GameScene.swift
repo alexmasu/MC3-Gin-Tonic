@@ -14,6 +14,7 @@ enum CollisionType: UInt32 {
     case shield = 8
     case playerBullet = 16
     case cannonBullet = 32
+    case meteorite = 64
 }
 
 func +(left: CGPoint, right: CGPoint) -> CGPoint {
@@ -56,6 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var cannon = CannonNode()
     
     var isPlayerAlive = true
+    var meteoriteLastSpawnTime: Double = 0
 
     
     override func didMove(to view: SKView) {
@@ -120,9 +122,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         player.stopFire(touchesCount: touches.count)
         
-        if cannon.cannonEnergy != 3 {
-            cannon.cannonCharge()
-        } else {
+        if cannon.cannonEnergy == 3 {
             cannon.shot()
             cannon.cannonCharge()
         }
@@ -137,9 +137,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.fire()
             }
         }
-        if enemy.lastFiredTime + 0.8 <= currentTime {
+        if enemy.lastFiredTime + 5 <= currentTime {
             enemy.lastFiredTime = currentTime
             enemy.fire()
+        }
+        if meteoriteLastSpawnTime + 6 <= currentTime {
+            meteoriteLastSpawnTime = currentTime
+            let meteor = MeteoriteNode(minX: -scene!.frame.maxX, maxY: scene!.frame.maxY)
+            addChild(meteor)
+            meteor.startMoving()
         }
         
         for child in children {
@@ -159,8 +165,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let firstNode = sortedNodes[0]
         let secondNode = sortedNodes[1]
 
-        if firstNode.name != "enemy"{
-            firstNode.removeFromParent()
+        if firstNode.name == "enemyWeapon" {
+                firstNode.removeFromParent()
         }
         
         if secondNode.name == "player" {
@@ -176,6 +182,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 view?.presentScene(gameOverScene, transition: reveal)
                 
                 secondNode.isHidden = true
+            }
+        }
+        
+        if firstNode.name == "meteorite" {
+            secondNode.removeFromParent()
+            guard let meteor = firstNode as? MeteoriteNode else {return}
+            if meteor.isDestroyedAfterHit() {
+                meteor.removeFromParent()
+                if cannon.cannonEnergy != 3 {
+                    cannon.cannonCharge()
+                }
             }
         }
         

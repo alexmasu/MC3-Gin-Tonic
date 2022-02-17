@@ -20,7 +20,7 @@ class ShieldNode: SKSpriteNode {
         zPosition = 2
         physicsBody = SKPhysicsBody(texture: texture, size: self.size)
         physicsBody?.categoryBitMask = CollisionType.shield.rawValue
-        physicsBody?.collisionBitMask = CollisionType.enemyWeapon.rawValue
+        physicsBody?.collisionBitMask = 0
         physicsBody?.contactTestBitMask = CollisionType.enemyWeapon.rawValue
         physicsBody?.isDynamic = true
 

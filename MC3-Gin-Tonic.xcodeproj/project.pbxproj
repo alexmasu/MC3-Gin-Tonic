@@ -13,7 +13,6 @@
 		2932F2A327BD127800A7ED80 /* AdventPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29B27BD127800A7ED80 /* AdventPro-SemiBold.ttf */; };
 		2932F2A427BD127800A7ED80 /* AdventPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29C27BD127800A7ED80 /* AdventPro-Medium.ttf */; };
 		2932F2A527BD127800A7ED80 /* AdventPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29D27BD127800A7ED80 /* AdventPro-Regular.ttf */; };
-		2932F2A627BD127800A7ED80 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29E27BD127800A7ED80 /* OFL.txt */; };
 		2932F2A727BD127800A7ED80 /* AdventPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29F27BD127800A7ED80 /* AdventPro-Light.ttf */; };
 		2932F2A827BD127800A7ED80 /* AdventPro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F2A027BD127800A7ED80 /* AdventPro-ExtraLight.ttf */; };
 		29514EE927BC074E00E94576 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29514EE827BC074E00E94576 /* HUD.swift */; };
@@ -39,11 +38,11 @@
 		2932F29B27BD127800A7ED80 /* AdventPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-SemiBold.ttf"; sourceTree = "<group>"; };
 		2932F29C27BD127800A7ED80 /* AdventPro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-Medium.ttf"; sourceTree = "<group>"; };
 		2932F29D27BD127800A7ED80 /* AdventPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-Regular.ttf"; sourceTree = "<group>"; };
-		2932F29E27BD127800A7ED80 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		2932F29F27BD127800A7ED80 /* AdventPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-Light.ttf"; sourceTree = "<group>"; };
 		2932F2A027BD127800A7ED80 /* AdventPro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-ExtraLight.ttf"; sourceTree = "<group>"; };
 		29514EE827BC074E00E94576 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		29514EEA27BC08C200E94576 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		2968935D27BD1E4800CE2CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2980F63D27B3D66E00C318DF /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		2984718827B571D400E88AA8 /* EnemyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
 		7F40022627B271E2001182EB /* MC3-Gin-Tonic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MC3-Gin-Tonic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,7 +77,6 @@
 				2932F29B27BD127800A7ED80 /* AdventPro-SemiBold.ttf */,
 				2932F29C27BD127800A7ED80 /* AdventPro-Medium.ttf */,
 				2932F29D27BD127800A7ED80 /* AdventPro-Regular.ttf */,
-				2932F29E27BD127800A7ED80 /* OFL.txt */,
 				2932F29F27BD127800A7ED80 /* AdventPro-Light.ttf */,
 				2932F2A027BD127800A7ED80 /* AdventPro-ExtraLight.ttf */,
 			);
@@ -104,6 +102,7 @@
 		7F40022827B271E2001182EB /* MC3-Gin-Tonic */ = {
 			isa = PBXGroup;
 			children = (
+				2968935D27BD1E4800CE2CE5 /* Info.plist */,
 				7F40022927B271E2001182EB /* AppDelegate.swift */,
 				7F40022F27B271E2001182EB /* GameScene.swift */,
 				291218CF27BA9970006836F6 /* Explosion.sks */,
@@ -188,7 +187,6 @@
 				2932F2A527BD127800A7ED80 /* AdventPro-Regular.ttf in Resources */,
 				7F40023527B271E2001182EB /* Main.storyboard in Resources */,
 				7F40023727B271E3001182EB /* Assets.xcassets in Resources */,
-				2932F2A627BD127800A7ED80 /* OFL.txt in Resources */,
 				2932F2A127BD127800A7ED80 /* AdventPro-Thin.ttf in Resources */,
 				2932F2A327BD127800A7ED80 /* AdventPro-SemiBold.ttf in Resources */,
 				2932F2A727BD127800A7ED80 /* AdventPro-Light.ttf in Resources */,
@@ -365,6 +363,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V49YJHMDHJ;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MC3-Gin-Tonic/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -393,6 +392,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V49YJHMDHJ;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MC3-Gin-Tonic/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -170,8 +170,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.reduceLife()
 
             if player.life == 0 {
-                let gameOverScene = GameOverScene(size: self.size)
-                view?.presentScene(gameOverScene)
+                let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                let gameOverScene = GameOverScene(size: self.size, won: false)
+                
+                view?.presentScene(gameOverScene, transition: reveal)
                 
                 secondNode.isHidden = true
             }
@@ -184,7 +186,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if secondNode.name == "enemy" {
                 enemy.life -= 1
                 if enemy.life == 0 {
-                    print("YOU WON")
+                    let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                    let gameOverScene = GameOverScene(size: self.size, won: true)
+                    
+                    view?.presentScene(gameOverScene, transition: reveal)
+//                    print("YOU WON")
                     enemy.life = 3
                 }
             } else {

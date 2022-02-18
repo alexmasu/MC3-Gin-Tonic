@@ -56,12 +56,59 @@ class MeteoriteNode: SKSpriteNode {
         let endX = scene.frame.maxX * 1.2
         let endY = CGFloat(Int.random(in: 20...Int(scene.frame.maxY + 20.0)))
         let moveToEndPoint = SKAction.move(to: CGPoint(x: endX, y: endY), duration: Double.random(in: 6.0...9.5))
-        self.run(moveToEndPoint) {
+        let moveUp = SKAction.moveBy(x: 0, y: 30, duration: 1)
+        let seq = SKAction.sequence([moveUp, moveUp.reversed()])
+        let group = SKAction.group([SKAction.repeatForever(seq), moveToEndPoint])
+//        self.run(SKAction.repeatForever(seq))
+        self.run(group) {
             self.removeFromParent()
         }
     }
     
+    func animateHit(metLife: Int) {
+        var hitNum = 1
+        switch metLife {
+        case 2:
+            hitNum = 2
+        case 1:
+            hitNum = 3
+        default:
+            break
+        }
+        
+        let meteoriteAnimAtlas = SKTextureAtlas(named: "metHit\(hitNum)")
+        var frames: [SKTexture] = []
+        
+        let numImages = meteoriteAnimAtlas.textureNames.count
+        for i in 0...numImages - 1 {
+            let metFrameName = "met\(i)@3x"
+            frames.append(meteoriteAnimAtlas.textureNamed(metFrameName))
+        }
+        let animHit = SKAction.animate(with: frames, timePerFrame: 0.04, resize: true, restore: false)
+        
+        self.run(animHit) {
+            if hitNum == 3 {
+                self.animateEnergy()
+                self.removeFromParent()
+            }
+        }
+    }
+    
+    func animateEnergy() {
+        if let energyParticles = SKEmitterNode(fileNamed: "MetEnergyParticles") {
+            energyParticles.position = self.position
+            energyParticles.particleAction = SKAction.move(to: .zero, duration: 1)
+
+            scene?.addChild(energyParticles)
+            energyParticles.run(energyParticles.particleAction!)
+
+        }
+            
+    }
+    
     func isDestroyedAfterHit() -> Bool {
+        self.animateHit(metLife: self.life)
+
         self.life -= 1
         if self.life == 0 {
             return true

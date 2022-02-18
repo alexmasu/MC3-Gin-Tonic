@@ -30,6 +30,11 @@
 		9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC827B71DB8002D5B12 /* ShieldNode.swift */; };
 		9548DBCB27B71DF0002D5B12 /* ShieldBackGlow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */; };
 		95A93A4E27BD8E5E00515A06 /* MeteoriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */; };
+		95F17D9327BE7B7600A8EB71 /* StarsBackground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */; };
+		95F17DB227BEE85900A8EB71 /* metHit1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95F17DB127BEE85900A8EB71 /* metHit1.atlas */; };
+		95F17DB427BEF72D00A8EB71 /* metHit2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95F17DB327BEF72D00A8EB71 /* metHit2.atlas */; };
+		95F17DB627BEF73F00A8EB71 /* metHit3.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95F17DB527BEF73F00A8EB71 /* metHit3.atlas */; };
+		95F17DB827BEF9B200A8EB71 /* MetEnergyParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95F17DB727BEF9B200A8EB71 /* MetEnergyParticles.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +62,11 @@
 		9548DBC827B71DB8002D5B12 /* ShieldNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldNode.swift; sourceTree = "<group>"; };
 		9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ShieldBackGlow.sks; sourceTree = "<group>"; };
 		95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteNode.swift; sourceTree = "<group>"; };
+		95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarsBackground.sks; sourceTree = "<group>"; };
+		95F17DB127BEE85900A8EB71 /* metHit1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = metHit1.atlas; sourceTree = "<group>"; };
+		95F17DB327BEF72D00A8EB71 /* metHit2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = metHit2.atlas; sourceTree = "<group>"; };
+		95F17DB527BEF73F00A8EB71 /* metHit3.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = metHit3.atlas; sourceTree = "<group>"; };
+		95F17DB727BEF9B200A8EB71 /* MetEnergyParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MetEnergyParticles.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,9 +126,14 @@
 				9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */,
 				2980F63D27B3D66E00C318DF /* GameScene.sks */,
 				291218CF27BA9970006836F6 /* Explosion.sks */,
+				95F17DB727BEF9B200A8EB71 /* MetEnergyParticles.sks */,
+				95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */,
 				7F40023327B271E2001182EB /* Main.storyboard */,
 				7F40023827B271E3001182EB /* LaunchScreen.storyboard */,
 				7F40023627B271E3001182EB /* Assets.xcassets */,
+				95F17DB127BEE85900A8EB71 /* metHit1.atlas */,
+				95F17DB327BEF72D00A8EB71 /* metHit2.atlas */,
+				95F17DB527BEF73F00A8EB71 /* metHit3.atlas */,
 				2932F29827BD127800A7ED80 /* Advent_Pro */,
 			);
 			path = "MC3-Gin-Tonic";
@@ -184,16 +199,21 @@
 			files = (
 				2980F63E27B3D66E00C318DF /* GameScene.sks in Resources */,
 				2932F2A427BD127800A7ED80 /* AdventPro-Medium.ttf in Resources */,
+				95F17DB227BEE85900A8EB71 /* metHit1.atlas in Resources */,
 				9548DBCB27B71DF0002D5B12 /* ShieldBackGlow.sks in Resources */,
 				2932F2A527BD127800A7ED80 /* AdventPro-Regular.ttf in Resources */,
 				7F40023527B271E2001182EB /* Main.storyboard in Resources */,
+				95F17D9327BE7B7600A8EB71 /* StarsBackground.sks in Resources */,
 				7F40023727B271E3001182EB /* Assets.xcassets in Resources */,
 				2932F2A127BD127800A7ED80 /* AdventPro-Thin.ttf in Resources */,
 				2932F2A327BD127800A7ED80 /* AdventPro-SemiBold.ttf in Resources */,
 				2932F2A727BD127800A7ED80 /* AdventPro-Light.ttf in Resources */,
 				2932F2A827BD127800A7ED80 /* AdventPro-ExtraLight.ttf in Resources */,
 				7F40023A27B271E3001182EB /* LaunchScreen.storyboard in Resources */,
+				95F17DB427BEF72D00A8EB71 /* metHit2.atlas in Resources */,
+				95F17DB627BEF73F00A8EB71 /* metHit3.atlas in Resources */,
 				291218D027BA9970006836F6 /* Explosion.sks in Resources */,
+				95F17DB827BEF9B200A8EB71 /* MetEnergyParticles.sks in Resources */,
 				2932F2A227BD127800A7ED80 /* AdventPro-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,7 +386,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HP5KN8K9AX;
+				DEVELOPMENT_TEAM = V49YJHMDHJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MC3-Gin-Tonic/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -398,7 +418,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HP5KN8K9AX;
+				DEVELOPMENT_TEAM = V49YJHMDHJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MC3-Gin-Tonic/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

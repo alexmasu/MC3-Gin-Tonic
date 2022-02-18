@@ -63,6 +63,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         physicsWorld.gravity = .zero
         self.physicsWorld.contactDelegate = self
+        if let starsBackground = SKEmitterNode(fileNamed: "StarsBackground") {
+            starsBackground.position = CGPoint(x: 0, y: self.frame.maxY + 50)
+            starsBackground.zPosition = -1
+            starsBackground.advanceSimulationTime(50)
+            self.addChild(starsBackground)
+        }
         
         self.addChild(enemy)
         
@@ -165,7 +171,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let firstNode = sortedNodes[0]
         let secondNode = sortedNodes[1]
 
-        if firstNode.name == "enemyWeapon" {
+        if firstNode.name == "enemyWeapon" || firstNode.name == "cannonBullet" {
                 firstNode.removeFromParent()
         }
         
@@ -180,8 +186,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let gameOverScene = GameOverScene(size: self.size, won: false)
                 
                 view?.presentScene(gameOverScene, transition: reveal)
-                
-                secondNode.isHidden = true
             }
         }
         
@@ -189,7 +193,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondNode.removeFromParent()
             guard let meteor = firstNode as? MeteoriteNode else {return}
             if meteor.isDestroyedAfterHit() {
-                meteor.removeFromParent()
                 if cannon.cannonEnergy != 3 {
                     cannon.cannonCharge()
                 }

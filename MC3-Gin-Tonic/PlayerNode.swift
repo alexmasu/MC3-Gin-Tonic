@@ -82,7 +82,7 @@ class PlayerNode: SKSpriteNode {
         playerBullet.physicsBody?.contactTestBitMask = CollisionType.meteorite.rawValue
         
         playerBullet.physicsBody?.mass = 0.02
-        let speed: CGFloat = 12
+        let speed: CGFloat = 18
         
         self.parent!.addChild(playerBullet)
         playerBullet.name = "playerBullet"
@@ -110,8 +110,5 @@ class PlayerNode: SKSpriteNode {
     
     func reduceLife() {
         self.life -= 1
-        if self.life == 0 {
-            print("YOU'RE DEAD")
-        }
     }
 }

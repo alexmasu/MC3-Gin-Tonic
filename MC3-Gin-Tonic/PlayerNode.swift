@@ -21,13 +21,14 @@ class PlayerNode: SKSpriteNode {
         
         name = "player"
         position = CGPoint(x: 0, y: 0)
-        zPosition = 1
+        zPosition = 10
         
         physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2)
         physicsBody?.categoryBitMask = CollisionType.player.rawValue
         physicsBody?.collisionBitMask = 0
         physicsBody?.contactTestBitMask = CollisionType.enemyWeapon.rawValue
         physicsBody?.isDynamic = false
+        makeTextureShadow(blurRadius: 7, xScaleFactor: 1.4, yScaleFactor: 1.4, color: UIColor(red: 105, green: 255, blue: 34, alpha: 1))
         
     }
     
@@ -70,19 +71,21 @@ class PlayerNode: SKSpriteNode {
         let adjustedAngle = playerAngleAdjusted + CGFloat.pi / 2
         
         playerBullet.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        playerBullet.size = CGSize(width: playerBullet.size.width, height: playerBullet.size.height)
-        
+        playerBullet.size = CGSize(width: self.size.width / 6, height: self.size.height / 5)
+
         playerBullet.position = CGPoint(x: ((self.size.width / 2) * cos(playerAngleAdjusted)), y: ((self.size.width / 2) * sin(playerAngleAdjusted)))
-        playerBullet.zPosition = 2
+        playerBullet.zPosition = 7
         playerBullet.zRotation = adjustedAngle
         
-        playerBullet.physicsBody = SKPhysicsBody(texture: playerBullet.texture!, size: playerBullet.size)
+        playerBullet.physicsBody = SKPhysicsBody(rectangleOf: playerBullet.size)
         playerBullet.physicsBody?.categoryBitMask = CollisionType.playerBullet.rawValue
         playerBullet.physicsBody?.collisionBitMask = CollisionType.meteorite.rawValue
         playerBullet.physicsBody?.contactTestBitMask = CollisionType.meteorite.rawValue
         
         playerBullet.physicsBody?.mass = 0.02
         let speed: CGFloat = 18
+        
+        makeShapeGlow()
         
         self.parent!.addChild(playerBullet)
         playerBullet.name = "playerBullet"

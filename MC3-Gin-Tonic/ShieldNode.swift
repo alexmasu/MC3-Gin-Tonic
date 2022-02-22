@@ -89,6 +89,25 @@ class ShieldNode: SKSpriteNode {
         animateShadowGlow()
     }
     
+    func openCannonAnimationRun() {
+        let frames = makeAnimationFrames(from: "shieldAnim")
+        let animCannon = SKAction.animate(with: frames, timePerFrame: 0.01, resize: false, restore: false)
+        let scale = SKAction.scale(by: 1.3, duration: 0.14)
+
+        self.run(scale)
+        self.run(animCannon)
+    }
+    
+    func closeCannonAnimationRun() {
+        let frames = makeAnimationFrames(from: "shieldAnim")
+        let framesReversed: [SKTexture] = frames.reversed()
+        let animCannon = SKAction.animate(with: framesReversed, timePerFrame: 0.01, resize: false, restore: false)
+        let scale = SKAction.scale(to: 1, duration: 0.14)
+        
+        self.run(scale)
+        self.run(animCannon)
+    }
+    
     func animateShadowGlow() {
         guard let shadow = self.childNode(withName: "shadow") else {return}
         let glowing = SKAction.fadeAlpha(to: 1, duration: 0.117)

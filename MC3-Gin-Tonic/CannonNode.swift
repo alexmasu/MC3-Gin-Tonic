@@ -10,8 +10,7 @@ import SpriteKit
 class CannonNode: SKNode {
     
     var cannonChargeIndicator : SKSpriteNode
-    var cannonEnergy: Int = 0
-    
+    var cannonEnergy: Int = 3
     override init() {
         self.cannonChargeIndicator = SKSpriteNode(imageNamed: "charge0")
         super.init()
@@ -20,7 +19,7 @@ class CannonNode: SKNode {
     
     func cannonCharge() {
         if self.cannonEnergy == 3 {
-            self.cannonEnergy = 0
+//            self.cannonEnergy = 0
         } else {
             self.cannonEnergy += 1
         }
@@ -28,37 +27,53 @@ class CannonNode: SKNode {
     }
     
     func shot() {
+        guard let scene = scene,
+        let shield = scene.childNode(withName: "shield") as? ShieldNode else {return}
         let cannonBullet = SKSpriteNode(imageNamed: "cannonBullet")
-        guard let shield = scene?.childNode(withName: "shield") else {return}
         
-//        let mask = SKShapeNode(circleOfRadius: self.frame.midY / cos(self.zRotation))
-//        mask.zPosition = 10
-//        mask.fillColor = .blue
-//        parent?.addChild(mask)
+        let crop = SKCropNode()
+        let rect = CGRect(origin: CGPoint(x:scene.frame.minX, y: scene.frame.minY), size: CGSize(width: scene.size.width, height: (scene.size.height / 2) + shield.frame.midY))
+        let mask = SKShapeNode(rect: rect)
+//        SKShapeNode(circleOfRadius: abs(shield.frame.midY))
+        mask.lineWidth = scene.size.height
+        mask.position = CGPoint(x:scene.frame.midX, y: scene.frame.minY)
+        mask.zPosition = 50
+        crop.maskNode = mask
+        crop.zPosition = 10
         
         cannonBullet.name = "cannonBullet"
-        cannonBullet.zPosition = 1
+        cannonBullet.zPosition = -1
         cannonBullet.zRotation = shield.zRotation
         
-        cannonBullet.size = CGSize(width: cannonBullet.size.width / 1.5, height: cannonBullet.size.height / 1.5)
+        cannonBullet.size = CGSize(width: shield.frame.width / 1.5, height: shield.frame.height / 1.5)
         cannonBullet.position = CGPoint(x: (shield.frame.midX), y: (shield.frame.midY))
         
-        let adjustedAngle = shield.zRotation + CGFloat.pi / 2
-        
-        cannonBullet.physicsBody = SKPhysicsBody(texture: cannonBullet.texture!, size: cannonBullet.size)
+        cannonBullet.physicsBody = SKPhysicsBody(rectangleOf: cannonBullet.size)
         cannonBullet.physicsBody?.usesPreciseCollisionDetection = true
         cannonBullet.physicsBody?.categoryBitMask = CollisionType.cannonBullet.rawValue
         cannonBullet.physicsBody?.collisionBitMask = 0
         cannonBullet.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
         
-        cannonBullet.physicsBody?.mass = 0.02
-        let speed : CGFloat = 14
+        let scaleY = SKAction.scaleX(by: 1, y: 100, duration: 0.5)
+        let fade = SKAction.fadeOut(withDuration: 0.1)
+        let seq = [scaleY, fade]
         
-        scene!.addChild(cannonBullet)
+//        let speed : CGFloat = 20
+//        let adjustedAngle = shield.zRotation + CGFloat.pi / 2
+//        let dx = -(speed * cos(adjustedAngle))
+//        let dy = -(speed * sin(adjustedAngle))
+//        let act = SKAction.applyImpulse(CGVector(dx: dx, dy: dy), duration: 1)
         
-        let dx = -(speed * cos(adjustedAngle))
-        let dy = -(speed * sin(adjustedAngle))
-        cannonBullet.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
+        shield.openCannonAnimationRun()
+        cannonBullet.run(SKAction.sequence(seq)){
+            shield.closeCannonAnimationRun()
+            cannonBullet.removeFromParent()
+        }
+        scene.addChild(crop)
+
+        crop.addChild(cannonBullet)
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

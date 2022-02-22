@@ -19,6 +19,8 @@
 		29514EEB27BC08C200E94576 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29514EEA27BC08C200E94576 /* GameOverScene.swift */; };
 		2980F63E27B3D66E00C318DF /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2980F63D27B3D66E00C318DF /* GameScene.sks */; };
 		2984718927B571D400E88AA8 /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984718827B571D400E88AA8 /* EnemyNode.swift */; };
+		29A0288427C3CF8A006BBBC7 /* Stars.sks in Resources */ = {isa = PBXBuildFile; fileRef = 29A0288327C3CF8A006BBBC7 /* Stars.sks */; };
+		29A0288627C3D5F3006BBBC7 /* PauseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0288527C3D5F3006BBBC7 /* PauseScreen.swift */; };
 		7F40022A27B271E2001182EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F40022927B271E2001182EB /* AppDelegate.swift */; };
 		7F40023027B271E2001182EB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F40022F27B271E2001182EB /* GameScene.swift */; };
 		7F40023227B271E2001182EB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F40023127B271E2001182EB /* GameViewController.swift */; };
@@ -50,6 +52,8 @@
 		29514EEA27BC08C200E94576 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		2980F63D27B3D66E00C318DF /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		2984718827B571D400E88AA8 /* EnemyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
+		29A0288327C3CF8A006BBBC7 /* Stars.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Stars.sks; sourceTree = "<group>"; };
+		29A0288527C3D5F3006BBBC7 /* PauseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseScreen.swift; sourceTree = "<group>"; };
 		7F40022627B271E2001182EB /* Abissi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Abissi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F40022927B271E2001182EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F40022F27B271E2001182EB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 				95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */,
 				29514EE827BC074E00E94576 /* HUD.swift */,
 				29514EEA27BC08C200E94576 /* GameOverScene.swift */,
+				29A0288527C3D5F3006BBBC7 /* PauseScreen.swift */,
+				29A0288327C3CF8A006BBBC7 /* Stars.sks */,
 				9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */,
 				2980F63D27B3D66E00C318DF /* GameScene.sks */,
 				291218CF27BA9970006836F6 /* Explosion.sks */,
@@ -208,6 +214,7 @@
 				2932F2A127BD127800A7ED80 /* AdventPro-Thin.ttf in Resources */,
 				2932F2A327BD127800A7ED80 /* AdventPro-SemiBold.ttf in Resources */,
 				2932F2A727BD127800A7ED80 /* AdventPro-Light.ttf in Resources */,
+				29A0288427C3CF8A006BBBC7 /* Stars.sks in Resources */,
 				2932F2A827BD127800A7ED80 /* AdventPro-ExtraLight.ttf in Resources */,
 				7F40023A27B271E3001182EB /* LaunchScreen.storyboard in Resources */,
 				95F17DB427BEF72D00A8EB71 /* metHit2.atlas in Resources */,
@@ -234,6 +241,7 @@
 				29514EEB27BC08C200E94576 /* GameOverScene.swift in Sources */,
 				7F40022A27B271E2001182EB /* AppDelegate.swift in Sources */,
 				9533BC2027BC4D910048C7B3 /* CannonNode.swift in Sources */,
+				29A0288627C3D5F3006BBBC7 /* PauseScreen.swift in Sources */,
 				9548DBC727B71D7B002D5B12 /* PlayerNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

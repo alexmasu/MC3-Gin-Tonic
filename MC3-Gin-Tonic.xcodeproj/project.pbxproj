@@ -25,6 +25,8 @@
 		7F40023527B271E2001182EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F40023327B271E2001182EB /* Main.storyboard */; };
 		7F40023727B271E3001182EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F40023627B271E3001182EB /* Assets.xcassets */; };
 		7F40023A27B271E3001182EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F40023827B271E3001182EB /* LaunchScreen.storyboard */; };
+		7FE1CA8327C4E79000FD7731 /* String+localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1CA8227C4E79000FD7731 /* String+localized.swift */; };
+		7FE1CA8727C4ED8D00FD7731 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FE1CA8927C4ED8D00FD7731 /* Localizable.strings */; };
 		9533BC2027BC4D910048C7B3 /* CannonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533BC1F27BC4D910048C7B3 /* CannonNode.swift */; };
 		9548DBC727B71D7B002D5B12 /* PlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC627B71D7B002D5B12 /* PlayerNode.swift */; };
 		9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC827B71DB8002D5B12 /* ShieldNode.swift */; };
@@ -57,6 +59,10 @@
 		7F40023427B271E2001182EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7F40023627B271E3001182EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F40023927B271E3001182EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7FE1CA8227C4E79000FD7731 /* String+localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+localized.swift"; sourceTree = "<group>"; };
+		7FE1CA8427C4E8B800FD7731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
+		7FE1CA8827C4ED8D00FD7731 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7FE1CA8A27C4ED9700FD7731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9533BC1F27BC4D910048C7B3 /* CannonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonNode.swift; sourceTree = "<group>"; };
 		9548DBC627B71D7B002D5B12 /* PlayerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNode.swift; sourceTree = "<group>"; };
 		9548DBC827B71DB8002D5B12 /* ShieldNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldNode.swift; sourceTree = "<group>"; };
@@ -135,6 +141,8 @@
 				95F17DB327BEF72D00A8EB71 /* metHit2.atlas */,
 				95F17DB527BEF73F00A8EB71 /* metHit3.atlas */,
 				2932F29827BD127800A7ED80 /* Advent_Pro */,
+				7FE1CA8227C4E79000FD7731 /* String+localized.swift */,
+				7FE1CA8927C4ED8D00FD7731 /* Localizable.strings */,
 			);
 			path = "MC3-Gin-Tonic";
 			sourceTree = "<group>";
@@ -181,6 +189,7 @@
 			knownRegions = (
 				en,
 				Base,
+				it,
 			);
 			mainGroup = 7F40021D27B271E2001182EB;
 			productRefGroup = 7F40022727B271E2001182EB /* Products */;
@@ -213,6 +222,7 @@
 				95F17DB427BEF72D00A8EB71 /* metHit2.atlas in Resources */,
 				95F17DB627BEF73F00A8EB71 /* metHit3.atlas in Resources */,
 				291218D027BA9970006836F6 /* Explosion.sks in Resources */,
+				7FE1CA8727C4ED8D00FD7731 /* Localizable.strings in Resources */,
 				95F17DB827BEF9B200A8EB71 /* MetEnergyParticles.sks in Resources */,
 				2932F2A227BD127800A7ED80 /* AdventPro-Bold.ttf in Resources */,
 			);
@@ -227,6 +237,7 @@
 			files = (
 				95A93A4E27BD8E5E00515A06 /* MeteoriteNode.swift in Sources */,
 				9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */,
+				7FE1CA8327C4E79000FD7731 /* String+localized.swift in Sources */,
 				7F40023027B271E2001182EB /* GameScene.swift in Sources */,
 				7F40023227B271E2001182EB /* GameViewController.swift in Sources */,
 				2984718927B571D400E88AA8 /* EnemyNode.swift in Sources */,
@@ -245,6 +256,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7F40023427B271E2001182EB /* Base */,
+				7FE1CA8427C4E8B800FD7731 /* it */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -257,6 +269,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		7FE1CA8927C4ED8D00FD7731 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FE1CA8827C4ED8D00FD7731 /* en */,
+				7FE1CA8A27C4ED9700FD7731 /* it */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -264,6 +285,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -326,6 +348,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -386,7 +409,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V49YJHMDHJ;
+				DEVELOPMENT_TEAM = PLX9GGVS7R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MC3-Gin-Tonic/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -418,7 +441,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V49YJHMDHJ;
+				DEVELOPMENT_TEAM = PLX9GGVS7R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MC3-Gin-Tonic/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -51,7 +51,7 @@ extension CGPoint {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    private var player = PlayerNode(imageNamed: "playerShip")
+    private var player = PlayerNode(imageNamed: "playerShip-3")
     private var shield = ShieldNode(imageNamed: "shield")
     private var enemy = EnemyNode(imageNamed: "enemy")
     private var cannon = CannonNode()
@@ -63,12 +63,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         physicsWorld.gravity = .zero
         self.physicsWorld.contactDelegate = self
-        if let starsBackground = SKEmitterNode(fileNamed: "StarsBackground") {
-            starsBackground.position = CGPoint(x: 0, y: self.frame.maxY + 50)
-            starsBackground.zPosition = -1
-            starsBackground.advanceSimulationTime(50)
-            self.addChild(starsBackground)
-        }
+        makeBackground()
         
         self.addChild(enemy)
         
@@ -149,7 +144,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if meteoriteLastSpawnTime + 6 <= currentTime {
             meteoriteLastSpawnTime = currentTime
-            let meteor = MeteoriteNode(minX: -scene!.frame.maxX, maxY: scene!.frame.maxY)
+            let meteor = MeteoriteNode(minX: -scene!.frame.maxX, maxY: scene!.frame.maxY - scene!.view!.safeAreaInsets.top)
             addChild(meteor)
             meteor.startMoving()
         }
@@ -170,22 +165,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let sortedNodes = [nodeA, nodeB].sorted {$0.name ?? "" < $1.name ?? ""}
         let firstNode = sortedNodes[0]
         let secondNode = sortedNodes[1]
-
-        if firstNode.name == "enemyWeapon" || firstNode.name == "cannonBullet" {
-                firstNode.removeFromParent()
-        }
         
-        if secondNode.name == "player" {
-            guard isPlayerAlive else {return}
+        /*
+         possibilities:
+         enemyWeapon - player
+         enemyWeapon - shield
+         cannonBullet - enemy
+         meteor - playerBullet
+         */
+        
+        if firstNode.name == "enemyWeapon" {
+                firstNode.removeFromParent()
+            if secondNode.name == "player" {
+                guard isPlayerAlive else {return}
 
-            makeExplosion(position: contact.contactPoint)
-            player.reduceLife()
+                makeExplosion(position: contact.contactPoint, on: player)
+                player.reduceLife()
 
-            if player.life == 0 {
-                let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                let gameOverScene = GameOverScene(size: self.size, won: false)
-                
-                view?.presentScene(gameOverScene, transition: reveal)
+                if player.life == 0 {
+                    let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                    let gameOverScene = GameOverScene(size: self.size, won: false)
+                    
+                    view?.presentScene(gameOverScene, transition: reveal)
+                }
+            } else {
+                shield.animateHit()
             }
         }
         
@@ -200,8 +204,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if firstNode.name == "cannonBullet" {
-            
-            makeExplosion(position: contact.contactPoint)
+            firstNode.removeFromParent()
+            makeExplosion(position: contact.contactPoint, on: enemy)
             
             if secondNode.name == "enemy" {
                 enemy.life -= 1
@@ -221,13 +225,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func makeExplosion(position: CGPoint) {
+    func makeExplosion(position: CGPoint, on parent: SKSpriteNode) {
         if let explosion = SKEmitterNode(fileNamed: "Explosion") {
             explosion.position = position
             
             self.addChild(explosion)
+            explosion.move(toParent: parent)
             let removeAfterDead = SKAction.sequence([SKAction.wait(forDuration: 3), SKAction.removeFromParent()])
             explosion.run(removeAfterDead)
+        }
+    }
+    
+    func makeBackground() {
+        if let starsBackground = SKEmitterNode(fileNamed: "StarsBackground") {
+            starsBackground.position = CGPoint(x: 0, y: self.frame.maxY + 50)
+            starsBackground.zPosition = -1
+            starsBackground.advanceSimulationTime(50)
+            self.addChild(starsBackground)
         }
     }
     

@@ -41,10 +41,10 @@ class EnemyNode: SKSpriteNode {
         let weapon = SKSpriteNode(imageNamed: weaponType)
         weapon.name = "enemyWeapon"
         
-        weapon.zPosition = zPosition
-        weapon.zRotation = zRotation
-        weapon.size = CGSize(width: weapon.size.width * 2, height: weapon.size.height * 2)
-        weapon.position = position
+        weapon.zPosition = 2
+        weapon.zRotation = zRotation - CGFloat.pi / 2
+        weapon.size = CGSize(width: self.size.height * 0.07, height: self.size.width * 0.15)
+        weapon.position = position - position / 4
 
         weapon.physicsBody = SKPhysicsBody(rectangleOf: weapon.size)
         weapon.physicsBody?.usesPreciseCollisionDetection = true

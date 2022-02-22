@@ -30,6 +30,7 @@
 		9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC827B71DB8002D5B12 /* ShieldNode.swift */; };
 		9548DBCB27B71DF0002D5B12 /* ShieldBackGlow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */; };
 		95A93A4E27BD8E5E00515A06 /* MeteoriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */; };
+		95BD2FC227C194F600A734CC /* shieldHit.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95BD2FC127C194F600A734CC /* shieldHit.atlas */; };
 		95F17D9327BE7B7600A8EB71 /* StarsBackground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */; };
 		95F17DB227BEE85900A8EB71 /* metHit1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95F17DB127BEE85900A8EB71 /* metHit1.atlas */; };
 		95F17DB427BEF72D00A8EB71 /* metHit2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95F17DB327BEF72D00A8EB71 /* metHit2.atlas */; };
@@ -62,6 +63,7 @@
 		9548DBC827B71DB8002D5B12 /* ShieldNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldNode.swift; sourceTree = "<group>"; };
 		9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ShieldBackGlow.sks; sourceTree = "<group>"; };
 		95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteNode.swift; sourceTree = "<group>"; };
+		95BD2FC127C194F600A734CC /* shieldHit.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = shieldHit.atlas; sourceTree = "<group>"; };
 		95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarsBackground.sks; sourceTree = "<group>"; };
 		95F17DB127BEE85900A8EB71 /* metHit1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = metHit1.atlas; sourceTree = "<group>"; };
 		95F17DB327BEF72D00A8EB71 /* metHit2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = metHit2.atlas; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				7F40023327B271E2001182EB /* Main.storyboard */,
 				7F40023827B271E3001182EB /* LaunchScreen.storyboard */,
 				7F40023627B271E3001182EB /* Assets.xcassets */,
+				95BD2FC127C194F600A734CC /* shieldHit.atlas */,
 				95F17DB127BEE85900A8EB71 /* metHit1.atlas */,
 				95F17DB327BEF72D00A8EB71 /* metHit2.atlas */,
 				95F17DB527BEF73F00A8EB71 /* metHit3.atlas */,
@@ -201,6 +204,7 @@
 				2932F2A427BD127800A7ED80 /* AdventPro-Medium.ttf in Resources */,
 				95F17DB227BEE85900A8EB71 /* metHit1.atlas in Resources */,
 				9548DBCB27B71DF0002D5B12 /* ShieldBackGlow.sks in Resources */,
+				95BD2FC227C194F600A734CC /* shieldHit.atlas in Resources */,
 				2932F2A527BD127800A7ED80 /* AdventPro-Regular.ttf in Resources */,
 				7F40023527B271E2001182EB /* Main.storyboard in Resources */,
 				95F17D9327BE7B7600A8EB71 /* StarsBackground.sks in Resources */,

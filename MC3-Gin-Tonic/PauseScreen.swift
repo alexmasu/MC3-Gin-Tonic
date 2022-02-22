@@ -7,25 +7,25 @@
 
 import SpriteKit
 
-class PauseScreen: SKScene {
+class PauseScreen: SKSpriteNode {
     
-    override func didMove(to view: SKView) {
+    init() {
         
-        if let particles = SKEmitterNode(fileNamed: "Stars") {
-            particles.position = CGPoint(x: 300, y: 1080)
-            particles.advanceSimulationTime(60)
-            particles.zPosition = -1
-            addChild(particles)
-        }
-        
+//        if let particles = SKEmitterNode(fileNamed: "Stars") {
+//            particles.position = CGPoint(x: 300, y: 1080)
+//            particles.advanceSimulationTime(60)
+//            particles.zPosition = -1
+//            addChild(particles)
+//        }
+        super.init(texture: nil, color: .blue, size: CGSize(width: 300, height: 500))
         let resumeButton = SKSpriteNode(imageNamed: "button")
         resumeButton.size = CGSize(width: 295, height: 76)
         // Name the start node for touch detection:
         resumeButton.name = "ResumeBtn"
-        resumeButton.position = CGPoint(x: 200, y: 500)
+        resumeButton.position = .zero
         
         
-        addChild(resumeButton)
+        self.addChild(resumeButton)
         
         let resumeText = SKLabelNode(fontNamed:
                                         "AdventPro-Bold")
@@ -35,7 +35,7 @@ class PauseScreen: SKScene {
         resumeText.verticalAlignmentMode = .center
         resumeText.position = .zero
         resumeText.fontSize = 40
-        resumeText.fontColor = .black
+        resumeText.fontColor = UIColor(rgb: 0x001273)
         // Name the text node for touch detection:
         resumeText.name = "ResumeBtn"
         resumeText.zPosition = 5
@@ -45,10 +45,10 @@ class PauseScreen: SKScene {
         quitButton.size = CGSize(width: 295, height: 76)
         // Name the start node for touch detection:
         quitButton.name = "QuitBtn"
-        quitButton.position = CGPoint(x: 200, y: 200)
+        quitButton.position = CGPoint(x: 0, y: -150)
         
         
-        addChild(quitButton)
+        self.addChild(quitButton)
         
         let quitText = SKLabelNode(fontNamed:
                                         "AdventPro-Bold")
@@ -58,10 +58,48 @@ class PauseScreen: SKScene {
         quitText.verticalAlignmentMode = .center
         quitText.position = .zero
         quitText.fontSize = 40
-        quitText.fontColor = .black
+        quitText.fontColor = UIColor(rgb: 0x001273)
         // Name the text node for touch detection:
         quitText.name = "QuitBtn"
         quitText.zPosition = 5
         quitButton.addChild(quitText)
+        
+        let message = "Pause"
+        
+        // 3
+        let label = SKLabelNode(fontNamed: "AdventPro-Bold")
+        label.text = message
+        label.fontSize = 60
+        label.fontColor = UIColor(rgb: 0xC5DC82)
+        label.position = CGPoint(x: 0, y: 100)
+        label.zPosition = 5
+        addChild(label)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event:
+                               UIEvent?) {
+        for touch in (touches) {
+            // Find the location of the touch:
+            let location = touch.location(in: self)
+            // Locate the node at this location:
+            let nodeTouched = atPoint(location)
+            if nodeTouched.name == "ResumeBtn" {
+                self.removeFromParent()
+                // Player touched the start text or button node
+                // Switch to an instance of the GameScene:
+//                if let view = self.view {
+//                    if let scene = SKScene(fileNamed: "GameScene") {
+//                        scene.size = view.frame.size
+//                        scene.scaleMode = .aspectFill
+//
+//                        view.presentScene(scene)
+//                    }
+//                }
+            }
+        }
     }
 }

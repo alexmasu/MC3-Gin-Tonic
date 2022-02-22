@@ -18,35 +18,35 @@ enum CollisionType: UInt32 {
 }
 
 func +(left: CGPoint, right: CGPoint) -> CGPoint {
-  return CGPoint(x: left.x + right.x, y: left.y + right.y)
+    return CGPoint(x: left.x + right.x, y: left.y + right.y)
 }
 
 func -(left: CGPoint, right: CGPoint) -> CGPoint {
-  return CGPoint(x: left.x - right.x, y: left.y - right.y)
+    return CGPoint(x: left.x - right.x, y: left.y - right.y)
 }
 
 func *(point: CGPoint, scalar: CGFloat) -> CGPoint {
-  return CGPoint(x: point.x * scalar, y: point.y * scalar)
+    return CGPoint(x: point.x * scalar, y: point.y * scalar)
 }
 
 func /(point: CGPoint, scalar: CGFloat) -> CGPoint {
-  return CGPoint(x: point.x / scalar, y: point.y / scalar)
+    return CGPoint(x: point.x / scalar, y: point.y / scalar)
 }
 
 #if !(arch(x86_64) || arch(arm64))
-  func sqrt(a: CGFloat) -> CGFloat {
+func sqrt(a: CGFloat) -> CGFloat {
     return CGFloat(sqrtf(Float(a)))
-  }
+}
 #endif
 
 extension CGPoint {
-  func length() -> CGFloat {
-    return sqrt(x*x + y*y)
-  }
-  
-  func normalized() -> CGPoint {
-    return self / length()
-  }
+    func length() -> CGFloat {
+        return sqrt(x*x + y*y)
+    }
+    
+    func normalized() -> CGPoint {
+        return self / length()
+    }
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -55,10 +55,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var shield = ShieldNode(imageNamed: "shield")
     private var enemy = EnemyNode(imageNamed: "enemy")
     private var cannon = CannonNode()
+    private var pause = PauseScreen()
     
     var isPlayerAlive = true
     var meteoriteLastSpawnTime: Double = 0
-
+    
     
     override func didMove(to view: SKView) {
         physicsWorld.gravity = .zero
@@ -74,6 +75,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         addChild(pauseButton)
+        //        self.addChild(pause)
         
         self.addChild(enemy)
         
@@ -85,21 +87,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(cannon)
         player.addChild(cannon.cannonChargeIndicator)
         
-       
+        
         let bezierPath1 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(self.size.height / 4.4)), radius: self.size.height / 4.4, startAngle: 0.0, endAngle: CGFloat.pi, clockwise: false)
         let bezierPath2 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(self.size.height / 4.4)), radius: self.size.height / 4.4, startAngle: CGFloat.pi, endAngle: 0.0, clockwise: true)
         
-//        let pathNode1 = SKShapeNode(path: bezierPath1.cgPath)
-//        pathNode1.strokeColor = SKColor.blue
-//        pathNode1.lineWidth = 0
-////        pathNode1.position = enemy.position
-//        addChild(pathNode1)
-//
-//        let pathNode2 = SKShapeNode(path: bezierPath2.cgPath)
-//        pathNode2.strokeColor = SKColor.red
-//        pathNode2.lineWidth = 0
-////        pathNode2.position = enemy.position
-//        addChild(pathNode2)
+        //        let pathNode1 = SKShapeNode(path: bezierPath1.cgPath)
+        //        pathNode1.strokeColor = SKColor.blue
+        //        pathNode1.lineWidth = 0
+        ////        pathNode1.position = enemy.position
+        //        addChild(pathNode1)
+        //
+        //        let pathNode2 = SKShapeNode(path: bezierPath2.cgPath)
+        //        pathNode2.strokeColor = SKColor.red
+        //        pathNode2.lineWidth = 0
+        ////        pathNode2.position = enemy.position
+        //        addChild(pathNode2)
         
         let followLine1 = SKAction.follow(bezierPath1.cgPath, asOffset: false, orientToPath: false, duration: 5)
         let followLine2 = SKAction.follow(bezierPath2.cgPath, asOffset: false, orientToPath: false, duration: 5)
@@ -110,7 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in (touches) {
+        
         guard let touch = touches.first else {return}
         
         let touchLocation = touch.location(in: self) //will be calculated already as a delta x and y from the center, since the anchor for self is the center, so will be -100x or 100 x and same the y
@@ -120,28 +122,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         let nodeTouched = atPoint(touchLocation)
-            if nodeTouched.name == "PauseBtn" {
-                if let view = self.view {
-                    let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                    let pauseScreen = PauseScreen(size: self.size)
-                    
-                    view.presentScene(pauseScreen, transition: reveal)
-//                    if let scene = SKScene(fileNamed: "PauseScreen") {
-////                        self.view?.presentScene(PauseScene(size: self.size))
-//                        scene.size = view.frame.size
-//                        scene.scaleMode = .aspectFill
-//
-//                        view.presentScene(scene)
-//                    }
-                }
+        if nodeTouched.name == "PauseBtn" {
+            scene?.isPaused = true
+            pause.zPosition = 30
+            self.addChild(pause)
+            
+            //            if let view = self.view {
+            //                let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+            ////                let pauseScreen = PauseScreen(size: self.size)
+            ////
+            ////                view.presentScene(pauseScreen, transition: reveal)
+            //
+            //            }
+        } else if nodeTouched.name == "ResumeBtn" {
+            pause.removeFromParent()
+            scene?.isPaused = false
+        } else if nodeTouched.name == "QuitBtn" {
+            if let view = self.view {
+                let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                let menuScreen = MenuScreen(size: self.size)
+                
+                view.presentScene(menuScreen, transition: reveal)
+                
             }
         }
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let firstTouch = touches.first else {return}
         var touchLocation = firstTouch.location(in: self)
-
+        
         for touch in touches {
             touchLocation = touch.location(in: self)
             if touchLocation.y < -20 {
@@ -168,7 +179,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.fire()
             }
         }
-        if enemy.lastFiredTime + 5 <= currentTime {
+        if enemy.lastFiredTime + Double(Int.random(in: 3...5)) <= currentTime {
             enemy.lastFiredTime = currentTime
             enemy.fire()
         }
@@ -191,7 +202,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node else {return}
         guard let nodeB = contact.bodyB.node else {return}
-
+        
         let sortedNodes = [nodeA, nodeB].sorted {$0.name ?? "" < $1.name ?? ""}
         let firstNode = sortedNodes[0]
         let secondNode = sortedNodes[1]
@@ -205,13 +216,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
          */
         
         if firstNode.name == "enemyWeapon" {
-                firstNode.removeFromParent()
+            firstNode.removeFromParent()
             if secondNode.name == "player" {
                 guard isPlayerAlive else {return}
-
+                
                 makeExplosion(position: contact.contactPoint, on: player)
                 player.reduceLife()
-
+                
                 if player.life == 0 {
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: false)
@@ -244,7 +255,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     let gameOverScene = GameOverScene(size: self.size, won: true)
                     
                     view?.presentScene(gameOverScene, transition: reveal)
-//                    print("YOU WON")
+                    //                    print("YOU WON")
                     enemy.life = 3
                 }
             } else {
@@ -274,14 +285,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(starsBackground)
         }
     }
-    
-//    func gameOver() {
-//        isPlayerAlive = false
-//
-//        if let explosion = SKEmitterNode(fileNamed: "Explosion") {
-//            explosion.position = player.position
-//            addChild(explosion)
-//        }
-//    }
-    
 }

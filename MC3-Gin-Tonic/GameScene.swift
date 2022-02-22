@@ -65,6 +65,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         makeBackground()
         
+        let pauseButton = SKSpriteNode(imageNamed: "pause")
+        pauseButton.size = CGSize(width: 30, height: 30)
+        // Name the start node for touch detection:
+        pauseButton.name = "PauseBtn"
+        pauseButton.zPosition = 20
+        pauseButton.position = CGPoint(x: frame.maxX - 50, y: frame.maxY - 50)
+        
+        
+        addChild(pauseButton)
+        
         self.addChild(enemy)
         
         self.addChild(player)
@@ -100,11 +110,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in (touches) {
         guard let touch = touches.first else {return}
+        
         let touchLocation = touch.location(in: self) //will be calculated already as a delta x and y from the center, since the anchor for self is the center, so will be -100x or 100 x and same the y
         
         if touchLocation.y < -20 {
             player.rotateControl(touchLocation: touchLocation, gestureType: .tapped)
+        }
+        
+        let nodeTouched = atPoint(touchLocation)
+            if nodeTouched.name == "PauseBtn" {
+                if let view = self.view {
+                    let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                    let pauseScreen = PauseScreen(size: self.size)
+                    
+                    view.presentScene(pauseScreen, transition: reveal)
+//                    if let scene = SKScene(fileNamed: "PauseScreen") {
+////                        self.view?.presentScene(PauseScene(size: self.size))
+//                        scene.size = view.frame.size
+//                        scene.scaleMode = .aspectFill
+//
+//                        view.presentScene(scene)
+//                    }
+                }
+            }
         }
     }
     

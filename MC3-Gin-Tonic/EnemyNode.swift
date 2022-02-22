@@ -9,7 +9,7 @@ import SpriteKit
 
 class EnemyNode: SKSpriteNode {
     
-    var lastFiredTime: Double = 0
+    var lastFiredTime: Double = 9
     var isFiring = true
 //    var jointAnchor : CGPoint = .zero
     var life: Int = 3
@@ -41,10 +41,10 @@ class EnemyNode: SKSpriteNode {
         let weapon = SKSpriteNode(imageNamed: weaponType)
         weapon.name = "enemyWeapon"
         
-        weapon.zPosition = zPosition
-        weapon.zRotation = zRotation
-        weapon.size = CGSize(width: 10, height: 10)
-        weapon.position = position
+        weapon.zPosition = 2
+        weapon.zRotation = zRotation - CGFloat.pi / 2
+        weapon.size = CGSize(width: self.size.height * 0.07, height: self.size.width * 0.15)
+        weapon.position = position - position / 4
 
         weapon.physicsBody = SKPhysicsBody(rectangleOf: weapon.size)
         weapon.physicsBody?.usesPreciseCollisionDetection = true
@@ -62,7 +62,6 @@ class EnemyNode: SKSpriteNode {
 //        let speed: CGFloat = 1
 //        let adjustedRotation = zRotation + (CGFloat.pi / 2)
         let actionMove = SKAction.move(to: realDest, duration: 6.0)
-        
 //        let dx = speed * cos(adjustedRotation)
 //        let dy = speed * sin(adjustedRotation)
         self.parent!.addChild(weapon)

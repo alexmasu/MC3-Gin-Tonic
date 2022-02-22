@@ -49,9 +49,7 @@ class GameOverScene: SKScene {
         restartText.position = .zero
         
         restartText.fontSize = 40
-        
-        restartText.fontColor = .black
-        
+        restartText.fontColor = UIColor(rgb: 0x001273)
         // Name the text node for touch detection:
         restartText.name = "RestartBtn"
         
@@ -66,13 +64,9 @@ class GameOverScene: SKScene {
         
         // 3
         let label = SKLabelNode(fontNamed: "AdventPro-Bold")
-        
-        label.text = message.localized()
-        
+        label.text = message
         label.fontSize = 60
-        
-        label.fontColor = SKColor.red
-        
+        label.fontColor = UIColor(rgb: 0xC5DC82)
         label.position = CGPoint(x: 200, y: 500)
         
         addChild(label)

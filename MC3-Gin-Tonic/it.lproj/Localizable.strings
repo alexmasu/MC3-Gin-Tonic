@@ -6,4 +6,13 @@
   
 */
 
-"RESTART" = "RIAVVIAA";
+
+// GameOverScene
+
+"Next Level" = "Prossimo Livello";
+
+"RESTART" = "RIAVVIA";
+
+"You Won!" = "Hai Vinto!";
+
+"Game Over" = "Hai Perso";

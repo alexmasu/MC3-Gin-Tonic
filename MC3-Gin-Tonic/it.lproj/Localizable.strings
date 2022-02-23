@@ -9,10 +9,15 @@
 
 // GameOverScene
 
-"Next Level" = "Prossimo Livello";
+"CONTINUE" = "CONTINUA";
 
-"RESTART" = "RIAVVIA";
+"RETRY" = "RIAVVIA";
 
-"You Won!" = "Hai Vinto!";
+"EXPLORED" = "ESPLORATO";
 
-"Game Over" = "Hai Perso";
+"PLANET" = "PIANETA";
+
+"GAME" = "GAME";
+
+"OVER" = "OVER";
+

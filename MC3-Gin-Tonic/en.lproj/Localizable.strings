@@ -5,3 +5,17 @@
   Created by Alessandro Masullo on 22/02/22.
   
 */
+
+// GameOverScene
+
+"CONTINUE" = "CONTINUE";
+
+"RETRY" = "RETRY";
+
+"EXPLORED" = "EXPLORED";
+
+"PLANET" = "PLANET";
+
+"GAME" = "GAME";
+
+"OVER" = "OVER";

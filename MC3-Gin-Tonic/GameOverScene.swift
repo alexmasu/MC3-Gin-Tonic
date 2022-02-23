@@ -45,7 +45,7 @@ class GameOverScene: SKScene {
         //should be CONTINUE and RETRY
         let buttonMessage = won ? "CONTINUE" : "RETRY"
         
-        restartText.text = buttonMessage
+        restartText.text = buttonMessage.localized()
         restartText.verticalAlignmentMode = .center
         restartText.horizontalAlignmentMode = .center
         restartText.position = .zero
@@ -62,15 +62,13 @@ class GameOverScene: SKScene {
         /*
          Won/Game Over label definition
          */
-        let message = won ? "You Won!" : "Game Over"
-        
         //Should be PLANET EXPLORED : GAME OVER
         let message = won ? "EXPLORED" : "OVER"
         let message2 = won ? "PLANET" : "GAME"
 
         // 3
         let label = SKLabelNode(fontNamed: "AdventPro-Bold")
-        label.text = message
+        label.text = message.localized()
         label.verticalAlignmentMode = .center
         label.horizontalAlignmentMode = .center
         label.fontSize = maxScaledHeight * 0.6
@@ -78,7 +76,7 @@ class GameOverScene: SKScene {
         label.position = CGPoint(x: 0, y: maxScaledHeight * 1.5)
        
         let label2 = SKLabelNode(fontNamed: "AdventPro-Bold")
-        label2.text = message2
+        label2.text = message2.localized()
         label2.verticalAlignmentMode = .center
         label2.horizontalAlignmentMode = .center
         label2.fontSize = maxScaledHeight * 0.6
@@ -86,7 +84,7 @@ class GameOverScene: SKScene {
         label2.position = CGPoint(x: 0, y: maxScaledHeight * 2.2)
 
         let label3 = SKLabelNode(fontNamed: "AdventPro-Bold")
-        label3.text = won ? "TO PLANET-2" : "PLANET-1"
+        label3.text = won ? "TO PLANET-2".localized() : "PLANET-1".localized()
         label3.verticalAlignmentMode = .center
         label3.horizontalAlignmentMode = .center
         label3.fontSize = maxScaledHeight * 0.35

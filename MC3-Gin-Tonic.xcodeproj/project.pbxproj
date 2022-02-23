@@ -28,6 +28,8 @@
 		7F40023527B271E2001182EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F40023327B271E2001182EB /* Main.storyboard */; };
 		7F40023727B271E3001182EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F40023627B271E3001182EB /* Assets.xcassets */; };
 		7F40023A27B271E3001182EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F40023827B271E3001182EB /* LaunchScreen.storyboard */; };
+		7FA70D6427C6288E00C12330 /* UIColor+RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA70D6327C6288E00C12330 /* UIColor+RGB.swift */; };
+		7FA70D6627C6298F00C12330 /* SKscene+background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA70D6527C6298F00C12330 /* SKscene+background.swift */; };
 		7FE1CA8327C4E79000FD7731 /* String+localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1CA8227C4E79000FD7731 /* String+localized.swift */; };
 		7FE1CA8727C4ED8D00FD7731 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FE1CA8927C4ED8D00FD7731 /* Localizable.strings */; };
 		9533BC2027BC4D910048C7B3 /* CannonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533BC1F27BC4D910048C7B3 /* CannonNode.swift */; };
@@ -66,6 +68,8 @@
 		7F40023427B271E2001182EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7F40023627B271E3001182EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F40023927B271E3001182EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7FA70D6327C6288E00C12330 /* UIColor+RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
+		7FA70D6527C6298F00C12330 /* SKscene+background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKscene+background.swift"; sourceTree = "<group>"; };
 		7FE1CA8227C4E79000FD7731 /* String+localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+localized.swift"; sourceTree = "<group>"; };
 		7FE1CA8427C4E8B800FD7731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		7FE1CA8827C4ED8D00FD7731 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -155,6 +159,8 @@
 				2932F29827BD127800A7ED80 /* Advent_Pro */,
 				7FE1CA8227C4E79000FD7731 /* String+localized.swift */,
 				7FE1CA8927C4ED8D00FD7731 /* Localizable.strings */,
+				7FA70D6327C6288E00C12330 /* UIColor+RGB.swift */,
+				7FA70D6527C6298F00C12330 /* SKscene+background.swift */,
 			);
 			path = "MC3-Gin-Tonic";
 			sourceTree = "<group>";
@@ -250,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29E6641527C4FBA400430F59 /* MenuScreen.swift in Sources */,
+				7FA70D6427C6288E00C12330 /* UIColor+RGB.swift in Sources */,
 				95A93A4E27BD8E5E00515A06 /* MeteoriteNode.swift in Sources */,
 				9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */,
 				7FE1CA8327C4E79000FD7731 /* String+localized.swift in Sources */,
@@ -259,6 +266,7 @@
 				29514EE927BC074E00E94576 /* HUD.swift in Sources */,
 				29514EEB27BC08C200E94576 /* GameOverScene.swift in Sources */,
 				7F40022A27B271E2001182EB /* AppDelegate.swift in Sources */,
+				7FA70D6627C6298F00C12330 /* SKscene+background.swift in Sources */,
 				9533BC2027BC4D910048C7B3 /* CannonNode.swift in Sources */,
 				29A0288627C3D5F3006BBBC7 /* PauseScreen.swift in Sources */,
 				9548DBC727B71D7B002D5B12 /* PlayerNode.swift in Sources */,

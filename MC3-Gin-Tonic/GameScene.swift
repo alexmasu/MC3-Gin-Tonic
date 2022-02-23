@@ -277,12 +277,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func makeBackground() {
-        if let starsBackground = SKEmitterNode(fileNamed: "StarsBackground") {
-            starsBackground.position = CGPoint(x: 0, y: self.frame.maxY + 50)
-            starsBackground.zPosition = -1
-            starsBackground.advanceSimulationTime(50)
-            self.addChild(starsBackground)
-        }
-    }
+//    func makeBackground() {
+//        if let starsBackground = SKEmitterNode(fileNamed: "StarsBackground") {
+//            starsBackground.position = CGPoint(x: 0, y: self.frame.maxY + 50)
+//            starsBackground.zPosition = -1
+//            starsBackground.advanceSimulationTime(50)
+//            self.addChild(starsBackground)
+//        }
+//    }
 }

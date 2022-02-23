@@ -10,7 +10,7 @@ import SpriteKit
 class CannonNode: SKNode {
     
     var cannonChargeIndicator : SKSpriteNode
-    var cannonEnergy: Int = 3
+    var cannonEnergy: Int = 0
     override init() {
         self.cannonChargeIndicator = SKSpriteNode(imageNamed: "charge0")
         super.init()
@@ -19,7 +19,7 @@ class CannonNode: SKNode {
     
     func cannonCharge() {
         if self.cannonEnergy == 3 {
-//            self.cannonEnergy = 0
+            self.cannonEnergy = 0
         } else {
             self.cannonEnergy += 1
         }

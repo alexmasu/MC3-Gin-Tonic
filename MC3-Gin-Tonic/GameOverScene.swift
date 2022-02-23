@@ -8,14 +8,15 @@
 import SpriteKit
 
 class GameOverScene: SKScene {
-//   override func didMove(to view: SKView) {
+    override func didMove(to view: SKView) {
 //        if let particles = SKEmitterNode(fileNamed: "Stars") {
 //            particles.position = CGPoint(x: 300, y: 1080)
 //            particles.advanceSimulationTime(60)
 //            particles.zPosition = -1
 //            addChild(particles)
 //        }
-//    }
+        makeBackground()
+    }
     init(size: CGSize, won:Bool) {
         
         super.init(size: size)
@@ -53,8 +54,15 @@ class GameOverScene: SKScene {
         restartText.fontColor = .black
         // Name the text node for touch detection:
         restartText.name = "RestartBtn"
+        
         restartText.zPosition = 5
+        
         restartButton.addChild(restartText)
+        
+        /*
+         Won/Game Over label definition
+         */
+        let message = won ? "You Won!" : "Game Over"
         
         //Should be PLANET EXPLORED : GAME OVER
         let message = won ? "EXPLORED" : "OVER"

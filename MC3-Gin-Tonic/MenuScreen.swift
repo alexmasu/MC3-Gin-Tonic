@@ -28,63 +28,55 @@ import SpriteKit
 class MenuScreen: SKScene {
     override init(size: CGSize) {
         super.init(size: size)
+        
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
         makeBackground()
-        let continueButton = SKSpriteNode(imageNamed: "button")
-        continueButton.size = CGSize(width: 295, height: 76)
-        // Name the start node for touch detection:
-        continueButton.name = "ContinueBtn"
-        continueButton.position = CGPoint(x: 200, y: 300)
+        makeGlass()
+        makeAlien()
+        makePlanet()
         
+        // GREEN BUTTON NODE
+        let continueButtonText = "CONTINUE"
+        let continueButton = GreenButtonNode(parentSize: size, text: continueButtonText)
+        // Rename the start node for touch detection:
+
+        addChild(continueButton)
+         
+        // LITTLE LABEL ATTACHED TO GREEN BUTTON
+        let littleLabelText = "TO PLANET-1"
+        continueButton.addLittleLabel(text: littleLabelText, labelPosition: .upperLabel)
         
-        self.addChild(continueButton)
-        
-        let continueText = SKLabelNode(fontNamed:
-                                        "AdventPro-Bold")
-        
-        let buttonMessage = "CONTINUE"
-        continueText.text = buttonMessage
-        continueText.verticalAlignmentMode = .center
-        continueText.position = .zero
-        continueText.fontSize = 40
-        continueText.fontColor = UIColor(rgb: 0x001273)
-        // Name the text node for touch detection:
-        continueText.name = "ContinueBtn"
-        continueText.zPosition = 5
-        continueButton.addChild(continueText)
-        
-        let message = "Abissi"
+        let message = "ABISSI"
         
         // 3
         let label = SKLabelNode(fontNamed: "AdventPro-Bold")
         label.text = message
         label.fontSize = 60
         label.fontColor = UIColor(rgb: 0xC5DC82)
-        label.position = CGPoint(x: 200, y: 500)
-        label.zPosition = 5
+        label.position = CGPoint(x: 0, y: -continueButton.position.y * 1.5)
+        label.zPosition = 10
         self.addChild(label)
-        makeAlien()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event:
-                               UIEvent?) {
-        for touch in (touches) {
-            // Find the location of the touch:
-            let location = touch.location(in: self)
-            // Locate the node at this location:
-            let nodeTouched = atPoint(location)
-            if nodeTouched.name == "ContinueBtn" {
-                // Player touched the start text or button node
-                // Switch to an instance of the GameScene:
-                if let view = self.view {
-                    if let scene = SKScene(fileNamed: "GameScene") {
-                        scene.size = view.frame.size
-                        scene.scaleMode = .aspectFill
-                        
-                        view.presentScene(scene)
-                    }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else {return}
+        // Find the location of the touch:
+        let location = touch.location(in: self)
+        // Locate the node at this location:
+        let nodeTouched = atPoint(location)
+        if nodeTouched.name == "GreenButton" {
+            // Player touched the start text or button node
+            // Switch to an instance of the GameScene:
+            if let view = self.view {
+                if let scene = SKScene(fileNamed: "GameScene") {
+                    scene.size = view.frame.size
+                    scene.scaleMode = .aspectFill
+                    
+                    view.presentScene(scene)
                 }
             }
         }

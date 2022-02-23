@@ -8,57 +8,35 @@
 import SpriteKit
 
 class GameOverScene: SKScene {
-   
     init(size: CGSize, won:Bool) {
         
         super.init(size: size)
-        // MAKE BACKGROUND FUNCTION
-        makeBackground()
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        let glass = SKShapeNode(rectOf: size)
         
-        glass.fillColor = UIColor(named: "glassColor") ?? .white
-        glass.alpha = 0.2
-        addChild(glass)
-        let maxScaledWidth = size.width * 0.40
+        makeBackground()
+        makeAlien()
+        makePlanet()
+        makeGlass()
+        
+        // GREEN BUTTON NODE
+        let greenButtonText = won ? "CONTINUE" : "RETRY"
+        let greenButton = GreenButtonNode(parentSize: size, text: greenButtonText)
+        addChild(greenButton)
+         
+        // LITTLE LABEL ATTACHED TO GREEN BUTTON
+        let littleLabelText = won ? "TO PLANET-2".localized() : "PLANET-1".localized()
+        greenButton.addLittleLabel(text: littleLabelText, labelPosition: won ? .bottomLabel : .upperLabel)
+        
         let maxScaledHeight = size.height * 0.08
-
-        // Build the start game button:
-        let restartButton = SKSpriteNode(imageNamed: "button")
-        restartButton.size = CGSize(width: maxScaledWidth, height: maxScaledHeight)
-        // Name the start node for touch detection:
-        restartButton.name = "RestartBtn"
-        restartButton.position = CGPoint(x: 0, y: -maxScaledHeight)
-        
-        addChild(restartButton)
-        
-        let restartText = SKLabelNode(fontNamed:
-                                        "AdventPro-Bold")
-        //should be CONTINUE and RETRY
-        let buttonMessage = won ? "CONTINUE" : "RETRY"
-        
-        restartText.text = buttonMessage.localized()
-        restartText.verticalAlignmentMode = .center
-        restartText.horizontalAlignmentMode = .center
-        restartText.position = .zero
-        restartText.fontSize = maxScaledHeight * 0.5
-        //font color hex: 001273
-        restartText.fontColor = UIColor(rgb: 0x001273)
-        // Name the text node for touch detection:
-        restartText.name = "RestartBtn"
-        
-        restartText.zPosition = 5
-        
-        restartButton.addChild(restartText)
         
         /*
          Won/Game Over label definition
          */
-        //Should be PLANET EXPLORED : GAME OVER
         let message = won ? "EXPLORED" : "OVER"
         let message2 = won ? "PLANET" : "GAME"
 
-        // 3
+        //---maybe replace this two label with svg image for the stroke
+        // SECOND LINE BIG LABEL
         let label = SKLabelNode(fontNamed: "AdventPro-Bold")
         label.text = message.localized()
         label.verticalAlignmentMode = .center
@@ -67,6 +45,7 @@ class GameOverScene: SKScene {
         label.fontColor = UIColor(named: "alienGreen")
         label.position = CGPoint(x: 0, y: maxScaledHeight * 1)
        
+        // FIRST LINE BIG LABEL
         let label2 = SKLabelNode(fontNamed: "AdventPro-Bold")
         label2.text = message2.localized()
         label2.verticalAlignmentMode = .center
@@ -74,20 +53,9 @@ class GameOverScene: SKScene {
         label2.fontSize = maxScaledHeight * 1
         label2.fontColor = UIColor(named: "alienGreen")
         label2.position = CGPoint(x: 0, y: maxScaledHeight * 2.2)
-
-        let label3 = SKLabelNode(fontNamed: "AdventPro-Bold")
-        label3.text = won ? "TO PLANET-2".localized() : "PLANET-1".localized()
-        label3.verticalAlignmentMode = .center
-        label3.horizontalAlignmentMode = .center
-        label3.fontSize = maxScaledHeight * 0.35
-        label3.fontColor = UIColor(named: "labelPurple") // hex: #C5DC82
-        label3.position = CGPoint(x: 0, y: won ? (-maxScaledHeight * 1.8) : (-10))
         
         addChild(label)
         addChild(label2)
-        addChild(label3)
-        makeAlien()
-        makePlanet()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -100,7 +68,7 @@ class GameOverScene: SKScene {
         let location = touch.location(in: self)
         // Locate the node at this location:
         let nodeTouched = atPoint(location)
-        if nodeTouched.name == "RestartBtn" {
+        if nodeTouched.name == "GreenButton" {
             // Player touched the start text or button node
             // Switch to an instance of the GameScene:
             if let view = self.view {
@@ -113,31 +81,4 @@ class GameOverScene: SKScene {
             }
         }
     }
-    
-//    func makePlanet() {
-//        let positionPoint = CGPoint(x: (-size.width / 2) * 0.8, y: (size.height / 2) * 0.88 )
-//        let planetIMG = SKSpriteNode(imageNamed: "planetImg")
-//        planetIMG.size = CGSize(width: size.width / 2.2, height: size.width / 2.2)
-//        planetIMG.position = positionPoint
-//        addChild(planetIMG)
-//
-//        //----DA SOSTITUIRE CON VIDEO
-////        let planetGif = SKVideoNode(fileNamed: "")
-////        planetGif.size = CGSize(width: size.width / 3.3, height: size.width / 3.3)
-////        planetGif.position = positionPoint
-////        addChild(planetGif)
-////        planetGif.play()
-//    }
-    
-//    func makeAlien() {
-//        let alien = SKSpriteNode(imageNamed: "greenAlien")
-//        let scale = size.width / (alien.size.width * 2.4)
-//        alien.size = CGSize(width: alien.size.width * scale, height: alien.size.height * scale)
-//        alien.zPosition = 30
-//        alien.anchorPoint = CGPoint(x: 0.5, y: 0)
-//        let point = CGPoint(x: 0, y: (-size.height / 2) - alien.size.height * 0.3)
-//        alien.position = point
-//        addChild(alien)
-//    }
-    
 }

@@ -38,14 +38,23 @@ extension SKScene {
         let planetIMG = SKSpriteNode(imageNamed: "planetImg")
         planetIMG.size = CGSize(width: size.width / 2.2, height: size.width / 2.2)
         planetIMG.position = positionPoint
+        planetIMG.zPosition = 0
         addChild(planetIMG)
         
         //----DA SOSTITUIRE CON VIDEO
 //        let planetGif = SKVideoNode(fileNamed: "")
-//        planetGif.size = CGSize(width: size.width / 3.3, height: size.width / 3.3)
+//        planetGif.size = CGSize(width: size.width / 2.2, height: size.width / 2.2)
 //        planetGif.position = positionPoint
 //        addChild(planetGif)
 //        planetGif.play()
     }
     
+    func makeGlass() {
+        let glass = SKShapeNode(rectOf: size)
+        
+        glass.fillColor = UIColor(named: "glassColor") ?? .white
+        glass.alpha = 0.07
+        glass.zPosition = 1
+        addChild(glass)
+    }
 }

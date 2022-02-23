@@ -28,7 +28,7 @@ import SpriteKit
 class MenuScreen: SKScene {
     override init(size: CGSize) {
         super.init(size: size)
-        
+        makeBackground()
         let continueButton = SKSpriteNode(imageNamed: "button")
         continueButton.size = CGSize(width: 295, height: 76)
         // Name the start node for touch detection:
@@ -41,7 +41,7 @@ class MenuScreen: SKScene {
         let continueText = SKLabelNode(fontNamed:
                                         "AdventPro-Bold")
         
-        let buttonMessage = "Continue"
+        let buttonMessage = "CONTINUE"
         continueText.text = buttonMessage
         continueText.verticalAlignmentMode = .center
         continueText.position = .zero
@@ -62,6 +62,7 @@ class MenuScreen: SKScene {
         label.position = CGPoint(x: 200, y: 500)
         label.zPosition = 5
         self.addChild(label)
+        makeAlien()
     }
     
     required init?(coder aDecoder: NSCoder) {

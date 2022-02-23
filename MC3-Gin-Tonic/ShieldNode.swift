@@ -7,59 +7,7 @@
 
 import SpriteKit
 
-extension SKSpriteNode {
-    func makeTextureShadow(blurRadius: CGFloat, xScaleFactor: CGFloat? = 1.2, yScaleFactor: CGFloat? = 1.2, color: UIColor? = .white) {
-        
-        guard let blurFilter = CIFilter(name: "CIGaussianBlur", parameters: ["inputRadius": blurRadius]),
-        let texture = self.texture else {return}
-        
-        let blurredTexture = texture.applying(blurFilter)
-        let shadow = SKSpriteNode(texture: blurredTexture)
-        shadow.name = "shadow"
-        shadow.size = CGSize(width: size.width * xScaleFactor!, height: size.height * yScaleFactor!)
-        shadow.zPosition = -1
-        shadow.color = color!
-        shadow.blendMode = .alpha
-        shadow.colorBlendFactor = 1
-        shadow.alpha = 0.5
-        
-        let glowing = SKAction.fadeAlpha(to: 1, duration: 0.5)
-        let glowing2 = SKAction.fadeAlpha(to: 0.5, duration: 0.5)
-        let glowSeq = SKAction.sequence([glowing, glowing2])
-        shadow.run(SKAction.repeatForever(glowSeq))
-
-        self.addChild(shadow)
-    }
-    
-    func makeShapeGlow(cornerRadius: CGFloat? = 6, scaleSizeBy: CGFloat? = 0.4, color: UIColor? = .white) {
-        let glow = SKShapeNode(rectOf: self.size, cornerRadius: cornerRadius!)
-        
-        glow.name = "glow"
-        glow.setScale(scaleSizeBy!)
-        glow.strokeColor = color!
-        glow.alpha = 0.5
-        glow.glowWidth = 20
-        glow.zPosition = -1
-        
-        self.addChild(glow)
-    }
-    
-    func makeAnimationFrames(from atlasName: String) -> [SKTexture] {
-        let shieldAnimateAtlas = SKTextureAtlas(named: atlasName)
-        var frames: [SKTexture] = []
-        
-        let numImages = shieldAnimateAtlas.textureNames.count
-        for i in 1...numImages {
-            let frameName = "\(atlasName)\(i)"
-            shieldAnimateAtlas.textureNamed(frameName)
-            frames.append(shieldAnimateAtlas.textureNamed(frameName))
-        }
-        return frames
-    }
-}
-
 class ShieldNode: SKSpriteNode {
-//    let emitterShield = SKEmitterNode(fileNamed: "ShieldBackGlow")
 
     init(imageNamed: String) {
         let texture = SKTexture(imageNamed: imageNamed)
@@ -91,9 +39,13 @@ class ShieldNode: SKSpriteNode {
     
     func openCannonAnimationRun() {
         let frames = makeAnimationFrames(from: "shieldAnim")
-        let animCannon = SKAction.animate(with: frames, timePerFrame: 0.01, resize: false, restore: false)
-        let scale = SKAction.scale(by: 1.3, duration: 0.14)
-
+//        let framesReversed: [SKTexture] = frames.reversed()
+//        frames.append(contentsOf: framesReversed)
+//        let countFrames = Double(frames.count - 1)
+//        let timePerFrames = 1 / countFrames
+        let animCannon = SKAction.animate(with: frames, timePerFrame: 0.02, resize: false, restore: false)
+        let scale = SKAction.scale(by: 3, duration: 0.25)
+        
         self.run(scale)
         self.run(animCannon)
     }
@@ -101,11 +53,13 @@ class ShieldNode: SKSpriteNode {
     func closeCannonAnimationRun() {
         let frames = makeAnimationFrames(from: "shieldAnim")
         let framesReversed: [SKTexture] = frames.reversed()
-        let animCannon = SKAction.animate(with: framesReversed, timePerFrame: 0.01, resize: false, restore: false)
-        let scale = SKAction.scale(to: 1, duration: 0.14)
+        let animCannon = SKAction.animate(with: framesReversed, timePerFrame: 0.02, resize: false, restore: false)
+        let scale = SKAction.scale(to: 1, duration: 0.25)
         
         self.run(scale)
-        self.run(animCannon)
+        self.run(animCannon){
+            self.animateHit()
+        }
     }
     
     func animateShadowGlow() {

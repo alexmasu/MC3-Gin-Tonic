@@ -78,12 +78,12 @@ class GameOverScene: SKScene {
         label2.position = CGPoint(x: 0, y: maxScaledHeight * 2.2)
 
         let label3 = SKLabelNode(fontNamed: "AdventPro-Bold")
-        label3.text = "TO PLANET-2"
+        label3.text = won ? "TO PLANET-2" : "PLANET-1"
         label3.verticalAlignmentMode = .center
         label3.horizontalAlignmentMode = .center
         label3.fontSize = maxScaledHeight * 0.35
         label3.fontColor = .systemMint // hex: #C5DC82
-        label3.position = CGPoint(x: 0, y: won ? (-maxScaledHeight * 1.8) : (maxScaledHeight * 0.5))
+        label3.position = CGPoint(x: 0, y: won ? (-maxScaledHeight * 1.8) : (maxScaledHeight * 0.2))
         
         addChild(label)
         addChild(label2)

@@ -10,7 +10,7 @@ import SpriteKit
 class CannonNode: SKNode {
     
     var cannonChargeIndicator : SKSpriteNode
-    var cannonEnergy: Int = 0
+    var cannonEnergy: Int = 3
     override init() {
         self.cannonChargeIndicator = SKSpriteNode(imageNamed: "charge0")
         super.init()
@@ -19,7 +19,7 @@ class CannonNode: SKNode {
     
     func cannonCharge() {
         if self.cannonEnergy == 3 {
-            self.cannonEnergy = 0
+//            self.cannonEnergy = 0
         } else {
             self.cannonEnergy += 1
         }
@@ -54,7 +54,7 @@ class CannonNode: SKNode {
         cannonBullet.physicsBody?.collisionBitMask = 0
         cannonBullet.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
         
-        let scaleY = SKAction.scaleX(by: 1, y: 100, duration: 0.5)
+        let scaleY = SKAction.scaleX(by: 1, y: 100, duration: 1)
         let fade = SKAction.fadeOut(withDuration: 0.1)
         let seq = [scaleY, fade]
         

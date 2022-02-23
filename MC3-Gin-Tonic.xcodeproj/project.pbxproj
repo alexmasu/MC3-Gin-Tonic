@@ -32,7 +32,9 @@
 		9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC827B71DB8002D5B12 /* ShieldNode.swift */; };
 		9548DBCB27B71DF0002D5B12 /* ShieldBackGlow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */; };
 		9583AE9B27C500E2009A5FA1 /* cannonShot.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9583AE9A27C500E2009A5FA1 /* cannonShot.atlas */; };
-		9583AE9D27C5940E009A5FA1 /* shieldAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9583AE9C27C5940D009A5FA1 /* shieldAnim.atlas */; };
+		9583AEA327C6279C009A5FA1 /* shieldAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9583AEA227C6279C009A5FA1 /* shieldAnim.atlas */; };
+		9583AEA527C630B0009A5FA1 /* SKSpriteNode+shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583AEA427C630B0009A5FA1 /* SKSpriteNode+shadow.swift */; };
+		9583AEA727C630E4009A5FA1 /* SKSpriteNode+frames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583AEA627C630E4009A5FA1 /* SKSpriteNode+frames.swift */; };
 		95A93A4E27BD8E5E00515A06 /* MeteoriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */; };
 		95BD2FC227C194F600A734CC /* shieldHit.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95BD2FC127C194F600A734CC /* shieldHit.atlas */; };
 		95F17D9327BE7B7600A8EB71 /* StarsBackground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */; };
@@ -69,7 +71,9 @@
 		9548DBC827B71DB8002D5B12 /* ShieldNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldNode.swift; sourceTree = "<group>"; };
 		9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ShieldBackGlow.sks; sourceTree = "<group>"; };
 		9583AE9A27C500E2009A5FA1 /* cannonShot.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = cannonShot.atlas; sourceTree = "<group>"; };
-		9583AE9C27C5940D009A5FA1 /* shieldAnim.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = shieldAnim.atlas; sourceTree = "<group>"; };
+		9583AEA227C6279C009A5FA1 /* shieldAnim.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = shieldAnim.atlas; sourceTree = "<group>"; };
+		9583AEA427C630B0009A5FA1 /* SKSpriteNode+shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+shadow.swift"; sourceTree = "<group>"; };
+		9583AEA627C630E4009A5FA1 /* SKSpriteNode+frames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+frames.swift"; sourceTree = "<group>"; };
 		95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteNode.swift; sourceTree = "<group>"; };
 		95BD2FC127C194F600A734CC /* shieldHit.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = shieldHit.atlas; sourceTree = "<group>"; };
 		95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarsBackground.sks; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 				7F40022F27B271E2001182EB /* GameScene.swift */,
 				9548DBC627B71D7B002D5B12 /* PlayerNode.swift */,
 				9548DBC827B71DB8002D5B12 /* ShieldNode.swift */,
+				9583AEA427C630B0009A5FA1 /* SKSpriteNode+shadow.swift */,
+				9583AEA627C630E4009A5FA1 /* SKSpriteNode+frames.swift */,
 				9533BC1F27BC4D910048C7B3 /* CannonNode.swift */,
 				2984718827B571D400E88AA8 /* EnemyNode.swift */,
 				95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */,
@@ -143,7 +149,7 @@
 				7F40023327B271E2001182EB /* Main.storyboard */,
 				7F40023827B271E3001182EB /* LaunchScreen.storyboard */,
 				7F40023627B271E3001182EB /* Assets.xcassets */,
-				9583AE9C27C5940D009A5FA1 /* shieldAnim.atlas */,
+				9583AEA227C6279C009A5FA1 /* shieldAnim.atlas */,
 				9583AE9A27C500E2009A5FA1 /* cannonShot.atlas */,
 				95BD2FC127C194F600A734CC /* shieldHit.atlas */,
 				95F17DB127BEE85900A8EB71 /* metHit1.atlas */,
@@ -227,7 +233,7 @@
 				29A0288427C3CF8A006BBBC7 /* Stars.sks in Resources */,
 				9583AE9B27C500E2009A5FA1 /* cannonShot.atlas in Resources */,
 				2932F2A827BD127800A7ED80 /* AdventPro-ExtraLight.ttf in Resources */,
-				9583AE9D27C5940E009A5FA1 /* shieldAnim.atlas in Resources */,
+				9583AEA327C6279C009A5FA1 /* shieldAnim.atlas in Resources */,
 				7F40023A27B271E3001182EB /* LaunchScreen.storyboard in Resources */,
 				95F17DB427BEF72D00A8EB71 /* metHit2.atlas in Resources */,
 				95F17DB627BEF73F00A8EB71 /* metHit3.atlas in Resources */,
@@ -246,8 +252,10 @@
 			files = (
 				95A93A4E27BD8E5E00515A06 /* MeteoriteNode.swift in Sources */,
 				9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */,
+				9583AEA727C630E4009A5FA1 /* SKSpriteNode+frames.swift in Sources */,
 				7F40023027B271E2001182EB /* GameScene.swift in Sources */,
 				7F40023227B271E2001182EB /* GameViewController.swift in Sources */,
+				9583AEA527C630B0009A5FA1 /* SKSpriteNode+shadow.swift in Sources */,
 				2984718927B571D400E88AA8 /* EnemyNode.swift in Sources */,
 				29514EE927BC074E00E94576 /* HUD.swift in Sources */,
 				29514EEB27BC08C200E94576 /* GameOverScene.swift in Sources */,

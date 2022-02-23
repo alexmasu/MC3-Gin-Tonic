@@ -25,11 +25,11 @@ class GameOverScene: SKScene {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         let glass = SKShapeNode(rectOf: size)
         
-        glass.fillColor = .white //hex: A4C6FA
+        glass.fillColor = UIColor(named: "glassColor") ?? .white
         glass.alpha = 0.2
         addChild(glass)
-        let maxScaledWidth = size.width * 0.6
-        let maxScaledHeight = size.height * 0.1
+        let maxScaledWidth = size.width * 0.40
+        let maxScaledHeight = size.height * 0.08
 
         // Build the start game button:
         let restartButton = SKSpriteNode(imageNamed: "button")
@@ -51,7 +51,7 @@ class GameOverScene: SKScene {
         restartText.position = .zero
         restartText.fontSize = maxScaledHeight * 0.5
         //font color hex: 001273
-        restartText.fontColor = .black
+        restartText.fontColor = UIColor(rgb: 0x001273)
         // Name the text node for touch detection:
         restartText.name = "RestartBtn"
         
@@ -71,16 +71,16 @@ class GameOverScene: SKScene {
         label.text = message.localized()
         label.verticalAlignmentMode = .center
         label.horizontalAlignmentMode = .center
-        label.fontSize = maxScaledHeight * 0.6
-        label.fontColor = .systemGreen // hex: #C5DC82
-        label.position = CGPoint(x: 0, y: maxScaledHeight * 1.5)
+        label.fontSize = maxScaledHeight * 1
+        label.fontColor = UIColor(named: "alienGreen")
+        label.position = CGPoint(x: 0, y: maxScaledHeight * 1)
        
         let label2 = SKLabelNode(fontNamed: "AdventPro-Bold")
         label2.text = message2.localized()
         label2.verticalAlignmentMode = .center
         label2.horizontalAlignmentMode = .center
-        label2.fontSize = maxScaledHeight * 0.6
-        label2.fontColor = .systemGreen // hex: #C5DC82
+        label2.fontSize = maxScaledHeight * 1
+        label2.fontColor = UIColor(named: "alienGreen")
         label2.position = CGPoint(x: 0, y: maxScaledHeight * 2.2)
 
         let label3 = SKLabelNode(fontNamed: "AdventPro-Bold")
@@ -88,8 +88,8 @@ class GameOverScene: SKScene {
         label3.verticalAlignmentMode = .center
         label3.horizontalAlignmentMode = .center
         label3.fontSize = maxScaledHeight * 0.35
-        label3.fontColor = .systemMint // hex: #C5DC82
-        label3.position = CGPoint(x: 0, y: won ? (-maxScaledHeight * 1.8) : (maxScaledHeight * 0.2))
+        label3.fontColor = UIColor(named: "labelPurple") // hex: #C5DC82
+        label3.position = CGPoint(x: 0, y: won ? (-maxScaledHeight * 1.8) : (-10))
         
         addChild(label)
         addChild(label2)

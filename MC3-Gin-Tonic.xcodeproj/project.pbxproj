@@ -94,6 +94,7 @@
 		7FE1CA8427C4E8B800FD7731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		7FE1CA8827C4ED8D00FD7731 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7FE1CA8A27C4ED9700FD7731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		950F2EC327C8315200794808 /* pianetino_1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pianetino_1.mp4; sourceTree = "<group>"; };
 		9533BC1F27BC4D910048C7B3 /* CannonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonNode.swift; sourceTree = "<group>"; };
 		95355B5827C66538007BC079 /* GreenButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButtonNode.swift; sourceTree = "<group>"; };
 		9548DBC627B71D7B002D5B12 /* PlayerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNode.swift; sourceTree = "<group>"; };
@@ -195,6 +196,7 @@
 				7F40023327B271E2001182EB /* Main.storyboard */,
 				7F40023827B271E3001182EB /* LaunchScreen.storyboard */,
 				7F40023627B271E3001182EB /* Assets.xcassets */,
+				950F2EC327C8315200794808 /* pianetino_1.mp4 */,
 				291E913127C64B8E00AECC95 /* Sounds */,
 				9583AEA227C6279C009A5FA1 /* shieldAnim.atlas */,
 				9583AE9A27C500E2009A5FA1 /* cannonShot.atlas */,
@@ -491,7 +493,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PLX9GGVS7R;
+				DEVELOPMENT_TEAM = V49YJHMDHJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MC3-Gin-Tonic/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -523,7 +525,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PLX9GGVS7R;
+				DEVELOPMENT_TEAM = V49YJHMDHJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MC3-Gin-Tonic/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

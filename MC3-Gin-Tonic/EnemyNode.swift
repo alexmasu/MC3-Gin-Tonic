@@ -29,6 +29,11 @@ class EnemyNode: SKSpriteNode {
         
         physicsBody?.contactTestBitMask = CollisionType.cannonBullet.rawValue
         physicsBody?.isDynamic = false
+        
+        makeTextureShadow(blurRadius: 7, xScaleFactor: 1.5, yScaleFactor: 1.3, color: .white)
+        guard let shadow = self.childNode(withName: "shadow") as? SKSpriteNode else {return}
+        shadow.run(SKAction.colorize(with: .white, colorBlendFactor: 1, duration: 0.2))
+        shadow.run(SKAction.colorize(with: .white, colorBlendFactor: 1, duration: 0.2))
     }
     
     required init?(coder aDecoder: NSCoder) {

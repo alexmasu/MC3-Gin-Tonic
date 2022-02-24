@@ -42,10 +42,13 @@ extension SKScene {
         planetIMG.zPosition = -1
         planetIMG.alpha = 1
         
+        let rotate = SKAction.rotate(byAngle: 5, duration: 20)
+        planetIMG.run(SKAction.repeatForever(rotate))
         addChild(planetIMG)
+        
 //        let planetGif = SKVideoNode(fileNamed: "pianetino_1.mp4")
 //        planetGif.size = CGSize(width: size.width / 2.2, height: size.width / 2.2)
-//        planetGif.position = positionPoint
+//        planetGif.position = .zero
 //        planetGif.zPosition = 10
 //
 //        addChild(planetGif)

@@ -16,6 +16,8 @@ class GameOverScene: SKScene {
 //            addChild(particles)
 //        }
         makeBackground()
+       
+        
     }
     init(size: CGSize, won:Bool) {
         
@@ -39,7 +41,6 @@ class GameOverScene: SKScene {
         restartButton.position = CGPoint(x: 0, y: -maxScaledHeight)
         
         addChild(restartButton)
-        
         let restartText = SKLabelNode(fontNamed:
                                         "AdventPro-Bold")
         //should be CONTINUE and RETRY

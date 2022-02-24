@@ -15,7 +15,6 @@
 		291E913C27C64B8E00AECC95 /* pickupCoin.caf in Resources */ = {isa = PBXBuildFile; fileRef = 291E913627C64B8E00AECC95 /* pickupCoin.caf */; };
 		291E913D27C64B8E00AECC95 /* laserShoot2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 291E913727C64B8E00AECC95 /* laserShoot2.caf */; };
 		291E913F27C64C1500AECC95 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291E913E27C64C1500AECC95 /* Constants.swift */; };
-		291E914227C68B9A00AECC95 /* Fanfare.wav in Resources */ = {isa = PBXBuildFile; fileRef = 291E914127C68B9A00AECC95 /* Fanfare.wav */; };
 		2932F2A127BD127800A7ED80 /* AdventPro-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29927BD127800A7ED80 /* AdventPro-Thin.ttf */; };
 		2932F2A227BD127800A7ED80 /* AdventPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29A27BD127800A7ED80 /* AdventPro-Bold.ttf */; };
 		2932F2A327BD127800A7ED80 /* AdventPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29B27BD127800A7ED80 /* AdventPro-SemiBold.ttf */; };
@@ -68,7 +67,6 @@
 		291E913727C64B8E00AECC95 /* laserShoot2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = laserShoot2.caf; sourceTree = "<group>"; };
 		291E913E27C64C1500AECC95 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		291E914027C6816500AECC95 /* loss.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = loss.caf; sourceTree = "<group>"; };
-		291E914127C68B9A00AECC95 /* Fanfare.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Fanfare.wav; sourceTree = "<group>"; };
 		2932F29927BD127800A7ED80 /* AdventPro-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-Thin.ttf"; sourceTree = "<group>"; };
 		2932F29A27BD127800A7ED80 /* AdventPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-Bold.ttf"; sourceTree = "<group>"; };
 		2932F29B27BD127800A7ED80 /* AdventPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 		291E913127C64B8E00AECC95 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				291E914127C68B9A00AECC95 /* Fanfare.wav */,
 				291E914027C6816500AECC95 /* loss.caf */,
 				291E913227C64B8E00AECC95 /* laserShoot.caf */,
 				291E913327C64B8E00AECC95 /* boom.caf */,
@@ -297,7 +294,6 @@
 				7F40023A27B271E3001182EB /* LaunchScreen.storyboard in Resources */,
 				95F17DB427BEF72D00A8EB71 /* metHit2.atlas in Resources */,
 				95F17DB627BEF73F00A8EB71 /* metHit3.atlas in Resources */,
-				291E914227C68B9A00AECC95 /* Fanfare.wav in Resources */,
 				291218D027BA9970006836F6 /* Explosion.sks in Resources */,
 				7FE1CA8727C4ED8D00FD7731 /* Localizable.strings in Resources */,
 				291E913A27C64B8E00AECC95 /* synthCopy.caf in Resources */,

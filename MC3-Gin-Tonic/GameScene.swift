@@ -63,7 +63,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let explosionSound = SKAction.playSoundFileNamed(SoundFile.explosionSound, waitForCompletion: false)
     let cannonSound = SKAction.playSoundFileNamed(SoundFile.cannonSound, waitForCompletion: false)
     let powerUpSound = SKAction.playSoundFileNamed(SoundFile.powerUpSound, waitForCompletion: false)
-    let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: false)
+    //    let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: false)
     
     
     var isPlayerAlive = true
@@ -75,7 +75,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         makeBackground()
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-      
+        
         
         let pauseButton = SKSpriteNode(imageNamed: "pause")
         pauseButton.size = CGSize(width: 30, height: 30)
@@ -184,13 +184,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if cannon.cannonEnergy == 3 {
             shield.openAndCloseAnimationRun()
-        cannon.run(SKAction.wait(forDuration: 0.15)){
-            self.cannon.shot()
-        }
-        cannon.run(SKAction.wait(forDuration: 0.15)){
-            self.cannon.shot()
             run(cannonSound)
-        }
+            cannon.run(SKAction.wait(forDuration: 0.15)){
+                self.cannon.shot()
+            }
             cannon.cannonCharge()
         }
     }
@@ -202,14 +199,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.lastFiredTime = currentTime
                 player.fire()
                 run(playerShootSound)
-//                run(playerShootAction)
+                //                run(playerShootAction)
             }
         }
         if enemy.lastFiredTime + Double(Int.random(in: 5...7)) <= currentTime {
             enemy.lastFiredTime = currentTime
             enemy.fire()
             run(enemyShootSound)
-//            run(enemyShootAction)
+            //            run(enemyShootAction)
         }
         if meteoriteLastSpawnTime + 6 <= currentTime {
             meteoriteLastSpawnTime = currentTime
@@ -222,7 +219,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if child.name == "playerBullet" || child.name == "cannonBullet" {
                 if child.frame.minY > frame.maxY * 1.1 || abs(child.frame.minX) > abs(frame.maxX * 1.1) {
                     child.removeFromParent()
-
+                    
+                }
+            }
         }
     }
     
@@ -250,12 +249,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.reduceLife()
                 
                 if player.life == 0 {
-//                    let lossSound = SKAction.playSoundFileNamed("loss.caf", waitForCompletion: false)
-//                    run(lossSound)
+                    //                    let lossSound = SKAction.playSoundFileNamed("loss.caf", waitForCompletion: false)
+                    //                    run(lossSound)
                     run(SKAction.playSoundFileNamed(SoundFile.lossSound, waitForCompletion: true))
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: false)
-//                    run(lossSound)
+                    //                    run(lossSound)
                     view?.presentScene(gameOverScene, transition: reveal)
                     
                 }
@@ -279,19 +278,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstNode.name == "cannonBullet" {
             if secondNode.name == "enemy" {
                 makeExplosion(position: contact.contactPoint, on: enemy)
-
+                
                 firstNode.removeFromParent()
                 enemy.life -= 1
-
+                
                 if enemy.life == 0 {
-                    run(wonSound)
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: true)
                     
                     view?.presentScene(gameOverScene, transition: reveal)
                     //                    print("YOU WON")
                     enemy.life = 3
-
+                    
                 }
             } else {
                 if secondNode.name == "enemyWeapon" {
@@ -304,24 +302,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func makeExplosion(position: CGPoint, on parent: SKSpriteNode) {
         if let explosion = SKEmitterNode(fileNamed: "Explosion") {
             if parent.name == "enemy" {
-//                explosion.particleColor = .cyan
+                //                explosion.particleColor = .cyan
             }
             explosion.position = position
             self.addChild(explosion)
             run(explosionSound)
-//            run(explosionSoundAction)
+            //            run(explosionSoundAction)
             explosion.move(toParent: parent)
             let removeAfterDead = SKAction.sequence([SKAction.wait(forDuration: 3), SKAction.removeFromParent()])
             explosion.run(removeAfterDead)
         }
     }
     
-//    func makeBackground() {
-//        if let starsBackground = SKEmitterNode(fileNamed: "StarsBackground") {
-//            starsBackground.position = CGPoint(x: 0, y: self.frame.maxY + 50)
-//            starsBackground.zPosition = -1
-//            starsBackground.advanceSimulationTime(50)
-//            self.addChild(starsBackground)
-//        }
-//    }
+    //    func makeBackground() {
+    //        if let starsBackground = SKEmitterNode(fileNamed: "StarsBackground") {
+    //            starsBackground.position = CGPoint(x: 0, y: self.frame.maxY + 50)
+    //            starsBackground.zPosition = -1
+    //            starsBackground.advanceSimulationTime(50)
+    //            self.addChild(starsBackground)
+    //        }
+    //    }
 }
+

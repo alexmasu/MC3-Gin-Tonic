@@ -49,7 +49,7 @@ class EnemyNode: SKSpriteNode {
         weapon.physicsBody = SKPhysicsBody(rectangleOf: weapon.size)
         weapon.physicsBody?.usesPreciseCollisionDetection = true
         weapon.physicsBody?.categoryBitMask = CollisionType.enemyWeapon.rawValue
-        weapon.physicsBody?.collisionBitMask = CollisionType.player.rawValue | CollisionType.shield.rawValue
+        weapon.physicsBody?.collisionBitMask = 0
         weapon.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.shield.rawValue | CollisionType.cannonBullet.rawValue
         
         weapon.physicsBody?.mass = 10

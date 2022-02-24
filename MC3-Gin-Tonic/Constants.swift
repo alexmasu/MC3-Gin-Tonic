@@ -15,5 +15,5 @@ enum SoundFile {
     static let cannonSound = "powerUp.caf"
     static let powerUpSound = "pickupCoin.caf"
     static let lossSound = "loss.caf"
-    static let wonSound = "Fanfare.wav"
+//    static let wonSound = "Fanfare.wav"
 }

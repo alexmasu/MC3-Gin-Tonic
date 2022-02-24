@@ -50,17 +50,18 @@ class ShieldNode: SKSpriteNode {
         self.run(animCannon)
     }
     
-    func closeCannonAnimationRun() {
-        let frames = makeAnimationFrames(from: "shieldAnim")
-        let framesReversed: [SKTexture] = frames.reversed()
-        let animCannonReverse = SKAction.animate(with: framesReversed, timePerFrame: 0.02, resize: false, restore: false)
-        let scale = SKAction.scale(to: 1, duration: 0.25)
-        
-        self.run(scale)
+//    func closeCannonAnimationRun() {
+//        let frames = makeAnimationFrames(from: "shieldAnim")
+//        let framesReversed: [SKTexture] = frames.reversed()
+//        let animCannonReverse = SKAction.animate(with: framesReversed, timePerFrame: 0.02, resize: false, restore: false)
+//        let scale = SKAction.scale(to: 1, duration: 0.25)
+//
+//        self.run(scale)
 //        self.run(animCannon){
 //            self.animateHit()
 //        }
-    }
+//    }
+    
     func openAndCloseAnimationRun() {
         let frames = makeAnimationFrames(from: "shieldAnim")
         let animCannon = SKAction.animate(with: frames, timePerFrame: 0.02, resize: false, restore: false)

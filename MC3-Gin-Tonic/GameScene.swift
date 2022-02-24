@@ -7,6 +7,7 @@
 
 import SpriteKit
 
+
 enum CollisionType: UInt32 {
     case enemy = 1
     case enemyWeapon = 2
@@ -57,6 +58,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var cannon = CannonNode()
     private var pause = PauseScreen()
     
+    let playerShootSound = SKAction.playSoundFileNamed(SoundFile.playerShoot, waitForCompletion: false)
+    let enemyShootSound = SKAction.playSoundFileNamed(SoundFile.enemyShoot, waitForCompletion: false)
+    let explosionSound = SKAction.playSoundFileNamed(SoundFile.explosionSound, waitForCompletion: false)
+    let cannonSound = SKAction.playSoundFileNamed(SoundFile.cannonSound, waitForCompletion: false)
+    let powerUpSound = SKAction.playSoundFileNamed(SoundFile.powerUpSound, waitForCompletion: false)
+    let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: false)
+    
+    
     var isPlayerAlive = true
     var meteoriteLastSpawnTime: Double = 0
     
@@ -65,6 +74,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.gravity = .zero
         self.physicsWorld.contactDelegate = self
         makeBackground()
+        
+      
         
         let pauseButton = SKSpriteNode(imageNamed: "pause")
         pauseButton.size = CGSize(width: 30, height: 30)
@@ -166,6 +177,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if cannon.cannonEnergy == 3 {
             cannon.shot()
+            run(cannonSound)
             cannon.cannonCharge()
         }
     }
@@ -177,11 +189,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if player.lastFiredTime + 0.6 <= currentTime {
                 player.lastFiredTime = currentTime
                 player.fire()
+                run(playerShootSound)
+//                run(playerShootAction)
             }
         }
         if enemy.lastFiredTime + Double(Int.random(in: 3...5)) <= currentTime {
             enemy.lastFiredTime = currentTime
             enemy.fire()
+            run(enemyShootSound)
+//            run(enemyShootAction)
         }
         if meteoriteLastSpawnTime + 6 <= currentTime {
             meteoriteLastSpawnTime = currentTime
@@ -198,6 +214,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+    
     
     func didBegin(_ contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node else {return}
@@ -224,10 +241,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.reduceLife()
                 
                 if player.life == 0 {
+//                    let lossSound = SKAction.playSoundFileNamed("loss.caf", waitForCompletion: false)
+//                    run(lossSound)
+                    run(SKAction.playSoundFileNamed(SoundFile.lossSound, waitForCompletion: true))
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: false)
-                    
+//                    run(lossSound)
                     view?.presentScene(gameOverScene, transition: reveal)
+                    
                 }
             } else {
                 shield.animateHit()
@@ -238,8 +259,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondNode.removeFromParent()
             guard let meteor = firstNode as? MeteoriteNode else {return}
             if meteor.isDestroyedAfterHit() {
+                run(powerUpSound)
                 if cannon.cannonEnergy != 3 {
                     cannon.cannonCharge()
+                    
                 }
             }
         }
@@ -251,6 +274,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if secondNode.name == "enemy" {
                 enemy.life -= 1
                 if enemy.life == 0 {
+                    run(wonSound)
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: true)
                     
@@ -271,6 +295,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             explosion.position = position
             
             self.addChild(explosion)
+            run(explosionSound)
+//            run(explosionSoundAction)
             explosion.move(toParent: parent)
             let removeAfterDead = SKAction.sequence([SKAction.wait(forDuration: 3), SKAction.removeFromParent()])
             explosion.run(removeAfterDead)

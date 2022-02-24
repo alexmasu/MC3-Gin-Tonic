@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		291218D027BA9970006836F6 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 291218CF27BA9970006836F6 /* Explosion.sks */; };
+		291E913827C64B8E00AECC95 /* laserShoot.caf in Resources */ = {isa = PBXBuildFile; fileRef = 291E913227C64B8E00AECC95 /* laserShoot.caf */; };
+		291E913927C64B8E00AECC95 /* boom.caf in Resources */ = {isa = PBXBuildFile; fileRef = 291E913327C64B8E00AECC95 /* boom.caf */; };
+		291E913A27C64B8E00AECC95 /* synthCopy.caf in Resources */ = {isa = PBXBuildFile; fileRef = 291E913427C64B8E00AECC95 /* synthCopy.caf */; };
+		291E913B27C64B8E00AECC95 /* powerUp.caf in Resources */ = {isa = PBXBuildFile; fileRef = 291E913527C64B8E00AECC95 /* powerUp.caf */; };
+		291E913C27C64B8E00AECC95 /* pickupCoin.caf in Resources */ = {isa = PBXBuildFile; fileRef = 291E913627C64B8E00AECC95 /* pickupCoin.caf */; };
+		291E913D27C64B8E00AECC95 /* laserShoot2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 291E913727C64B8E00AECC95 /* laserShoot2.caf */; };
+		291E913F27C64C1500AECC95 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291E913E27C64C1500AECC95 /* Constants.swift */; };
+		291E914227C68B9A00AECC95 /* Fanfare.wav in Resources */ = {isa = PBXBuildFile; fileRef = 291E914127C68B9A00AECC95 /* Fanfare.wav */; };
 		2932F2A127BD127800A7ED80 /* AdventPro-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29927BD127800A7ED80 /* AdventPro-Thin.ttf */; };
 		2932F2A227BD127800A7ED80 /* AdventPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29A27BD127800A7ED80 /* AdventPro-Bold.ttf */; };
 		2932F2A327BD127800A7ED80 /* AdventPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29B27BD127800A7ED80 /* AdventPro-SemiBold.ttf */; };
@@ -52,6 +60,15 @@
 
 /* Begin PBXFileReference section */
 		291218CF27BA9970006836F6 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
+		291E913227C64B8E00AECC95 /* laserShoot.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = laserShoot.caf; sourceTree = "<group>"; };
+		291E913327C64B8E00AECC95 /* boom.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boom.caf; sourceTree = "<group>"; };
+		291E913427C64B8E00AECC95 /* synthCopy.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = synthCopy.caf; sourceTree = "<group>"; };
+		291E913527C64B8E00AECC95 /* powerUp.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = powerUp.caf; sourceTree = "<group>"; };
+		291E913627C64B8E00AECC95 /* pickupCoin.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pickupCoin.caf; sourceTree = "<group>"; };
+		291E913727C64B8E00AECC95 /* laserShoot2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = laserShoot2.caf; sourceTree = "<group>"; };
+		291E913E27C64C1500AECC95 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		291E914027C6816500AECC95 /* loss.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = loss.caf; sourceTree = "<group>"; };
+		291E914127C68B9A00AECC95 /* Fanfare.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Fanfare.wav; sourceTree = "<group>"; };
 		2932F29927BD127800A7ED80 /* AdventPro-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-Thin.ttf"; sourceTree = "<group>"; };
 		2932F29A27BD127800A7ED80 /* AdventPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-Bold.ttf"; sourceTree = "<group>"; };
 		2932F29B27BD127800A7ED80 /* AdventPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -108,6 +125,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		291E913127C64B8E00AECC95 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				291E914127C68B9A00AECC95 /* Fanfare.wav */,
+				291E914027C6816500AECC95 /* loss.caf */,
+				291E913227C64B8E00AECC95 /* laserShoot.caf */,
+				291E913327C64B8E00AECC95 /* boom.caf */,
+				291E913427C64B8E00AECC95 /* synthCopy.caf */,
+				291E913527C64B8E00AECC95 /* powerUp.caf */,
+				291E913627C64B8E00AECC95 /* pickupCoin.caf */,
+				291E913727C64B8E00AECC95 /* laserShoot2.caf */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		2932F29827BD127800A7ED80 /* Advent_Pro */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +175,7 @@
 			children = (
 				7F40022927B271E2001182EB /* AppDelegate.swift */,
 				7F40023127B271E2001182EB /* GameViewController.swift */,
+				291E913E27C64C1500AECC95 /* Constants.swift */,
 				7F40022F27B271E2001182EB /* GameScene.swift */,
 				9548DBC627B71D7B002D5B12 /* PlayerNode.swift */,
 				9548DBC827B71DB8002D5B12 /* ShieldNode.swift */,
@@ -165,6 +198,7 @@
 				7F40023327B271E2001182EB /* Main.storyboard */,
 				7F40023827B271E3001182EB /* LaunchScreen.storyboard */,
 				7F40023627B271E3001182EB /* Assets.xcassets */,
+				291E913127C64B8E00AECC95 /* Sounds */,
 				9583AEA227C6279C009A5FA1 /* shieldAnim.atlas */,
 				9583AE9A27C500E2009A5FA1 /* cannonShot.atlas */,
 				95BD2FC127C194F600A734CC /* shieldHit.atlas */,
@@ -241,7 +275,10 @@
 			files = (
 				2980F63E27B3D66E00C318DF /* GameScene.sks in Resources */,
 				2932F2A427BD127800A7ED80 /* AdventPro-Medium.ttf in Resources */,
+				291E913827C64B8E00AECC95 /* laserShoot.caf in Resources */,
+				291E913927C64B8E00AECC95 /* boom.caf in Resources */,
 				95F17DB227BEE85900A8EB71 /* metHit1.atlas in Resources */,
+				291E913B27C64B8E00AECC95 /* powerUp.caf in Resources */,
 				9548DBCB27B71DF0002D5B12 /* ShieldBackGlow.sks in Resources */,
 				95BD2FC227C194F600A734CC /* shieldHit.atlas in Resources */,
 				2932F2A527BD127800A7ED80 /* AdventPro-Regular.ttf in Resources */,
@@ -251,15 +288,19 @@
 				2932F2A127BD127800A7ED80 /* AdventPro-Thin.ttf in Resources */,
 				2932F2A327BD127800A7ED80 /* AdventPro-SemiBold.ttf in Resources */,
 				2932F2A727BD127800A7ED80 /* AdventPro-Light.ttf in Resources */,
+				291E913C27C64B8E00AECC95 /* pickupCoin.caf in Resources */,
 				29A0288427C3CF8A006BBBC7 /* Stars.sks in Resources */,
 				9583AE9B27C500E2009A5FA1 /* cannonShot.atlas in Resources */,
 				2932F2A827BD127800A7ED80 /* AdventPro-ExtraLight.ttf in Resources */,
+				291E913D27C64B8E00AECC95 /* laserShoot2.caf in Resources */,
 				9583AEA327C6279C009A5FA1 /* shieldAnim.atlas in Resources */,
 				7F40023A27B271E3001182EB /* LaunchScreen.storyboard in Resources */,
 				95F17DB427BEF72D00A8EB71 /* metHit2.atlas in Resources */,
 				95F17DB627BEF73F00A8EB71 /* metHit3.atlas in Resources */,
+				291E914227C68B9A00AECC95 /* Fanfare.wav in Resources */,
 				291218D027BA9970006836F6 /* Explosion.sks in Resources */,
 				7FE1CA8727C4ED8D00FD7731 /* Localizable.strings in Resources */,
+				291E913A27C64B8E00AECC95 /* synthCopy.caf in Resources */,
 				95F17DB827BEF9B200A8EB71 /* MetEnergyParticles.sks in Resources */,
 				2932F2A227BD127800A7ED80 /* AdventPro-Bold.ttf in Resources */,
 			);
@@ -290,6 +331,7 @@
 				9533BC2027BC4D910048C7B3 /* CannonNode.swift in Sources */,
 				29A0288627C3D5F3006BBBC7 /* PauseScreen.swift in Sources */,
 				9548DBC727B71D7B002D5B12 /* PlayerNode.swift in Sources */,
+				291E913F27C64C1500AECC95 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

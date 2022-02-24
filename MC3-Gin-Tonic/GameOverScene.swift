@@ -8,6 +8,17 @@
 import SpriteKit
 
 class GameOverScene: SKScene {
+    override func didMove(to view: SKView) {
+//        if let particles = SKEmitterNode(fileNamed: "Stars") {
+//            particles.position = CGPoint(x: 300, y: 1080)
+//            particles.advanceSimulationTime(60)
+//            particles.zPosition = -1
+//            addChild(particles)
+//        }
+        makeBackground()
+       
+        
+    }
     init(size: CGSize, won:Bool) {
         
         super.init(size: size)

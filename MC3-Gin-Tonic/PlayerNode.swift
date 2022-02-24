@@ -99,6 +99,7 @@ class PlayerNode: SKSpriteNode {
         
         //shield should not be child of player. Think about join them as separate objects.
         self.run(scaleSequence)
+        
     }
     
     func stopFire(touchesCount: Int) {

@@ -34,7 +34,7 @@ class ShieldNode: SKSpriteNode {
         
         self.run(animHit)
         
-        animateShadowGlow()
+        animateShadowGlow(withName: "shadow")
     }
     
     func openCannonAnimationRun() {
@@ -53,30 +53,33 @@ class ShieldNode: SKSpriteNode {
     func closeCannonAnimationRun() {
         let frames = makeAnimationFrames(from: "shieldAnim")
         let framesReversed: [SKTexture] = frames.reversed()
-        let animCannon = SKAction.animate(with: framesReversed, timePerFrame: 0.02, resize: false, restore: false)
+        let animCannonReverse = SKAction.animate(with: framesReversed, timePerFrame: 0.02, resize: false, restore: false)
         let scale = SKAction.scale(to: 1, duration: 0.25)
         
         self.run(scale)
-        self.run(animCannon){
+//        self.run(animCannon){
+//            self.animateHit()
+//        }
+    }
+    func openAndCloseAnimationRun() {
+        let frames = makeAnimationFrames(from: "shieldAnim")
+        let animCannon = SKAction.animate(with: frames, timePerFrame: 0.02, resize: false, restore: false)
+        let scale = SKAction.scale(by: 3, duration: 0.25)
+        
+        let framesReversed: [SKTexture] = frames.reversed()
+        let animCannonReverse = SKAction.animate(with: framesReversed, timePerFrame: 0.02, resize: false, restore: false)
+        let scale2 = SKAction.scale(to: 1, duration: 0.25)
+        let restore = SKAction.run {
             self.animateHit()
         }
-    }
-    
-    func animateShadowGlow() {
-        guard let shadow = self.childNode(withName: "shadow") else {return}
-        let glowing = SKAction.fadeAlpha(to: 1, duration: 0.117)
-        let glowing2 = SKAction.fadeAlpha(to: 0.5, duration: 0.117)
-        let seq = SKAction.sequence([glowing, glowing2])
+        let seqRestore = SKAction.sequence([animCannonReverse, restore])
         
-        guard let shadow2 = shadow.copy() as? SKSpriteNode else {return}
-        shadow2.blendMode = .add
-        self.addChild(shadow2)
-        shadow2.run(seq) {
-            shadow2.removeFromParent()
+        self.run(scale)
+        self.run(animCannon){
+            self.run(scale2)
+            self.run(seqRestore)
         }
-        
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -11,7 +11,7 @@ class PlayerNode: SKSpriteNode {
     
     var lastFiredTime: Double = 0
     var isFiring = false
-    var jointAnchor : CGPoint = .zero
+//    var jointAnchor : CGPoint = .zero
     var life: Int = 3
 
     init(imageNamed: String) {
@@ -28,8 +28,7 @@ class PlayerNode: SKSpriteNode {
         physicsBody?.collisionBitMask = 0
         physicsBody?.contactTestBitMask = CollisionType.enemyWeapon.rawValue
         physicsBody?.isDynamic = false
-        makeTextureShadow(blurRadius: 7, xScaleFactor: 1.4, yScaleFactor: 1.4, color: UIColor(named: "alienGreen"))
-        
+        makeTextureShadow(blurRadius: 7, xScaleFactor: 1.4, yScaleFactor: 1.4, color: .systemGreen)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,6 +40,8 @@ class PlayerNode: SKSpriteNode {
     }
     
     func rotateControl(touchLocation: CGPoint, gestureType: ControlType) {
+        guard let scene = scene else {return}
+        guard scene.childNode(withName: "crop") == nil else {return}
         
         let angle = atan2(touchLocation.x, touchLocation.y)
         //conversions: degreesToRadians = CGFloat.pi / 180 | radiansToDegrees = 180 / CGFloat.pi
@@ -85,7 +86,7 @@ class PlayerNode: SKSpriteNode {
         playerBullet.physicsBody?.mass = 0.02
         let speed: CGFloat = 18
         
-        makeShapeGlow()
+        playerBullet.makeShapeGlow(cornerRadius: 3, color: .cyan)
         
         self.parent!.addChild(playerBullet)
         playerBullet.name = "playerBullet"
@@ -113,5 +114,33 @@ class PlayerNode: SKSpriteNode {
     
     func reduceLife() {
         self.life -= 1
+        if life != 0 {
+        animateHit(playerLife: life)
+        }
+    }
+    
+    func animateHit(playerLife: Int) {
+        let newTexture = SKTexture(imageNamed: "playerShip-\(playerLife)")
+        let dumbPlayerCopy = SKSpriteNode(imageNamed: "playerShip-\(playerLife)")
+        dumbPlayerCopy.size = self.size
+        dumbPlayerCopy.zPosition = zPosition + 1
+        dumbPlayerCopy.alpha = 0
+        
+//        let scale = SKAction.scale(by: 0.9, duration: 0.3)
+//        let scaleSequence = SKAction.sequence([scale, scale.reversed()])
+//        self.run(SKAction.repeat(scaleSequence, count: 3))
+        
+        let fadeIn = SKAction.fadeIn(withDuration: 0.27)
+        let seq = SKAction.sequence([fadeIn, fadeIn.reversed()])
+        
+        dumbPlayerCopy.run(SKAction.repeat(seq, count: 4)) {
+            self.texture = newTexture
+            dumbPlayerCopy.removeFromParent()
+        }
+        addChild(dumbPlayerCopy)
+        self.animateShadowGlow(withName: "shadow")
+        
+        guard let shadow = self.childNode(withName: "shadow") as? SKSpriteNode else {return}
+        shadow.run(SKAction.colorize(with: self.life == 2 ? .systemOrange : .systemRed, colorBlendFactor: 1, duration: 0.2))
     }
 }

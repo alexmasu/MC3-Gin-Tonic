@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import AVKit
 
 //extension UIColor {
 //   convenience init(red: Int, green: Int, blue: Int) {
@@ -44,7 +45,7 @@ class MenuScreen: SKScene {
         addChild(continueButton)
          
         // LITTLE LABEL ATTACHED TO GREEN BUTTON
-        let littleLabelText = "TO PLANET-1"
+        let littleLabelText = "PLANET-1"
         continueButton.addLittleLabel(text: littleLabelText, labelPosition: .upperLabel)
         
         let message = "ABISSI"
@@ -75,8 +76,8 @@ class MenuScreen: SKScene {
                 if let scene = SKScene(fileNamed: "GameScene") {
                     scene.size = view.frame.size
                     scene.scaleMode = .aspectFill
-                    
-                    view.presentScene(scene)
+                    let transition = SKTransition.fade(withDuration: 0.5)
+                    view.presentScene(scene, transition: transition)
                 }
             }
         }

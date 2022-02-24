@@ -9,12 +9,20 @@ import SpriteKit
 
 class CannonNode: SKNode {
     
-    var cannonChargeIndicator : SKSpriteNode
+    var cannonChargeIndicator = SKSpriteNode(imageNamed: "filledEnergyCharge0")
     var cannonEnergy: Int = 0
+
     override init() {
-        self.cannonChargeIndicator = SKSpriteNode(imageNamed: "charge0")
         super.init()
-        self.cannonChargeIndicator.zPosition = 5
+        
+        cannonChargeIndicator.size = CGSize(width: 50, height: 50)
+        cannonChargeIndicator.zPosition = 50
+        cannonChargeIndicator.makeShapeGlow(cornerRadius: 50, scaleSizeBy: 0.67, color: UIColor(named: "yellowMet"))
+        guard let glow = cannonChargeIndicator.childNode(withName: "glow") as? SKShapeNode else {return}
+        let glowing = SKAction.fadeAlpha(to: 0.6, duration: 1)
+        let glowing2 = SKAction.fadeAlpha(to: 0.4, duration: 1)
+        let glowSeq = SKAction.sequence([glowing, glowing2])
+        glow.run(SKAction.repeatForever(glowSeq))
     }
     
     func cannonCharge() {
@@ -23,59 +31,104 @@ class CannonNode: SKNode {
         } else {
             self.cannonEnergy += 1
         }
-        self.cannonChargeIndicator.texture = SKTexture(imageNamed: "charge\(cannonEnergy)")
+        animateCharge(energy: cannonEnergy)
     }
     
     func shot() {
         guard let scene = scene,
         let shield = scene.childNode(withName: "shield") as? ShieldNode else {return}
-        let cannonBullet = SKSpriteNode(imageNamed: "cannonBullet")
+        let cannonBullet = SKSpriteNode(imageNamed: "cannonShot1")
         
-        let crop = SKCropNode()
-        let rect = CGRect(origin: CGPoint(x:scene.frame.minX, y: scene.frame.minY), size: CGSize(width: scene.size.width, height: (scene.size.height / 2) + shield.frame.midY))
-        let mask = SKShapeNode(rect: rect)
-//        SKShapeNode(circleOfRadius: abs(shield.frame.midY))
-        mask.lineWidth = scene.size.height
-        mask.position = CGPoint(x:scene.frame.midX, y: scene.frame.minY)
-        mask.zPosition = 50
-        crop.maskNode = mask
-        crop.zPosition = 10
+//        let crop = SKCropNode()
+//        let rect = CGRect(origin: CGPoint(x:scene.frame.minX, y: scene.frame.minY), size: CGSize(width: scene.size.width, height: (scene.size.height / 2) + shield.frame.midY))
+//        let mask = SKShapeNode(rect: rect)
+////        SKShapeNode(circleOfRadius: abs(shield.frame.midY))
+//        mask.lineWidth = scene.size.height
+//        mask.position = CGPoint(x:scene.frame.midX, y: scene.frame.minY)
+//        mask.zPosition = 50
+//        crop.maskNode = mask
+//        crop.zPosition = 10
+//        crop.name = "crop"
         
         cannonBullet.name = "cannonBullet"
-        cannonBullet.zPosition = -1
+        cannonBullet.zPosition = 9
         cannonBullet.zRotation = shield.zRotation
         
-        cannonBullet.size = CGSize(width: shield.frame.width / 1.5, height: shield.frame.height / 1.5)
+        cannonBullet.size = CGSize(width: shield.frame.width / 2.5, height: shield.frame.width / 2)
         cannonBullet.position = CGPoint(x: (shield.frame.midX), y: (shield.frame.midY))
         
-        cannonBullet.physicsBody = SKPhysicsBody(rectangleOf: cannonBullet.size)
+        cannonBullet.physicsBody = SKPhysicsBody(texture: cannonBullet.texture!, size: cannonBullet.size)
         cannonBullet.physicsBody?.usesPreciseCollisionDetection = true
         cannonBullet.physicsBody?.categoryBitMask = CollisionType.cannonBullet.rawValue
         cannonBullet.physicsBody?.collisionBitMask = 0
         cannonBullet.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
+        cannonBullet.physicsBody?.mass = 0.01
         
-        let scaleY = SKAction.scaleX(by: 1, y: 100, duration: 1)
-        let fade = SKAction.fadeOut(withDuration: 0.1)
-        let seq = [scaleY, fade]
+        cannonBullet.makeShapeGlow(cornerRadius: 10, scaleSizeBy: 1, color: .cyan)
         
-//        let speed : CGFloat = 20
-//        let adjustedAngle = shield.zRotation + CGFloat.pi / 2
-//        let dx = -(speed * cos(adjustedAngle))
-//        let dy = -(speed * sin(adjustedAngle))
-//        let act = SKAction.applyImpulse(CGVector(dx: dx, dy: dy), duration: 1)
         
-        shield.openCannonAnimationRun()
-        cannonBullet.run(SKAction.sequence(seq)){
-            shield.closeCannonAnimationRun()
-            cannonBullet.removeFromParent()
-        }
-        scene.addChild(crop)
+//        scene.addChild(crop)
 
-        crop.addChild(cannonBullet)
+        scene.addChild(cannonBullet)
+
+//        let scaleY = SKAction.scaleX(by: 1, y: 80, duration: 0.7)
+//        let fade = SKAction.fadeOut(withDuration: 0.1)
+//
+//        let seq = [scaleY]
         
-        
+//        cannonBullet.run(scaleY) {
+//            cannonBullet.removeFromParent()
+//            crop.removeFromParent()
+//        }
+//        let completeSeq = [scaleY, fade, closeAndRemove]
+
+        let speed : CGFloat = 20
+        let adjustedAngle = shield.zRotation + CGFloat.pi / 2
+        let dx = -(speed * cos(adjustedAngle))
+        let dy = -(speed * sin(adjustedAngle))
+        let act = SKAction.applyImpulse(CGVector(dx: dx, dy: dy), duration: 1)
+        cannonBullet.run(act)
     }
     
+//    func removeAndpoint() {
+//        guard let scene = self.scene,
+//        let enemy = scene.childNode(withName: "enemy") as? EnemyNode else {return}
+//        let act = SKAction.run {
+//            scene.childNode(withName: "crop")?.removeFromParent()
+//        }
+//        self.run(act){
+////            enemy.life -= 1
+//        }
+//    }
+    
+    func animateCharge(energy: Int) {
+        //FADE IN NEW ENERGY
+        let newTexture = SKTexture(imageNamed: "filledEnergyCharge\(cannonEnergy)")
+        let dumbPlayerCopy = SKSpriteNode(imageNamed: "filledEnergyCharge\(cannonEnergy)")
+        dumbPlayerCopy.size = self.cannonChargeIndicator.size
+        dumbPlayerCopy.zPosition = self.cannonChargeIndicator.zPosition + 1
+        dumbPlayerCopy.alpha = 0
+        cannonChargeIndicator.addChild(dumbPlayerCopy)
+
+        let fadeIn = SKAction.fadeIn(withDuration: 0.5)
+
+        dumbPlayerCopy.run(fadeIn) {
+            self.cannonChargeIndicator.texture = newTexture
+            dumbPlayerCopy.removeFromParent()
+        }
+        
+        //SCALE ANIMATION
+        let scale = SKAction.scale(by: 1.1, duration: 0.2)
+        let scaleSequence = SKAction.sequence([scale, scale.reversed()])
+        
+        cannonChargeIndicator.run(SKAction.repeat(scaleSequence, count: cannonEnergy == 3 ? 3 : 1))
+        
+        //SHADOW GLOW ANIMATION
+        cannonChargeIndicator.animateShadowGlow(withName: "glow")
+        if energy == 3 {
+            cannonChargeIndicator.animateShadowGlow(withName: "glow")
+        }
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

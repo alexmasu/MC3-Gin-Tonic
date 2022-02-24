@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 extension SKScene {
     func makeBackground() {
@@ -13,7 +14,7 @@ extension SKScene {
             
             starsBackground.position = CGPoint(x: 0, y: self.frame.maxY + 50)
             
-            starsBackground.zPosition = -1
+            starsBackground.zPosition = -3
             
             starsBackground.advanceSimulationTime(50)
             
@@ -35,16 +36,18 @@ extension SKScene {
     
     func makePlanet() {
         let positionPoint = CGPoint(x: (-size.width / 2) * 0.8, y: (size.height / 2) * 0.88 )
-        let planetIMG = SKSpriteNode(imageNamed: "planetImg")
+        let planetIMG = SKSpriteNode(imageNamed: "PLANET")
         planetIMG.size = CGSize(width: size.width / 2.2, height: size.width / 2.2)
         planetIMG.position = positionPoint
-        planetIMG.zPosition = 0
-        addChild(planetIMG)
+        planetIMG.zPosition = -1
+        planetIMG.alpha = 1
         
-        //----DA SOSTITUIRE CON VIDEO
-//        let planetGif = SKVideoNode(fileNamed: "")
+        addChild(planetIMG)
+//        let planetGif = SKVideoNode(fileNamed: "pianetino_1.mp4")
 //        planetGif.size = CGSize(width: size.width / 2.2, height: size.width / 2.2)
 //        planetGif.position = positionPoint
+//        planetGif.zPosition = 10
+//
 //        addChild(planetGif)
 //        planetGif.play()
     }
@@ -53,8 +56,8 @@ extension SKScene {
         let glass = SKShapeNode(rectOf: size)
         
         glass.fillColor = UIColor(named: "glassColor") ?? .white
-        glass.alpha = 0.07
-        glass.zPosition = 1
-        addChild(glass)
+        glass.alpha = 0.08
+        glass.zPosition = 2
+        self.addChild(glass)
     }
 }

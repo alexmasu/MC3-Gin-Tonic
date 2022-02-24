@@ -57,36 +57,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var cannon = CannonNode()
     private var pause = PauseScreen()
     
-    var isPlayerAlive = true
     var meteoriteLastSpawnTime: Double = 0
-    
     
     override func didMove(to view: SKView) {
         physicsWorld.gravity = .zero
         self.physicsWorld.contactDelegate = self
         makeBackground()
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         let pauseButton = SKSpriteNode(imageNamed: "pause")
         pauseButton.size = CGSize(width: 30, height: 30)
         // Name the start node for touch detection:
         pauseButton.name = "PauseBtn"
         pauseButton.zPosition = 20
-        pauseButton.position = CGPoint(x: frame.maxX - 50, y: frame.maxY - 50)
-        
+        pauseButton.position = CGPoint(x: frame.maxX - 35, y: frame.maxY - 55)
         
         addChild(pauseButton)
         //        self.addChild(pause)
         
         self.addChild(enemy)
-        
         self.addChild(player)
         shield.position = CGPoint(x: player.frame.midX, y: player.frame.minY - shield.size.height * 0.5)
         self.addChild(shield)
         let join = SKPhysicsJointFixed.joint(withBodyA: player.physicsBody!, bodyB: shield.physicsBody!, anchor: CGPoint(x: player.frame.midX, y: player.frame.minY))
         self.physicsWorld.add(join)
         self.addChild(cannon)
-        player.addChild(cannon.cannonChargeIndicator)
-        
+        cannon.cannonChargeIndicator.position = CGPoint(x: frame.minX + 45, y: frame.maxY - 55)
+        self.addChild(cannon.cannonChargeIndicator)
         
         let bezierPath1 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(self.size.height / 4.4)), radius: self.size.height / 4.4, startAngle: 0.0, endAngle: CGFloat.pi, clockwise: false)
         let bezierPath2 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(self.size.height / 4.4)), radius: self.size.height / 4.4, startAngle: CGFloat.pi, endAngle: 0.0, clockwise: true)
@@ -123,30 +120,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let nodeTouched = atPoint(touchLocation)
         if nodeTouched.name == "PauseBtn" {
-            scene?.isPaused = true
-            pause.zPosition = 30
-            self.addChild(pause)
-            
-            //            if let view = self.view {
-            //                let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-            ////                let pauseScreen = PauseScreen(size: self.size)
-            ////
-            ////                view.presentScene(pauseScreen, transition: reveal)
-            //
-            //            }
+            if !self.isPaused {
+                self.isPaused = true
+                pause.zPosition = 30
+                self.addChild(pause)
+                
+                //            if let view = self.view {
+                //                let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                ////                let pauseScreen = PauseScreen(size: self.size)
+                ////
+                ////                view.presentScene(pauseScreen, transition: reveal)
+                //
+                //            }
+            }
         } else if nodeTouched.name == "ResumeBtn" {
+            self.isPaused = false
             pause.removeFromParent()
-            scene?.isPaused = false
         } else if nodeTouched.name == "QuitBtn" {
             if let view = self.view {
-                let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                let menuScreen = MenuScreen(size: self.size)
+                let reveal = SKTransition.fade(withDuration: 0.5)
+                let menuScene = MenuScreen(size: self.size)
                 
-                view.presentScene(menuScreen, transition: reveal)
+                view.presentScene(menuScene, transition: reveal)
+                
+            }
+        } else if nodeTouched.name == "SettingsBtn" {
+            if let view = self.view {
+                let reveal = SKTransition.fade(withDuration: 0.5)
+                let gameScene = GameScene(size: self.size)
+                
+                view.presentScene(gameScene, transition: reveal)
                 
             }
         }
-        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -165,21 +171,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.stopFire(touchesCount: touches.count)
         
         if cannon.cannonEnergy == 3 {
-            cannon.shot()
+            shield.openAndCloseAnimationRun()
+        cannon.run(SKAction.wait(forDuration: 0.15)){
+            self.cannon.shot()
+        }
             cannon.cannonCharge()
         }
     }
     
     override func update(_ currentTime: TimeInterval) {
         enemy.zRotation = (atan2(enemy.position.y, enemy.position.x) + CGFloat.pi)
-        
         if player.isFiring {
             if player.lastFiredTime + 0.6 <= currentTime {
                 player.lastFiredTime = currentTime
                 player.fire()
             }
         }
-        if enemy.lastFiredTime + Double(Int.random(in: 3...5)) <= currentTime {
+        if enemy.lastFiredTime + Double(Int.random(in: 5...7)) <= currentTime {
             enemy.lastFiredTime = currentTime
             enemy.fire()
         }
@@ -198,7 +206,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
-    
+
     func didBegin(_ contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node else {return}
         guard let nodeB = contact.bodyB.node else {return}
@@ -218,8 +226,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstNode.name == "enemyWeapon" {
             firstNode.removeFromParent()
             if secondNode.name == "player" {
-                guard isPlayerAlive else {return}
-                
                 makeExplosion(position: contact.contactPoint, on: player)
                 player.reduceLife()
                 
@@ -245,11 +251,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if firstNode.name == "cannonBullet" {
-            firstNode.removeFromParent()
-            makeExplosion(position: contact.contactPoint, on: enemy)
-            
             if secondNode.name == "enemy" {
+                makeExplosion(position: contact.contactPoint, on: enemy)
+
+                firstNode.removeFromParent()
                 enemy.life -= 1
+
                 if enemy.life == 0 {
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: true)
@@ -257,6 +264,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     view?.presentScene(gameOverScene, transition: reveal)
                     //                    print("YOU WON")
                     enemy.life = 3
+
                 }
             } else {
                 if secondNode.name == "enemyWeapon" {
@@ -268,8 +276,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func makeExplosion(position: CGPoint, on parent: SKSpriteNode) {
         if let explosion = SKEmitterNode(fileNamed: "Explosion") {
+            if parent.name == "enemy" {
+//                explosion.particleColor = .cyan
+            }
             explosion.position = position
-            
             self.addChild(explosion)
             explosion.move(toParent: parent)
             let removeAfterDead = SKAction.sequence([SKAction.wait(forDuration: 3), SKAction.removeFromParent()])

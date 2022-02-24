@@ -13,7 +13,7 @@ class MeteoriteNode: SKSpriteNode {
     var minYTouchingLimit: CGFloat = 0.0
     init(minX: CGFloat, maxY: CGFloat) {
         let texture = SKTexture(imageNamed: "Meteorite")
-        let startX = minX * (Bool.random() ? 1.3 : -1.3)
+        let startX = minX * (Bool.random() ? 1.2 : -1.2)
         let startY = CGFloat(Int.random(in: 20...Int(maxY)))
 
         super.init(texture: texture, color: .white, size: texture.size())
@@ -101,10 +101,6 @@ class MeteoriteNode: SKSpriteNode {
     }
     
     func startMoving() {
-//        guard let scene = scene else {
-//            print("No scene found for meteorite")
-//            return
-//        }
         let endPoint = calculatedEndPoint()
         let path = makeBezierPath(startPoint: position, endPoint: endPoint, pathType: PathType.allCases.randomElement() ?? .line)
 
@@ -113,7 +109,7 @@ class MeteoriteNode: SKSpriteNode {
 //            pathNode.lineWidth = 4
 //        scene.addChild(pathNode)
         
-        let followPath = SKAction.follow(path.cgPath, asOffset: false, orientToPath: false, speed: CGFloat.random(in: 80...110))
+        let followPath = SKAction.follow(path.cgPath, asOffset: false, orientToPath: false, speed: CGFloat.random(in: 60...100))
         
         self.run(followPath) {
             self.removeFromParent()

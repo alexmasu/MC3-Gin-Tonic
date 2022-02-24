@@ -61,19 +61,38 @@ class EnemyNode: SKSpriteNode {
         
 //        let speed: CGFloat = 1
 //        let adjustedRotation = zRotation + (CGFloat.pi / 2)
-        let actionMove = SKAction.move(to: realDest, duration: 6.0)
+        let actionMove = SKAction.move(to: realDest, duration: 6.5)
 //        let dx = speed * cos(adjustedRotation)
 //        let dy = speed * sin(adjustedRotation)
-        self.parent!.addChild(weapon)
+        scene?.addChild(weapon)
         weapon.run(actionMove)
 
 //        weapon.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
         
     }
-//    func reduceLife(){
-//        let act = SKAction.wait(forDuration: 1)
-//        self.run(act) {
-//            self.life -= 1
-//        }
-//    }
+
+    func configureMovement(sceneSize: CGSize) {
+        let bezierPath1 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(sceneSize.height / 4.4)), radius: sceneSize.height / 4.4, startAngle: 0.0, endAngle: CGFloat.pi, clockwise: false)
+        let bezierPath2 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(sceneSize.height / 4.4)), radius: sceneSize.height / 4.4, startAngle: CGFloat.pi, endAngle: 0.0, clockwise: true)
+        
+        //        let pathNode1 = SKShapeNode(path: bezierPath1.cgPath)
+        //        pathNode1.strokeColor = SKColor.blue
+        //        pathNode1.lineWidth = 0
+        ////        pathNode1.position = enemy.position
+        //        addChild(pathNode1)
+        //
+        //        let pathNode2 = SKShapeNode(path: bezierPath2.cgPath)
+        //        pathNode2.strokeColor = SKColor.red
+        //        pathNode2.lineWidth = 0
+        ////        pathNode2.position = enemy.position
+        //        addChild(pathNode2)
+        
+        let followLine1 = SKAction.follow(bezierPath1.cgPath, asOffset: false, orientToPath: false, duration: 5)
+        let followLine2 = SKAction.follow(bezierPath2.cgPath, asOffset: false, orientToPath: false, duration: 5)
+        let finalLine = SKAction.sequence([followLine1, followLine2])
+        let anotherAction = SKAction.repeatForever(finalLine)
+        
+        self.run(anotherAction)
+    }
+    
 }

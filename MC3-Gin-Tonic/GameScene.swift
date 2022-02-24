@@ -6,7 +6,7 @@
 //
 
 import SpriteKit
-
+//import AVFoundation
 
 enum CollisionType: UInt32 {
     case enemy = 1
@@ -65,7 +65,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let powerUpSound = SKAction.playSoundFileNamed(SoundFile.powerUpSound, waitForCompletion: false)
     //    let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: false)
     
-    
     var isPlayerAlive = true
     var meteoriteLastSpawnTime: Double = 0
     
@@ -97,27 +96,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cannon.cannonChargeIndicator.position = CGPoint(x: frame.minX + 45, y: frame.maxY - 55)
         self.addChild(cannon.cannonChargeIndicator)
         
-        let bezierPath1 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(self.size.height / 4.4)), radius: self.size.height / 4.4, startAngle: 0.0, endAngle: CGFloat.pi, clockwise: false)
-        let bezierPath2 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(self.size.height / 4.4)), radius: self.size.height / 4.4, startAngle: CGFloat.pi, endAngle: 0.0, clockwise: true)
-        
-        //        let pathNode1 = SKShapeNode(path: bezierPath1.cgPath)
-        //        pathNode1.strokeColor = SKColor.blue
-        //        pathNode1.lineWidth = 0
-        ////        pathNode1.position = enemy.position
-        //        addChild(pathNode1)
-        //
-        //        let pathNode2 = SKShapeNode(path: bezierPath2.cgPath)
-        //        pathNode2.strokeColor = SKColor.red
-        //        pathNode2.lineWidth = 0
-        ////        pathNode2.position = enemy.position
-        //        addChild(pathNode2)
-        
-        let followLine1 = SKAction.follow(bezierPath1.cgPath, asOffset: false, orientToPath: false, duration: 5)
-        let followLine2 = SKAction.follow(bezierPath2.cgPath, asOffset: false, orientToPath: false, duration: 5)
-        let finalLine = SKAction.sequence([followLine1, followLine2])
-        let anotherAction = SKAction.repeatForever(finalLine)
-        
-        enemy.run(anotherAction)
+        enemy.configureMovement(sceneSize: self.size)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -136,14 +115,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.isPaused = true
                 pause.zPosition = 30
                 self.addChild(pause)
-                
-                //            if let view = self.view {
-                //                let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                ////                let pauseScreen = PauseScreen(size: self.size)
-                ////
-                ////                view.presentScene(pauseScreen, transition: reveal)
-                //
-                //            }
             }
         } else if nodeTouched.name == "ResumeBtn" {
             self.isPaused = false
@@ -162,7 +133,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let gameScene = GameScene(size: self.size)
                 
                 view.presentScene(gameScene, transition: reveal)
-                
             }
         }
     }
@@ -202,7 +172,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 //                run(playerShootAction)
             }
         }
-        if enemy.lastFiredTime + Double(Int.random(in: 5...7)) <= currentTime {
+        if enemy.lastFiredTime + Double(Int.random(in: 4...8)) <= currentTime {
             enemy.lastFiredTime = currentTime
             enemy.fire()
             run(enemyShootSound)

@@ -50,7 +50,7 @@ class EnemyNode: SKSpriteNode {
         weapon.physicsBody?.usesPreciseCollisionDetection = true
         weapon.physicsBody?.categoryBitMask = CollisionType.enemyWeapon.rawValue
         weapon.physicsBody?.collisionBitMask = CollisionType.player.rawValue | CollisionType.shield.rawValue
-        weapon.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.shield.rawValue
+        weapon.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.shield.rawValue | CollisionType.cannonBullet.rawValue
         
         weapon.physicsBody?.mass = 10
         
@@ -70,4 +70,10 @@ class EnemyNode: SKSpriteNode {
 //        weapon.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
         
     }
+//    func reduceLife(){
+//        let act = SKAction.wait(forDuration: 1)
+//        self.run(act) {
+//            self.life -= 1
+//        }
+//    }
 }

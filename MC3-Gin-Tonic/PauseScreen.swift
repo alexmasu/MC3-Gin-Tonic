@@ -48,7 +48,7 @@ class PauseScreen: SKSpriteNode {
         resumeText.zPosition = 5
         resumeButton.addChild(resumeText)
         
-        let quitButton = SKSpriteNode(imageNamed: "restart button")
+        let quitButton = SKSpriteNode(imageNamed: "settings")
         quitButton.size = CGSize(width: 60, height: 60)
         // Name the start node for touch detection:
         quitButton.name = "QuitBtn"
@@ -58,7 +58,7 @@ class PauseScreen: SKSpriteNode {
         
         self.addChild(quitButton)
         
-        let settingsButton = SKSpriteNode(imageNamed: "settings")
+        let settingsButton = SKSpriteNode(imageNamed: "restart button")
         settingsButton.size = CGSize(width: 60, height: 60)
         // Name the start node for touch detection:
         settingsButton.name = "SettingsBtn"
@@ -88,7 +88,7 @@ class PauseScreen: SKSpriteNode {
         let label = SKLabelNode(fontNamed: "AdventPro-Bold")
         label.text = message
         label.fontSize = 60
-        label.fontColor = UIColor(rgb: 0xC5DC82)
+        label.fontColor = UIColor(named: "alienGreen")
         label.position = CGPoint(x: 0, y: 70)
         label.zPosition = 5
         addChild(label)

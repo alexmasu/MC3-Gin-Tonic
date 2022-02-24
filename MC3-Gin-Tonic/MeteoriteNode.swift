@@ -28,7 +28,7 @@ class MeteoriteNode: SKSpriteNode {
         physicsBody?.mass = 10
         physicsBody?.angularVelocity = 0.8
         
-        makeTextureShadow(blurRadius: 7, xScaleFactor: 1.45, yScaleFactor: 1.45)
+        makeTextureShadow(blurRadius: 6, xScaleFactor: 1.48, yScaleFactor: 1.48)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -140,7 +140,7 @@ class MeteoriteNode: SKSpriteNode {
             frames.append(meteoriteAnimAtlas.textureNamed(metFrameName))
         }
         let animHit = SKAction.animate(with: frames, timePerFrame: 0.04, resize: true, restore: false)
-        
+        self.animateShadowGlow(withName: "shadow")
         self.run(animHit) {
             if hitNum == 3 {
                 self.animateEnergy()

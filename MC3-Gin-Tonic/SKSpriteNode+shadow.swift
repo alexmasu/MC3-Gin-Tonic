@@ -23,8 +23,8 @@ extension SKSpriteNode {
         shadow.colorBlendFactor = 1
         shadow.alpha = 0.5
         
-        let glowing = SKAction.fadeAlpha(to: 1, duration: 0.5)
-        let glowing2 = SKAction.fadeAlpha(to: 0.5, duration: 0.5)
+        let glowing = SKAction.fadeAlpha(to: 1, duration: 1)
+        let glowing2 = SKAction.fadeAlpha(to: 0.5, duration: 1)
         let glowSeq = SKAction.sequence([glowing, glowing2])
         shadow.run(SKAction.repeatForever(glowSeq))
 
@@ -42,5 +42,19 @@ extension SKSpriteNode {
         glow.zPosition = -1
         
         self.addChild(glow)
+    }
+    
+    func animateShadowGlow(withName: String) {
+        guard let shadow = self.childNode(withName: withName) else {return}
+        let glowing = SKAction.fadeAlpha(to: 1, duration: 0.117)
+        let glowing2 = SKAction.fadeAlpha(to: 0.5, duration: 0.117)
+        let seq = SKAction.sequence([glowing, glowing2])
+        
+        guard let shadow2 = shadow.copy() as? SKSpriteNode else {return}
+        shadow2.blendMode = .add
+        self.addChild(shadow2)
+        shadow2.run(seq) {
+            shadow2.removeFromParent()
+        }
     }
 }

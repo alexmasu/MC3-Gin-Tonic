@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "map button.svg",
+      "filename" : "PLANET.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "PLANET@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "PLANET@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -57,7 +57,7 @@ class GreenButtonNode: SKSpriteNode {
         littleLabel.fontSize = self.textNode.fontSize * 0.7
         littleLabel.fontColor = UIColor(named: "labelPurple")
         
-        littleLabel.position = CGPoint(x: 0, y: labelPosition == .bottomLabel ? (-self.size.height * 1.2) : (self.size.height / 1.2))
+        littleLabel.position = CGPoint(x: 0, y: labelPosition == .bottomLabel ? (-self.size.height * 0.8) : (self.size.height / 1.2))
         
         self.addChild(littleLabel)
     }

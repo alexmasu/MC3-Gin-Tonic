@@ -126,10 +126,10 @@ class MetSpawner : SKNode {
         
         let path = makeBezierPath(pathType: PathType.allCases.randomElement() ?? .line)
 
-        let pathNode = SKShapeNode(path: path.cgPath)
-            pathNode.strokeColor = SKColor.red
-            pathNode.lineWidth = 4
-        scene?.addChild(pathNode)
+//        let pathNode = SKShapeNode(path: path.cgPath)
+//            pathNode.strokeColor = SKColor.red
+//            pathNode.lineWidth = 4
+//        scene?.addChild(pathNode)
         
         let followPath = SKAction.follow(path.cgPath, asOffset: false, orientToPath: false, speed: CGFloat.random(in: 60...100))
         

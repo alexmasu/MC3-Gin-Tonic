@@ -44,6 +44,7 @@
 		9548DBC727B71D7B002D5B12 /* PlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC627B71D7B002D5B12 /* PlayerNode.swift */; };
 		9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC827B71DB8002D5B12 /* ShieldNode.swift */; };
 		9548DBCB27B71DF0002D5B12 /* ShieldBackGlow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */; };
+		95521BEE27CC10E800F1E3EC /* MetSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95521BED27CC10E800F1E3EC /* MetSpawner.swift */; };
 		9583AE9B27C500E2009A5FA1 /* cannonShot.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9583AE9A27C500E2009A5FA1 /* cannonShot.atlas */; };
 		9583AEA327C6279C009A5FA1 /* shieldAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9583AEA227C6279C009A5FA1 /* shieldAnim.atlas */; };
 		9583AEA527C630B0009A5FA1 /* SKSpriteNode+shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583AEA427C630B0009A5FA1 /* SKSpriteNode+shadow.swift */; };
@@ -100,6 +101,7 @@
 		9548DBC627B71D7B002D5B12 /* PlayerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNode.swift; sourceTree = "<group>"; };
 		9548DBC827B71DB8002D5B12 /* ShieldNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldNode.swift; sourceTree = "<group>"; };
 		9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ShieldBackGlow.sks; sourceTree = "<group>"; };
+		95521BED27CC10E800F1E3EC /* MetSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetSpawner.swift; sourceTree = "<group>"; };
 		9583AE9A27C500E2009A5FA1 /* cannonShot.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = cannonShot.atlas; sourceTree = "<group>"; };
 		9583AEA227C6279C009A5FA1 /* shieldAnim.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = shieldAnim.atlas; sourceTree = "<group>"; };
 		9583AEA427C630B0009A5FA1 /* SKSpriteNode+shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+shadow.swift"; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				9533BC1F27BC4D910048C7B3 /* CannonNode.swift */,
 				2984718827B571D400E88AA8 /* EnemyNode.swift */,
 				95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */,
+				95521BED27CC10E800F1E3EC /* MetSpawner.swift */,
 				29514EE827BC074E00E94576 /* HUD.swift */,
 				29514EEA27BC08C200E94576 /* GameOverScene.swift */,
 				29A0288527C3D5F3006BBBC7 /* PauseScreen.swift */,
@@ -328,6 +331,7 @@
 				7FA70D6627C6298F00C12330 /* SKscene+background.swift in Sources */,
 				9533BC2027BC4D910048C7B3 /* CannonNode.swift in Sources */,
 				29A0288627C3D5F3006BBBC7 /* PauseScreen.swift in Sources */,
+				95521BEE27CC10E800F1E3EC /* MetSpawner.swift in Sources */,
 				9548DBC727B71D7B002D5B12 /* PlayerNode.swift in Sources */,
 				291E913F27C64C1500AECC95 /* Constants.swift in Sources */,
 			);

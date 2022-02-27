@@ -39,15 +39,14 @@ class MenuScreen: SKScene {
         
         // GREEN BUTTON NODE
         let continueButtonText = "CONTINUE"
-        let continueButton = GreenButtonNode(parentSize: size, text: continueButtonText)
-        // Rename the start node for touch detection:
+        let continueButton = GreenButtonNode(nodeName: "Continue", buttonType: .screen, parentSize: size, text: continueButtonText)
 
         addChild(continueButton)
          
         // LITTLE LABEL ATTACHED TO GREEN BUTTON
         let littleLabelText = "PLANET-1"
-        continueButton.addLittleLabel(text: littleLabelText, labelPosition: .upperLabel)
-        
+        continueButton.addLittleLabel(text: littleLabelText, labelPosition: GreenButtonNode.labelPosition.upperLabel)
+
         let message = "ABISSI"
         
         // 3
@@ -69,7 +68,7 @@ class MenuScreen: SKScene {
         let location = touch.location(in: self)
         // Locate the node at this location:
         let nodeTouched = atPoint(location)
-        if nodeTouched.name == "GreenButton" {
+        if nodeTouched.name == "Continue" {
             // Player touched the start text or button node
             // Switch to an instance of the GameScene:
             if let view = self.view {

@@ -11,10 +11,14 @@ class GreenButtonNode: SKSpriteNode {
     
     let textNode = SKLabelNode(fontNamed: "AdventPro-Bold")
 
-    init(parentSize: CGSize, text: String) {
+    enum buttonType {
+        case screen, popUp
+    }
+    
+    init(nodeName: String, buttonType: buttonType, parentSize: CGSize, text: String) {
         
-        let maxScaledWidth = parentSize.width * 0.40
-        let maxScaledHeight = parentSize.height * 0.08
+        let maxScaledWidth = parentSize.width * (buttonType == .screen ? 0.40 : 0.52)
+        let maxScaledHeight = parentSize.height * (buttonType == .screen ? 0.08 : 0.23)
         
         let texture = SKTexture(imageNamed: "button")
                 
@@ -22,18 +26,18 @@ class GreenButtonNode: SKSpriteNode {
                 
         size = CGSize(width: maxScaledWidth, height: maxScaledHeight)
         // Name the start node for touch detection:
-        name = "GreenButton"
+        name = nodeName
         zPosition = 10
-        position = CGPoint(x: 0, y: -maxScaledHeight)
+        position = CGPoint(x: 0, y: buttonType == .screen ? -maxScaledHeight : 0)
         
         // Name the text node for touch detection:
-        textNode.name = "GreenButton"
+        textNode.name = nodeName
 
         textNode.text = text.localized()
         textNode.verticalAlignmentMode = .center
         textNode.horizontalAlignmentMode = .center
         textNode.position = .zero
-        textNode.fontSize = maxScaledHeight * 0.5
+        textNode.fontSize = maxScaledWidth * 0.2
         textNode.fontColor = UIColor(rgb: 0x001273)
         textNode.zPosition = 20
 

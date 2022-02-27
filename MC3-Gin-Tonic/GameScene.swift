@@ -57,6 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var enemy = EnemyNode(imageNamed: "enemy")
     private var cannon = CannonNode()
     private var pause = PauseScreen()
+    private var metSpawner = MetSpawner()
     
     let playerShootSound = SKAction.playSoundFileNamed(SoundFile.playerShoot, waitForCompletion: false)
     let enemyShootSound = SKAction.playSoundFileNamed(SoundFile.enemyShoot, waitForCompletion: false)
@@ -66,15 +67,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //    let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: false)
     
     var isPlayerAlive = true
-    var meteoriteLastSpawnTime: Double = 0
+    var enemyShouldFire = false
+    var meteoritesShoulSpawn = false
     
     override func didMove(to view: SKView) {
         physicsWorld.gravity = .zero
         self.physicsWorld.contactDelegate = self
         makeBackground()
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        
-        
         
         let pauseButton = SKSpriteNode(imageNamed: "pause")
         pauseButton.size = CGSize(width: 30, height: 30)
@@ -86,7 +86,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(pauseButton)
         //        self.addChild(pause)
         
-        self.addChild(enemy)
         self.addChild(player)
         shield.position = CGPoint(x: player.frame.midX, y: player.frame.minY - shield.size.height * 0.5)
         self.addChild(shield)
@@ -97,6 +96,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(cannon.cannonChargeIndicator)
         
         enemy.configureMovement(sceneSize: self.size)
+        self.addChild(enemy)
+
+        let wait = SKAction.wait(forDuration: 5)
+        self.run(wait){
+            self.enemyShouldFire = true
+        }
+        let wait2 = SKAction.wait(forDuration: 2)
+        self.run(wait2){
+            self.meteoritesShoulSpawn = true
+        }
+        addChild(metSpawner)
+        metSpawner.configurePossibleStartXandY()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -117,8 +128,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.addChild(pause)
             }
         } else if nodeTouched.name == "ResumeBtn" {
-            self.isPaused = false
             pause.removeFromParent()
+            self.isPaused = false
         } else if nodeTouched.name == "QuitBtn" {
             if let view = self.view {
                 let reveal = SKTransition.fade(withDuration: 0.5)
@@ -163,7 +174,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        enemy.zRotation = (atan2(enemy.position.y, enemy.position.x) + CGFloat.pi)
+//        enemy.zRotation = (atan2(enemy.position.y, enemy.position.x) + CGFloat.pi)
         if player.isFiring {
             if player.lastFiredTime + 0.6 <= currentTime {
                 player.lastFiredTime = currentTime
@@ -173,16 +184,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         if enemy.lastFiredTime + Double(Int.random(in: 4...8)) <= currentTime {
-            enemy.lastFiredTime = currentTime
-            enemy.fire()
-            run(enemyShootSound)
-            //            run(enemyShootAction)
+            if enemyShouldFire {
+                enemy.lastFiredTime = currentTime
+                enemy.fire()
+                run(enemyShootSound)
+            }
         }
-        if meteoriteLastSpawnTime + 6 <= currentTime {
-            meteoriteLastSpawnTime = currentTime
-            let meteor = MeteoriteNode(minX: -scene!.frame.maxX, maxY: scene!.frame.maxY - scene!.view!.safeAreaInsets.top)
-            addChild(meteor)
-            meteor.startMoving()
+        if metSpawner.meteoriteLastSpawnTime + 6 <= currentTime {
+            if meteoritesShoulSpawn {
+                metSpawner.meteoriteLastSpawnTime = currentTime
+                metSpawner.spawnAndStartMoving()
+            }
         }
         
         for child in children {

@@ -34,6 +34,8 @@ class EnemyNode: SKSpriteNode {
         guard let shadow = self.childNode(withName: "shadow") as? SKSpriteNode else {return}
         shadow.run(SKAction.colorize(with: .white, colorBlendFactor: 1, duration: 0.2))
         shadow.run(SKAction.colorize(with: .white, colorBlendFactor: 1, duration: 0.2))
+        
+        self.constraints = [SKConstraint.orient(to: .zero, offset: .init(constantValue: 0))]
     }
     
     required init?(coder aDecoder: NSCoder) {

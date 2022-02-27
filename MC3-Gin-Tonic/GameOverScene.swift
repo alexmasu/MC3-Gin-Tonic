@@ -8,9 +8,8 @@
 import SpriteKit
 
 class GameOverScene: SKScene {
-    override func didMove(to view: SKView) {
-        makeBackground()
-    }
+    var greenButtonTouched = false
+    
     init(size: CGSize, won:Bool) {
         
         super.init(size: size)
@@ -23,7 +22,7 @@ class GameOverScene: SKScene {
         
         // GREEN BUTTON NODE
         let greenButtonText = won ? "CONTINUE" : "RETRY"
-        let greenButton = GreenButtonNode(parentSize: size, text: greenButtonText)
+        let greenButton = GreenButtonNode(nodeName: "GreenButton", buttonType: .screen, parentSize: size, text: greenButtonText)
         addChild(greenButton)
          
         // LITTLE LABEL ATTACHED TO GREEN BUTTON
@@ -64,22 +63,34 @@ class GameOverScene: SKScene {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {return}
         // Find the location of the touch:
         let location = touch.location(in: self)
         // Locate the node at this location:
         let nodeTouched = atPoint(location)
         if nodeTouched.name == "GreenButton" {
-            // Player touched the start text or button node
-            // Switch to an instance of the GameScene:
-            if let view = self.view {
-                if let scene = SKScene(fileNamed: "GameScene") {
-                    scene.size = view.frame.size
-                    scene.scaleMode = .aspectFill
-                    
-                    view.presentScene(scene)
+            greenButtonTouched = true
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if greenButtonTouched {
+            guard let touch = touches.first else {return}
+            // Find the location of the touch:
+            let location = touch.location(in: self)
+            // Locate the node at this location:
+            let nodeTouched = atPoint(location)
+            if nodeTouched.name == "GreenButton" {
+                // Player touched the start text or button node
+                // Switch to an instance of the GameScene:
+                if let view = self.view {
+                    if let scene = SKScene(fileNamed: "GameScene") {
+                        scene.size = view.frame.size
+                        scene.scaleMode = .aspectFill
+                        
+                        view.presentScene(scene)
+                    }
                 }
             }
         }

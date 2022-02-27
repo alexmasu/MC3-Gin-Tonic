@@ -118,10 +118,19 @@ class CannonNode: SKNode {
         }
         
         //SCALE ANIMATION
-        let scale = SKAction.scale(by: 1.1, duration: 0.2)
+        let scale = SKAction.scale(by: 1.2, duration: 0.3)
         let scaleSequence = SKAction.sequence([scale, scale.reversed()])
         
-        cannonChargeIndicator.run(SKAction.repeat(scaleSequence, count: cannonEnergy == 3 ? 3 : 1))
+        if cannonEnergy == 3 {
+            cannonChargeIndicator.run(SKAction.repeat(scaleSequence, count: 2)){
+                self.cannonChargeIndicator.run(SKAction.repeatForever(scaleSequence))
+            }
+        } else if cannonEnergy == 0 {
+            cannonChargeIndicator.removeAllActions()
+            cannonChargeIndicator.setScale(1)
+        } else {
+            cannonChargeIndicator.run(SKAction.repeat(scaleSequence, count: 2))
+        }
         
         //SHADOW GLOW ANIMATION
         cannonChargeIndicator.animateShadowGlow(withName: "glow")

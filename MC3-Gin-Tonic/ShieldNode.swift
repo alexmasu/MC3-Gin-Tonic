@@ -16,16 +16,19 @@ class ShieldNode: SKSpriteNode {
         super.init(texture: texture, color: .white, size: size)
         
         self.size = size
+        anchorPoint = CGPoint(x: 0.5, y: 1)
+        
         name = "shield"
-        anchorPoint = CGPoint(x: 0.5, y: 0.5)
         zPosition = 10
         physicsBody = SKPhysicsBody(texture: texture, size: self.size)
         physicsBody?.categoryBitMask = CollisionType.shield.rawValue
         physicsBody?.collisionBitMask = 0
         physicsBody?.contactTestBitMask = CollisionType.enemyWeapon.rawValue
         physicsBody?.isDynamic = true
-        
-        self.makeTextureShadow(blurRadius: 6, xScaleFactor: 1.6, yScaleFactor: 2.7, color: .cyan)
+//        let scale = SKAction.scale(by: 8, duration: 5)
+//        let seq = SKAction.sequence([scale, scale.reversed()])
+//        self.run(SKAction.repeatForever(seq))
+        self.makeShieldShadow()
     }
     
     func animateHit() {
@@ -61,8 +64,18 @@ class ShieldNode: SKSpriteNode {
 //            self.animateHit()
 //        }
 //    }
+    func scaleCannonCharged(){
+        let scale = SKAction.scale(by: 1.3, duration: 0.6)
+        let glow = SKAction.run{self.animateShadowGlow(withName: "shadow")}
+        let seq = SKAction.sequence([glow, scale, glow, scale.reversed()])
+        let repeatForevScale = SKAction.repeatForever(seq)
+        self.run(repeatForevScale, withKey: "scaleForChargedCannon")
+    }
     
     func openAndCloseAnimationRun() {
+        self.removeAction(forKey: "scaleForChargedCannon")
+        self.setScale(1)
+        
         let frames = makeAnimationFrames(from: "shieldAnim")
         let animCannon = SKAction.animate(with: frames, timePerFrame: 0.02, resize: false, restore: false)
         let scale = SKAction.scale(by: 3, duration: 0.25)

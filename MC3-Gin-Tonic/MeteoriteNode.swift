@@ -13,23 +13,22 @@ class MeteoriteNode: SKSpriteNode {
     var meteoriteAnimAtlas1: SKTextureAtlas
     var meteoriteAnimAtlas2: SKTextureAtlas
     var meteoriteAnimAtlas3: SKTextureAtlas
-    
-    init(texture: SKTexture, size: CGSize, atlas1 : SKTextureAtlas, atlas2 : SKTextureAtlas, atlas3 : SKTextureAtlas){
+
+    init(texture: SKTexture, pSize: CGSize, atlas1 : SKTextureAtlas, atlas2 : SKTextureAtlas, atlas3 : SKTextureAtlas){
         meteoriteAnimAtlas1 = atlas1
         meteoriteAnimAtlas2 = atlas2
         meteoriteAnimAtlas3 = atlas3
-        
-        super.init(texture: texture, color: .clear, size: size)
+
+        super.init(texture: texture, color: .clear, size: pSize)
         name = "meteorite"
-        
-        physicsBody = SKPhysicsBody(texture: texture, size: size)
+        self.makeTextureShadow(blurRadius: 6, xScaleFactor: 1.48, yScaleFactor: 1.48, customTexture: nil)
+
+        physicsBody = SKPhysicsBody(texture: texture, size: self.size)
         physicsBody?.categoryBitMask = CollisionType.meteorite.rawValue
         physicsBody?.collisionBitMask = CollisionType.playerBullet.rawValue
         physicsBody?.contactTestBitMask = CollisionType.playerBullet.rawValue
         physicsBody?.mass = 10
         physicsBody?.angularVelocity = 0.8
-        
-        self.makeTextureShadow(blurRadius: 6, xScaleFactor: 1.48, yScaleFactor: 1.48)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -53,14 +52,13 @@ class MeteoriteNode: SKSpriteNode {
         var frames: [SKTexture] = []
         
         let numImages = meteoriteAnimAtlas.textureNames.count
-        for i in 0...numImages - 1 {
-            let metFrameName = "met\(i)@3x"
+        for i in 1...numImages {
+            let metFrameName = "metHit\(hitNum)\(i)"
             frames.append(meteoriteAnimAtlas.textureNamed(metFrameName))
         }
-        let animHit = SKAction.animate(with: frames, timePerFrame: 0.04, resize: true, restore: false)
+        let animHit = SKAction.animate(with: frames, timePerFrame: 0.04, resize: false, restore: false)
         
         self.animateShadowGlow(withName: "shadow")
-        
         self.run(animHit) {
             if hitNum == 3 {
                 self.animateEnergy()

@@ -17,11 +17,12 @@ class MetSpawner : SKNode {
     
     var meteoriteLastSpawnTime: Double = 0
 
-    let meteoriteTexture = SKTexture(imageNamed: "Meteorite")
+    let meteoriteTexture = SKTexture(imageNamed: "Meteorite0")
     let meteoriteAnimAtlas1 = SKTextureAtlas(named: "metHit1")
     let meteoriteAnimAtlas2 = SKTextureAtlas(named: "metHit2")
     let meteoriteAnimAtlas3 = SKTextureAtlas(named: "metHit3")
-    var metSize = CGSize()
+    var metSize = [CGSize]()
+    
     
     func calculateMinYLimit(){
         let selfMaxSize = max(meteoriteTexture.size().width, meteoriteTexture.size().height)
@@ -39,7 +40,21 @@ class MetSpawner : SKNode {
         guard let scene = scene else {return}
         maxYLimit = scene.frame.maxY - (scene.view!.safeAreaInsets.top + meteoriteTexture.size().height * 0.6)
     }
-    
+    func calculateMetSize(){
+        guard let scene = scene else {return}
+//        let metW_metH = meteoriteTexture.size().width
+//
+//        let proportionalWidthS = scene.size.width / 8
+//        let propotionalHeightS = (scene.size.width / 8) * metW_metH
+        let sizeS = scene.size.width / 12
+        let sizeM = scene.size.width / 11
+        let sizeL = scene.size.width / 10
+        
+        metSize.append(CGSize(width: sizeS, height: sizeS))
+        metSize.append(CGSize(width: sizeM, height: sizeM))
+        metSize.append(CGSize(width: sizeL, height: sizeL))
+        print(metSize)
+    }
     func configurePossibleStartXandY(){
         meteoriteTexture.preload {
         }
@@ -49,11 +64,9 @@ class MetSpawner : SKNode {
         }
         meteoriteAnimAtlas3.preload {
         }
-        guard let scene = scene else {return}
-        let metW_metH = meteoriteTexture.size().width / meteoriteTexture.size().height
-        let proportionalWidth = scene.size.width / 6.5
-        let propotionalHeight = (scene.size.width / 6.5) * metW_metH
-        metSize = CGSize(width: proportionalWidth, height: propotionalHeight)
+        
+        calculateMetSize()
+        
 
         calculateMaxYLimit()
         calculateMinYLimit()
@@ -68,7 +81,7 @@ class MetSpawner : SKNode {
             stride2.append(any)
         }
         startYSmaller = stride2
-        
+        guard let scene = scene else {return}
         let maxX = (scene.frame.maxX) * 1.2
         startX = [-maxX, maxX]
     }
@@ -128,7 +141,8 @@ class MetSpawner : SKNode {
     }
     
     func spawnAndStartMoving() {
-        let meteorite = MeteoriteNode(texture: meteoriteTexture, size: metSize, atlas1: meteoriteAnimAtlas1, atlas2: meteoriteAnimAtlas2, atlas3: meteoriteAnimAtlas3)
+        let sizee = metSize.randomElement() ?? meteoriteTexture.size()
+        let meteorite = MeteoriteNode(texture: meteoriteTexture, pSize: sizee, atlas1: meteoriteAnimAtlas1, atlas2: meteoriteAnimAtlas2, atlas3: meteoriteAnimAtlas3)
         
         let path = makeBezierPath(pathType: PathType.allCases.randomElement() ?? .line)
 

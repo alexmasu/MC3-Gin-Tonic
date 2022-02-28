@@ -134,7 +134,7 @@ class CannonNode: SKNode {
         
         //SHADOW GLOW ANIMATION
         cannonChargeIndicator.animateShadowGlow(withName: "glow")
-        if energy == 3 {
+        if cannonEnergy == 3 {
             cannonChargeIndicator.animateShadowGlow(withName: "glow")
         }
     }

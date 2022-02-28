@@ -28,7 +28,8 @@ class PlayerNode: SKSpriteNode {
         physicsBody?.collisionBitMask = 0
         physicsBody?.contactTestBitMask = CollisionType.enemyWeapon.rawValue
         physicsBody?.isDynamic = false
-        makeTextureShadow(blurRadius: 7, xScaleFactor: 1.4, yScaleFactor: 1.4, color: .systemGreen)
+        makeTextureShadow(blurRadius: 7, xScaleFactor: 1.4, yScaleFactor: 1.4, color: .systemGreen, customTexture: nil)
+        self.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: -90, upperLimit: 90))]
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,22 +44,27 @@ class PlayerNode: SKSpriteNode {
         guard let scene = scene else {return}
         guard scene.childNode(withName: "crop") == nil else {return}
         
-        let angle = atan2(touchLocation.x, touchLocation.y)
+        let angle = atan2(-touchLocation.y, -touchLocation.x)
         //conversions: degreesToRadians = CGFloat.pi / 180 | radiansToDegrees = 180 / CGFloat.pi
-        let playerAngle = -(angle + CGFloat.pi)
+        let playerAngle = angle - (CGFloat.pi / 2)
+        
+        // angle = x * (-90 / maxX)
+//        let const = (CGFloat.pi / 2.2) / scene.frame.maxX
+//        let newAngle = touchLocation.x * const
+//        print(newAngle)
         
         switch gestureType {
         case .tapped:
             /*
              velocità angolare = deltaAngle/deltaTime -> deltaTime = angle/velocità
              */
-            let rotation = SKAction.rotate(toAngle: playerAngle, duration: 0.12, shortestUnitArc: true)
+            let rotation = SKAction.rotate(toAngle: playerAngle, duration: 0.12, shortestUnitArc: false)
             
             self.run(rotation) {
                 self.isFiring = true
             }
         case .moved:
-            let rotation = SKAction.rotate(toAngle: playerAngle, duration: 0.099, shortestUnitArc: true)
+            let rotation = SKAction.rotate(toAngle: playerAngle, duration: 0.1, shortestUnitArc: false)
             self.run(rotation)
             self.isFiring = true
         }

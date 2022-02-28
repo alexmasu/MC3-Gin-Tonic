@@ -8,12 +8,23 @@
 import SpriteKit
 
 extension SKSpriteNode {
-    func makeTextureShadow(blurRadius: CGFloat, xScaleFactor: CGFloat? = 1.2, yScaleFactor: CGFloat? = 1.2, color: UIColor? = .white) {
+    
+    func makeShieldShadow() {
+        self.makeTextureShadow(blurRadius: 6, xScaleFactor: 1.6, yScaleFactor: 2.7, color: .cyan, customTexture: nil)
+        guard let shadow = self.childNode(withName: "shadow") as? SKSpriteNode else {return}
+        shadow.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+    }
+    func makeEnemyShadow() {
+        self.makeTextureShadow(blurRadius: 11, xScaleFactor: 1.3, yScaleFactor: 1.18, color: .gray, customTexture: SKTexture(imageNamed: "enemyShadowRed"))
+    }
+    
+    func makeTextureShadow(blurRadius: CGFloat, xScaleFactor: CGFloat? = 1.2, yScaleFactor: CGFloat? = 1.2, color: UIColor? = .white, customTexture: SKTexture?) {
         
         guard let blurFilter = CIFilter(name: "CIGaussianBlur", parameters: ["inputRadius": blurRadius]),
-        let texture = self.texture else {return}
-        
-        let blurredTexture = texture.applying(blurFilter)
+              let texture = self.texture else {return}
+        let customTexture = customTexture ?? texture
+
+        let blurredTexture = customTexture.applying(blurFilter)
         let shadow = SKSpriteNode(texture: blurredTexture)
         shadow.name = "shadow"
         shadow.size = CGSize(width: size.width * xScaleFactor!, height: size.height * yScaleFactor!)

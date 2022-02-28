@@ -76,24 +76,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         makeBackground()
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        let pauseButton = SKSpriteNode(imageNamed: "pause")
-        pauseButton.size = CGSize(width: 30, height: 30)
+        self.addChild(player)
+        shield.position = CGPoint(x: player.frame.midX, y: player.frame.minY - shield.size.height * 0.2)
+        self.addChild(shield)
+        let join = SKPhysicsJointFixed.joint(withBodyA: player.physicsBody!, bodyB: shield.physicsBody!, anchor: CGPoint(x: player.frame.midX, y: player.frame.minY - shield.size.height * 0.5))
+        self.physicsWorld.add(join)
+        self.addChild(cannon)
+        cannon.cannonChargeIndicator.position = CGPoint(x: frame.minX + cannon.cannonChargeIndicator.size.width * 1.1, y: frame.maxY - cannon.cannonChargeIndicator.size.width * 1.1)
+        self.addChild(cannon.cannonChargeIndicator)
+        
+        let pauseButton = SKSpriteNode(imageNamed: "PauseIcon")
+        pauseButton.size = CGSize(width: self.frame.width / 12 , height: self.frame.width / 12)
         // Name the start node for touch detection:
         pauseButton.name = "PauseBtn"
         pauseButton.zPosition = 20
-        pauseButton.position = CGPoint(x: frame.maxX - 35, y: frame.maxY - 55)
+        pauseButton.position = CGPoint(x: -cannon.cannonChargeIndicator.position.x, y: cannon.cannonChargeIndicator.position.y)
         
         addChild(pauseButton)
         //        self.addChild(pause)
-        
-        self.addChild(player)
-        shield.position = CGPoint(x: player.frame.midX, y: player.frame.minY - shield.size.height * 0.5)
-        self.addChild(shield)
-        let join = SKPhysicsJointFixed.joint(withBodyA: player.physicsBody!, bodyB: shield.physicsBody!, anchor: CGPoint(x: player.frame.midX, y: player.frame.minY))
-        self.physicsWorld.add(join)
-        self.addChild(cannon)
-        cannon.cannonChargeIndicator.position = CGPoint(x: frame.minX + 45, y: frame.maxY - 55)
-        self.addChild(cannon.cannonChargeIndicator)
         
         enemy.configureMovement(sceneSize: self.size)
         self.addChild(enemy)
@@ -252,7 +252,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 run(powerUpSound)
                 if cannon.cannonEnergy != 3 {
                     cannon.cannonCharge()
-                    
+                    if cannon.cannonEnergy == 3{
+                        shield.scaleCannonCharged()
+                    }
                 }
             }
         }

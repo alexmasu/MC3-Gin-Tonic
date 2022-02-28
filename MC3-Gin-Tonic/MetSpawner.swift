@@ -52,7 +52,7 @@ class MetSpawner : SKNode {
         guard let scene = scene else {return}
         let metW_metH = meteoriteTexture.size().width / meteoriteTexture.size().height
         let proportionalWidth = scene.size.width / 6.5
-        let propotionalHeight = (scene.size.width / 6.5) * metW_metH
+        let propotionalHeight = proportionalWidth * metW_metH
         metSize = CGSize(width: proportionalWidth, height: propotionalHeight)
 
         calculateMaxYLimit()

@@ -14,12 +14,12 @@ class MeteoriteNode: SKSpriteNode {
     var meteoriteAnimAtlas2: SKTextureAtlas
     var meteoriteAnimAtlas3: SKTextureAtlas
     
-    init(texture: SKTexture, atlas1 : SKTextureAtlas, atlas2 : SKTextureAtlas, atlas3 : SKTextureAtlas){
+    init(texture: SKTexture, size: CGSize, atlas1 : SKTextureAtlas, atlas2 : SKTextureAtlas, atlas3 : SKTextureAtlas){
         meteoriteAnimAtlas1 = atlas1
         meteoriteAnimAtlas2 = atlas2
         meteoriteAnimAtlas3 = atlas3
         
-        super.init(texture: texture, color: .clear, size: texture.size())
+        super.init(texture: texture, color: .clear, size: size)
         name = "meteorite"
         
         physicsBody = SKPhysicsBody(texture: texture, size: size)

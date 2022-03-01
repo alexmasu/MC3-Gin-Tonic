@@ -9,7 +9,7 @@ import SpriteKit
 
 class CannonNode: SKNode {
     
-    var cannonChargeIndicator = SKSpriteNode(imageNamed: "filledEnergyCharge0")
+    var cannonChargeIndicator = SKSpriteNode(imageNamed: "cannonEnergyCharge0")
     var cannonEnergy: Int = 0
 
     override init() {

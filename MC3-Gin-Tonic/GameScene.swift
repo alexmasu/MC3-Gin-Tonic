@@ -98,7 +98,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemy.configureMovement(sceneSize: self.size)
         self.addChild(enemy)
 
-        let wait = SKAction.wait(forDuration: 5)
+        let wait = SKAction.wait(forDuration: Double.random(in: 5...7))
         self.run(wait){
             self.enemyShouldFire = true
         }

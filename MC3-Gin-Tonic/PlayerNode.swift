@@ -155,4 +155,19 @@ class PlayerNode: SKSpriteNode {
         guard let shadow = self.childNode(withName: "shadow") as? SKSpriteNode else {return}
         shadow.run(SKAction.colorize(with: self.life == 2 ? .white : .systemRed, colorBlendFactor: 1, duration: 0.2))
     }
+    
+    func shake(){
+        let range : [CGFloat] = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
+        var randomShake = [SKAction]()
+        for i in 1...5 {
+            let move1 = SKAction.move(to: CGPoint(x: range.randomElement() ?? 3, y: range.randomElement() ?? 3), duration: 0.03)
+            let reset = SKAction.move(to: .zero, duration: 0.03)
+            randomShake.append(move1)
+            randomShake.append(reset)
+        }
+        let reset = SKAction.move(to: .zero, duration: 0.03)
+//        randomShake.append(reset)
+//        let shake = SKAction.repeat(sequence, count: 5)
+        self.run(SKAction.sequence(randomShake))
+    }
 }

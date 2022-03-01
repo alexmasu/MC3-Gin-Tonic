@@ -228,6 +228,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstNode.removeFromParent()
             if secondNode.name == "player" {
                 makeExplosion(position: contact.contactPoint, on: player)
+                player.shake()
                 player.reduceLife()
                 
                 if player.life == 0 {
@@ -237,8 +238,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: false)
                     //                    run(lossSound)
-                    view?.presentScene(gameOverScene, transition: reveal)
-                    
+                    self.run(SKAction.wait(forDuration: 0.4)){
+                        self.view?.presentScene(gameOverScene, transition: reveal)
+                    }
                 }
             } else {
                 shield.animateHit()

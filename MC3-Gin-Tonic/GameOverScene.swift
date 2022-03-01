@@ -23,19 +23,21 @@ class GameOverScene: SKScene {
         // GREEN BUTTON NODE
         let greenButtonText = won ? "CONTINUE" : "RETRY"
         let greenButton = GreenButtonNode(nodeName: "GreenButton", buttonType: .screen, parentSize: size, text: greenButtonText)
+        if won {
+            greenButton.position = .zero
+        }
         addChild(greenButton)
          
         // LITTLE LABEL ATTACHED TO GREEN BUTTON
         let littleLabelText = won ? "TO PLANET-2".localized() : "PLANET-1".localized()
         greenButton.addLittleLabel(text: littleLabelText, labelPosition: won ? .bottomLabel : .upperLabel)
-        
         let maxScaledHeight = size.height * 0.08
         
         /*
          Won/Game Over label definition
          */
         let message = won ? SKSpriteNode(imageNamed: "PLANET EXPLORED") : SKSpriteNode(imageNamed: "GAME OVER")
-        message.position = CGPoint(x: 0, y: maxScaledHeight * 1)
+        message.position = CGPoint(x: 0, y: maxScaledHeight * 2)
         
 //        let message2 = won ? "PLANET" : "GAME"
 
@@ -60,6 +62,31 @@ class GameOverScene: SKScene {
         
         addChild(message)
 //        addChild(label2)
+        guard let label = greenButton.childNode(withName: "littleLabel") as? SKLabelNode else {return}
+        let labelPosition = label.convert(.zero, to: self)
+
+        let littleButtonsSize = CGSize(width: greenButton.size.height, height: greenButton.size.height)
+        
+        let quitButton = SKSpriteNode(imageNamed: "settings")
+        quitButton.size = littleButtonsSize
+        // Name the start node for touch detection:
+        quitButton.name = "QuitBtn"
+        quitButton.anchorPoint = CGPoint(x: 0, y: 0.5)
+        quitButton.position = CGPoint(x: greenButton.frame.minX, y: won ? labelPosition.y - quitButton.size.height / 1.2 : greenButton.position.y - quitButton.size.height * 1.2)
+        quitButton.zPosition = 5
+        
+        self.addChild(quitButton)
+        
+        let settingsButton = SKSpriteNode(imageNamed: "restart button")
+        settingsButton.size = littleButtonsSize
+        // Name the start node for touch detection:
+        settingsButton.name = "Restart"
+        settingsButton.anchorPoint = CGPoint(x: 1, y: 0.5)
+        settingsButton.position = CGPoint(x: greenButton.frame.maxX, y: quitButton.position.y)
+        settingsButton.zPosition = 5
+        
+        
+        self.addChild(settingsButton)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -73,6 +100,22 @@ class GameOverScene: SKScene {
         let nodeTouched = atPoint(location)
         if nodeTouched.name == "GreenButton" {
             greenButtonTouched = true
+        }
+        if nodeTouched.name == "QuitBtn" {
+            if let view = self.view {
+                let reveal = SKTransition.fade(withDuration: 0.5)
+                let menuScene = MenuScreen(size: self.size)
+                
+                view.presentScene(menuScene, transition: reveal)
+            }
+        }
+        if nodeTouched.name == "Restart" {
+            if let view = self.view {
+                let reveal = SKTransition.fade(withDuration: 0.5)
+                let gameScene = GameScene(size: self.size)
+                
+                view.presentScene(gameScene, transition: reveal)
+            }
         }
     }
     

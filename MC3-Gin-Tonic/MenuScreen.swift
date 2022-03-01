@@ -48,9 +48,12 @@ class MenuScreen: SKScene {
         continueButton.addLittleLabel(text: littleLabelText, labelPosition: GreenButtonNode.labelPosition.upperLabel)
 
         let message = SKSpriteNode(imageNamed: "ABISSI")
-        message.position = CGPoint(x: 0, y: -continueButton.position.y * 1.5)
+        message.position = CGPoint(x: 0, y: -continueButton.position.y * 1.3)
         message.zPosition = 10
-        message.size = CGSize(width: continueButton.size.width, height: continueButton.size.height)
+        let proportion = message.texture!.size().width / message.texture!.size().height
+        let propW = continueButton.size.width * 1.2
+        let propH = propW / proportion
+        message.size = CGSize(width: propW, height: propH)
         
         self.addChild(message)
         

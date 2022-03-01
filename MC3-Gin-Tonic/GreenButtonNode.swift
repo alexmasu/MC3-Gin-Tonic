@@ -55,6 +55,7 @@ class GreenButtonNode: SKSpriteNode {
         //LITTLE PURPLE LABEL
         let littleLabel = SKLabelNode(fontNamed: "AdventPro-Bold")
 
+        littleLabel.name = "littleLabel"
         littleLabel.text = text.localized()
         littleLabel.verticalAlignmentMode = .center
         littleLabel.horizontalAlignmentMode = .center

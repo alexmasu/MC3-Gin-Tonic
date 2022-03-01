@@ -4,8 +4,9 @@
 //
 //  Created by Anna Izzo on 11/02/22.
 //
-
+import Foundation
 import SpriteKit
+import AudioToolbox
 
 class PlayerNode: SKSpriteNode {
     
@@ -52,7 +53,6 @@ class PlayerNode: SKSpriteNode {
 //         angle = x * (-90 / maxX)
         let const = (CGFloat.pi / 2.25) / scene.frame.maxX
         let playerAngle = touchLocation.x * const
-        print(playerAngle)
         
         switch gestureType {
         case .tapped:
@@ -121,6 +121,10 @@ class PlayerNode: SKSpriteNode {
     }
     
     func reduceLife() {
+        let vibration = SKAction.run {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        }
+        self.run(vibration)
         self.life -= 1
         if life != 0 {
         animateHit(playerLife: life)

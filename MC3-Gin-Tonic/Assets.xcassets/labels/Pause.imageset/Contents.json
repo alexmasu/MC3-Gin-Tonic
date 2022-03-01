@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "Pause@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Pause@3x-1.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -20,11 +22,13 @@
       "scale" : "1x"
     },
     {
+      "filename" : "Pause@2x-1.png",
       "idiom" : "universal",
       "locale" : "en",
       "scale" : "2x"
     },
     {
+      "filename" : "Pause@3x.png",
       "idiom" : "universal",
       "locale" : "en",
       "scale" : "3x"
@@ -36,11 +40,13 @@
       "scale" : "1x"
     },
     {
+      "filename" : "Pausa@2x.png",
       "idiom" : "universal",
       "locale" : "it",
       "scale" : "2x"
     },
     {
+      "filename" : "Pausa@3x.png",
       "idiom" : "universal",
       "locale" : "it",
       "scale" : "3x"

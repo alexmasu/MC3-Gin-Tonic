@@ -42,7 +42,7 @@ class MetSpawner : SKNode {
     }
     func calculateMetSize(){
         guard let scene = scene else {return}
-//        let metW_metH = meteoriteTexture.size().width
+//        let metW_metH = meteoriteTexture.size().width / height
 //
 //        let proportionalWidthS = scene.size.width / 8
 //        let propotionalHeightS = (scene.size.width / 8) * metW_metH
@@ -53,7 +53,6 @@ class MetSpawner : SKNode {
         metSize.append(CGSize(width: sizeS, height: sizeS))
         metSize.append(CGSize(width: sizeM, height: sizeM))
         metSize.append(CGSize(width: sizeL, height: sizeL))
-        print(metSize)
     }
     func configurePossibleStartXandY(){
         meteoriteTexture.preload {

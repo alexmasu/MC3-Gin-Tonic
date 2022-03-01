@@ -103,8 +103,8 @@ class CannonNode: SKNode {
     
     func animateCharge(energy: Int) {
         //FADE IN NEW ENERGY
-        let newTexture = SKTexture(imageNamed: "filledEnergyCharge\(cannonEnergy)")
-        let dumbPlayerCopy = SKSpriteNode(imageNamed: "filledEnergyCharge\(cannonEnergy)")
+        let newTexture = SKTexture(imageNamed: "cannonEnergyCharge\(cannonEnergy)")
+        let dumbPlayerCopy = SKSpriteNode(imageNamed: "cannonEnergyCharge\(cannonEnergy)")
         dumbPlayerCopy.size = self.cannonChargeIndicator.size
         dumbPlayerCopy.zPosition = self.cannonChargeIndicator.zPosition + 1
         dumbPlayerCopy.alpha = 0

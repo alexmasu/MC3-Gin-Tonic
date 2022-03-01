@@ -287,10 +287,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func makeExplosion(position: CGPoint, on parent: SKSpriteNode) {
-        if let explosion = SKEmitterNode(fileNamed: "Explosion") {
-            if parent.name == "enemy" {
-                //                explosion.particleColor = .cyan
-            }
+        let fileName = parent.name == "enemy" ? "ExplosionYellow" : "Explosion"
+        if let explosion = SKEmitterNode(fileNamed: fileName) {
             explosion.position = position
             self.addChild(explosion)
             run(explosionSound)

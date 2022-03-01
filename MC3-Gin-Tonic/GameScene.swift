@@ -264,6 +264,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 makeExplosion(position: contact.contactPoint, on: enemy)
                 
                 firstNode.removeFromParent()
+                enemy.run(SKAction.colorize(with: .black, colorBlendFactor: 1, duration: 0.25)){
+                    self.enemy.run(SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.25))
+                }
                 enemy.life -= 1
                 
                 if enemy.life == 0 {

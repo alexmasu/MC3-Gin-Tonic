@@ -28,7 +28,7 @@ class PlayerNode: SKSpriteNode {
         physicsBody?.collisionBitMask = 0
         physicsBody?.contactTestBitMask = CollisionType.enemyWeapon.rawValue
         physicsBody?.isDynamic = false
-        makeTextureShadow(blurRadius: 7, xScaleFactor: 1.4, yScaleFactor: 1.4, color: .systemGreen, customTexture: nil)
+        makeTextureShadow(blurRadius: 5, xScaleFactor: 1.45, yScaleFactor: 1.45, color: .systemGreen, customTexture: nil)
         self.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: -90, upperLimit: 90))]
     }
     
@@ -46,12 +46,13 @@ class PlayerNode: SKSpriteNode {
         
         let angle = atan2(-touchLocation.y, -touchLocation.x)
         //conversions: degreesToRadians = CGFloat.pi / 180 | radiansToDegrees = 180 / CGFloat.pi
-        let playerAngle = angle - (CGFloat.pi / 2)
         
-        // angle = x * (-90 / maxX)
-//        let const = (CGFloat.pi / 2.2) / scene.frame.maxX
-//        let newAngle = touchLocation.x * const
-//        print(newAngle)
+//        let playerAngle = angle - (CGFloat.pi / 2)
+        
+//         angle = x * (-90 / maxX)
+        let const = (CGFloat.pi / 2.25) / scene.frame.maxX
+        let playerAngle = touchLocation.x * const
+        print(playerAngle)
         
         switch gestureType {
         case .tapped:

@@ -79,8 +79,8 @@ class EnemyNode: SKSpriteNode {
     }
 
     func configureMovement(sceneSize: CGSize) {
-        let bezierPath1 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(sceneSize.height / 4.4)), radius: sceneSize.height / 4.4, startAngle: 0.0, endAngle: CGFloat.pi, clockwise: false)
-        let bezierPath2 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(sceneSize.height / 4.4)), radius: sceneSize.height / 4.4, startAngle: CGFloat.pi, endAngle: 0.0, clockwise: true)
+        let bezierPath1 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(sceneSize.height / 5)), radius: sceneSize.height / 5, startAngle: 0.0, endAngle: CGFloat.pi, clockwise: false)
+        let bezierPath2 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(sceneSize.height / 5)), radius: sceneSize.height / 5, startAngle: CGFloat.pi, endAngle: 0.0, clockwise: true)
         
         //        let pathNode1 = SKShapeNode(path: bezierPath1.cgPath)
         //        pathNode1.strokeColor = SKColor.blue

@@ -21,7 +21,7 @@ class MeteoriteNode: SKSpriteNode {
 
         super.init(texture: texture, color: .clear, size: pSize)
         name = "meteorite"
-        self.makeTextureShadow(blurRadius: 6, xScaleFactor: 1.48, yScaleFactor: 1.48, customTexture: nil)
+        self.makeTextureShadow(blurRadius: 5, xScaleFactor: 1.65, yScaleFactor: 1.65, customTexture: nil)
 
         physicsBody = SKPhysicsBody(texture: texture, size: self.size)
         physicsBody?.categoryBitMask = CollisionType.meteorite.rawValue

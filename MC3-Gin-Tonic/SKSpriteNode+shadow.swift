@@ -10,12 +10,13 @@ import SpriteKit
 extension SKSpriteNode {
     
     func makeShieldShadow() {
-        self.makeTextureShadow(blurRadius: 6, xScaleFactor: 1.6, yScaleFactor: 2.7, color: .cyan, customTexture: nil)
+        self.makeTextureShadow(blurRadius: 6, xScaleFactor: 1.65, yScaleFactor: 2.8, color: .cyan, customTexture: nil)
         guard let shadow = self.childNode(withName: "shadow") as? SKSpriteNode else {return}
         shadow.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
     }
     func makeEnemyShadow() {
-        self.makeTextureShadow(blurRadius: 11, xScaleFactor: 1.3, yScaleFactor: 1.18, color: .gray, customTexture: SKTexture(imageNamed: "enemyShadowRed"))
+        self.makeTextureShadow(blurRadius: 15, xScaleFactor: 1.4, yScaleFactor: 1.45, color: .systemPurple, customTexture: SKTexture(imageNamed: "Group 190"))
+        self.makeTextureShadow(blurRadius: 7, xScaleFactor: 1.1, yScaleFactor: 1.12, color: .systemGray6, customTexture: SKTexture(imageNamed: "enemyShadow3"))
     }
     
     func makeTextureShadow(blurRadius: CGFloat, xScaleFactor: CGFloat? = 1.2, yScaleFactor: CGFloat? = 1.2, color: UIColor? = .white, customTexture: SKTexture?) {

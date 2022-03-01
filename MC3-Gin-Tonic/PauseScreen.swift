@@ -43,18 +43,23 @@ class PauseScreen: SKSpriteNode {
         
         self.addChild(settingsButton)
         
-        let message = "Pause"
+        let message = SKSpriteNode(imageNamed: "Pause")
+        message.position = CGPoint(x: 0, y: size.height / 3.5)
+        message.zPosition = 5
+        message.size = CGSize(width: resumeButton.size.width, height: resumeButton.size.height)
+        
+        addChild(message)
         
         // 3
-        let label = SKLabelNode(fontNamed: "AdventPro-Bold")
-        label.text = message
-        label.verticalAlignmentMode = .center
-        label.horizontalAlignmentMode = .center
-        label.fontSize = 60
-        label.fontColor = UIColor(named: "alienGreen")
-        label.position = CGPoint(x: 0, y: size.height / 3.5)
-        label.zPosition = 5
-        addChild(label)
+//        let label = SKLabelNode(fontNamed: "AdventPro-Bold")
+//        label.text = message
+//        label.verticalAlignmentMode = .center
+//        label.horizontalAlignmentMode = .center
+//        label.fontSize = 60
+//        label.fontColor = UIColor(named: "alienGreen")
+//        label.position = CGPoint(x: 0, y: size.height / 3.5)
+//        label.zPosition = 5
+//        addChild(label)
     }
     
     required init?(coder aDecoder: NSCoder) {

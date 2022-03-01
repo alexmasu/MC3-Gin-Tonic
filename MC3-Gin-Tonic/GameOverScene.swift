@@ -34,30 +34,32 @@ class GameOverScene: SKScene {
         /*
          Won/Game Over label definition
          */
-        let message = won ? "EXPLORED" : "OVER"
-        let message2 = won ? "PLANET" : "GAME"
+        let message = won ? SKSpriteNode(imageNamed: "PLANET EXPLORED") : SKSpriteNode(imageNamed: "GAME OVER")
+        message.position = CGPoint(x: 0, y: maxScaledHeight * 1)
+        
+//        let message2 = won ? "PLANET" : "GAME"
 
         //---maybe replace this two label with svg image for the stroke
         // SECOND LINE BIG LABEL
-        let label = SKLabelNode(fontNamed: "AdventPro-Bold")
-        label.text = message.localized()
-        label.verticalAlignmentMode = .center
-        label.horizontalAlignmentMode = .center
-        label.fontSize = maxScaledHeight * 1
-        label.fontColor = UIColor(named: "alienGreen")
-        label.position = CGPoint(x: 0, y: maxScaledHeight * 1)
+//        let label = SKLabelNode(fontNamed: "AdventPro-Bold")
+//        label.text = message.localized()
+//        label.verticalAlignmentMode = .center
+//        label.horizontalAlignmentMode = .center
+//        label.fontSize = maxScaledHeight * 1
+//        label.fontColor = UIColor(named: "alienGreen")
+//        label.position = CGPoint(x: 0, y: maxScaledHeight * 1)
        
         // FIRST LINE BIG LABEL
-        let label2 = SKLabelNode(fontNamed: "AdventPro-Bold")
-        label2.text = message2.localized()
-        label2.verticalAlignmentMode = .center
-        label2.horizontalAlignmentMode = .center
-        label2.fontSize = maxScaledHeight * 1
-        label2.fontColor = UIColor(named: "alienGreen")
-        label2.position = CGPoint(x: 0, y: maxScaledHeight * 2.2)
+//        let label2 = SKLabelNode(fontNamed: "AdventPro-Bold")
+//        label2.text = message2.localized()
+//        label2.verticalAlignmentMode = .center
+//        label2.horizontalAlignmentMode = .center
+//        label2.fontSize = maxScaledHeight * 1
+//        label2.fontColor = UIColor(named: "alienGreen")
+//        label2.position = CGPoint(x: 0, y: maxScaledHeight * 2.2)
         
-        addChild(label)
-        addChild(label2)
+        addChild(message)
+//        addChild(label2)
     }
     
     required init?(coder aDecoder: NSCoder) {

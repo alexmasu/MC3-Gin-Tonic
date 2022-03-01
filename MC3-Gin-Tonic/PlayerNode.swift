@@ -44,7 +44,7 @@ class PlayerNode: SKSpriteNode {
         guard let scene = scene else {return}
         guard scene.childNode(withName: "crop") == nil else {return}
         
-        let angle = atan2(-touchLocation.y, -touchLocation.x)
+//        let angle = atan2(-touchLocation.y, -touchLocation.x)
         //conversions: degreesToRadians = CGFloat.pi / 180 | radiansToDegrees = 180 / CGFloat.pi
         
 //        let playerAngle = angle - (CGFloat.pi / 2)

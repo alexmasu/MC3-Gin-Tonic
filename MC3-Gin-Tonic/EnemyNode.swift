@@ -72,6 +72,7 @@ class EnemyNode: SKSpriteNode {
 //        let dx = speed * cos(adjustedRotation)
 //        let dy = speed * sin(adjustedRotation)
         scene?.addChild(weapon)
+        weapon.makeShapeGlow(cornerRadius: 10, scaleSizeBy: 0.7, color: .systemPink)
         weapon.run(actionMove)
 
 //        weapon.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))

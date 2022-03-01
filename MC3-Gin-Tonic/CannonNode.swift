@@ -37,7 +37,7 @@ class CannonNode: SKNode {
     func shot() {
         guard let scene = scene,
         let shield = scene.childNode(withName: "shield") as? ShieldNode else {return}
-        let cannonBullet = SKSpriteNode(imageNamed: "cannonShot1")
+        let cannonBullet = SKSpriteNode(imageNamed: "cannonShotYellow")
         
 //        let crop = SKCropNode()
 //        let rect = CGRect(origin: CGPoint(x:scene.frame.minX, y: scene.frame.minY), size: CGSize(width: scene.size.width, height: (scene.size.height / 2) + shield.frame.midY))
@@ -64,7 +64,7 @@ class CannonNode: SKNode {
         cannonBullet.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
         cannonBullet.physicsBody?.mass = 0.01
         
-        cannonBullet.makeShapeGlow(cornerRadius: 10, scaleSizeBy: 1, color: .cyan)
+        cannonBullet.makeShapeGlow(cornerRadius: 10, scaleSizeBy: 1, color: .systemYellow)
         
         
 //        scene.addChild(crop)

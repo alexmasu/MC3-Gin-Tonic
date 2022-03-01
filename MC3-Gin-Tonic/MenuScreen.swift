@@ -47,16 +47,21 @@ class MenuScreen: SKScene {
         let littleLabelText = "PLANET-1"
         continueButton.addLittleLabel(text: littleLabelText, labelPosition: GreenButtonNode.labelPosition.upperLabel)
 
-        let message = "ABISSI"
+        let message = SKSpriteNode(imageNamed: "ABISSI")
+        message.position = CGPoint(x: 0, y: -continueButton.position.y * 1.5)
+        message.zPosition = 10
+        message.size = CGSize(width: continueButton.size.width, height: continueButton.size.height)
+        
+        self.addChild(message)
         
         // 3
-        let label = SKLabelNode(fontNamed: "AdventPro-Bold")
-        label.text = message
-        label.fontSize = 60
-        label.fontColor = UIColor(rgb: 0xC5DC82)
-        label.position = CGPoint(x: 0, y: -continueButton.position.y * 1.5)
-        label.zPosition = 10
-        self.addChild(label)
+//        let label = SKLabelNode(fontNamed: "AdventPro-Bold")
+//        label.text = message
+//        label.fontSize = 60
+//        label.fontColor = UIColor(rgb: 0xC5DC82)
+//        label.position = CGPoint(x: 0, y: -continueButton.position.y * 1.5)
+//        label.zPosition = 10
+//        self.addChild(label)
     }
     
     required init?(coder aDecoder: NSCoder) {

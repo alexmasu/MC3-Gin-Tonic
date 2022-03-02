@@ -27,12 +27,17 @@ import AVKit
 //}
 
 // SAVE
-let saveData = UserDefaults.standard
-let loadData = UserDefaults.standard
+//let saveData = UserDefaults.standard
+//let loadData = UserDefaults.standard
+
+var audio = false
+var sounds = false
 
 class MenuScreen: SKScene {
     override init(size: CGSize) {
         super.init(size: size)
+        
+        audio = UserDefaults.standard.bool(forKey: "Audio")
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
@@ -86,7 +91,7 @@ class MenuScreen: SKScene {
         /*
          Special Effects BUTTON
          */
-        let specialEffectsButton = SKSpriteNode(imageNamed: "special_effects_on")
+        let specialEffectsButton = SKSpriteNode(imageNamed: audio ? "special_effects_on" : "specialEffectsButton" )
         specialEffectsButton.size = CGSize(width: continueButton.size.height*0.7, height: continueButton.size.height*0.7)
         // Name the start node for touch detection:
         specialEffectsButton.name = "specialEffectsButton"
@@ -127,23 +132,25 @@ class MenuScreen: SKScene {
         
         if nodeTouched.name == "musicButton" {
             
-            var temp: Bool = loadData.bool(forKey: "Abissi_Music_Setting")
-            temp = !temp
+//            var temp: Bool = loadData.bool(forKey: "Abissi_Music_Setting")
+//            temp = !temp
+            audio.toggle()
+            UserDefaults.standard.set(audio, forKey: "Audio")
             
-            if temp {
-                guard let button = nodeTouched as? SKSpriteNode else {return}
-                button.texture = SKTexture(imageNamed: "musicButton_on")
-            }
-            else{
-                guard let button = nodeTouched as? SKSpriteNode else {return}
-                button.texture = SKTexture(imageNamed: "musicButton_off")
-            }
-            
-            DispatchQueue.main.async {
-                saveData.set(temp, forKey: "Abissi_Music_Setting")
-            }
-            
-            print(loadData.bool(forKey: "Abissi_Music_Setting"))
+//            if temp {
+//                guard let button = nodeTouched as? SKSpriteNode else {return}
+//                button.texture = SKTexture(imageNamed: "musicButton_on")
+//            }
+//            else{
+//                guard let button = nodeTouched as? SKSpriteNode else {return}
+//                button.texture = SKTexture(imageNamed: "musicButton_off")
+//            }
+//
+//            DispatchQueue.main.async {
+//                saveData.set(temp, forKey: "Abissi_Music_Setting")
+//            }
+//
+//            print(loadData.bool(forKey: "Abissi_Music_Setting"))
         }
         
     }

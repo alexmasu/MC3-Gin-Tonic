@@ -69,7 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var isPlayerAlive = true
     var enemyShouldFire = false
     var meteoritesShoulSpawn = false
-    
+        
     override func didMove(to view: SKView) {
         physicsWorld.gravity = .zero
         self.physicsWorld.contactDelegate = self

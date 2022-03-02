@@ -99,13 +99,6 @@ class MenuScreen: SKScene {
         specialEffectsButton.position = CGPoint(x: musicButton.position.x, y: musicButton.position.y-musicButton.size.width*1.2)
         specialEffectsButton.zPosition = 600
         self.addChild(specialEffectsButton)
-//        let label = SKLabelNode(fontNamed: "AdventPro-Bold")
-//        label.text = message
-//        label.fontSize = 60
-//        label.fontColor = UIColor(rgb: 0xC5DC82)
-//        label.position = CGPoint(x: 0, y: -continueButton.position.y * 1.5)
-//        label.zPosition = 10
-//        self.addChild(label)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -132,28 +125,10 @@ class MenuScreen: SKScene {
         }
         
         if nodeTouched.name == "musicButton" {
-            
-//            var temp: Bool = loadData.bool(forKey: "Abissi_Music_Setting")
-//            temp = !temp
             music.toggle()
             UserDefaults.standard.set(music, forKey: "music")
             guard let musicEffectsButton = nodeTouched as? SKSpriteNode else {return}
                 musicEffectsButton.texture = SKTexture(imageNamed: effects ? "musicButton_on" : "musicButton_off")
-
-//            if temp {
-//                guard let button = nodeTouched as? SKSpriteNode else {return}
-//                button.texture = SKTexture(imageNamed: "musicButton_on")
-//            }
-//            else{
-//                guard let button = nodeTouched as? SKSpriteNode else {return}
-//                button.texture = SKTexture(imageNamed: "musicButton_off")
-//            }
-//
-//            DispatchQueue.main.async {
-//                saveData.set(temp, forKey: "Abissi_Music_Setting")
-//            }
-//
-//            print(loadData.bool(forKey: "Abissi_Music_Setting"))
         }
         if nodeTouched.name == "specialEffectsButton" {
             effects.toggle()

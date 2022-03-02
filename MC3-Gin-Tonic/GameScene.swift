@@ -54,7 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var player = PlayerNode(imageNamed: "playerShip-3")
     private var shield = ShieldNode(imageNamed: "shield")
-    private var enemy = EnemyNode(imageNamed: "enemy")
+    private var enemy = EnemyNode(imageNamed: "enemy-3")
     private var cannon = CannonNode()
     private var pause = PauseScreen()
     private var metSpawner = MetSpawner()
@@ -269,8 +269,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.run(SKAction.colorize(with: .black, colorBlendFactor: 1, duration: 0.25)){
                     self.enemy.run(SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.25))
                 }
-                enemy.life -= 1
-                
+//                enemy.life -= 1
+                enemy.reduceLife()
                 if enemy.life == 0 {
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: true)

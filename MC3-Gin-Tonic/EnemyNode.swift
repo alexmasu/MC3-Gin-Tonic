@@ -103,4 +103,35 @@ class EnemyNode: SKSpriteNode {
         self.run(anotherAction)
     }
     
+    func reduceLife() {
+        self.life -= 1
+        if life != 0 {
+        animateHit(enemyLife: life)
+        }
+    }
+    
+    func animateHit(enemyLife: Int) {
+        let newTexture = SKTexture(imageNamed: "enemy-\(enemyLife)")
+        let dumbEnemyCopy = SKSpriteNode(imageNamed: "enemy-\(enemyLife)")
+        dumbEnemyCopy.size = self.size
+        dumbEnemyCopy.zPosition = zPosition + 1
+        dumbEnemyCopy.alpha = 0
+        
+//        let scale = SKAction.scale(by: 0.9, duration: 0.3)
+//        let scaleSequence = SKAction.sequence([scale, scale.reversed()])
+//        self.run(SKAction.repeat(scaleSequence, count: 3))
+        
+        let fadeIn = SKAction.fadeIn(withDuration: 0.27)
+        let seq = SKAction.sequence([fadeIn, fadeIn.reversed()])
+        
+        dumbEnemyCopy.run(SKAction.repeat(seq, count: 4)) {
+            self.texture = newTexture
+            dumbEnemyCopy.removeFromParent()
+        }
+        addChild(dumbEnemyCopy)
+//        self.animateShadowGlow(withName: "shadow")
+        
+        guard let shadow = self.childNode(withName: "shadow") as? SKSpriteNode else {return}
+        shadow.run(SKAction.colorize(with: self.life == 2 ? .white : .systemRed, colorBlendFactor: 1, duration: 0.2))
+    }
 }

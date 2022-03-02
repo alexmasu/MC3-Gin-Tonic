@@ -57,6 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var enemy = EnemyNode(imageNamed: "enemy")
     private var cannon = CannonNode()
     private var pause = PauseScreen()
+    private var metSpawner = MetSpawner()
     
     let playerShootSound = SKAction.playSoundFileNamed(SoundFile.playerShoot, waitForCompletion: false)
     let enemyShootSound = SKAction.playSoundFileNamed(SoundFile.enemyShoot, waitForCompletion: false)
@@ -66,7 +67,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //    let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: false)
     
     var isPlayerAlive = true
-    var meteoriteLastSpawnTime: Double = 0
+    var enemyShouldFire = false
+    var meteoritesShoulSpawn = false
     
     override func didMove(to view: SKView) {
         physicsWorld.gravity = .zero
@@ -74,29 +76,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         makeBackground()
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
+        self.addChild(player)
+        shield.position = CGPoint(x: player.frame.midX, y: player.frame.minY - shield.size.height * 0.2)
+        self.addChild(shield)
+        let join = SKPhysicsJointFixed.joint(withBodyA: player.physicsBody!, bodyB: shield.physicsBody!, anchor: CGPoint(x: player.frame.midX, y: player.frame.minY - shield.size.height * 0.5))
+        self.physicsWorld.add(join)
+        self.addChild(cannon)
+        cannon.cannonChargeIndicator.position = CGPoint(x: frame.minX + cannon.cannonChargeIndicator.size.width * 1.1, y: frame.maxY - cannon.cannonChargeIndicator.size.width * 1.1)
+        self.addChild(cannon.cannonChargeIndicator)
         
-        
-        let pauseButton = SKSpriteNode(imageNamed: "pause")
-        pauseButton.size = CGSize(width: 30, height: 30)
+        let pauseButton = SKSpriteNode(imageNamed: "PauseIcon")
+        pauseButton.size = CGSize(width: self.frame.width / 12 , height: self.frame.width / 12)
         // Name the start node for touch detection:
         pauseButton.name = "PauseBtn"
         pauseButton.zPosition = 20
-        pauseButton.position = CGPoint(x: frame.maxX - 35, y: frame.maxY - 55)
+        pauseButton.position = CGPoint(x: -cannon.cannonChargeIndicator.position.x, y: cannon.cannonChargeIndicator.position.y)
         
         addChild(pauseButton)
         //        self.addChild(pause)
         
-        self.addChild(enemy)
-        self.addChild(player)
-        shield.position = CGPoint(x: player.frame.midX, y: player.frame.minY - shield.size.height * 0.5)
-        self.addChild(shield)
-        let join = SKPhysicsJointFixed.joint(withBodyA: player.physicsBody!, bodyB: shield.physicsBody!, anchor: CGPoint(x: player.frame.midX, y: player.frame.minY))
-        self.physicsWorld.add(join)
-        self.addChild(cannon)
-        cannon.cannonChargeIndicator.position = CGPoint(x: frame.minX + 45, y: frame.maxY - 55)
-        self.addChild(cannon.cannonChargeIndicator)
-        
         enemy.configureMovement(sceneSize: self.size)
+        self.addChild(enemy)
+
+        let wait = SKAction.wait(forDuration: Double.random(in: 5...7))
+        self.run(wait){
+            self.enemyShouldFire = true
+        }
+        let wait2 = SKAction.wait(forDuration: 2)
+        self.run(wait2){
+            self.meteoritesShoulSpawn = true
+        }
+        addChild(metSpawner)
+        metSpawner.configurePossibleStartXandY()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -117,8 +128,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.addChild(pause)
             }
         } else if nodeTouched.name == "ResumeBtn" {
-            self.isPaused = false
             pause.removeFromParent()
+            self.isPaused = false
         } else if nodeTouched.name == "QuitBtn" {
             if let view = self.view {
                 let reveal = SKTransition.fade(withDuration: 0.5)
@@ -163,7 +174,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        enemy.zRotation = (atan2(enemy.position.y, enemy.position.x) + CGFloat.pi)
+//        enemy.zRotation = (atan2(enemy.position.y, enemy.position.x) + CGFloat.pi)
         if player.isFiring {
             if player.lastFiredTime + 0.6 <= currentTime {
                 player.lastFiredTime = currentTime
@@ -179,16 +190,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         if enemy.lastFiredTime + Double(Int.random(in: 4...8)) <= currentTime {
-            enemy.lastFiredTime = currentTime
-            enemy.fire()
-            run(enemyShootSound)
-            //            run(enemyShootAction)
+            if enemyShouldFire {
+                enemy.lastFiredTime = currentTime
+                enemy.fire()
+                run(enemyShootSound)
+            }
         }
-        if meteoriteLastSpawnTime + 6 <= currentTime {
-            meteoriteLastSpawnTime = currentTime
-            let meteor = MeteoriteNode(minX: -scene!.frame.maxX, maxY: scene!.frame.maxY - scene!.view!.safeAreaInsets.top)
-            addChild(meteor)
-            meteor.startMoving()
+        if metSpawner.meteoriteLastSpawnTime + 6 <= currentTime {
+            if meteoritesShoulSpawn {
+                metSpawner.meteoriteLastSpawnTime = currentTime
+                metSpawner.spawnAndStartMoving()
+            }
         }
         
         for child in children {
@@ -222,6 +234,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstNode.removeFromParent()
             if secondNode.name == "player" {
                 makeExplosion(position: contact.contactPoint, on: player)
+                player.shake()
                 player.reduceLife()
                 
                 if player.life == 0 {
@@ -231,8 +244,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: false)
                     //                    run(lossSound)
-                    view?.presentScene(gameOverScene, transition: reveal)
-                    
+                    self.run(SKAction.wait(forDuration: 0.4)){
+                        self.view?.presentScene(gameOverScene, transition: reveal)
+                    }
                 }
             } else {
                 shield.animateHit()
@@ -246,7 +260,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 run(powerUpSound)
                 if cannon.cannonEnergy != 3 {
                     cannon.cannonCharge()
-                    
+                    if cannon.cannonEnergy == 3{
+                        shield.scaleCannonCharged()
+                    }
                 }
             }
         }
@@ -256,6 +272,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 makeExplosion(position: contact.contactPoint, on: enemy)
                 
                 firstNode.removeFromParent()
+                enemy.run(SKAction.colorize(with: .black, colorBlendFactor: 1, duration: 0.25)){
+                    self.enemy.run(SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.25))
+                }
                 enemy.life -= 1
                 
                 if enemy.life == 0 {
@@ -276,10 +295,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func makeExplosion(position: CGPoint, on parent: SKSpriteNode) {
-        if let explosion = SKEmitterNode(fileNamed: "Explosion") {
-            if parent.name == "enemy" {
-                //                explosion.particleColor = .cyan
-            }
+        let fileName = parent.name == "enemy" ? "ExplosionYellow" : "Explosion"
+        if let explosion = SKEmitterNode(fileNamed: fileName) {
             explosion.position = position
             self.addChild(explosion)
             run(explosionSound)

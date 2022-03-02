@@ -9,7 +9,7 @@ import SpriteKit
 
 class CannonNode: SKNode {
     
-    var cannonChargeIndicator = SKSpriteNode(imageNamed: "filledEnergyCharge0")
+    var cannonChargeIndicator = SKSpriteNode(imageNamed: "cannonEnergyCharge0")
     var cannonEnergy: Int = 0
 
     override init() {
@@ -37,7 +37,7 @@ class CannonNode: SKNode {
     func shot() {
         guard let scene = scene,
         let shield = scene.childNode(withName: "shield") as? ShieldNode else {return}
-        let cannonBullet = SKSpriteNode(imageNamed: "cannonShot1")
+        let cannonBullet = SKSpriteNode(imageNamed: "cannonShotYellow")
         
 //        let crop = SKCropNode()
 //        let rect = CGRect(origin: CGPoint(x:scene.frame.minX, y: scene.frame.minY), size: CGSize(width: scene.size.width, height: (scene.size.height / 2) + shield.frame.midY))
@@ -64,7 +64,7 @@ class CannonNode: SKNode {
         cannonBullet.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
         cannonBullet.physicsBody?.mass = 0.01
         
-        cannonBullet.makeShapeGlow(cornerRadius: 10, scaleSizeBy: 1, color: .cyan)
+        cannonBullet.makeShapeGlow(cornerRadius: 10, scaleSizeBy: 1, color: .systemYellow)
         
         
 //        scene.addChild(crop)
@@ -103,8 +103,8 @@ class CannonNode: SKNode {
     
     func animateCharge(energy: Int) {
         //FADE IN NEW ENERGY
-        let newTexture = SKTexture(imageNamed: "filledEnergyCharge\(cannonEnergy)")
-        let dumbPlayerCopy = SKSpriteNode(imageNamed: "filledEnergyCharge\(cannonEnergy)")
+        let newTexture = SKTexture(imageNamed: "cannonEnergyCharge\(cannonEnergy)")
+        let dumbPlayerCopy = SKSpriteNode(imageNamed: "cannonEnergyCharge\(cannonEnergy)")
         dumbPlayerCopy.size = self.cannonChargeIndicator.size
         dumbPlayerCopy.zPosition = self.cannonChargeIndicator.zPosition + 1
         dumbPlayerCopy.alpha = 0
@@ -118,14 +118,23 @@ class CannonNode: SKNode {
         }
         
         //SCALE ANIMATION
-        let scale = SKAction.scale(by: 1.1, duration: 0.2)
+        let scale = SKAction.scale(by: 1.2, duration: 0.3)
         let scaleSequence = SKAction.sequence([scale, scale.reversed()])
         
-        cannonChargeIndicator.run(SKAction.repeat(scaleSequence, count: cannonEnergy == 3 ? 3 : 1))
+        if cannonEnergy == 3 {
+            cannonChargeIndicator.run(SKAction.repeat(scaleSequence, count: 2)){
+                self.cannonChargeIndicator.run(SKAction.repeatForever(scaleSequence))
+            }
+        } else if cannonEnergy == 0 {
+            cannonChargeIndicator.removeAllActions()
+            cannonChargeIndicator.setScale(1)
+        } else {
+            cannonChargeIndicator.run(SKAction.repeat(scaleSequence, count: 2))
+        }
         
         //SHADOW GLOW ANIMATION
         cannonChargeIndicator.animateShadowGlow(withName: "glow")
-        if energy == 3 {
+        if cannonEnergy == 3 {
             cannonChargeIndicator.animateShadowGlow(withName: "glow")
         }
     }

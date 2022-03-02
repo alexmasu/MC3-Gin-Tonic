@@ -8,12 +8,24 @@
 import SpriteKit
 
 extension SKSpriteNode {
-    func makeTextureShadow(blurRadius: CGFloat, xScaleFactor: CGFloat? = 1.2, yScaleFactor: CGFloat? = 1.2, color: UIColor? = .white) {
+    
+    func makeShieldShadow() {
+        self.makeTextureShadow(blurRadius: 6, xScaleFactor: 1.65, yScaleFactor: 2.8, color: .systemCyan, customTexture: nil)
+        guard let shadow = self.childNode(withName: "shadow") as? SKSpriteNode else {return}
+        shadow.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+    }
+    func makeEnemyShadow() {
+        self.makeTextureShadow(blurRadius: 15, xScaleFactor: 1.4, yScaleFactor: 1.45, color: .purple, customTexture: SKTexture(imageNamed: "Group 190"))
+        self.makeTextureShadow(blurRadius: 6, xScaleFactor: 1.1, yScaleFactor: 1.15, color: .white, customTexture: SKTexture(imageNamed: "enemyShadow3"))
+    }
+    
+    func makeTextureShadow(blurRadius: CGFloat, xScaleFactor: CGFloat? = 1.2, yScaleFactor: CGFloat? = 1.2, color: UIColor? = .white, customTexture: SKTexture?) {
         
         guard let blurFilter = CIFilter(name: "CIGaussianBlur", parameters: ["inputRadius": blurRadius]),
-        let texture = self.texture else {return}
-        
-        let blurredTexture = texture.applying(blurFilter)
+              let texture = self.texture else {return}
+        let customTexture = customTexture ?? texture
+
+        let blurredTexture = customTexture.applying(blurFilter)
         let shadow = SKSpriteNode(texture: blurredTexture)
         shadow.name = "shadow"
         shadow.size = CGSize(width: size.width * xScaleFactor!, height: size.height * yScaleFactor!)

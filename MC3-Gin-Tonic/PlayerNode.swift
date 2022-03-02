@@ -4,8 +4,9 @@
 //
 //  Created by Anna Izzo on 11/02/22.
 //
-
+import Foundation
 import SpriteKit
+import AudioToolbox
 
 class PlayerNode: SKSpriteNode {
     
@@ -28,7 +29,8 @@ class PlayerNode: SKSpriteNode {
         physicsBody?.collisionBitMask = 0
         physicsBody?.contactTestBitMask = CollisionType.enemyWeapon.rawValue
         physicsBody?.isDynamic = false
-        makeTextureShadow(blurRadius: 7, xScaleFactor: 1.4, yScaleFactor: 1.4, color: .systemGreen)
+        makeTextureShadow(blurRadius: 5, xScaleFactor: 1.45, yScaleFactor: 1.45, color: .systemGreen, customTexture: nil)
+        self.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: -90, upperLimit: 90))]
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,22 +45,27 @@ class PlayerNode: SKSpriteNode {
         guard let scene = scene else {return}
         guard scene.childNode(withName: "crop") == nil else {return}
         
-        let angle = atan2(touchLocation.x, touchLocation.y)
+//        let angle = atan2(-touchLocation.y, -touchLocation.x)
         //conversions: degreesToRadians = CGFloat.pi / 180 | radiansToDegrees = 180 / CGFloat.pi
-        let playerAngle = -(angle + CGFloat.pi)
+        
+//        let playerAngle = angle - (CGFloat.pi / 2)
+        
+//         angle = x * (-90 / maxX)
+        let const = (CGFloat.pi / 2.25) / scene.frame.maxX
+        let playerAngle = touchLocation.x * const
         
         switch gestureType {
         case .tapped:
             /*
              velocità angolare = deltaAngle/deltaTime -> deltaTime = angle/velocità
              */
-            let rotation = SKAction.rotate(toAngle: playerAngle, duration: 0.12, shortestUnitArc: true)
+            let rotation = SKAction.rotate(toAngle: playerAngle, duration: 0.12, shortestUnitArc: false)
             
             self.run(rotation) {
                 self.isFiring = true
             }
         case .moved:
-            let rotation = SKAction.rotate(toAngle: playerAngle, duration: 0.099, shortestUnitArc: true)
+            let rotation = SKAction.rotate(toAngle: playerAngle, duration: 0.1, shortestUnitArc: false)
             self.run(rotation)
             self.isFiring = true
         }
@@ -114,6 +121,10 @@ class PlayerNode: SKSpriteNode {
     }
     
     func reduceLife() {
+        let vibration = SKAction.run {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        }
+        self.run(vibration)
         self.life -= 1
         if life != 0 {
         animateHit(playerLife: life)
@@ -142,6 +153,18 @@ class PlayerNode: SKSpriteNode {
         self.animateShadowGlow(withName: "shadow")
         
         guard let shadow = self.childNode(withName: "shadow") as? SKSpriteNode else {return}
-        shadow.run(SKAction.colorize(with: self.life == 2 ? .systemOrange : .systemRed, colorBlendFactor: 1, duration: 0.2))
+        shadow.run(SKAction.colorize(with: self.life == 2 ? .white : .systemRed, colorBlendFactor: 1, duration: 0.2))
+    }
+    
+    func shake(){
+        let range : [CGFloat] = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
+        var randomShake = [SKAction]()
+        for _ in 1...5 {
+            let move1 = SKAction.move(to: CGPoint(x: range.randomElement() ?? 3, y: range.randomElement() ?? 3), duration: 0.03)
+            let reset = SKAction.move(to: .zero, duration: 0.03)
+            randomShake.append(move1)
+            randomShake.append(reset)
+        }
+        self.run(SKAction.sequence(randomShake))
     }
 }

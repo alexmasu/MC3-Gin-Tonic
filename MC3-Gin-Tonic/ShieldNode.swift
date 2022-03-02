@@ -96,7 +96,7 @@ class ShieldNode: SKSpriteNode {
             self.run(scale2)
             self.run(seqRestore){
                 if let shadow = self.childNode(withName: "shadow") as? SKSpriteNode {
-                    shadow.run(SKAction.colorize(with: .systemCyan, colorBlendFactor: 1, duration: 0.2))
+                    shadow.run(SKAction.colorize(with: .white, colorBlendFactor: 1, duration: 0.2))
                 }
             }
         }

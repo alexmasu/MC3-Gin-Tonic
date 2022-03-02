@@ -26,12 +26,22 @@ import AVKit
 //   }
 //}
 
+// SAVE
+//let saveData = UserDefaults.standard
+//let loadData = UserDefaults.standard
+
+var music = true
+var effects = true
+
 class MenuScreen: SKScene {
 //    var intero = 0
 
     override init(size: CGSize) {
         super.init(size: size)
-//        intero = UserDefaults.standard.integer(forKey: "Intero")
+        
+        music = UserDefaults.standard.bool(forKey: "music")
+        effects = UserDefaults.standard.bool(forKey: "effects")
+
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         makeBackground()
@@ -68,6 +78,30 @@ class MenuScreen: SKScene {
 //        label.position = CGPoint(x: 0, y: -continueButton.position.y * 1.5)
 //        label.zPosition = 10
 //        self.addChild(label)
+        
+        
+        /*
+         MUSIC BUTTON
+         */
+        let musicButton = SKSpriteNode(imageNamed: music ? "musicButton_on" :"musicButton_off")
+        musicButton.size = CGSize(width: continueButton.size.height*0.7, height: continueButton.size.height*0.7)
+        // Name the start node for touch detection:
+        musicButton.name = "musicButton"
+        musicButton.position = CGPoint(x: scene!.frame.maxX - musicButton.size.width, y: scene!.frame.maxY - musicButton.size.width)
+        musicButton.zPosition = 300
+//        self.addChild(musicButton)
+        
+        
+        /*
+         Special Effects BUTTON
+         */
+        let specialEffectsButton = SKSpriteNode(imageNamed: effects ? "special_effects_on" : "special_effects_off" )
+        specialEffectsButton.size = CGSize(width: continueButton.size.height*0.7, height: continueButton.size.height*0.7)
+        // Name the start node for touch detection:
+        specialEffectsButton.name = "specialEffectsButton"
+        specialEffectsButton.position = CGPoint(x: musicButton.position.x, y: musicButton.position.y-musicButton.size.width*1.2)
+        specialEffectsButton.zPosition = 600
+        self.addChild(specialEffectsButton)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -79,6 +113,7 @@ class MenuScreen: SKScene {
         let location = touch.location(in: self)
         // Locate the node at this location:
         let nodeTouched = atPoint(location)
+        
         if nodeTouched.name == "Continue" {
 //            intero += 1
 //            UserDefaults.standard.set(intero, forKey: "Intero")
@@ -94,6 +129,19 @@ class MenuScreen: SKScene {
                     view.presentScene(scene, transition: transition)
                 }
             }
+        }
+        
+        if nodeTouched.name == "musicButton" {
+            music.toggle()
+            UserDefaults.standard.set(music, forKey: "music")
+            guard let musicEffectsButton = nodeTouched as? SKSpriteNode else {return}
+                musicEffectsButton.texture = SKTexture(imageNamed: effects ? "musicButton_on" : "musicButton_off")
+        }
+        if nodeTouched.name == "specialEffectsButton" {
+            effects.toggle()
+            UserDefaults.standard.set(effects, forKey: "effects")
+            guard let specialEffectsButton = nodeTouched as? SKSpriteNode else {return}
+                specialEffectsButton.texture = SKTexture(imageNamed: effects ? "special_effects_on" : "special_effects_off")
         }
     }
 }

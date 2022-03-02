@@ -93,7 +93,8 @@ class PlayerNode: SKSpriteNode {
         playerBullet.physicsBody?.mass = 0.02
         let speed: CGFloat = 18
         
-        playerBullet.makeShapeGlow(cornerRadius: 3, color: .cyan)
+        playerBullet.makeShapeGlow(cornerRadius: 10, scaleSizeBy: 0.7, color: .cyan)
+
         
         self.parent!.addChild(playerBullet)
         playerBullet.name = "playerBullet"
@@ -153,7 +154,7 @@ class PlayerNode: SKSpriteNode {
         self.animateShadowGlow(withName: "shadow")
         
         guard let shadow = self.childNode(withName: "shadow") as? SKSpriteNode else {return}
-        shadow.run(SKAction.colorize(with: self.life == 2 ? .systemOrange : .systemPink, colorBlendFactor: 1, duration: 0.2))
+        shadow.run(SKAction.colorize(with: self.life == 2 ? (UIColor(rgb: 0x999900)) : .systemRed, colorBlendFactor: 1, duration: 0.2))
     }
     
     func shake(){

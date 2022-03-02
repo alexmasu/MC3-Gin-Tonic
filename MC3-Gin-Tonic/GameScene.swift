@@ -16,6 +16,7 @@ enum CollisionType: UInt32 {
     case playerBullet = 16
     case cannonBullet = 32
     case meteorite = 64
+    case metParticles = 128
 }
 
 func +(left: CGPoint, right: CGPoint) -> CGPoint {
@@ -85,6 +86,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(player)
         shield.position = CGPoint(x: player.frame.midX, y: player.frame.minY - shield.size.height * 0.2)
         self.addChild(shield)
+        if let speeed = SKEmitterNode(fileNamed: "SpeedParticles"){
+            speeed.zPosition = 1
+            self.addChild(speeed)
+        }
         let join = SKPhysicsJointFixed.joint(withBodyA: player.physicsBody!, bodyB: shield.physicsBody!, anchor: CGPoint(x: player.frame.midX, y: player.frame.minY - shield.size.height * 0.5))
         self.physicsWorld.add(join)
         self.addChild(cannon)
@@ -182,7 +187,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-//        enemy.zRotation = (atan2(enemy.position.y, enemy.position.x) + CGFloat.pi)
         if player.isFiring {
             if player.lastFiredTime + 0.6 <= currentTime {
                 player.lastFiredTime = currentTime
@@ -190,9 +194,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if effectsSouldPlay {
                     run(playerShootSound)
                 }
-//                }
-//                run(playerShootSound)
-                //                run(playerShootAction)
             }
         }
         if enemy.lastFiredTime + Double(Int.random(in: 4...8)) <= currentTime {
@@ -237,6 +238,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
          cannonBullet - enemy
          cannonBullet - enemyWeapon
          meteor - playerBullet
+         metParticle - player
          */
         
         if firstNode.name == "enemyWeapon" {
@@ -272,12 +274,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if effectsSouldPlay {
                 run(powerUpSound)
                 }
-                if cannon.cannonEnergy != 3 {
-                    cannon.cannonCharge()
-                    if cannon.cannonEnergy == 3{
-                        shield.scaleCannonCharged()
-                    }
-                }
+                
             }
         }
         
@@ -286,8 +283,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 makeExplosion(position: contact.contactPoint, on: enemy)
                 
                 firstNode.removeFromParent()
-                enemy.run(SKAction.colorize(with: .black, colorBlendFactor: 1, duration: 0.25)){
-                    self.enemy.run(SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.25))
+                enemy.run(SKAction.colorize(with: .black, colorBlendFactor: 0.9, duration: 0.15)){
+                    self.enemy.run(SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.15))
                 }
                 enemy.life -= 1
                 
@@ -303,6 +300,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else {
                 if secondNode.name == "enemyWeapon" {
                     secondNode.removeFromParent()
+                }
+            }
+        }
+        if firstNode.name == "metParticles" {
+            player.animateEnergyPick()
+            if cannon.cannonEnergy != 3 {
+                cannon.cannonCharge()
+                if cannon.cannonEnergy == 3{
+                    shield.scaleCannonCharged()
                 }
             }
         }

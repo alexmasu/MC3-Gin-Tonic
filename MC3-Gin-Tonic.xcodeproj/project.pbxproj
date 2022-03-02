@@ -41,6 +41,7 @@
 		7FE1CA8327C4E79000FD7731 /* String+localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1CA8227C4E79000FD7731 /* String+localized.swift */; };
 		7FE1CA8727C4ED8D00FD7731 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FE1CA8927C4ED8D00FD7731 /* Localizable.strings */; };
 		950ABE4827CEB9A4009E220E /* TutorialSpriteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950ABE4727CEB9A4009E220E /* TutorialSpriteLabel.swift */; };
+		950ABE4A27CFE8EA009E220E /* SpeedParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 950ABE4927CFE8EA009E220E /* SpeedParticles.sks */; };
 		9533BC2027BC4D910048C7B3 /* CannonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533BC1F27BC4D910048C7B3 /* CannonNode.swift */; };
 		95355B5927C66538007BC079 /* GreenButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95355B5827C66538007BC079 /* GreenButtonNode.swift */; };
 		9542BD8627CD37BF006CB250 /* metHit1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9542BD8527CD37BF006CB250 /* metHit1.atlas */; };
@@ -100,6 +101,7 @@
 		7FE1CA8827C4ED8D00FD7731 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7FE1CA8A27C4ED9700FD7731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		950ABE4727CEB9A4009E220E /* TutorialSpriteLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialSpriteLabel.swift; sourceTree = "<group>"; };
+		950ABE4927CFE8EA009E220E /* SpeedParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpeedParticles.sks; sourceTree = "<group>"; };
 		950F2EC327C8315200794808 /* pianetino_1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pianetino_1.mp4; sourceTree = "<group>"; };
 		9533BC1F27BC4D910048C7B3 /* CannonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonNode.swift; sourceTree = "<group>"; };
 		95355B5827C66538007BC079 /* GreenButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButtonNode.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				7F40023127B271E2001182EB /* GameViewController.swift */,
 				291E913E27C64C1500AECC95 /* Constants.swift */,
 				7F40022F27B271E2001182EB /* GameScene.swift */,
+				950ABE4927CFE8EA009E220E /* SpeedParticles.sks */,
 				9548DBC627B71D7B002D5B12 /* PlayerNode.swift */,
 				9548DBC827B71DB8002D5B12 /* ShieldNode.swift */,
 				9583AEA427C630B0009A5FA1 /* SKSpriteNode+shadow.swift */,
@@ -296,6 +299,7 @@
 				95F17D9327BE7B7600A8EB71 /* StarsBackground.sks in Resources */,
 				7F40023727B271E3001182EB /* Assets.xcassets in Resources */,
 				9542BD8A27CD37E7006CB250 /* metHit3.atlas in Resources */,
+				950ABE4A27CFE8EA009E220E /* SpeedParticles.sks in Resources */,
 				2932F2A127BD127800A7ED80 /* AdventPro-Thin.ttf in Resources */,
 				2932F2A327BD127800A7ED80 /* AdventPro-SemiBold.ttf in Resources */,
 				9542BD8927CD37E7006CB250 /* metHit2.atlas in Resources */,

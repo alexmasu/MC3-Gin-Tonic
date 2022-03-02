@@ -69,11 +69,17 @@ class MeteoriteNode: SKSpriteNode {
     
     func animateEnergy() {
         if let energyParticles = SKEmitterNode(fileNamed: "MetEnergyParticles") {
+            energyParticles.name = "metParticles"
+
+            energyParticles.physicsBody = SKPhysicsBody(circleOfRadius: 10)
+            energyParticles.physicsBody?.categoryBitMask = CollisionType.metParticles.rawValue
+            energyParticles.physicsBody?.collisionBitMask = 0
+            energyParticles.physicsBody?.contactTestBitMask = CollisionType.player.rawValue
             energyParticles.position = self.position
             
             energyParticles.particleSize = CGSize(width: self.size.width / 2, height: self.size.height / 2)
             
-            energyParticles.particleAction = SKAction.move(to: .zero, duration: 1)
+            energyParticles.particleAction = SKAction.move(to: .zero, duration: 0.8)
 
             scene?.addChild(energyParticles)
             energyParticles.run(energyParticles.particleAction!)

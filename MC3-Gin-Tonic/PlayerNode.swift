@@ -14,6 +14,7 @@ class PlayerNode: SKSpriteNode {
     var isFiring = false
 //    var jointAnchor : CGPoint = .zero
     var life: Int = 3
+    let bulletTexture = SKTexture(imageNamed: "playerBullet")
 
     init(imageNamed: String) {
         
@@ -31,6 +32,8 @@ class PlayerNode: SKSpriteNode {
         physicsBody?.isDynamic = false
         makeTextureShadow(blurRadius: 5, xScaleFactor: 1.45, yScaleFactor: 1.45, color: .white, customTexture: nil)
         self.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: -90, upperLimit: 90))]
+        bulletTexture.preload {
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -72,7 +75,7 @@ class PlayerNode: SKSpriteNode {
     }
     
     func fire() {
-        let playerBullet = SKSpriteNode(imageNamed: "playerBullet")
+        let playerBullet = SKSpriteNode(texture: bulletTexture)
         
         let playerAngleAdjusted = self.zRotation + CGFloat.pi / 2
         //Bullet angle adjusted
@@ -167,5 +170,19 @@ class PlayerNode: SKSpriteNode {
             randomShake.append(reset)
         }
         self.run(SKAction.sequence(randomShake))
+    }
+    
+    func animateEnergyPick(){
+        makeShapeGlow(cornerRadius: 100, scaleSizeBy: 0.6, color: .systemYellow)
+        guard let glow = self.childNode(withName: "glow") as? SKShapeNode else {return}
+        glow.alpha = 1
+        let act1 = SKAction.scale(to: 1.05, duration: 0.6)
+        act1.timingMode = .easeOut
+        glow.run(act1)
+        let act2 = SKAction.fadeOut(withDuration: 0.4)
+        glow.run(act2){
+            glow.removeFromParent()
+            glow.setScale(0.6)
+        }
     }
 }

@@ -168,7 +168,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if player.lastFiredTime + 0.6 <= currentTime {
                 player.lastFiredTime = currentTime
                 player.fire()
-                run(playerShootSound)
+                
+                if loadData.bool(forKey: "Abissi_Music_Setting") {
+                    let music_sett: Bool = loadData.bool(forKey: "Abissi_Music_Setting")
+                    print(music_sett)
+                    run(playerShootSound)
+                }
+//                run(playerShootSound)
                 //                run(playerShootAction)
             }
         }

@@ -26,6 +26,10 @@ import AVKit
 //   }
 //}
 
+// SAVE
+let saveData = UserDefaults.standard
+let loadData = UserDefaults.standard
+
 class MenuScreen: SKScene {
     override init(size: CGSize) {
         super.init(size: size)
@@ -58,6 +62,30 @@ class MenuScreen: SKScene {
         label.position = CGPoint(x: 0, y: -continueButton.position.y * 1.5)
         label.zPosition = 10
         self.addChild(label)
+        
+        
+        /*
+         MUSIC BUTTON
+         */
+        let musicButton = SKSpriteNode(imageNamed: "musicButton_on")
+        musicButton.size = CGSize(width: continueButton.size.height*0.7, height: continueButton.size.height*0.7)
+        // Name the start node for touch detection:
+        musicButton.name = "musicButton"
+        musicButton.position = CGPoint(x: scene!.frame.maxX - musicButton.size.width, y: scene!.frame.maxY - musicButton.size.width)
+        musicButton.zPosition = 300
+        self.addChild(musicButton)
+        
+        
+        /*
+         Special Effects BUTTON
+         */
+        let specialEffectsButton = SKSpriteNode(imageNamed: "special_effects_on")
+        specialEffectsButton.size = CGSize(width: continueButton.size.height*0.7, height: continueButton.size.height*0.7)
+        // Name the start node for touch detection:
+        specialEffectsButton.name = "specialEffectsButton"
+        specialEffectsButton.position = CGPoint(x: musicButton.position.x, y: musicButton.position.y-musicButton.size.width*1.2)
+        specialEffectsButton.zPosition = 600
+        self.addChild(specialEffectsButton)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -69,6 +97,7 @@ class MenuScreen: SKScene {
         let location = touch.location(in: self)
         // Locate the node at this location:
         let nodeTouched = atPoint(location)
+        
         if nodeTouched.name == "GreenButton" {
             // Player touched the start text or button node
             // Switch to an instance of the GameScene:
@@ -81,5 +110,27 @@ class MenuScreen: SKScene {
                 }
             }
         }
+        
+        if nodeTouched.name == "musicButton" {
+            
+            var temp: Bool = loadData.bool(forKey: "Abissi_Music_Setting")
+            temp = !temp
+            
+            if temp {
+                guard let button = nodeTouched as? SKSpriteNode else {return}
+                button.texture = SKTexture(imageNamed: "musicButton_on")
+            }
+            else{
+                guard let button = nodeTouched as? SKSpriteNode else {return}
+                button.texture = SKTexture(imageNamed: "musicButton_off")
+            }
+            
+            DispatchQueue.main.async {
+                saveData.set(temp, forKey: "Abissi_Music_Setting")
+            }
+            
+            print(loadData.bool(forKey: "Abissi_Music_Setting"))
+        }
+        
     }
 }

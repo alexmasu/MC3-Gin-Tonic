@@ -112,7 +112,7 @@ class MenuScreen: SKScene {
         // Locate the node at this location:
         let nodeTouched = atPoint(location)
         
-        if nodeTouched.name == "GreenButton" {
+        if nodeTouched.name == "Continue" {
             // Player touched the start text or button node
             // Switch to an instance of the GameScene:
             if let view = self.view {

@@ -39,6 +39,7 @@
 		7FA70D6627C6298F00C12330 /* SKscene+background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA70D6527C6298F00C12330 /* SKscene+background.swift */; };
 		7FE1CA8327C4E79000FD7731 /* String+localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1CA8227C4E79000FD7731 /* String+localized.swift */; };
 		7FE1CA8727C4ED8D00FD7731 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FE1CA8927C4ED8D00FD7731 /* Localizable.strings */; };
+		950ABE4827CEB9A4009E220E /* TutorialSpriteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950ABE4727CEB9A4009E220E /* TutorialSpriteLabel.swift */; };
 		9533BC2027BC4D910048C7B3 /* CannonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533BC1F27BC4D910048C7B3 /* CannonNode.swift */; };
 		95355B5927C66538007BC079 /* GreenButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95355B5827C66538007BC079 /* GreenButtonNode.swift */; };
 		9542BD8627CD37BF006CB250 /* metHit1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9542BD8527CD37BF006CB250 /* metHit1.atlas */; };
@@ -96,6 +97,7 @@
 		7FE1CA8427C4E8B800FD7731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		7FE1CA8827C4ED8D00FD7731 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7FE1CA8A27C4ED9700FD7731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		950ABE4727CEB9A4009E220E /* TutorialSpriteLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialSpriteLabel.swift; sourceTree = "<group>"; };
 		950F2EC327C8315200794808 /* pianetino_1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pianetino_1.mp4; sourceTree = "<group>"; };
 		9533BC1F27BC4D910048C7B3 /* CannonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonNode.swift; sourceTree = "<group>"; };
 		95355B5827C66538007BC079 /* GreenButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButtonNode.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				29514EE827BC074E00E94576 /* HUD.swift */,
 				29514EEA27BC08C200E94576 /* GameOverScene.swift */,
 				29A0288527C3D5F3006BBBC7 /* PauseScreen.swift */,
+				950ABE4727CEB9A4009E220E /* TutorialSpriteLabel.swift */,
 				95355B5827C66538007BC079 /* GreenButtonNode.swift */,
 				29E6641427C4FBA400430F59 /* MenuScreen.swift */,
 				29A0288327C3CF8A006BBBC7 /* Stars.sks */,
@@ -325,6 +328,7 @@
 				7FE1CA8327C4E79000FD7731 /* String+localized.swift in Sources */,
 				9583AEA727C630E4009A5FA1 /* SKSpriteNode+frames.swift in Sources */,
 				7F40023027B271E2001182EB /* GameScene.swift in Sources */,
+				950ABE4827CEB9A4009E220E /* TutorialSpriteLabel.swift in Sources */,
 				95355B5927C66538007BC079 /* GreenButtonNode.swift in Sources */,
 				7F40023227B271E2001182EB /* GameViewController.swift in Sources */,
 				9583AEA527C630B0009A5FA1 /* SKSpriteNode+shadow.swift in Sources */,

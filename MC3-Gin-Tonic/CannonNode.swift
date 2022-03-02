@@ -64,7 +64,7 @@ class CannonNode: SKNode {
         cannonBullet.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
         cannonBullet.physicsBody?.mass = 0.01
         
-        cannonBullet.makeShapeGlow(cornerRadius: 10, scaleSizeBy: 1, color: .systemYellow)
+        cannonBullet.makeShapeGlow(cornerRadius: 10, scaleSizeBy: 1, color: .white)
         
         
 //        scene.addChild(crop)

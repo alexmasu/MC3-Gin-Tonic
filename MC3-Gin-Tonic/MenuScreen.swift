@@ -27,9 +27,11 @@ import AVKit
 //}
 
 class MenuScreen: SKScene {
+//    var intero = 0
+
     override init(size: CGSize) {
         super.init(size: size)
-        
+//        intero = UserDefaults.standard.integer(forKey: "Intero")
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         makeBackground()
@@ -56,7 +58,8 @@ class MenuScreen: SKScene {
         message.size = CGSize(width: propW, height: propH)
         
         self.addChild(message)
-        
+        let tutorialStep = TutorialSpriteLabel()
+//        self.addChild(tutorialStep)
         // 3
 //        let label = SKLabelNode(fontNamed: "AdventPro-Bold")
 //        label.text = message
@@ -77,6 +80,10 @@ class MenuScreen: SKScene {
         // Locate the node at this location:
         let nodeTouched = atPoint(location)
         if nodeTouched.name == "Continue" {
+//            intero += 1
+//            UserDefaults.standard.set(intero, forKey: "Intero")
+//            print(intero, UserDefaults.standard.integer(forKey: "Intero"))
+            UserDefaults.standard.removeObject(forKey: "Intero")
             // Player touched the start text or button node
             // Switch to an instance of the GameScene:
             if let view = self.view {

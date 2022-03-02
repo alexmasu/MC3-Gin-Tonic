@@ -30,15 +30,16 @@ import AVKit
 //let saveData = UserDefaults.standard
 //let loadData = UserDefaults.standard
 
-var audio = false
-var sounds = false
+var music = true
+var effects = true
 
 class MenuScreen: SKScene {
     override init(size: CGSize) {
         super.init(size: size)
         
-        audio = UserDefaults.standard.bool(forKey: "Audio")
-        
+        music = UserDefaults.standard.bool(forKey: "music")
+        effects = UserDefaults.standard.bool(forKey: "effects")
+
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         makeBackground()
@@ -79,19 +80,19 @@ class MenuScreen: SKScene {
         /*
          MUSIC BUTTON
          */
-        let musicButton = SKSpriteNode(imageNamed: "musicButton_on")
+        let musicButton = SKSpriteNode(imageNamed: music ? "musicButton_on" :"musicButton_off")
         musicButton.size = CGSize(width: continueButton.size.height*0.7, height: continueButton.size.height*0.7)
         // Name the start node for touch detection:
         musicButton.name = "musicButton"
         musicButton.position = CGPoint(x: scene!.frame.maxX - musicButton.size.width, y: scene!.frame.maxY - musicButton.size.width)
         musicButton.zPosition = 300
-        self.addChild(musicButton)
+//        self.addChild(musicButton)
         
         
         /*
          Special Effects BUTTON
          */
-        let specialEffectsButton = SKSpriteNode(imageNamed: audio ? "special_effects_on" : "specialEffectsButton" )
+        let specialEffectsButton = SKSpriteNode(imageNamed: effects ? "special_effects_on" : "special_effects_off" )
         specialEffectsButton.size = CGSize(width: continueButton.size.height*0.7, height: continueButton.size.height*0.7)
         // Name the start node for touch detection:
         specialEffectsButton.name = "specialEffectsButton"
@@ -134,9 +135,11 @@ class MenuScreen: SKScene {
             
 //            var temp: Bool = loadData.bool(forKey: "Abissi_Music_Setting")
 //            temp = !temp
-            audio.toggle()
-            UserDefaults.standard.set(audio, forKey: "Audio")
-            
+            music.toggle()
+            UserDefaults.standard.set(music, forKey: "music")
+            guard let musicEffectsButton = nodeTouched as? SKSpriteNode else {return}
+                musicEffectsButton.texture = SKTexture(imageNamed: effects ? "musicButton_on" : "musicButton_off")
+
 //            if temp {
 //                guard let button = nodeTouched as? SKSpriteNode else {return}
 //                button.texture = SKTexture(imageNamed: "musicButton_on")
@@ -152,6 +155,11 @@ class MenuScreen: SKScene {
 //
 //            print(loadData.bool(forKey: "Abissi_Music_Setting"))
         }
-        
+        if nodeTouched.name == "specialEffectsButton" {
+            effects.toggle()
+            UserDefaults.standard.set(effects, forKey: "effects")
+            guard let specialEffectsButton = nodeTouched as? SKSpriteNode else {return}
+                specialEffectsButton.texture = SKTexture(imageNamed: effects ? "special_effects_on" : "special_effects_off")
+        }
     }
 }

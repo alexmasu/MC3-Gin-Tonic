@@ -165,7 +165,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if cannon.cannonEnergy == 3 {
             shield.openAndCloseAnimationRun()
-            run(cannonSound)
+            if UserDefaults.standard.bool(forKey: "effects") {
+                run(cannonSound)
+            }
             cannon.run(SKAction.wait(forDuration: 0.15)){
                 self.cannon.shot()
             }
@@ -179,12 +181,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if player.lastFiredTime + 0.6 <= currentTime {
                 player.lastFiredTime = currentTime
                 player.fire()
-                
-                if loadData.bool(forKey: "Abissi_Music_Setting") {
-                    let music_sett: Bool = loadData.bool(forKey: "Abissi_Music_Setting")
-                    print(music_sett)
+                if UserDefaults.standard.bool(forKey: "effects") {
                     run(playerShootSound)
                 }
+//                }
 //                run(playerShootSound)
                 //                run(playerShootAction)
             }
@@ -193,7 +193,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if enemyShouldFire {
                 enemy.lastFiredTime = currentTime
                 enemy.fire()
+                if UserDefaults.standard.bool(forKey: "effects") {
+
                 run(enemyShootSound)
+                }
             }
         }
         if metSpawner.meteoriteLastSpawnTime + 6 <= currentTime {
@@ -240,7 +243,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if player.life == 0 {
                     //                    let lossSound = SKAction.playSoundFileNamed("loss.caf", waitForCompletion: false)
                     //                    run(lossSound)
+                    if UserDefaults.standard.bool(forKey: "effects") {
+
                     run(SKAction.playSoundFileNamed(SoundFile.lossSound, waitForCompletion: true))
+                    }
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: false)
                     //                    run(lossSound)
@@ -257,7 +263,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondNode.removeFromParent()
             guard let meteor = firstNode as? MeteoriteNode else {return}
             if meteor.isDestroyedAfterHit() {
+                if UserDefaults.standard.bool(forKey: "effects") {
                 run(powerUpSound)
+                }
                 if cannon.cannonEnergy != 3 {
                     cannon.cannonCharge()
                     if cannon.cannonEnergy == 3{
@@ -299,7 +307,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let explosion = SKEmitterNode(fileNamed: fileName) {
             explosion.position = position
             self.addChild(explosion)
+            if UserDefaults.standard.bool(forKey: "effects") {
             run(explosionSound)
+            }
             //            run(explosionSoundAction)
             explosion.move(toParent: parent)
             let removeAfterDead = SKAction.sequence([SKAction.wait(forDuration: 3), SKAction.removeFromParent()])

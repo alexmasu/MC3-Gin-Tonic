@@ -62,13 +62,13 @@ class MenuScreen: SKScene {
         self.addChild(message)
         
         // 3
-        let label = SKLabelNode(fontNamed: "AdventPro-Bold")
-        label.text = message
-        label.fontSize = 60
-        label.fontColor = UIColor(rgb: 0xC5DC82)
-        label.position = CGPoint(x: 0, y: -continueButton.position.y * 1.5)
-        label.zPosition = 10
-        self.addChild(label)
+//        let label = SKLabelNode(fontNamed: "AdventPro-Bold")
+//        label.text = message
+//        label.fontSize = 60
+//        label.fontColor = UIColor(rgb: 0xC5DC82)
+//        label.position = CGPoint(x: 0, y: -continueButton.position.y * 1.5)
+//        label.zPosition = 10
+//        self.addChild(label)
         
         
         /*

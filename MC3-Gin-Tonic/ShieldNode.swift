@@ -66,7 +66,7 @@ class ShieldNode: SKSpriteNode {
 //    }
     func scaleCannonCharged(){
         if let shadow = self.childNode(withName: "shadow") as? SKSpriteNode {
-            shadow.run(SKAction.colorize(with: .systemYellow, colorBlendFactor: 1, duration: 0.2))
+            shadow.run(SKAction.colorize(with: .white, colorBlendFactor: 1, duration: 0.2))
         }
         let scale = SKAction.scale(by: 1.3, duration: 0.6)
         let glow = SKAction.run{self.animateShadowGlow(withName: "shadow")}
@@ -96,7 +96,7 @@ class ShieldNode: SKSpriteNode {
             self.run(scale2)
             self.run(seqRestore){
                 if let shadow = self.childNode(withName: "shadow") as? SKSpriteNode {
-                    shadow.run(SKAction.colorize(with: .cyan, colorBlendFactor: 1, duration: 0.2))
+                    shadow.run(SKAction.colorize(with: .white, colorBlendFactor: 1, duration: 0.2))
                 }
             }
         }

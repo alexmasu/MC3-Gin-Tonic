@@ -14,6 +14,7 @@ class PauseScreen: SKSpriteNode {
         let texture = SKTexture(imageNamed: "pausebg")
         super.init(texture: texture, color: .clear, size: CGSize(width: screenSize.width * 0.75, height: screenSize.width * 0.75))
         self.zPosition = 200
+        self.name = "pauseScreen"
         
         let resumeButton = GreenButtonNode(nodeName: "ResumeBtn", buttonType: .popUp, parentSize: self.size, text: "CONTINUE")
         resumeButton.name = "ResumeBtn"
@@ -28,7 +29,6 @@ class PauseScreen: SKSpriteNode {
         quitButton.anchorPoint = CGPoint(x: 0, y: 0.5)
         quitButton.position = CGPoint(x: resumeButton.frame.minX, y: -size.height / 3.5)
         quitButton.zPosition = 10
-        
         
         self.addChild(quitButton)
         
@@ -49,17 +49,6 @@ class PauseScreen: SKSpriteNode {
         message.size = CGSize(width: resumeButton.size.width, height: resumeButton.size.height)
         
         addChild(message)
-        
-        // 3
-//        let label = SKLabelNode(fontNamed: "AdventPro-Bold")
-//        label.text = message
-//        label.verticalAlignmentMode = .center
-//        label.horizontalAlignmentMode = .center
-//        label.fontSize = 60
-//        label.fontColor = UIColor(named: "alienGreen")
-//        label.position = CGPoint(x: 0, y: size.height / 3.5)
-//        label.zPosition = 5
-//        addChild(label)
     }
     
     required init?(coder aDecoder: NSCoder) {

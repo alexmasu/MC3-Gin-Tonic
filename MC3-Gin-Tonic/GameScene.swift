@@ -55,7 +55,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var player = PlayerNode(imageNamed: "playerShip-3")
     private var shield = ShieldNode(imageNamed: "shield")
-    private var enemy = EnemyNode(imageNamed: "enemy")
+    private var enemy = EnemyNode(imageNamed: "enemy-3")
     private var cannon = CannonNode()
     private var pause = PauseScreen()
     private var metSpawner = MetSpawner()
@@ -69,7 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let explosionSound = SKAction.playSoundFileNamed(SoundFile.explosionSound, waitForCompletion: false)
     let cannonSound = SKAction.playSoundFileNamed(SoundFile.cannonSound, waitForCompletion: false)
     let powerUpSound = SKAction.playSoundFileNamed(SoundFile.powerUpSound, waitForCompletion: false)
-    //    let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: false)
+    let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: true)
     
     var isPlayerAlive = true
     var enemyShouldFire = false
@@ -286,16 +286,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.run(SKAction.colorize(with: .black, colorBlendFactor: 0.9, duration: 0.15)){
                     self.enemy.run(SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.15))
                 }
-                enemy.life -= 1
-                
+//                enemy.life -= 1
+                enemy.reduceLife()
                 if enemy.life == 0 {
-                    let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                    let gameOverScene = GameOverScene(size: self.size, won: true)
-                    
-                    view?.presentScene(gameOverScene, transition: reveal)
-                    //                    print("YOU WON")
-                    enemy.life = 3
-                    
+                    run(wonSound) {
+                        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                        let gameOverScene = GameOverScene(size: self.size, won: true)
+                        
+                        self.view?.presentScene(gameOverScene, transition: reveal)
+                        //                    print("YOU WON")
+                        self.enemy.life = 3
+                    }
                 }
             } else {
                 if secondNode.name == "enemyWeapon" {

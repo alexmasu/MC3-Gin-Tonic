@@ -249,15 +249,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.reduceLife()
                 
                 if player.life == 0 {
-                    //                    let lossSound = SKAction.playSoundFileNamed("loss.caf", waitForCompletion: false)
-                    //                    run(lossSound)
                     if effectsSouldPlay {
-
                     run(SKAction.playSoundFileNamed(SoundFile.lossSound, waitForCompletion: true))
                     }
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: false)
-                    //                    run(lossSound)
                     self.run(SKAction.wait(forDuration: 0.4)){
                         self.view?.presentScene(gameOverScene, transition: reveal)
                     }
@@ -274,7 +270,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if effectsSouldPlay {
                 run(powerUpSound)
                 }
-                
             }
         }
         
@@ -294,7 +289,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         let gameOverScene = GameOverScene(size: self.size, won: true)
                         
                         self.view?.presentScene(gameOverScene, transition: reveal)
-                        //                    print("YOU WON")
                         self.enemy.life = 3
                     }
                 }

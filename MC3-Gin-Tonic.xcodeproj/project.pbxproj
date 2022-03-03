@@ -58,6 +58,7 @@
 		9583AEA327C6279C009A5FA1 /* shieldAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9583AEA227C6279C009A5FA1 /* shieldAnim.atlas */; };
 		9583AEA527C630B0009A5FA1 /* SKSpriteNode+shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583AEA427C630B0009A5FA1 /* SKSpriteNode+shadow.swift */; };
 		9583AEA727C630E4009A5FA1 /* SKSpriteNode+frames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583AEA627C630E4009A5FA1 /* SKSpriteNode+frames.swift */; };
+		958CD54F27D0C85C00E141CF /* winning.caf in Resources */ = {isa = PBXBuildFile; fileRef = 958CD54E27D0C65F00E141CF /* winning.caf */; };
 		95A93A4E27BD8E5E00515A06 /* MeteoriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */; };
 		95BD2FC227C194F600A734CC /* shieldHit.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95BD2FC127C194F600A734CC /* shieldHit.atlas */; };
 		95F17D9327BE7B7600A8EB71 /* StarsBackground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */; };
@@ -293,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				958CD54F27D0C85C00E141CF /* winning.caf in Resources */,
 				29F9762D27D0BAA300CF5208 /* Fanfare.caf in Resources */,
 				29F9762927D0B88900CF5208 /* loss.caf in Resources */,
 				2980F63E27B3D66E00C318DF /* GameScene.sks in Resources */,

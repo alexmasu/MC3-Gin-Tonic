@@ -59,6 +59,8 @@
 		9583AEA527C630B0009A5FA1 /* SKSpriteNode+shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583AEA427C630B0009A5FA1 /* SKSpriteNode+shadow.swift */; };
 		9583AEA727C630E4009A5FA1 /* SKSpriteNode+frames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583AEA627C630E4009A5FA1 /* SKSpriteNode+frames.swift */; };
 		958CD54F27D0C85C00E141CF /* winning.caf in Resources */ = {isa = PBXBuildFile; fileRef = 958CD54E27D0C65F00E141CF /* winning.caf */; };
+		958CD55327D0CE7800E141CF /* Abi22i.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 958CD55227D0CCFF00E141CF /* Abi22i.m4a */; };
+		958CD55427D0D32600E141CF /* Ab1ss1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 958CD55027D0C99500E141CF /* Ab1ss1.m4a */; };
 		95A93A4E27BD8E5E00515A06 /* MeteoriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */; };
 		95BD2FC227C194F600A734CC /* shieldHit.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95BD2FC127C194F600A734CC /* shieldHit.atlas */; };
 		95F17D9327BE7B7600A8EB71 /* StarsBackground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */; };
@@ -122,6 +124,8 @@
 		9583AEA427C630B0009A5FA1 /* SKSpriteNode+shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+shadow.swift"; sourceTree = "<group>"; };
 		9583AEA627C630E4009A5FA1 /* SKSpriteNode+frames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+frames.swift"; sourceTree = "<group>"; };
 		958CD54E27D0C65F00E141CF /* winning.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = winning.caf; sourceTree = "<group>"; };
+		958CD55027D0C99500E141CF /* Ab1ss1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ab1ss1.m4a; sourceTree = "<group>"; };
+		958CD55227D0CCFF00E141CF /* Abi22i.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Abi22i.m4a; sourceTree = "<group>"; };
 		95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteNode.swift; sourceTree = "<group>"; };
 		95BD2FC127C194F600A734CC /* shieldHit.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = shieldHit.atlas; sourceTree = "<group>"; };
 		95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarsBackground.sks; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 		291E913127C64B8E00AECC95 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				958CD55227D0CCFF00E141CF /* Abi22i.m4a */,
 				291E914027C6816500AECC95 /* loss.caf */,
 				291E913227C64B8E00AECC95 /* laserShoot.caf */,
 				291E913327C64B8E00AECC95 /* boom.caf */,
@@ -150,6 +155,7 @@
 				291E913427C64B8E00AECC95 /* synthCopy.caf */,
 				291E913527C64B8E00AECC95 /* powerUp.caf */,
 				291E913627C64B8E00AECC95 /* pickupCoin.caf */,
+				958CD55027D0C99500E141CF /* Ab1ss1.m4a */,
 				291E913727C64B8E00AECC95 /* laserShoot2.caf */,
 			);
 			path = Sounds;
@@ -294,6 +300,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				958CD55427D0D32600E141CF /* Ab1ss1.m4a in Resources */,
+				958CD55327D0CE7800E141CF /* Abi22i.m4a in Resources */,
 				958CD54F27D0C85C00E141CF /* winning.caf in Resources */,
 				29F9762D27D0BAA300CF5208 /* Fanfare.caf in Resources */,
 				29F9762927D0B88900CF5208 /* loss.caf in Resources */,

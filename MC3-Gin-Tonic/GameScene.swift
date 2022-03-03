@@ -5,8 +5,8 @@
 //  Created by Alessandro Masullo on 08/02/22.
 //
 
+import AVFoundation
 import SpriteKit
-//import AVFoundation
 
 enum CollisionType: UInt32 {
     case enemy = 1
@@ -70,6 +70,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let cannonSound = SKAction.playSoundFileNamed(SoundFile.cannonSound, waitForCompletion: false)
     let powerUpSound = SKAction.playSoundFileNamed(SoundFile.powerUpSound, waitForCompletion: false)
     let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: true)
+    let backgroundMusic = SKAudioNode(fileNamed: SoundFile.musicForGame)
     
     var isPlayerAlive = true
     var enemyShouldFire = false
@@ -77,6 +78,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     override func didMove(to view: SKView) {
         notificationCenter.addObserver(self, selector: #selector(pauseGame), name: UIApplication.didBecomeActiveNotification, object: nil)
+        let volumAct = SKAction.changeVolume(to: 0.3, duration: 0.1)
+        backgroundMusic.run(volumAct)
+        if musicSouldPlay{
+            self.addChild(backgroundMusic)
+        }
 
         physicsWorld.gravity = .zero
         self.physicsWorld.contactDelegate = self

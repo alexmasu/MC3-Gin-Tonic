@@ -132,6 +132,6 @@ class EnemyNode: SKSpriteNode {
 //        self.animateShadowGlow(withName: "shadow")
         
         guard let shadow = self.childNode(withName: "shadow") as? SKSpriteNode else {return}
-        shadow.run(SKAction.colorize(with: self.life == 2 ? .white : .systemRed, colorBlendFactor: 1, duration: 0.2))
+        shadow.run(SKAction.colorize(with: self.life == 2 ? .purple : .red, colorBlendFactor: 1, duration: 0.2))
     }
 }

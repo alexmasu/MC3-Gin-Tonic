@@ -13,7 +13,7 @@ class MenuScreen: SKScene {
 //    var intero = 0
     var music = true
     var effects = true
-
+    let bgMusic = SKAudioNode(fileNamed: SoundFile.musicForMenu)
     override init(size: CGSize) {
         super.init(size: size)
         
@@ -85,6 +85,15 @@ class MenuScreen: SKScene {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func didMove(to view: SKView) {
+        let volumAct = SKAction.changeVolume(to: 0.5, duration: 0.1)
+        bgMusic.run(volumAct)
+        if music {
+            self.addChild(bgMusic)
+        }
+    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {return}
         // Find the location of the touch:
@@ -104,6 +113,7 @@ class MenuScreen: SKScene {
                     scene.size = view.frame.size
                     scene.scaleMode = .aspectFill
                     let transition = SKTransition.fade(withDuration: 0.5)
+//                    self.bgMusic.removeFromParent()
                     view.presentScene(scene, transition: transition)
                 }
             }
@@ -111,6 +121,11 @@ class MenuScreen: SKScene {
         
         if nodeTouched.name == "musicButton" {
             music.toggle()
+            if music {
+                addChild(bgMusic)
+            } else {
+                bgMusic.removeFromParent()
+            }
             UserDefaults.standard.set(music, forKey: "music")
             guard let musicEffectsButton = nodeTouched as? SKSpriteNode else {return}
                 musicEffectsButton.texture = SKTexture(imageNamed: music ? "musicButton_on" : "musicButton_off")

@@ -9,9 +9,11 @@ import SpriteKit
 
 class GameOverScene: SKScene {
     var greenButtonTouched = false
-    
+    let musicSouldPlay = UserDefaults.standard.bool(forKey: "music")
+    let bgMusic = SKAudioNode(fileNamed: SoundFile.musicForMenu)
+
     init(size: CGSize, won:Bool) {
-        
+
         super.init(size: size)
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
@@ -91,6 +93,11 @@ class GameOverScene: SKScene {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    override func didMove(to view: SKView) {
+        if musicSouldPlay{
+            addChild(bgMusic)
+        }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {return}

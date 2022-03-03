@@ -64,7 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let explosionSound = SKAction.playSoundFileNamed(SoundFile.explosionSound, waitForCompletion: false)
     let cannonSound = SKAction.playSoundFileNamed(SoundFile.cannonSound, waitForCompletion: false)
     let powerUpSound = SKAction.playSoundFileNamed(SoundFile.powerUpSound, waitForCompletion: false)
-    //    let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: false)
+    let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: true)
     
     var isPlayerAlive = true
     var enemyShouldFire = false
@@ -180,6 +180,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.lastFiredTime = currentTime
                 player.fire()
                 run(playerShootSound)
+//                run(wonSound)
                 //                run(playerShootAction)
             }
         }
@@ -272,13 +273,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //                enemy.life -= 1
                 enemy.reduceLife()
                 if enemy.life == 0 {
-                    let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                    let gameOverScene = GameOverScene(size: self.size, won: true)
-                    
-                    view?.presentScene(gameOverScene, transition: reveal)
-                    //                    print("YOU WON")
-                    enemy.life = 3
-                    
+                    run(wonSound) {
+                        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                        let gameOverScene = GameOverScene(size: self.size, won: true)
+                        
+                        self.view?.presentScene(gameOverScene, transition: reveal)
+                        //                    print("YOU WON")
+                        self.enemy.life = 3
+                    }
                 }
             } else {
                 if secondNode.name == "enemyWeapon" {

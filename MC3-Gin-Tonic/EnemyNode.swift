@@ -12,7 +12,7 @@ class EnemyNode: SKSpriteNode {
     var lastFiredTime: Double = 9
     var isFiring = true
 //    var jointAnchor : CGPoint = .zero
-    var life: Int = 3
+    var life: Int = 1
     
     init(imageNamed: String) {
         let texture = SKTexture(imageNamed: imageNamed)

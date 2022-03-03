@@ -29,6 +29,9 @@
 		29A0288427C3CF8A006BBBC7 /* Stars.sks in Resources */ = {isa = PBXBuildFile; fileRef = 29A0288327C3CF8A006BBBC7 /* Stars.sks */; };
 		29A0288627C3D5F3006BBBC7 /* PauseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0288527C3D5F3006BBBC7 /* PauseScreen.swift */; };
 		29E6641527C4FBA400430F59 /* MenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E6641427C4FBA400430F59 /* MenuScreen.swift */; };
+		29F9762927D0B88900CF5208 /* loss.caf in Resources */ = {isa = PBXBuildFile; fileRef = 291E914027C6816500AECC95 /* loss.caf */; };
+		29F9762D27D0BAA300CF5208 /* Fanfare.caf in Resources */ = {isa = PBXBuildFile; fileRef = 29F9762C27D0BA9100CF5208 /* Fanfare.caf */; };
+		29F9762F27D0C38600CF5208 /* winning.caf in Resources */ = {isa = PBXBuildFile; fileRef = 29F9762E27D0C37700CF5208 /* winning.caf */; };
 		7F40022A27B271E2001182EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F40022927B271E2001182EB /* AppDelegate.swift */; };
 		7F40023027B271E2001182EB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F40022F27B271E2001182EB /* GameScene.swift */; };
 		7F40023227B271E2001182EB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F40023127B271E2001182EB /* GameViewController.swift */; };
@@ -83,6 +86,8 @@
 		29A0288327C3CF8A006BBBC7 /* Stars.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Stars.sks; sourceTree = "<group>"; };
 		29A0288527C3D5F3006BBBC7 /* PauseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseScreen.swift; sourceTree = "<group>"; };
 		29E6641427C4FBA400430F59 /* MenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreen.swift; sourceTree = "<group>"; };
+		29F9762C27D0BA9100CF5208 /* Fanfare.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fanfare.caf; sourceTree = "<group>"; };
+		29F9762E27D0C37700CF5208 /* winning.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = winning.caf; sourceTree = "<group>"; };
 		7F40022627B271E2001182EB /* Abissi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Abissi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F40022927B271E2001182EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F40022F27B271E2001182EB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -134,6 +139,8 @@
 				291E914027C6816500AECC95 /* loss.caf */,
 				291E913227C64B8E00AECC95 /* laserShoot.caf */,
 				291E913327C64B8E00AECC95 /* boom.caf */,
+				29F9762C27D0BA9100CF5208 /* Fanfare.caf */,
+				29F9762E27D0C37700CF5208 /* winning.caf */,
 				291E913427C64B8E00AECC95 /* synthCopy.caf */,
 				291E913527C64B8E00AECC95 /* powerUp.caf */,
 				291E913627C64B8E00AECC95 /* pickupCoin.caf */,
@@ -278,6 +285,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29F9762F27D0C38600CF5208 /* winning.caf in Resources */,
+				29F9762D27D0BAA300CF5208 /* Fanfare.caf in Resources */,
+				29F9762927D0B88900CF5208 /* loss.caf in Resources */,
 				2980F63E27B3D66E00C318DF /* GameScene.sks in Resources */,
 				2932F2A427BD127800A7ED80 /* AdventPro-Medium.ttf in Resources */,
 				291E913827C64B8E00AECC95 /* laserShoot.caf in Resources */,

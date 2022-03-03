@@ -16,7 +16,6 @@ extension SKSpriteNode {
     }
     func makeEnemyShadow() {
         self.makeTextureShadow(blurRadius: 14, xScaleFactor: 1.4, yScaleFactor: 1.45, color: .systemIndigo, customTexture: SKTexture(imageNamed: "Group 190"))
-//        self.makeTextureShadow(blurRadius: 6, xScaleFactor: 1.1, yScaleFactor: 1.15, color: .white, customTexture: SKTexture(imageNamed: "enemyShadow3"))
     }
     
     func makeTextureShadow(blurRadius: CGFloat, xScaleFactor: CGFloat? = 1.2, yScaleFactor: CGFloat? = 1.2, color: UIColor? = .white, customTexture: SKTexture?) {

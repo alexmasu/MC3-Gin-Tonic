@@ -8,33 +8,11 @@
 import SpriteKit
 import AVKit
 
-//extension UIColor {
-//   convenience init(red: Int, green: Int, blue: Int) {
-//       assert(red >= 0 && red <= 255, "Invalid red component")
-//       assert(green >= 0 && green <= 255, "Invalid green component")
-//       assert(blue >= 0 && blue <= 255, "Invalid blue component")
-//
-//       self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-//   }
-//
-//   convenience init(rgb: Int) {
-//       self.init(
-//           red: (rgb >> 16) & 0xFF,
-//           green: (rgb >> 8) & 0xFF,
-//           blue: rgb & 0xFF
-//       )
-//   }
-//}
-
-// SAVE
-//let saveData = UserDefaults.standard
-//let loadData = UserDefaults.standard
-
-var music = true
-var effects = true
 
 class MenuScreen: SKScene {
 //    var intero = 0
+    var music = true
+    var effects = true
 
     override init(size: CGSize) {
         super.init(size: size)
@@ -68,7 +46,7 @@ class MenuScreen: SKScene {
         message.size = CGSize(width: propW, height: propH)
         
         self.addChild(message)
-        let tutorialStep = TutorialSpriteLabel()
+//        let tutorialStep = TutorialSpriteLabel()
 //        self.addChild(tutorialStep)
         // 3
 //        let label = SKLabelNode(fontNamed: "AdventPro-Bold")
@@ -89,7 +67,7 @@ class MenuScreen: SKScene {
         musicButton.name = "musicButton"
         musicButton.position = CGPoint(x: scene!.frame.maxX - musicButton.size.width, y: scene!.frame.maxY - musicButton.size.width)
         musicButton.zPosition = 300
-//        self.addChild(musicButton)
+        self.addChild(musicButton)
         
         
         /*
@@ -135,7 +113,7 @@ class MenuScreen: SKScene {
             music.toggle()
             UserDefaults.standard.set(music, forKey: "music")
             guard let musicEffectsButton = nodeTouched as? SKSpriteNode else {return}
-                musicEffectsButton.texture = SKTexture(imageNamed: effects ? "musicButton_on" : "musicButton_off")
+                musicEffectsButton.texture = SKTexture(imageNamed: music ? "musicButton_on" : "musicButton_off")
         }
         if nodeTouched.name == "specialEffectsButton" {
             effects.toggle()

@@ -289,13 +289,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.life -= 1
                 
                 if enemy.life == 0 {
+                    enemy.enemyBoom()
+                    
+                    self.run(SKAction.wait(forDuration: 0.8)) {
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: true)
                     
-                    view?.presentScene(gameOverScene, transition: reveal)
+                        self.view?.presentScene(gameOverScene, transition: reveal)
                     //                    print("YOU WON")
-                    enemy.life = 3
-                    
+                        self.enemy.life = 3
+                    }
                 }
             } else {
                 if secondNode.name == "enemyWeapon" {

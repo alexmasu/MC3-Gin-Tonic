@@ -103,4 +103,16 @@ class EnemyNode: SKSpriteNode {
         self.run(anotherAction)
     }
     
+    
+    func enemyBoom() {
+       
+            let frames = makeAnimationFrames(from: "enemyExplosion")
+            let animHit = SKAction.animate(with: frames, timePerFrame: 0.026, resize: false, restore: false)
+            
+        self.run(animHit) {
+            self.removeFromParent()
+        }
+        
+    }
+    
 }

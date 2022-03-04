@@ -74,12 +74,16 @@ class MeteoriteNode: SKSpriteNode {
             energyParticles.physicsBody = SKPhysicsBody(circleOfRadius: 10)
             energyParticles.physicsBody?.categoryBitMask = CollisionType.metParticles.rawValue
             energyParticles.physicsBody?.collisionBitMask = 0
-            energyParticles.physicsBody?.contactTestBitMask = CollisionType.player.rawValue
+            energyParticles.physicsBody?.contactTestBitMask = CollisionType.cannonChargeIndicator.rawValue
             energyParticles.position = self.position
             
             energyParticles.particleSize = CGSize(width: self.size.width / 2, height: self.size.height / 2)
             
-            energyParticles.particleAction = SKAction.move(to: .zero, duration: 0.8)
+            var point: CGPoint {
+                guard let cannonCharge = scene?.childNode(withName: "cannonChargeIndicator") else { return .zero}
+                return cannonCharge.position
+            }
+            energyParticles.particleAction = SKAction.move(to: point, duration: 0.7)
 
             scene?.addChild(energyParticles)
             energyParticles.run(energyParticles.particleAction!)

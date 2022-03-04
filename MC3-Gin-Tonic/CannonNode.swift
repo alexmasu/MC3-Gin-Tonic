@@ -15,6 +15,7 @@ class CannonNode: SKNode {
     override init() {
         super.init()
         
+        cannonChargeIndicator.name = "cannonChargeIndicator"
         cannonChargeIndicator.size = CGSize(width: 50, height: 50)
         cannonChargeIndicator.zPosition = 50
         cannonChargeIndicator.makeShapeGlow(cornerRadius: 50, scaleSizeBy: 0.67, color: UIColor(named: "yellowMet"))
@@ -23,6 +24,11 @@ class CannonNode: SKNode {
         let glowing2 = SKAction.fadeAlpha(to: 0.4, duration: 1)
         let glowSeq = SKAction.sequence([glowing, glowing2])
         glow.run(SKAction.repeatForever(glowSeq))
+        cannonChargeIndicator.physicsBody = SKPhysicsBody(circleOfRadius: cannonChargeIndicator.frame.size.height / 2)
+        cannonChargeIndicator.physicsBody?.categoryBitMask = CollisionType.cannonChargeIndicator.rawValue
+        cannonChargeIndicator.physicsBody?.contactTestBitMask = CollisionType.metParticles.rawValue
+        cannonChargeIndicator.physicsBody?.collisionBitMask = 0
+        cannonChargeIndicator.physicsBody?.isDynamic = false
     }
     
     func cannonCharge() {

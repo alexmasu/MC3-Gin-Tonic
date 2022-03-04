@@ -4,10 +4,8 @@
 //
 //  Created by Maria Smirnova on 22/02/22.
 //
-
+import AVFoundation
 import SpriteKit
-import AVKit
-
 
 class MenuScreen: SKScene {
 //    var intero = 0
@@ -46,39 +44,17 @@ class MenuScreen: SKScene {
         message.size = CGSize(width: propW, height: propH)
         
         self.addChild(message)
-//        let tutorialStep = TutorialSpriteLabel()
-//        self.addChild(tutorialStep)
-        // 3
-//        let label = SKLabelNode(fontNamed: "AdventPro-Bold")
-//        label.text = message
-//        label.fontSize = 60
-//        label.fontColor = UIColor(rgb: 0xC5DC82)
-//        label.position = CGPoint(x: 0, y: -continueButton.position.y * 1.5)
-//        label.zPosition = 10
-//        self.addChild(label)
-        
         
         /*
          MUSIC BUTTON
          */
-        let musicButton = SKSpriteNode(imageNamed: music ? "musicButton_on" :"musicButton_off")
-        musicButton.size = CGSize(width: continueButton.size.height*0.7, height: continueButton.size.height*0.7)
-        // Name the start node for touch detection:
-        musicButton.name = "musicButton"
-        musicButton.position = CGPoint(x: scene!.frame.maxX - musicButton.size.width, y: scene!.frame.maxY - musicButton.size.width)
-        musicButton.zPosition = 300
+        let musicButton = LittleCircleNode(buttonType: .music, onOff: music)
         self.addChild(musicButton)
-        
         
         /*
          Special Effects BUTTON
          */
-        let specialEffectsButton = SKSpriteNode(imageNamed: effects ? "special_effects_on" : "special_effects_off" )
-        specialEffectsButton.size = CGSize(width: continueButton.size.height*0.7, height: continueButton.size.height*0.7)
-        // Name the start node for touch detection:
-        specialEffectsButton.name = "specialEffectsButton"
-        specialEffectsButton.position = CGPoint(x: musicButton.position.x, y: musicButton.position.y-musicButton.size.width*1.2)
-        specialEffectsButton.zPosition = 600
+        let specialEffectsButton = LittleCircleNode(buttonType: .effects, onOff: effects)
         self.addChild(specialEffectsButton)
     }
     
@@ -87,7 +63,7 @@ class MenuScreen: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        let volumAct = SKAction.changeVolume(to: 0.5, duration: 0.1)
+        let volumAct = SKAction.changeVolume(to: 0.7, duration: 0.1)
         bgMusic.run(volumAct)
         if music {
             self.addChild(bgMusic)
@@ -102,10 +78,6 @@ class MenuScreen: SKScene {
         let nodeTouched = atPoint(location)
         
         if nodeTouched.name == "Continue" {
-//            intero += 1
-//            UserDefaults.standard.set(intero, forKey: "Intero")
-//            print(intero, UserDefaults.standard.integer(forKey: "Intero"))
-            UserDefaults.standard.removeObject(forKey: "Intero")
             // Player touched the start text or button node
             // Switch to an instance of the GameScene:
             if let view = self.view {
@@ -127,14 +99,14 @@ class MenuScreen: SKScene {
                 bgMusic.removeFromParent()
             }
             UserDefaults.standard.set(music, forKey: "music")
-            guard let musicEffectsButton = nodeTouched as? SKSpriteNode else {return}
-                musicEffectsButton.texture = SKTexture(imageNamed: music ? "musicButton_on" : "musicButton_off")
+            guard let musicEffectsButton = nodeTouched as? LittleCircleNode else {return}
+                musicEffectsButton.changeTextureOnOff(onOff: music)
         }
         if nodeTouched.name == "specialEffectsButton" {
             effects.toggle()
             UserDefaults.standard.set(effects, forKey: "effects")
-            guard let specialEffectsButton = nodeTouched as? SKSpriteNode else {return}
-                specialEffectsButton.texture = SKTexture(imageNamed: effects ? "special_effects_on" : "special_effects_off")
+            guard let specialEffectsButton = nodeTouched as? LittleCircleNode else {return}
+                specialEffectsButton.changeTextureOnOff(onOff: effects)
         }
     }
 }

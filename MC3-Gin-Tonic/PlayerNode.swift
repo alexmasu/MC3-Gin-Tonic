@@ -172,7 +172,7 @@ class PlayerNode: SKSpriteNode {
         self.run(SKAction.sequence(randomShake))
     }
     
-    func animateEnergyPick(){
+    func animateEnergyPick() {
         makeShapeGlow(cornerRadius: 100, scaleSizeBy: 0.6, color: .systemYellow)
         guard let glow = self.childNode(withName: "glow") as? SKShapeNode else {return}
         glow.alpha = 1

@@ -4,7 +4,6 @@
 //
 //  Created by Alessandro Masullo on 08/02/22.
 //
-
 import AVFoundation
 import SpriteKit
 
@@ -17,6 +16,7 @@ enum CollisionType: UInt32 {
     case cannonBullet = 32
     case meteorite = 64
     case metParticles = 128
+    case cannonChargeIndicator = 256
 }
 
 func +(left: CGPoint, right: CGPoint) -> CGPoint {
@@ -57,11 +57,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var shield = ShieldNode(imageNamed: "shield")
     private var enemy = EnemyNode(imageNamed: "enemy-3")
     private var cannon = CannonNode()
-    private var pause = PauseScreen()
+    private var pause = PauseScreen(music: UserDefaults.standard.bool(forKey: "music"), effects: UserDefaults.standard.bool(forKey: "effects"))
     private var metSpawner = MetSpawner()
     
-    let effectsSouldPlay = UserDefaults.standard.bool(forKey: "effects")
-    let musicSouldPlay = UserDefaults.standard.bool(forKey: "music")
     let notificationCenter = NotificationCenter.default
         
     let playerShootSound = SKAction.playSoundFileNamed(SoundFile.playerShoot, waitForCompletion: false)
@@ -70,19 +68,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let cannonSound = SKAction.playSoundFileNamed(SoundFile.cannonSound, waitForCompletion: false)
     let powerUpSound = SKAction.playSoundFileNamed(SoundFile.powerUpSound, waitForCompletion: false)
     let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: true)
-    let backgroundMusic = SKAudioNode(fileNamed: SoundFile.musicForGame)
+    var backgroundMusic = SKAudioNode(fileNamed: SoundFile.musicForGame)
     
+    var music = UserDefaults.standard.bool(forKey: "music")
+    var effects = UserDefaults.standard.bool(forKey: "effects")
+
     var isPlayerAlive = true
     var enemyShouldFire = false
     var meteoritesShoulSpawn = false
-        
+    
     override func didMove(to view: SKView) {
         notificationCenter.addObserver(self, selector: #selector(pauseGame), name: UIApplication.didBecomeActiveNotification, object: nil)
-        let volumAct = SKAction.changeVolume(to: 0.3, duration: 0.1)
-        backgroundMusic.run(volumAct)
-        if musicSouldPlay{
+//        music = musicSouldPlay
+//        effects = effectsSouldPlay
+        
             self.addChild(backgroundMusic)
-        }
+            let volumAct = SKAction.changeVolume(to: 0.3, duration: 0.1)
+            let changeOcc = SKAction.changeOcclusion(to: 30, duration: 0.1)
+
+            backgroundMusic.run(volumAct)
+            backgroundMusic.run(changeOcc)
 
         physicsWorld.gravity = .zero
         self.physicsWorld.contactDelegate = self
@@ -110,7 +115,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pauseButton.position = CGPoint(x: -cannon.cannonChargeIndicator.position.x, y: cannon.cannonChargeIndicator.position.y)
         
         addChild(pauseButton)
-        //        self.addChild(pause)
         
         enemy.configureMovement(sceneSize: self.size)
         self.addChild(enemy)
@@ -147,6 +151,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else if nodeTouched.name == "ResumeBtn" {
             pause.removeFromParent()
             self.isPaused = false
+            
         } else if nodeTouched.name == "QuitBtn" {
             if let view = self.view {
                 let reveal = SKTransition.fade(withDuration: 0.5)
@@ -162,6 +167,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 view.presentScene(gameScene, transition: reveal)
             }
+        }
+        if nodeTouched.name == "musicButton" {
+            music.toggle()
+            if music {
+                self.addChild(backgroundMusic)
+            } else {
+                backgroundMusic.removeFromParent()
+            }
+            UserDefaults.standard.set(music, forKey: "music")
+            guard let musicEffectsButton = nodeTouched as? LittleCircleNode else {return}
+            musicEffectsButton.changeTextureOnOff(onOff: music)
+        }
+        if nodeTouched.name == "specialEffectsButton" {
+            effects.toggle()
+            UserDefaults.standard.set(effects, forKey: "effects")
+            guard let specialEffectsButton = nodeTouched as? LittleCircleNode else {return}
+                specialEffectsButton.changeTextureOnOff(onOff: effects)
         }
     }
     
@@ -182,7 +204,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if cannon.cannonEnergy == 3 {
             shield.openAndCloseAnimationRun()
-            if effectsSouldPlay {
+            if effects {
                 run(cannonSound)
             }
             cannon.run(SKAction.wait(forDuration: 0.15)){
@@ -197,7 +219,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if player.lastFiredTime + 0.6 <= currentTime {
                 player.lastFiredTime = currentTime
                 player.fire()
-                if effectsSouldPlay {
+                if effects {
                     run(playerShootSound)
                 }
             }
@@ -206,7 +228,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if enemyShouldFire {
                 enemy.lastFiredTime = currentTime
                 enemy.fire()
-                if effectsSouldPlay {
+                if effects {
 
                 run(enemyShootSound)
                 }
@@ -255,7 +277,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.reduceLife()
                 
                 if player.life == 0 {
-                    if effectsSouldPlay {
+                    if effects {
                     run(SKAction.playSoundFileNamed(SoundFile.lossSound, waitForCompletion: true))
                     }
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
@@ -273,7 +295,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondNode.removeFromParent()
             guard let meteor = firstNode as? MeteoriteNode else {return}
             if meteor.isDestroyedAfterHit() {
-                if effectsSouldPlay {
+                
+                if effects {
                 run(powerUpSound)
                 }
             }
@@ -304,8 +327,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
-        if firstNode.name == "metParticles" {
-            player.animateEnergyPick()
+        if firstNode.name == "cannonChargeIndicator" {
             if cannon.cannonEnergy != 3 {
                 cannon.cannonCharge()
                 if cannon.cannonEnergy == 3{
@@ -320,7 +342,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let explosion = SKEmitterNode(fileNamed: fileName) {
             explosion.position = position
             self.addChild(explosion)
-            if effectsSouldPlay {
+            if effects {
                 run(explosionSound)
             }
             explosion.move(toParent: parent)

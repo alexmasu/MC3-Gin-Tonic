@@ -9,7 +9,7 @@ import SpriteKit
 
 class PauseScreen: SKSpriteNode {
     
-    init() {
+    init(music: Bool, effects: Bool) {
         let screenSize = UIScreen.main.bounds.size
         let texture = SKTexture(imageNamed: "pausebg")
         super.init(texture: texture, color: .clear, size: CGSize(width: screenSize.width * 0.75, height: screenSize.width * 0.75))
@@ -49,6 +49,19 @@ class PauseScreen: SKSpriteNode {
         message.size = CGSize(width: resumeButton.size.width, height: resumeButton.size.height)
         
         addChild(message)
+        
+        /*
+         MUSIC BUTTON
+         */
+        let musicButton = LittleCircleNode(buttonType: .music, onOff: music)
+        self.addChild(musicButton)
+        
+        /*
+         Special Effects BUTTON
+         */
+        let specialEffectsButton = LittleCircleNode(buttonType: .effects, onOff: effects)
+        self.addChild(specialEffectsButton)
+
     }
     
     required init?(coder aDecoder: NSCoder) {

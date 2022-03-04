@@ -95,6 +95,8 @@ class GameOverScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     override func didMove(to view: SKView) {
+        let volumAct = SKAction.changeVolume(to: 0.7, duration: 0.1)
+        bgMusic.run(volumAct)
         if musicSouldPlay{
             addChild(bgMusic)
         }

@@ -61,6 +61,7 @@
 		958CD54F27D0C85C00E141CF /* winning.caf in Resources */ = {isa = PBXBuildFile; fileRef = 958CD54E27D0C65F00E141CF /* winning.caf */; };
 		958CD55327D0CE7800E141CF /* Abi22i.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 958CD55227D0CCFF00E141CF /* Abi22i.m4a */; };
 		958CD55427D0D32600E141CF /* Ab1ss1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 958CD55027D0C99500E141CF /* Ab1ss1.m4a */; };
+		958CD55827D1124600E141CF /* LittleCircleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD55727D1124600E141CF /* LittleCircleNode.swift */; };
 		95A93A4E27BD8E5E00515A06 /* MeteoriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */; };
 		95BD2FC227C194F600A734CC /* shieldHit.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95BD2FC127C194F600A734CC /* shieldHit.atlas */; };
 		95F17D9327BE7B7600A8EB71 /* StarsBackground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */; };
@@ -126,6 +127,7 @@
 		958CD54E27D0C65F00E141CF /* winning.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = winning.caf; sourceTree = "<group>"; };
 		958CD55027D0C99500E141CF /* Ab1ss1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ab1ss1.m4a; sourceTree = "<group>"; };
 		958CD55227D0CCFF00E141CF /* Abi22i.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Abi22i.m4a; sourceTree = "<group>"; };
+		958CD55727D1124600E141CF /* LittleCircleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleCircleNode.swift; sourceTree = "<group>"; };
 		95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteNode.swift; sourceTree = "<group>"; };
 		95BD2FC127C194F600A734CC /* shieldHit.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = shieldHit.atlas; sourceTree = "<group>"; };
 		95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarsBackground.sks; sourceTree = "<group>"; };
@@ -198,7 +200,6 @@
 				7F40023127B271E2001182EB /* GameViewController.swift */,
 				291E913E27C64C1500AECC95 /* Constants.swift */,
 				7F40022F27B271E2001182EB /* GameScene.swift */,
-				950ABE4927CFE8EA009E220E /* SpeedParticles.sks */,
 				9548DBC627B71D7B002D5B12 /* PlayerNode.swift */,
 				9548DBC827B71DB8002D5B12 /* ShieldNode.swift */,
 				9583AEA427C630B0009A5FA1 /* SKSpriteNode+shadow.swift */,
@@ -212,8 +213,10 @@
 				29A0288527C3D5F3006BBBC7 /* PauseScreen.swift */,
 				950ABE4727CEB9A4009E220E /* TutorialSpriteLabel.swift */,
 				95355B5827C66538007BC079 /* GreenButtonNode.swift */,
+				958CD55727D1124600E141CF /* LittleCircleNode.swift */,
 				29E6641427C4FBA400430F59 /* MenuScreen.swift */,
 				29A0288327C3CF8A006BBBC7 /* Stars.sks */,
+				950ABE4927CFE8EA009E220E /* SpeedParticles.sks */,
 				9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */,
 				2980F63D27B3D66E00C318DF /* GameScene.sks */,
 				291218CF27BA9970006836F6 /* Explosion.sks */,
@@ -347,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29E6641527C4FBA400430F59 /* MenuScreen.swift in Sources */,
+				958CD55827D1124600E141CF /* LittleCircleNode.swift in Sources */,
 				7FA70D6427C6288E00C12330 /* UIColor+RGB.swift in Sources */,
 				95A93A4E27BD8E5E00515A06 /* MeteoriteNode.swift in Sources */,
 				9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */,

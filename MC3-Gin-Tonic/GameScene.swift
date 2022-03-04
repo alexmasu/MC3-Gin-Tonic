@@ -313,11 +313,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.run(SKAction.colorize(with: .black, colorBlendFactor: 0.9, duration: 0.15)){
                     self.enemy.run(SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.15))
                 }
-//                enemy.life -= 1
                 enemy.reduceLife()
                 if enemy.life == 0 {
                     enemy.enemyBoom()
-                    
+                    run(wonSound)
                     self.run(SKAction.wait(forDuration: 0.8)) {
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: true)

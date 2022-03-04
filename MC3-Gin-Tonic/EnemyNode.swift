@@ -143,7 +143,5 @@ class EnemyNode: SKSpriteNode {
         self.run(animHit) {
             self.removeFromParent()
         }
-        
     }
-    
 }

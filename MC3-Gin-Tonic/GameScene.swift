@@ -79,15 +79,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         notificationCenter.addObserver(self, selector: #selector(pauseGame), name: UIApplication.didBecomeActiveNotification, object: nil)
-//        music = musicSouldPlay
-//        effects = effectsSouldPlay
+        //        music = musicSouldPlay
+        //        effects = effectsSouldPlay
         
-            self.addChild(backgroundMusic)
-            let volumAct = SKAction.changeVolume(to: 0.3, duration: 0.1)
-            let changeOcc = SKAction.changeOcclusion(to: 30, duration: 0.1)
-
-            backgroundMusic.run(volumAct)
-            backgroundMusic.run(changeOcc)
+        backgroundMusic.name = "backgroundMusic"
+        let volumAct = SKAction.changeVolume(to: 0.3, duration: 0.1)
+        let changeOcc = SKAction.changeOcclusion(to: -25, duration: 0.1)
+        let stopMusic = SKAction.stop()
+        let playMusic = SKAction.play()
+        backgroundMusic.run(stopMusic)
+        backgroundMusic.run(volumAct)
+        backgroundMusic.run(changeOcc)
+        self.addChild(backgroundMusic)
+        
+        if music {
+            backgroundMusic.run(playMusic)
+        }
 
         physicsWorld.gravity = .zero
         self.physicsWorld.contactDelegate = self
@@ -151,6 +158,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else if nodeTouched.name == "ResumeBtn" {
             pause.removeFromParent()
             self.isPaused = false
+            if music {
+                backgroundMusic.run(SKAction.play())
+            } else {
+                backgroundMusic.run(SKAction.stop())
+            }
             
         } else if nodeTouched.name == "QuitBtn" {
             if let view = self.view {
@@ -170,11 +182,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if nodeTouched.name == "musicButton" {
             music.toggle()
-            if music {
-                self.addChild(backgroundMusic)
-            } else {
-                backgroundMusic.removeFromParent()
-            }
             UserDefaults.standard.set(music, forKey: "music")
             guard let musicEffectsButton = nodeTouched as? LittleCircleNode else {return}
             musicEffectsButton.changeTextureOnOff(onOff: music)
@@ -295,10 +302,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondNode.removeFromParent()
             guard let meteor = firstNode as? MeteoriteNode else {return}
             if meteor.isDestroyedAfterHit() {
-                
-                if effects {
-                run(powerUpSound)
-                }
             }
         }
         
@@ -329,6 +332,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if firstNode.name == "cannonChargeIndicator" {
             if cannon.cannonEnergy != 3 {
+                if effects {
+                    run(powerUpSound)
+                }
                 cannon.cannonCharge()
                 if cannon.cannonEnergy == 3{
                     shield.scaleCannonCharged()

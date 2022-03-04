@@ -22,12 +22,14 @@ class MenuScreen: SKScene {
             music = UserDefaults.standard.bool(forKey: "music")
         } else {
             music = true
+            UserDefaults.standard.set(music, forKey: "music")
         }
         
         if UserDefaults.standard.contains(key: "effects") {
             effects = UserDefaults.standard.bool(forKey: "effects")
         } else {
             effects = true
+            UserDefaults.standard.set(effects, forKey: "effects")
         }
         
 //        music = UserDefaults.standard.bool(forKey: "music")

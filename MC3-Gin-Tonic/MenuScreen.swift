@@ -6,6 +6,9 @@
 //
 import AVFoundation
 import SpriteKit
+import AVKit
+import Foundation
+
 
 class MenuScreen: SKScene {
 //    var intero = 0
@@ -15,8 +18,20 @@ class MenuScreen: SKScene {
     override init(size: CGSize) {
         super.init(size: size)
         
-        music = UserDefaults.standard.bool(forKey: "music")
-        effects = UserDefaults.standard.bool(forKey: "effects")
+        if UserDefaults.standard.contains(key: "music") {
+            music = UserDefaults.standard.bool(forKey: "music")
+        } else {
+            music = true
+        }
+        
+        if UserDefaults.standard.contains(key: "effects") {
+            effects = UserDefaults.standard.bool(forKey: "effects")
+        } else {
+            effects = true
+        }
+        
+//        music = UserDefaults.standard.bool(forKey: "music")
+//        effects = UserDefaults.standard.bool(forKey: "effects")
 
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         

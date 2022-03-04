@@ -316,11 +316,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //                enemy.life -= 1
                 enemy.reduceLife()
                 if enemy.life == 0 {
-                    run(wonSound) {
-                        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                        let gameOverScene = GameOverScene(size: self.size, won: true)
-                        
+                    enemy.enemyBoom()
+                    
+                    self.run(SKAction.wait(forDuration: 0.8)) {
+                    let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                    let gameOverScene = GameOverScene(size: self.size, won: true)
+                    
                         self.view?.presentScene(gameOverScene, transition: reveal)
+                    //                    print("YOU WON")
                         self.enemy.life = 3
                     }
                 }

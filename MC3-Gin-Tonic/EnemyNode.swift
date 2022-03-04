@@ -134,4 +134,16 @@ class EnemyNode: SKSpriteNode {
         guard let shadow = self.childNode(withName: "shadow") as? SKSpriteNode else {return}
         shadow.run(SKAction.colorize(with: self.life == 2 ? .purple : .red, colorBlendFactor: 1, duration: 0.2))
     }
+    
+    func enemyBoom() {
+       
+            let frames = makeAnimationFrames(from: "enemyExplosion")
+            let animHit = SKAction.animate(with: frames, timePerFrame: 0.026, resize: false, restore: false)
+            
+        self.run(animHit) {
+            self.removeFromParent()
+        }
+        
+    }
+    
 }

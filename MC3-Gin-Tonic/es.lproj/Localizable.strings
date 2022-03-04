@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  MC3-Gin-Tonic
+
+  Created by Alessandro Masullo on 22/02/22.
+  
+*/
+
+// GameOverScene
+
+"CONTINUE" = "CONTINUAR";
+
+"RETRY" = "REINTENTE";
+
+"EXPLORED" = "EXPLORADO";
+
+"PLANET" = "PLANETA";
+
+"PLANET-1" = "PLANETA-1";
+
+"TO PLANET-1" = "AL PLANETA-1";
+
+"TO PLANET-2" = "AL PLANETA-2";
+
+"GAME" = "FIN";
+
+"OVER" = "DEL JUEGO";

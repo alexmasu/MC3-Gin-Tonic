@@ -50,6 +50,60 @@
       "idiom" : "universal",
       "locale" : "it",
       "scale" : "3x"
+    },
+    {
+      "filename" : "PIANETA ESPLORATO-3.png",
+      "idiom" : "universal",
+      "locale" : "es",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "PIANETA ESPLORATO@2x-3.png",
+      "idiom" : "universal",
+      "locale" : "es",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "PIANETA ESPLORATO@3x-3.png",
+      "idiom" : "universal",
+      "locale" : "es",
+      "scale" : "3x"
+    },
+    {
+      "filename" : "PIANETA ESPLORATO-2.png",
+      "idiom" : "universal",
+      "locale" : "de",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "PIANETA ESPLORATO@2x-2.png",
+      "idiom" : "universal",
+      "locale" : "de",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "PIANETA ESPLORATO@3x-2.png",
+      "idiom" : "universal",
+      "locale" : "de",
+      "scale" : "3x"
+    },
+    {
+      "filename" : "PIANETA ESPLORATO-1.png",
+      "idiom" : "universal",
+      "locale" : "fr",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "PIANETA ESPLORATO@2x-1.png",
+      "idiom" : "universal",
+      "locale" : "fr",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "PIANETA ESPLORATO@3x-1.png",
+      "idiom" : "universal",
+      "locale" : "fr",
+      "scale" : "3x"
     }
   ],
   "info" : {

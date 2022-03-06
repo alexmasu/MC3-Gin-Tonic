@@ -50,6 +50,24 @@
       "idiom" : "universal",
       "locale" : "it",
       "scale" : "3x"
+    },
+    {
+      "filename" : "Pausa-1.png",
+      "idiom" : "universal",
+      "locale" : "es",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Pausa@2x-1.png",
+      "idiom" : "universal",
+      "locale" : "es",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Pausa@3x-1.png",
+      "idiom" : "universal",
+      "locale" : "es",
+      "scale" : "3x"
     }
   ],
   "info" : {

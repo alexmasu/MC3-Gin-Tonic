@@ -8,9 +8,9 @@
 
 // GameOverScene
 
-"CONTINUE" = "FORTSETZEN";
+"CONTINUE" = "FORTFAHREN";
 
-"RETRY" = "WIEDERHOLEN SIE";
+"RETRY" = "WIEDERHOLEN";
 
 "EXPLORED" = "ERKUNDET";
 
@@ -24,4 +24,4 @@
 
 "GAME" = "SPIEL";
 
-"OVER" = "VORBEI";
+"OVER" = "IST VORBEI";

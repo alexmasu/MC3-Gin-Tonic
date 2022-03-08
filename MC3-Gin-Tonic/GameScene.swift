@@ -191,7 +191,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         if nodeTouched.name == "musicButton" {
-            self.isPaused = false
             self.run(popButtons)
             music.toggle()
             UserDefaults.standard.set(music, forKey: "music")
@@ -199,7 +198,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             musicEffectsButton.changeTextureOnOff(onOff: music)
         }
         if nodeTouched.name == "specialEffectsButton" {
-            self.isPaused = false
             self.run(popButtons)
             effects.toggle()
             UserDefaults.standard.set(effects, forKey: "effects")

@@ -99,7 +99,7 @@ class PlayerNode: SKSpriteNode {
         playerBullet.makeShapeGlow(cornerRadius: 10, scaleSizeBy: 0.7, color: .cyan)
 
         
-        self.parent!.addChild(playerBullet)
+        scene?.addChild(playerBullet)
         playerBullet.name = "playerBullet"
 
         let dx = speed * cos(playerAngleAdjusted)

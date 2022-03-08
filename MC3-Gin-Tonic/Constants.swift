@@ -6,6 +6,7 @@
 //
 
 import CoreGraphics
+import Foundation
 
 enum SoundFile {
     static let backgroundMusic = "synthCopy.caf"

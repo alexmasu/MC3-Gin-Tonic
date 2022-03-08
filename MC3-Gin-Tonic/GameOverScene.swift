@@ -6,11 +6,13 @@
 //
 
 import SpriteKit
+import AVFAudio
 
 class GameOverScene: SKScene {
     var greenButtonTouched = false
     let musicSouldPlay = UserDefaults.standard.bool(forKey: "music")
-    let bgMusic = SKAudioNode(fileNamed: SoundFile.musicForMenu)
+    var effects = UserDefaults.standard.bool(forKey: "effects")
+    var backgroundMusicAV : AVAudioPlayer!
     let popSound = SKAction.playSoundFileNamed(SoundFile.popButtons, waitForCompletion: true)
 
     init(size: CGSize, won:Bool) {
@@ -22,6 +24,7 @@ class GameOverScene: SKScene {
         makeAlien()
         makePlanet()
         makeGlass()
+        setUpBgMusic(fileName: "Abi22i (online-audio-converter.com).mp3")
         
         // GREEN BUTTON NODE
         let greenButtonText = won ? "CONTINUE" : "RETRY"
@@ -96,10 +99,10 @@ class GameOverScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     override func didMove(to view: SKView) {
-        let volumAct = SKAction.changeVolume(to: 0.7, duration: 0.1)
-        bgMusic.run(volumAct)
         if musicSouldPlay{
-            addChild(bgMusic)
+            if !self.backgroundMusicAV.isPlaying {
+                self.backgroundMusicAV.play()
+            }
         }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -109,13 +112,15 @@ class GameOverScene: SKScene {
         // Locate the node at this location:
         let nodeTouched = atPoint(location)
         if nodeTouched.name == "GreenButton" {
+            backgroundMusicAV.stop()
             greenButtonTouched = true
         }
         if nodeTouched.name == "QuitBtn" {
             if let view = self.view {
                 let reveal = SKTransition.fade(withDuration: 0.5)
                 let menuScene = MenuScreen(size: self.size)
-                run(popSound)
+                self.playTapSound(action: popSound, shouldPlayEffects: effects)
+                backgroundMusicAV.stop()
                 view.presentScene(menuScene, transition: reveal)
             }
         }
@@ -123,7 +128,8 @@ class GameOverScene: SKScene {
             if let view = self.view {
                 let reveal = SKTransition.fade(withDuration: 0.5)
                 let gameScene = GameScene(size: self.size)
-                run(popSound)
+                self.playTapSound(action: popSound, shouldPlayEffects: effects)
+                backgroundMusicAV.stop()
                 view.presentScene(gameScene, transition: reveal)
             }
         }
@@ -143,11 +149,27 @@ class GameOverScene: SKScene {
                     if let scene = SKScene(fileNamed: "GameScene") {
                         scene.size = view.frame.size
                         scene.scaleMode = .aspectFill
-                        run(popSound)
+                        self.playTapSound(action: popSound, shouldPlayEffects: effects)
                         view.presentScene(scene)
                     }
                 }
             }
         }
     }
+    
+    func setUpBgMusic(fileName: String){
+        if self.backgroundMusicAV == nil {
+            guard let backgroundMusicURL = Bundle.main.url(forResource: fileName, withExtension: nil) else {return}
+          do {
+            let theme = try AVAudioPlayer(contentsOf: backgroundMusicURL)
+              self.backgroundMusicAV = theme
+          } catch {
+            print("Couldn't load file")
+          }
+            backgroundMusicAV.prepareToPlay()
+            self.backgroundMusicAV.numberOfLoops = -1
+            self.backgroundMusicAV.volume = 0.5
+        }
+    }
+
 }

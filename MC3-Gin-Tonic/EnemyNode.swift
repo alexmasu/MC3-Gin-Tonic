@@ -78,6 +78,16 @@ class EnemyNode: SKSpriteNode {
 //        weapon.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
         
     }
+    
+//    func startEndlessFiring(enemyShootSound: SKAction, shouldPlaySound: Bool){
+//        let shot = SKAction.run {
+//            self.fire(enemyShootSound: enemyShootSound, shouldPlaySound: shouldPlaySound)
+//        }
+//        let colorizeSeq = SKAction.sequence([SKAction.colorize(with: .magenta, colorBlendFactor: 0.5, duration: 0.17), SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.17)])
+//        let seq = SKAction.sequence([SKAction.wait(forDuration: Double.random(in: 4...8)), colorizeSeq, colorizeSeq, shot])
+//        let endlessFiring = SKAction.repeatForever(seq)
+//        self.run(endlessFiring)
+//    }
 
     func configureMovement(sceneSize: CGSize) {
         let bezierPath1 = UIBezierPath(arcCenter: CGPoint(x: 0, y: -(sceneSize.height / 5)), radius: sceneSize.height / 5, startAngle: 0.0, endAngle: CGFloat.pi, clockwise: false)

@@ -140,6 +140,7 @@ class MetSpawner : SKNode {
     }
     
     func spawnAndStartMoving() {
+        if self.isPaused == false {
         let sizee = metSize.randomElement() ?? meteoriteTexture.size()
         let meteorite = MeteoriteNode(texture: meteoriteTexture, pSize: sizee, atlas1: meteoriteAnimAtlas1, atlas2: meteoriteAnimAtlas2, atlas3: meteoriteAnimAtlas3)
         
@@ -156,5 +157,16 @@ class MetSpawner : SKNode {
             meteorite.removeFromParent()
         }
         scene?.addChild(meteorite)
+    }
+    }
+    
+    func endlessSpawning(){
+        let waiting = SKAction.wait(forDuration: 6.0)
+        let spawn = SKAction.run {
+            self.spawnAndStartMoving()
+        }
+        let seq = SKAction.sequence([waiting, spawn])
+        let endlessSpawn = SKAction.repeatForever(seq)
+        self.run(endlessSpawn)
     }
 }

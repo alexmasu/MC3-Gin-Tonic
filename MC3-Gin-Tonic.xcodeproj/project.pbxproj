@@ -69,7 +69,9 @@
 		95BD2FC227C194F600A734CC /* shieldHit.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95BD2FC127C194F600A734CC /* shieldHit.atlas */; };
 		95F17D9327BE7B7600A8EB71 /* StarsBackground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */; };
 		95F17DB827BEF9B200A8EB71 /* MetEnergyParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95F17DB727BEF9B200A8EB71 /* MetEnergyParticles.sks */; };
-		95FE7DC527D7679B00915034 /* popButtons.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95FE7DC427D7624100915034 /* popButtons.m4a */; };
+		95FE7DCB27D7794300915034 /* Ab1ss1 (online-audio-converter.com).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 95FE7DCA27D7794300915034 /* Ab1ss1 (online-audio-converter.com).mp3 */; };
+		95FE7DCD27D7B6E300915034 /* Abi22i (online-audio-converter.com).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 95FE7DCC27D7B6E300915034 /* Abi22i (online-audio-converter.com).mp3 */; };
+		95FE7DD327D7D06D00915034 /* SKScene + popButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FE7DD227D7D06D00915034 /* SKScene + popButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,6 +144,9 @@
 		95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarsBackground.sks; sourceTree = "<group>"; };
 		95F17DB727BEF9B200A8EB71 /* MetEnergyParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MetEnergyParticles.sks; sourceTree = "<group>"; };
 		95FE7DC427D7624100915034 /* popButtons.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = popButtons.m4a; sourceTree = "<group>"; };
+		95FE7DCA27D7794300915034 /* Ab1ss1 (online-audio-converter.com).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ab1ss1 (online-audio-converter.com).mp3"; sourceTree = "<group>"; };
+		95FE7DCC27D7B6E300915034 /* Abi22i (online-audio-converter.com).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Abi22i (online-audio-converter.com).mp3"; sourceTree = "<group>"; };
+		95FE7DD227D7D06D00915034 /* SKScene + popButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKScene + popButton.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +164,9 @@
 			isa = PBXGroup;
 			children = (
 				958CD55227D0CCFF00E141CF /* Abi22i.m4a */,
+				95FE7DCA27D7794300915034 /* Ab1ss1 (online-audio-converter.com).mp3 */,
 				95FE7DC427D7624100915034 /* popButtons.m4a */,
+				95FE7DCC27D7B6E300915034 /* Abi22i (online-audio-converter.com).mp3 */,
 				291E914027C6816500AECC95 /* loss.caf */,
 				291E913227C64B8E00AECC95 /* laserShoot.caf */,
 				291E913327C64B8E00AECC95 /* boom.caf */,
@@ -226,6 +233,7 @@
 				95355B5827C66538007BC079 /* GreenButtonNode.swift */,
 				958CD55727D1124600E141CF /* LittleCircleNode.swift */,
 				29E6641427C4FBA400430F59 /* MenuScreen.swift */,
+				95FE7DD227D7D06D00915034 /* SKScene + popButton.swift */,
 				29A0288327C3CF8A006BBBC7 /* Stars.sks */,
 				950ABE4927CFE8EA009E220E /* SpeedParticles.sks */,
 				9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */,
@@ -332,6 +340,7 @@
 				291E913B27C64B8E00AECC95 /* powerUp.caf in Resources */,
 				9548DBCB27B71DF0002D5B12 /* ShieldBackGlow.sks in Resources */,
 				95BD2FC227C194F600A734CC /* shieldHit.atlas in Resources */,
+				95FE7DCD27D7B6E300915034 /* Abi22i (online-audio-converter.com).mp3 in Resources */,
 				2932F2A527BD127800A7ED80 /* AdventPro-Regular.ttf in Resources */,
 				7F40023527B271E2001182EB /* Main.storyboard in Resources */,
 				95F17D9327BE7B7600A8EB71 /* StarsBackground.sks in Resources */,
@@ -351,6 +360,7 @@
 				291E913D27C64B8E00AECC95 /* laserShoot2.caf in Resources */,
 				9583AEA327C6279C009A5FA1 /* shieldAnim.atlas in Resources */,
 				7F40023A27B271E3001182EB /* LaunchScreen.storyboard in Resources */,
+				95FE7DCB27D7794300915034 /* Ab1ss1 (online-audio-converter.com).mp3 in Resources */,
 				291218D027BA9970006836F6 /* Explosion.sks in Resources */,
 				7FE1CA8727C4ED8D00FD7731 /* Localizable.strings in Resources */,
 				291E913A27C64B8E00AECC95 /* synthCopy.caf in Resources */,
@@ -380,6 +390,7 @@
 				7F40023227B271E2001182EB /* GameViewController.swift in Sources */,
 				9583AEA527C630B0009A5FA1 /* SKSpriteNode+shadow.swift in Sources */,
 				2984718927B571D400E88AA8 /* EnemyNode.swift in Sources */,
+				95FE7DD327D7D06D00915034 /* SKScene + popButton.swift in Sources */,
 				29514EE927BC074E00E94576 /* HUD.swift in Sources */,
 				29514EEB27BC08C200E94576 /* GameOverScene.swift in Sources */,
 				7F9082EF27CF708B00705A88 /* UserSettings.swift in Sources */,

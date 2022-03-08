@@ -15,7 +15,7 @@ class MenuScreen: SKScene {
     var music = true
     var effects = true
     let bgMusic = SKAudioNode(fileNamed: SoundFile.musicForMenu)
-    let popSound = SKAction.playSoundFileNamed("popButtons.m4a", waitForCompletion: true)
+    let popSound = SKAction.playSoundFileNamed(SoundFile.popButtons, waitForCompletion: true)
     
     override init(size: CGSize) {
         super.init(size: size)

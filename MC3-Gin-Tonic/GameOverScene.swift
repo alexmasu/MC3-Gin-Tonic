@@ -11,7 +11,7 @@ class GameOverScene: SKScene {
     var greenButtonTouched = false
     let musicSouldPlay = UserDefaults.standard.bool(forKey: "music")
     let bgMusic = SKAudioNode(fileNamed: SoundFile.musicForMenu)
-    let popSound = SKAction.playSoundFileNamed("popButtons.m4a", waitForCompletion: true)
+    let popSound = SKAction.playSoundFileNamed(SoundFile.popButtons, waitForCompletion: true)
 
     init(size: CGSize, won:Bool) {
 

@@ -139,6 +139,7 @@
 		95BD2FC127C194F600A734CC /* shieldHit.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = shieldHit.atlas; sourceTree = "<group>"; };
 		95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarsBackground.sks; sourceTree = "<group>"; };
 		95F17DB727BEF9B200A8EB71 /* MetEnergyParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MetEnergyParticles.sks; sourceTree = "<group>"; };
+		95FE7DC427D7624100915034 /* popButtons.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = popButtons.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				958CD55227D0CCFF00E141CF /* Abi22i.m4a */,
+				95FE7DC427D7624100915034 /* popButtons.m4a */,
 				291E914027C6816500AECC95 /* loss.caf */,
 				291E913227C64B8E00AECC95 /* laserShoot.caf */,
 				291E913327C64B8E00AECC95 /* boom.caf */,

@@ -29,6 +29,7 @@
 		2984718927B571D400E88AA8 /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984718827B571D400E88AA8 /* EnemyNode.swift */; };
 		29A0288427C3CF8A006BBBC7 /* Stars.sks in Resources */ = {isa = PBXBuildFile; fileRef = 29A0288327C3CF8A006BBBC7 /* Stars.sks */; };
 		29A0288627C3D5F3006BBBC7 /* PauseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0288527C3D5F3006BBBC7 /* PauseScreen.swift */; };
+		29C69F5E27D7684C006127CA /* popButtons.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95FE7DC427D7624100915034 /* popButtons.m4a */; };
 		29E6641527C4FBA400430F59 /* MenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E6641427C4FBA400430F59 /* MenuScreen.swift */; };
 		29F9762927D0B88900CF5208 /* loss.caf in Resources */ = {isa = PBXBuildFile; fileRef = 291E914027C6816500AECC95 /* loss.caf */; };
 		29F9762D27D0BAA300CF5208 /* Fanfare.caf in Resources */ = {isa = PBXBuildFile; fileRef = 29F9762C27D0BA9100CF5208 /* Fanfare.caf */; };
@@ -317,6 +318,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29C69F5E27D7684C006127CA /* popButtons.m4a in Resources */,
 				958CD55427D0D32600E141CF /* Ab1ss1.m4a in Resources */,
 				958CD55327D0CE7800E141CF /* Abi22i.m4a in Resources */,
 				958CD54F27D0C85C00E141CF /* winning.caf in Resources */,

@@ -69,6 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let powerUpSound = SKAction.playSoundFileNamed(SoundFile.powerUpSound, waitForCompletion: false)
     let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: true)
     var backgroundMusic = SKAudioNode(fileNamed: SoundFile.musicForGame)
+    let popButtons = SKAction.playSoundFileNamed(SoundFile.popButtons, waitForCompletion: true)
     
     var music = UserDefaults.standard.bool(forKey: "music")
     var effects = UserDefaults.standard.bool(forKey: "effects")
@@ -149,13 +150,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         let nodeTouched = atPoint(touchLocation)
+        
         if nodeTouched.name == "PauseBtn" {
+            run(popButtons) {
             if !self.isPaused {
                 self.isPaused = true
-                pause.zPosition = 30
-                self.addChild(pause)
+                self.pause.zPosition = 30
+                self.addChild(self.pause)
+            }
             }
         } else if nodeTouched.name == "ResumeBtn" {
+            run(popButtons)
             pause.removeFromParent()
             self.isPaused = false
             if music {
@@ -165,7 +170,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         } else if nodeTouched.name == "QuitBtn" {
+            
             if let view = self.view {
+                self.isPaused = false
+                self.run(popButtons)
                 let reveal = SKTransition.fade(withDuration: 0.5)
                 let menuScene = MenuScreen(size: self.size)
                 
@@ -174,6 +182,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         } else if nodeTouched.name == "SettingsBtn" {
             if let view = self.view {
+                self.isPaused = false
+                self.run(popButtons)
                 let reveal = SKTransition.fade(withDuration: 0.5)
                 let gameScene = GameScene(size: self.size)
                 
@@ -181,12 +191,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         if nodeTouched.name == "musicButton" {
+            self.isPaused = false
+            self.run(popButtons)
             music.toggle()
             UserDefaults.standard.set(music, forKey: "music")
             guard let musicEffectsButton = nodeTouched as? LittleCircleNode else {return}
             musicEffectsButton.changeTextureOnOff(onOff: music)
         }
         if nodeTouched.name == "specialEffectsButton" {
+            self.isPaused = false
+            self.run(popButtons)
             effects.toggle()
             UserDefaults.standard.set(effects, forKey: "effects")
             guard let specialEffectsButton = nodeTouched as? LittleCircleNode else {return}

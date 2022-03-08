@@ -69,6 +69,7 @@
 		95BD2FC227C194F600A734CC /* shieldHit.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95BD2FC127C194F600A734CC /* shieldHit.atlas */; };
 		95F17D9327BE7B7600A8EB71 /* StarsBackground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */; };
 		95F17DB827BEF9B200A8EB71 /* MetEnergyParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95F17DB727BEF9B200A8EB71 /* MetEnergyParticles.sks */; };
+		95FE7DC527D7679B00915034 /* popButtons.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95FE7DC427D7624100915034 /* popButtons.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */

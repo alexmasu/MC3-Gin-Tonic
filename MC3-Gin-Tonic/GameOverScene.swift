@@ -11,6 +11,7 @@ class GameOverScene: SKScene {
     var greenButtonTouched = false
     let musicSouldPlay = UserDefaults.standard.bool(forKey: "music")
     let bgMusic = SKAudioNode(fileNamed: SoundFile.musicForMenu)
+    let popSound = SKAction.playSoundFileNamed("popButtons.m4a", waitForCompletion: true)
 
     init(size: CGSize, won:Bool) {
 
@@ -114,7 +115,7 @@ class GameOverScene: SKScene {
             if let view = self.view {
                 let reveal = SKTransition.fade(withDuration: 0.5)
                 let menuScene = MenuScreen(size: self.size)
-                
+                run(popSound)
                 view.presentScene(menuScene, transition: reveal)
             }
         }
@@ -122,7 +123,7 @@ class GameOverScene: SKScene {
             if let view = self.view {
                 let reveal = SKTransition.fade(withDuration: 0.5)
                 let gameScene = GameScene(size: self.size)
-                
+                run(popSound)
                 view.presentScene(gameScene, transition: reveal)
             }
         }
@@ -142,7 +143,7 @@ class GameOverScene: SKScene {
                     if let scene = SKScene(fileNamed: "GameScene") {
                         scene.size = view.frame.size
                         scene.scaleMode = .aspectFill
-                        
+                        run(popSound)
                         view.presentScene(scene)
                     }
                 }

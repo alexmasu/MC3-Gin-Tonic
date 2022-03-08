@@ -15,6 +15,8 @@ class MenuScreen: SKScene {
     var music = true
     var effects = true
     let bgMusic = SKAudioNode(fileNamed: SoundFile.musicForMenu)
+    let popSound = SKAction.playSoundFileNamed("popButtons.m4a", waitForCompletion: true)
+    
     override init(size: CGSize) {
         super.init(size: size)
         
@@ -103,12 +105,14 @@ class MenuScreen: SKScene {
                     scene.scaleMode = .aspectFill
                     let transition = SKTransition.fade(withDuration: 0.5)
 //                    self.bgMusic.removeFromParent()
-                    view.presentScene(scene, transition: transition)
+                        self.run(self.popSound)
+                            view.presentScene(scene, transition: transition)
                 }
             }
         }
         
         if nodeTouched.name == "musicButton" {
+            self.run(popSound)
             music.toggle()
             if music {
                 addChild(bgMusic)
@@ -120,6 +124,7 @@ class MenuScreen: SKScene {
                 musicEffectsButton.changeTextureOnOff(onOff: music)
         }
         if nodeTouched.name == "specialEffectsButton" {
+            self.run(popSound)
             effects.toggle()
             UserDefaults.standard.set(effects, forKey: "effects")
             guard let specialEffectsButton = nodeTouched as? LittleCircleNode else {return}

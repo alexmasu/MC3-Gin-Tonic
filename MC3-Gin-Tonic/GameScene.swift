@@ -248,11 +248,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if enemy.lastFiredTime + Double(Int.random(in: 4...8)) <= currentTime {
             if enemyShouldFire {
                 enemy.lastFiredTime = currentTime
-                enemy.fire()
-                if effects {
-
-                run(enemyShootSound)
+                let seq = SKAction.sequence([SKAction.colorize(with: .magenta, colorBlendFactor: 0.5, duration: 0.15), SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.15)])
+                enemy.run(SKAction.repeat(seq, count: 2)){
+                    self.enemy.fire()
+                    if self.effects {
+                        self.run(self.enemyShootSound)
+                    }
                 }
+                
             }
         }
         if metSpawner.meteoriteLastSpawnTime + 6 <= currentTime {
@@ -324,8 +327,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 makeExplosion(position: contact.contactPoint, on: enemy)
                 
                 firstNode.removeFromParent()
-                enemy.run(SKAction.colorize(with: .black, colorBlendFactor: 0.9, duration: 0.15)){
-                    self.enemy.run(SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.15))
+                enemy.run(SKAction.colorize(with: .black, colorBlendFactor: 0.9, duration: 0.12)){
+                    self.enemy.run(SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.12))
                 }
                 enemy.reduceLife()
                 if enemy.life == 0 {

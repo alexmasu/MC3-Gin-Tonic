@@ -68,7 +68,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let cannonSound = SKAction.playSoundFileNamed(SoundFile.cannonSound, waitForCompletion: false)
     let powerUpSound = SKAction.playSoundFileNamed(SoundFile.powerUpSound, waitForCompletion: false)
     let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: true)
-    var backgroundMusic = SKAudioNode(fileNamed: SoundFile.musicForGame)
+    
+    var backgroundMusicAV : AVAudioPlayer!
+    
+    let popButtons = SKAction.playSoundFileNamed(SoundFile.popButtons, waitForCompletion: true)
     
     var music = UserDefaults.standard.bool(forKey: "music")
     var effects = UserDefaults.standard.bool(forKey: "effects")
@@ -79,21 +82,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         notificationCenter.addObserver(self, selector: #selector(pauseGame), name: UIApplication.didBecomeActiveNotification, object: nil)
-        //        music = musicSouldPlay
-        //        effects = effectsSouldPlay
         
-        backgroundMusic.name = "backgroundMusic"
-        let volumAct = SKAction.changeVolume(to: 0.3, duration: 0.1)
-        let changeOcc = SKAction.changeOcclusion(to: -25, duration: 0.1)
-        let stopMusic = SKAction.stop()
-        let playMusic = SKAction.play()
-        backgroundMusic.run(stopMusic)
-        backgroundMusic.run(volumAct)
-        backgroundMusic.run(changeOcc)
-        self.addChild(backgroundMusic)
+        setUpBgMusic(fileName: "Ab1ss1 (online-audio-converter.com).mp3")
         
         if music {
-            backgroundMusic.run(playMusic)
+            if !self.backgroundMusicAV.isPlaying {
+              self.backgroundMusicAV.play()
+            }
         }
 
         physicsWorld.gravity = .zero
@@ -126,16 +121,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemy.configureMovement(sceneSize: self.size)
         self.addChild(enemy)
 
-        let wait = SKAction.wait(forDuration: Double.random(in: 5...7))
+        let wait = SKAction.wait(forDuration: 5)
         self.run(wait){
             self.enemyShouldFire = true
+            self.enemy.startEndlessFiring(enemyShootSound: self.enemyShootSound, shouldPlaySound: self.effects)
         }
         let wait2 = SKAction.wait(forDuration: 2)
-        self.run(wait2){
-            self.meteoritesShoulSpawn = true
-        }
+        
         addChild(metSpawner)
         metSpawner.configurePossibleStartXandY()
+        self.run(wait2){
+            self.metSpawner.endlessSpawning()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -149,23 +146,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         let nodeTouched = atPoint(touchLocation)
+        
         if nodeTouched.name == "PauseBtn" {
-            if !self.isPaused {
-                self.isPaused = true
-                pause.zPosition = 30
-                self.addChild(pause)
-            }
+            self.playTapSound(action: popButtons, shouldPlayEffects: effects)
+                self.pauseChilds(isPaused: true)
+                self.pause.zPosition = 30
+                self.addChild(self.pause)
+            
         } else if nodeTouched.name == "ResumeBtn" {
+            self.playTapSound(action: popButtons, shouldPlayEffects: effects)
             pause.removeFromParent()
-            self.isPaused = false
-            if music {
-                backgroundMusic.run(SKAction.play())
-            } else {
-                backgroundMusic.run(SKAction.stop())
-            }
+            pauseChilds(isPaused: false)
             
         } else if nodeTouched.name == "QuitBtn" {
+            
             if let view = self.view {
+                self.playTapSound(action: popButtons, shouldPlayEffects: effects)
+                backgroundMusicAV.stop()
                 let reveal = SKTransition.fade(withDuration: 0.5)
                 let menuScene = MenuScreen(size: self.size)
                 
@@ -174,6 +171,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         } else if nodeTouched.name == "SettingsBtn" {
             if let view = self.view {
+                self.playTapSound(action: popButtons, shouldPlayEffects: effects)
+                backgroundMusicAV.stop()
+
                 let reveal = SKTransition.fade(withDuration: 0.5)
                 let gameScene = GameScene(size: self.size)
                 
@@ -181,12 +181,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         if nodeTouched.name == "musicButton" {
+            self.playTapSound(action: popButtons, shouldPlayEffects: effects)
             music.toggle()
             UserDefaults.standard.set(music, forKey: "music")
             guard let musicEffectsButton = nodeTouched as? LittleCircleNode else {return}
             musicEffectsButton.changeTextureOnOff(onOff: music)
+            if music == true {
+                backgroundMusicAV.play()
+            } else if music == false {
+                backgroundMusicAV.stop()
+            }
         }
         if nodeTouched.name == "specialEffectsButton" {
+            self.playTapSound(action: popButtons, shouldPlayEffects: effects)
             effects.toggle()
             UserDefaults.standard.set(effects, forKey: "effects")
             guard let specialEffectsButton = nodeTouched as? LittleCircleNode else {return}
@@ -222,7 +229,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        if player.isFiring {
+        if player.isFiring && player.isPaused == false {
             if player.lastFiredTime + 0.6 <= currentTime {
                 player.lastFiredTime = currentTime
                 player.fire()
@@ -231,22 +238,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
-        if enemy.lastFiredTime + Double(Int.random(in: 4...8)) <= currentTime {
-            if enemyShouldFire {
-                enemy.lastFiredTime = currentTime
-                enemy.fire()
-                if effects {
-
-                run(enemyShootSound)
-                }
-            }
-        }
-        if metSpawner.meteoriteLastSpawnTime + 6 <= currentTime {
-            if meteoritesShoulSpawn {
-                metSpawner.meteoriteLastSpawnTime = currentTime
-                metSpawner.spawnAndStartMoving()
-            }
-        }
+//        if enemy.shouldFire(currentTime: currentTime) {
+//            if enemyShouldFire && enemy.isPaused == false {
+//                enemy.lastFiredTime = currentTime
+//                enemy.run(SKAction.wait(forDuration: Double.random(in: 0...4))){
+//                    self.enemy.fire()
+//                    if self.effects {
+//                            self.run(self.enemyShootSound)
+//    //                    }
+//                    }
+//                }
+////                let seq = SKAction.sequence([SKAction.colorize(with: .magenta, colorBlendFactor: 0.5, duration: 0.15), SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.15)])
+////                enemy.run(SKAction.repeat(seq, count: 2)){
+//                print(currentTime)
+//            }
+//        }
+//        if metSpawner.meteoriteLastSpawnTime + 6 <= currentTime {
+//            if meteoritesShoulSpawn {
+//                metSpawner.meteoriteLastSpawnTime = currentTime
+//                metSpawner.spawnAndStartMoving()
+//            }
+//        }
         
         for child in children {
             if child.name == "playerBullet" || child.name == "cannonBullet" {
@@ -287,6 +299,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if effects {
                     run(SKAction.playSoundFileNamed(SoundFile.lossSound, waitForCompletion: true))
                     }
+                    backgroundMusicAV.stop()
+
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: false)
                     self.run(SKAction.wait(forDuration: 0.4)){
@@ -310,13 +324,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 makeExplosion(position: contact.contactPoint, on: enemy)
                 
                 firstNode.removeFromParent()
-                enemy.run(SKAction.colorize(with: .black, colorBlendFactor: 0.9, duration: 0.15)){
-                    self.enemy.run(SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.15))
+                enemy.run(SKAction.colorize(with: .black, colorBlendFactor: 0.9, duration: 0.12)){
+                    self.enemy.run(SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.12))
                 }
                 enemy.reduceLife()
                 if enemy.life == 0 {
                     enemy.enemyBoom()
                     run(wonSound)
+                    backgroundMusicAV.stop()
                     self.run(SKAction.wait(forDuration: 0.8)) {
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                     let gameOverScene = GameOverScene(size: self.size, won: true)
@@ -358,13 +373,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             explosion.run(removeAfterDead)
         }
     }
-    @objc func pauseGame(){
+    @objc func pauseGame() {
         print("game is paused!")
-        self.isPaused = true
+        self.run(SKAction.wait(forDuration: 0.0001)){
+            self.pauseChilds(isPaused: true)
+        }
         pause.zPosition = 30
         if self.childNode(withName: "pauseScreen") == nil {
             self.addChild(pause)
         }
     }
+    
+    func pauseChilds(isPaused: Bool){
+        for child in children {
+            child.isPaused = isPaused
+        }
+        self.backgroundMusicAV.setVolume(isPaused ? 0.2 : 0.5, fadeDuration: 0.5)
+    }
+    
+    func setUpBgMusic(fileName: String){
+        if self.backgroundMusicAV == nil {
+            guard let backgroundMusicURL = Bundle.main.url(forResource: fileName, withExtension: nil) else {return}
+          do {
+            let theme = try AVAudioPlayer(contentsOf: backgroundMusicURL)
+              self.backgroundMusicAV = theme
+          } catch {
+            print("Couldn't load file")
+          }
+            backgroundMusicAV.prepareToPlay()
+            self.backgroundMusicAV.numberOfLoops = -1
+            self.backgroundMusicAV.volume = 0.5
+        }
+    }
 }
-

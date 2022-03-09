@@ -6,6 +6,7 @@
 //
 
 import CoreGraphics
+import Foundation
 
 enum SoundFile {
     static let backgroundMusic = "synthCopy.caf"
@@ -18,4 +19,5 @@ enum SoundFile {
     static let wonSound = "winning.caf"
     static let musicForGame = "Ab1ss1.m4a"
     static let musicForMenu = "Abi22i.m4a"
+    static let popButtons = "popButtons.m4a"
 }

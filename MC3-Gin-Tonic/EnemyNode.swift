@@ -13,6 +13,7 @@ class EnemyNode: SKSpriteNode {
     var isFiring = true
 //    var jointAnchor : CGPoint = .zero
     var life: Int = 3
+    let randomDouble : [Double] = [4.0, 5.0, 6.0, 7.0, 8.0]
     
     init(imageNamed: String) {
         let texture = SKTexture(imageNamed: imageNamed)
@@ -42,7 +43,7 @@ class EnemyNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func fire() {
+    func fire(enemyShootSound: SKAction, shouldPlaySound: Bool) {
         let aim = CGPoint.zero
         let weaponType = "enemyWeapon"
         let weapon = SKSpriteNode(imageNamed: weaponType)
@@ -71,12 +72,25 @@ class EnemyNode: SKSpriteNode {
         let actionMove = SKAction.move(to: realDest, duration: 6.5)
 //        let dx = speed * cos(adjustedRotation)
 //        let dy = speed * sin(adjustedRotation)
+        if shouldPlaySound {
+            self.run(enemyShootSound)
+        }
         scene?.addChild(weapon)
         weapon.makeShapeGlow(cornerRadius: 10, scaleSizeBy: 0.7, color: .systemPink)
         weapon.run(actionMove)
 
 //        weapon.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
         
+    }
+    
+    func startEndlessFiring(enemyShootSound: SKAction, shouldPlaySound: Bool){
+        let shot = SKAction.run {
+            self.fire(enemyShootSound: enemyShootSound, shouldPlaySound: shouldPlaySound)
+        }
+        let colorizeSeq = SKAction.sequence([SKAction.colorize(with: .magenta, colorBlendFactor: 0.5, duration: 0.17), SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.17)])
+        let seq = SKAction.sequence([SKAction.wait(forDuration: 6, withRange: 4), colorizeSeq, colorizeSeq, shot])
+        let endlessFiring = SKAction.repeatForever(seq)
+        self.run(endlessFiring)
     }
 
     func configureMovement(sceneSize: CGSize) {
@@ -142,6 +156,16 @@ class EnemyNode: SKSpriteNode {
             
         self.run(animHit) {
             self.removeFromParent()
+        }
+    }
+    
+    func shouldFire(currentTime: TimeInterval) -> Bool {
+        let randomNum = Double.random(in: 4...8)
+        print(randomNum)
+        if self.lastFiredTime + randomNum <= currentTime {
+            return true
+        } else {
+            return false
         }
     }
 }

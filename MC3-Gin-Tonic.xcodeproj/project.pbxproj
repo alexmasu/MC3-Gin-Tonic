@@ -22,13 +22,12 @@
 		2932F2A527BD127800A7ED80 /* AdventPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29D27BD127800A7ED80 /* AdventPro-Regular.ttf */; };
 		2932F2A727BD127800A7ED80 /* AdventPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F29F27BD127800A7ED80 /* AdventPro-Light.ttf */; };
 		2932F2A827BD127800A7ED80 /* AdventPro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2932F2A027BD127800A7ED80 /* AdventPro-ExtraLight.ttf */; };
-		29514EE927BC074E00E94576 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29514EE827BC074E00E94576 /* HUD.swift */; };
 		29514EEB27BC08C200E94576 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29514EEA27BC08C200E94576 /* GameOverScene.swift */; };
 		2971212627D22C4A00303EE5 /* enemyExplosion.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 2971212527D22C4A00303EE5 /* enemyExplosion.atlas */; };
 		2980F63E27B3D66E00C318DF /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2980F63D27B3D66E00C318DF /* GameScene.sks */; };
 		2984718927B571D400E88AA8 /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984718827B571D400E88AA8 /* EnemyNode.swift */; };
-		29A0288427C3CF8A006BBBC7 /* Stars.sks in Resources */ = {isa = PBXBuildFile; fileRef = 29A0288327C3CF8A006BBBC7 /* Stars.sks */; };
 		29A0288627C3D5F3006BBBC7 /* PauseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0288527C3D5F3006BBBC7 /* PauseScreen.swift */; };
+		29C69F5E27D7684C006127CA /* popButtons.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95FE7DC427D7624100915034 /* popButtons.m4a */; };
 		29E6641527C4FBA400430F59 /* MenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E6641427C4FBA400430F59 /* MenuScreen.swift */; };
 		29F9762927D0B88900CF5208 /* loss.caf in Resources */ = {isa = PBXBuildFile; fileRef = 291E914027C6816500AECC95 /* loss.caf */; };
 		29F9762D27D0BAA300CF5208 /* Fanfare.caf in Resources */ = {isa = PBXBuildFile; fileRef = 29F9762C27D0BA9100CF5208 /* Fanfare.caf */; };
@@ -53,7 +52,6 @@
 		9542BD8A27CD37E7006CB250 /* metHit3.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9542BD8827CD37E7006CB250 /* metHit3.atlas */; };
 		9548DBC727B71D7B002D5B12 /* PlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC627B71D7B002D5B12 /* PlayerNode.swift */; };
 		9548DBC927B71DB8002D5B12 /* ShieldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548DBC827B71DB8002D5B12 /* ShieldNode.swift */; };
-		9548DBCB27B71DF0002D5B12 /* ShieldBackGlow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */; };
 		95521BEE27CC10E800F1E3EC /* MetSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95521BED27CC10E800F1E3EC /* MetSpawner.swift */; };
 		95635A0D27CE8F4C00066EFA /* ExplosionYellow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95635A0C27CE8F4C00066EFA /* ExplosionYellow.sks */; };
 		9583AE9B27C500E2009A5FA1 /* cannonShot.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9583AE9A27C500E2009A5FA1 /* cannonShot.atlas */; };
@@ -68,6 +66,9 @@
 		95BD2FC227C194F600A734CC /* shieldHit.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95BD2FC127C194F600A734CC /* shieldHit.atlas */; };
 		95F17D9327BE7B7600A8EB71 /* StarsBackground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */; };
 		95F17DB827BEF9B200A8EB71 /* MetEnergyParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95F17DB727BEF9B200A8EB71 /* MetEnergyParticles.sks */; };
+		95FE7DCB27D7794300915034 /* Ab1ss1 (online-audio-converter.com).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 95FE7DCA27D7794300915034 /* Ab1ss1 (online-audio-converter.com).mp3 */; };
+		95FE7DCD27D7B6E300915034 /* Abi22i (online-audio-converter.com).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 95FE7DCC27D7B6E300915034 /* Abi22i (online-audio-converter.com).mp3 */; };
+		95FE7DD327D7D06D00915034 /* SKScene + popButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FE7DD227D7D06D00915034 /* SKScene + popButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,12 +88,10 @@
 		2932F29D27BD127800A7ED80 /* AdventPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-Regular.ttf"; sourceTree = "<group>"; };
 		2932F29F27BD127800A7ED80 /* AdventPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-Light.ttf"; sourceTree = "<group>"; };
 		2932F2A027BD127800A7ED80 /* AdventPro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdventPro-ExtraLight.ttf"; sourceTree = "<group>"; };
-		29514EE827BC074E00E94576 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		29514EEA27BC08C200E94576 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		2971212527D22C4A00303EE5 /* enemyExplosion.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = enemyExplosion.atlas; sourceTree = "<group>"; };
 		2980F63D27B3D66E00C318DF /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		2984718827B571D400E88AA8 /* EnemyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
-		29A0288327C3CF8A006BBBC7 /* Stars.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Stars.sks; sourceTree = "<group>"; };
 		29A0288527C3D5F3006BBBC7 /* PauseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseScreen.swift; sourceTree = "<group>"; };
 		29E6641427C4FBA400430F59 /* MenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreen.swift; sourceTree = "<group>"; };
 		29F9762C27D0BA9100CF5208 /* Fanfare.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fanfare.caf; sourceTree = "<group>"; };
@@ -124,7 +123,6 @@
 		9542BD8827CD37E7006CB250 /* metHit3.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = metHit3.atlas; sourceTree = "<group>"; };
 		9548DBC627B71D7B002D5B12 /* PlayerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNode.swift; sourceTree = "<group>"; };
 		9548DBC827B71DB8002D5B12 /* ShieldNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldNode.swift; sourceTree = "<group>"; };
-		9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ShieldBackGlow.sks; sourceTree = "<group>"; };
 		95521BED27CC10E800F1E3EC /* MetSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetSpawner.swift; sourceTree = "<group>"; };
 		95635A0C27CE8F4C00066EFA /* ExplosionYellow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ExplosionYellow.sks; sourceTree = "<group>"; };
 		9583AE9A27C500E2009A5FA1 /* cannonShot.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = cannonShot.atlas; sourceTree = "<group>"; };
@@ -139,6 +137,10 @@
 		95BD2FC127C194F600A734CC /* shieldHit.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = shieldHit.atlas; sourceTree = "<group>"; };
 		95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarsBackground.sks; sourceTree = "<group>"; };
 		95F17DB727BEF9B200A8EB71 /* MetEnergyParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MetEnergyParticles.sks; sourceTree = "<group>"; };
+		95FE7DC427D7624100915034 /* popButtons.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = popButtons.m4a; sourceTree = "<group>"; };
+		95FE7DCA27D7794300915034 /* Ab1ss1 (online-audio-converter.com).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ab1ss1 (online-audio-converter.com).mp3"; sourceTree = "<group>"; };
+		95FE7DCC27D7B6E300915034 /* Abi22i (online-audio-converter.com).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Abi22i (online-audio-converter.com).mp3"; sourceTree = "<group>"; };
+		95FE7DD227D7D06D00915034 /* SKScene + popButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKScene + popButton.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,9 @@
 			isa = PBXGroup;
 			children = (
 				958CD55227D0CCFF00E141CF /* Abi22i.m4a */,
+				95FE7DCA27D7794300915034 /* Ab1ss1 (online-audio-converter.com).mp3 */,
+				95FE7DC427D7624100915034 /* popButtons.m4a */,
+				95FE7DCC27D7B6E300915034 /* Abi22i (online-audio-converter.com).mp3 */,
 				291E914027C6816500AECC95 /* loss.caf */,
 				291E913227C64B8E00AECC95 /* laserShoot.caf */,
 				291E913327C64B8E00AECC95 /* boom.caf */,
@@ -215,16 +220,14 @@
 				2984718827B571D400E88AA8 /* EnemyNode.swift */,
 				95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */,
 				95521BED27CC10E800F1E3EC /* MetSpawner.swift */,
-				29514EE827BC074E00E94576 /* HUD.swift */,
 				29514EEA27BC08C200E94576 /* GameOverScene.swift */,
 				29A0288527C3D5F3006BBBC7 /* PauseScreen.swift */,
 				950ABE4727CEB9A4009E220E /* TutorialSpriteLabel.swift */,
 				95355B5827C66538007BC079 /* GreenButtonNode.swift */,
 				958CD55727D1124600E141CF /* LittleCircleNode.swift */,
 				29E6641427C4FBA400430F59 /* MenuScreen.swift */,
-				29A0288327C3CF8A006BBBC7 /* Stars.sks */,
+				95FE7DD227D7D06D00915034 /* SKScene + popButton.swift */,
 				950ABE4927CFE8EA009E220E /* SpeedParticles.sks */,
-				9548DBCA27B71DF0002D5B12 /* ShieldBackGlow.sks */,
 				2980F63D27B3D66E00C318DF /* GameScene.sks */,
 				291218CF27BA9970006836F6 /* Explosion.sks */,
 				95635A0C27CE8F4C00066EFA /* ExplosionYellow.sks */,
@@ -315,6 +318,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29C69F5E27D7684C006127CA /* popButtons.m4a in Resources */,
 				958CD55427D0D32600E141CF /* Ab1ss1.m4a in Resources */,
 				958CD55327D0CE7800E141CF /* Abi22i.m4a in Resources */,
 				958CD54F27D0C85C00E141CF /* winning.caf in Resources */,
@@ -325,8 +329,8 @@
 				291E913827C64B8E00AECC95 /* laserShoot.caf in Resources */,
 				291E913927C64B8E00AECC95 /* boom.caf in Resources */,
 				291E913B27C64B8E00AECC95 /* powerUp.caf in Resources */,
-				9548DBCB27B71DF0002D5B12 /* ShieldBackGlow.sks in Resources */,
 				95BD2FC227C194F600A734CC /* shieldHit.atlas in Resources */,
+				95FE7DCD27D7B6E300915034 /* Abi22i (online-audio-converter.com).mp3 in Resources */,
 				2932F2A527BD127800A7ED80 /* AdventPro-Regular.ttf in Resources */,
 				7F40023527B271E2001182EB /* Main.storyboard in Resources */,
 				95F17D9327BE7B7600A8EB71 /* StarsBackground.sks in Resources */,
@@ -339,13 +343,13 @@
 				95635A0D27CE8F4C00066EFA /* ExplosionYellow.sks in Resources */,
 				2932F2A727BD127800A7ED80 /* AdventPro-Light.ttf in Resources */,
 				291E913C27C64B8E00AECC95 /* pickupCoin.caf in Resources */,
-				29A0288427C3CF8A006BBBC7 /* Stars.sks in Resources */,
 				9583AE9B27C500E2009A5FA1 /* cannonShot.atlas in Resources */,
 				2932F2A827BD127800A7ED80 /* AdventPro-ExtraLight.ttf in Resources */,
 				2971212627D22C4A00303EE5 /* enemyExplosion.atlas in Resources */,
 				291E913D27C64B8E00AECC95 /* laserShoot2.caf in Resources */,
 				9583AEA327C6279C009A5FA1 /* shieldAnim.atlas in Resources */,
 				7F40023A27B271E3001182EB /* LaunchScreen.storyboard in Resources */,
+				95FE7DCB27D7794300915034 /* Ab1ss1 (online-audio-converter.com).mp3 in Resources */,
 				291218D027BA9970006836F6 /* Explosion.sks in Resources */,
 				7FE1CA8727C4ED8D00FD7731 /* Localizable.strings in Resources */,
 				291E913A27C64B8E00AECC95 /* synthCopy.caf in Resources */,
@@ -375,7 +379,7 @@
 				7F40023227B271E2001182EB /* GameViewController.swift in Sources */,
 				9583AEA527C630B0009A5FA1 /* SKSpriteNode+shadow.swift in Sources */,
 				2984718927B571D400E88AA8 /* EnemyNode.swift in Sources */,
-				29514EE927BC074E00E94576 /* HUD.swift in Sources */,
+				95FE7DD327D7D06D00915034 /* SKScene + popButton.swift in Sources */,
 				29514EEB27BC08C200E94576 /* GameOverScene.swift in Sources */,
 				7F9082EF27CF708B00705A88 /* UserSettings.swift in Sources */,
 				7F40022A27B271E2001182EB /* AppDelegate.swift in Sources */,
@@ -547,7 +551,7 @@
 		7F40023E27B271E3001182EB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -579,7 +583,7 @@
 		7F40023F27B271E3001182EB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;

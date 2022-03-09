@@ -121,9 +121,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemy.configureMovement(sceneSize: self.size)
         self.addChild(enemy)
 
-        let wait = SKAction.wait(forDuration: Double.random(in: 5...7))
+        let wait = SKAction.wait(forDuration: 5)
         self.run(wait){
             self.enemyShouldFire = true
+            self.enemy.startEndlessFiring(enemyShootSound: self.enemyShootSound, shouldPlaySound: self.effects)
         }
         let wait2 = SKAction.wait(forDuration: 2)
         
@@ -237,18 +238,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
-        if enemy.lastFiredTime + Double(Int.random(in: 4...8)) <= currentTime {
-            if enemyShouldFire && enemy.isPaused == false {
-                enemy.lastFiredTime = currentTime
-                let seq = SKAction.sequence([SKAction.colorize(with: .magenta, colorBlendFactor: 0.5, duration: 0.15), SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.15)])
-                enemy.run(SKAction.repeat(seq, count: 2)){
-                    if self.effects {
-                        self.run(self.enemyShootSound)
-                    }
-                    self.enemy.fire()
-                }
-            }
-        }
+//        if enemy.shouldFire(currentTime: currentTime) {
+//            if enemyShouldFire && enemy.isPaused == false {
+//                enemy.lastFiredTime = currentTime
+//                enemy.run(SKAction.wait(forDuration: Double.random(in: 0...4))){
+//                    self.enemy.fire()
+//                    if self.effects {
+//                            self.run(self.enemyShootSound)
+//    //                    }
+//                    }
+//                }
+////                let seq = SKAction.sequence([SKAction.colorize(with: .magenta, colorBlendFactor: 0.5, duration: 0.15), SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.15)])
+////                enemy.run(SKAction.repeat(seq, count: 2)){
+//                print(currentTime)
+//            }
+//        }
 //        if metSpawner.meteoriteLastSpawnTime + 6 <= currentTime {
 //            if meteoritesShoulSpawn {
 //                metSpawner.meteoriteLastSpawnTime = currentTime

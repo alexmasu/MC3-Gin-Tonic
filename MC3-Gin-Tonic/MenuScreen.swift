@@ -14,7 +14,6 @@ class MenuScreen: SKScene {
 
     var music = true
     var effects = true
-//    let bgMusic = SKAudioNode(fileNamed: "Abi22i (online-audio-converter.com).mp3")
     let popSound = SKAction.playSoundFileNamed(SoundFile.popButtons, waitForCompletion: true)
     var backgroundMusicAV : AVAudioPlayer!
     override init(size: CGSize) {

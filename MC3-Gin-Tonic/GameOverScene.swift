@@ -15,7 +15,7 @@ class GameOverScene: SKScene {
     var backgroundMusicAV : AVAudioPlayer!
     let popSound = SKAction.playSoundFileNamed(SoundFile.popButtons, waitForCompletion: true)
 
-    init(size: CGSize, won:Bool) {
+    init(size: CGSize, won:Bool, playerLife: Int) {
 
         super.init(size: size)
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -181,5 +181,4 @@ class GameOverScene: SKScene {
             self.backgroundMusicAV.volume = 0.5
         }
     }
-
 }

@@ -302,7 +302,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     backgroundMusicAV.stop()
 
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                    let gameOverScene = GameOverScene(size: self.size, won: false)
+                    let gameOverScene = GameOverScene(size: self.size, won: false, playerLife: player.life)
                     self.run(SKAction.wait(forDuration: 0.4)){
                         self.view?.presentScene(gameOverScene, transition: reveal)
                     }
@@ -334,7 +334,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     backgroundMusicAV.stop()
                     self.run(SKAction.wait(forDuration: 0.8)) {
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                    let gameOverScene = GameOverScene(size: self.size, won: true)
+                        let gameOverScene = GameOverScene(size: self.size, won: true, playerLife: self.player.life)
                     
                         self.view?.presentScene(gameOverScene, transition: reveal)
                     //                    print("YOU WON")

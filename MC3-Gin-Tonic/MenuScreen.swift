@@ -42,14 +42,14 @@ class MenuScreen: SKScene {
         setUpBgMusic(fileName: "Abi22i (online-audio-converter.com).mp3")
 
         // GREEN BUTTON NODE
-        let continueButtonText = "CONTINUE"
+        let continueButtonText = "PLAY"
         let continueButton = GreenButtonNode(nodeName: "Continue", buttonType: .screen, parentSize: size, text: continueButtonText)
 
         addChild(continueButton)
          
         // LITTLE LABEL ATTACHED TO GREEN BUTTON
-        let littleLabelText = "PLANET-1"
-        continueButton.addLittleLabel(text: littleLabelText, labelPosition: GreenButtonNode.labelPosition.upperLabel)
+//        let littleLabelText = "PLANET-1"
+//        continueButton.addLittleLabel(text: littleLabelText, labelPosition: GreenButtonNode.labelPosition.upperLabel)
 
         let message = SKSpriteNode(imageNamed: "ABISSI")
         message.position = CGPoint(x: 0, y: -continueButton.position.y * 1.3)

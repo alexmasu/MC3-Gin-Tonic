@@ -15,12 +15,12 @@ class GreenButtonNode: SKSpriteNode {
         case screen, popUp
     }
     
-    init(nodeName: String, buttonType: buttonType, parentSize: CGSize, text: String) {
+    init(nodeName: String, buttonType: buttonType, parentSize: CGSize, text: String, itsBlue: Bool? = false) {
         
         let maxScaledWidth = parentSize.width * (buttonType == .screen ? 0.40 : 0.52)
         let maxScaledHeight = parentSize.height * (buttonType == .screen ? 0.08 : 0.23)
         
-        let texture = SKTexture(imageNamed: "button")
+        let texture = SKTexture(imageNamed: itsBlue! ? "blueButton" : "button")
                 
         super.init(texture: texture, color: .clear, size: parentSize)
                 

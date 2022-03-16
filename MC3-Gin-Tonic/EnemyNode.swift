@@ -12,7 +12,7 @@ class EnemyNode: SKSpriteNode {
     var lastFiredTime: Double = 9
     var isFiring = true
 //    var jointAnchor : CGPoint = .zero
-    var life: Int = 3
+    var life: Int = 1
     let randomDouble : [Double] = [4.0, 5.0, 6.0, 7.0, 8.0]
     
     init(imageNamed: String) {

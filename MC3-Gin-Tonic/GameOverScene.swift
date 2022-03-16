@@ -104,11 +104,11 @@ class GameOverScene: SKScene {
         
         let blueButtonMessage = "BACK"
         let blueButton = GreenButtonNode(nodeName: "blueButton", buttonType: .screen, parentSize: size, text: blueButtonMessage.localized(), itsBlue: true)
-        blueButton.position = CGPoint(x: 0 , y: greenButton.position.y - blueButton.size.height * 1.2)
+        blueButton.position = CGPoint(x: 0 , y: greenButton.position.y - greenButton.size.height * 1.2)
             addChild(blueButton)
         
         if won {
-            let stars = StarsNode(maxScaledHeight: maxScaledHeight, numOfStars: playerLife)
+            let stars = StarsNode(maxScaledHeight: maxScaledHeight, numOfStars: playerLife, effects: effects)
             addChild(stars)
         }
     }

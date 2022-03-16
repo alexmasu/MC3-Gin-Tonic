@@ -20,4 +20,5 @@ enum SoundFile {
     static let musicForGame = "Ab1ss1.m4a"
     static let musicForMenu = "Abi22i.m4a"
     static let popButtons = "popButtons.m4a"
+    static let starSound = "starSound4.wav"
 }

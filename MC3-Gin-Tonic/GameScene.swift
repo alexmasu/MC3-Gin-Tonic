@@ -68,15 +68,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let cannonSound = SKAction.playSoundFileNamed(SoundFile.cannonSound, waitForCompletion: false)
     let powerUpSound = SKAction.playSoundFileNamed(SoundFile.powerUpSound, waitForCompletion: false)
     let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: true)
+    let popButtons = SKAction.playSoundFileNamed(SoundFile.popButtons, waitForCompletion: true)
     
     var backgroundMusicAV : AVAudioPlayer!
-    
-    let popButtons = SKAction.playSoundFileNamed(SoundFile.popButtons, waitForCompletion: true)
     
     var music = UserDefaults.standard.bool(forKey: "music")
     var effects = UserDefaults.standard.bool(forKey: "effects")
 
-    var isPlayerAlive = true
     var enemyShouldFire = false
     var meteoritesShoulSpawn = false
     
@@ -330,14 +328,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.reduceLife()
                 if enemy.life == 0 {
                     enemy.enemyBoom()
-                    run(wonSound)
-                    backgroundMusicAV.stop()
+                    if effects {
+                        run(wonSound)
+                    }
+                    
                     self.run(SKAction.wait(forDuration: 0.8)) {
+                        self.backgroundMusicAV.stop()
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                         let gameOverScene = GameOverScene(size: self.size, won: true, playerLife: self.player.life)
                     
                         self.view?.presentScene(gameOverScene, transition: reveal)
-                    //                    print("YOU WON")
                         self.enemy.life = 3
                     }
                 }

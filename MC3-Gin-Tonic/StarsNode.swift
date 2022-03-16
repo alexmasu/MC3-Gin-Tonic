@@ -12,8 +12,11 @@ class StarsNode: SKNode {
     let greyStar2 = SKSpriteNode(imageNamed: "grayStar")
     let greyStar3 = SKSpriteNode(imageNamed: "grayStar")
     let maxScaledHeight : CGFloat
-
-    init(maxScaledHeight: CGFloat, numOfStars: Int) {
+    let starSound = SKAction.playSoundFileNamed(SoundFile.starSound, waitForCompletion: false)
+    let effects : Bool
+    
+    init(maxScaledHeight: CGFloat, numOfStars: Int, effects: Bool) {
+        self.effects = effects
         self.maxScaledHeight = maxScaledHeight
         super.init()
         greyStar1.size = CGSize(width: maxScaledHeight * 1.2, height: maxScaledHeight * 1.2)
@@ -24,7 +27,7 @@ class StarsNode: SKNode {
         greyStar1.position = CGPoint(x: -maxScaledHeight * 1.2, y: greyStar2.position.y)
         greyStar3.position = CGPoint(x: maxScaledHeight * 1.2, y: greyStar2.position.y)
         
-        /* ----A random mistake lead me to a nice disposition:
+        /* ----A random mistake lead me to a nice curved disposition:
          greyStar1.position = CGPoint(x: -maxScaledHeight * 1.2, y: greyStar1.position.y)
          greyStar2.position = CGPoint(x: 0, y: maxScaledHeight/2.9)
          greyStar3.position = CGPoint(x: maxScaledHeight * 1.2, y: greyStar1.position.y)
@@ -39,10 +42,10 @@ class StarsNode: SKNode {
             self.run(SKAction.wait(forDuration: 0.4)){
                 self.oneStarAppear(for: 2)
             }
-        }
-        if numOfStars == 3 {
-            self.run(SKAction.wait(forDuration: 0.8)){
-                self.oneStarAppear(for: 3)
+            if numOfStars == 3 {
+                self.run(SKAction.wait(forDuration: 0.8)){
+                    self.oneStarAppear(for: 3)
+                }
             }
         }
     }
@@ -71,8 +74,12 @@ class StarsNode: SKNode {
         let scaleAnim = SKAction.scale(to: 1, duration: 0.15)
         scaleAnim.timingMode = .easeIn
         addChild(yellowStar1)
-
-        yellowStar1.run(scaleAnim)
+        
+        yellowStar1.run(scaleAnim){
+            if self.effects {
+                self.run(self.starSound)
+            }
+        }
         yellowStar1.addChild(starsParticles)
     }
     

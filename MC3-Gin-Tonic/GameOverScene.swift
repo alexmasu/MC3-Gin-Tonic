@@ -29,22 +29,26 @@ class GameOverScene: SKScene {
         // GREEN BUTTON NODE
         let greenButtonText = won ? "NEW GAME" : "RETRY"
         let greenButton = GreenButtonNode(nodeName: "GreenButton", buttonType: .screen, parentSize: size, text: greenButtonText)
-        if won {
-            greenButton.position = .zero
-        }
+        
+        let maxScaledHeight = size.height * 0.08
+        
         addChild(greenButton)
          
+        /*
+        
         // LITTLE LABEL ATTACHED TO GREEN BUTTON
         let littleLabelText = won ? "TO PLANET-2".localized() : "PLANET-1".localized()
-//        greenButton.addLittleLabel(text: littleLabelText, labelPosition: won ? .bottomLabel : .upperLabel)
-        let maxScaledHeight = size.height * 0.08
+        greenButton.addLittleLabel(text: littleLabelText, labelPosition: won ? .bottomLabel : .upperLabel)
+         */
         
         /*
          Won/Game Over label definition
          */
         let message = won ? SKSpriteNode(imageNamed: "PLANET EXPLORED") : SKSpriteNode(imageNamed: "GAME OVER")
-        message.position = CGPoint(x: 0, y: maxScaledHeight * 2)
-        
+        message.anchorPoint = CGPoint(x: 0.5, y: 0)
+        message.position = CGPoint(x: 0, y: maxScaledHeight * 1.1)
+        addChild(message)
+
 //        let message2 = won ? "PLANET" : "GAME"
 
         //---maybe replace this two label with svg image for the stroke
@@ -66,7 +70,6 @@ class GameOverScene: SKScene {
 //        label2.fontColor = UIColor(named: "alienGreen")
 //        label2.position = CGPoint(x: 0, y: maxScaledHeight * 2.2)
         
-        addChild(message)
 //        addChild(label2)
         
         /*
@@ -103,6 +106,11 @@ class GameOverScene: SKScene {
         let blueButton = GreenButtonNode(nodeName: "blueButton", buttonType: .screen, parentSize: size, text: blueButtonMessage.localized(), itsBlue: true)
         blueButton.position = CGPoint(x: 0 , y: greenButton.position.y - blueButton.size.height * 1.2)
             addChild(blueButton)
+        
+        if won {
+            let stars = StarsNode(maxScaledHeight: maxScaledHeight, numOfStars: playerLife)
+            addChild(stars)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

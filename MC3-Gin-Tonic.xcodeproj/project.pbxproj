@@ -47,6 +47,8 @@
 		950ABE4A27CFE8EA009E220E /* SpeedParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 950ABE4927CFE8EA009E220E /* SpeedParticles.sks */; };
 		9533BC2027BC4D910048C7B3 /* CannonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533BC1F27BC4D910048C7B3 /* CannonNode.swift */; };
 		95355B5927C66538007BC079 /* GreenButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95355B5827C66538007BC079 /* GreenButtonNode.swift */; };
+		953BCD5627E258D0005AF3BD /* StarsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953BCD5527E258D0005AF3BD /* StarsNode.swift */; };
+		953BCD5827E25C6F005AF3BD /* StarsParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 953BCD5727E25C6F005AF3BD /* StarsParticles.sks */; };
 		9542BD8627CD37BF006CB250 /* metHit1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9542BD8527CD37BF006CB250 /* metHit1.atlas */; };
 		9542BD8927CD37E7006CB250 /* metHit2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9542BD8727CD37E7006CB250 /* metHit2.atlas */; };
 		9542BD8A27CD37E7006CB250 /* metHit3.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9542BD8827CD37E7006CB250 /* metHit3.atlas */; };
@@ -118,6 +120,8 @@
 		950F2EC327C8315200794808 /* pianetino_1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pianetino_1.mp4; sourceTree = "<group>"; };
 		9533BC1F27BC4D910048C7B3 /* CannonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonNode.swift; sourceTree = "<group>"; };
 		95355B5827C66538007BC079 /* GreenButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButtonNode.swift; sourceTree = "<group>"; };
+		953BCD5527E258D0005AF3BD /* StarsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsNode.swift; sourceTree = "<group>"; };
+		953BCD5727E25C6F005AF3BD /* StarsParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarsParticles.sks; sourceTree = "<group>"; };
 		9542BD8527CD37BF006CB250 /* metHit1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = metHit1.atlas; sourceTree = "<group>"; };
 		9542BD8727CD37E7006CB250 /* metHit2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = metHit2.atlas; sourceTree = "<group>"; };
 		9542BD8827CD37E7006CB250 /* metHit3.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = metHit3.atlas; sourceTree = "<group>"; };
@@ -211,27 +215,29 @@
 				7F40022927B271E2001182EB /* AppDelegate.swift */,
 				7F40023127B271E2001182EB /* GameViewController.swift */,
 				291E913E27C64C1500AECC95 /* Constants.swift */,
+				29E6641427C4FBA400430F59 /* MenuScreen.swift */,
 				7F40022F27B271E2001182EB /* GameScene.swift */,
+				29514EEA27BC08C200E94576 /* GameOverScene.swift */,
 				9548DBC627B71D7B002D5B12 /* PlayerNode.swift */,
 				9548DBC827B71DB8002D5B12 /* ShieldNode.swift */,
-				9583AEA427C630B0009A5FA1 /* SKSpriteNode+shadow.swift */,
-				9583AEA627C630E4009A5FA1 /* SKSpriteNode+frames.swift */,
 				9533BC1F27BC4D910048C7B3 /* CannonNode.swift */,
 				2984718827B571D400E88AA8 /* EnemyNode.swift */,
 				95A93A4D27BD8E5E00515A06 /* MeteoriteNode.swift */,
 				95521BED27CC10E800F1E3EC /* MetSpawner.swift */,
-				29514EEA27BC08C200E94576 /* GameOverScene.swift */,
+				953BCD5527E258D0005AF3BD /* StarsNode.swift */,
 				29A0288527C3D5F3006BBBC7 /* PauseScreen.swift */,
 				950ABE4727CEB9A4009E220E /* TutorialSpriteLabel.swift */,
 				95355B5827C66538007BC079 /* GreenButtonNode.swift */,
 				958CD55727D1124600E141CF /* LittleCircleNode.swift */,
-				29E6641427C4FBA400430F59 /* MenuScreen.swift */,
+				9583AEA627C630E4009A5FA1 /* SKSpriteNode+frames.swift */,
+				9583AEA427C630B0009A5FA1 /* SKSpriteNode+shadow.swift */,
 				95FE7DD227D7D06D00915034 /* SKScene + popButton.swift */,
 				950ABE4927CFE8EA009E220E /* SpeedParticles.sks */,
 				2980F63D27B3D66E00C318DF /* GameScene.sks */,
 				291218CF27BA9970006836F6 /* Explosion.sks */,
 				95635A0C27CE8F4C00066EFA /* ExplosionYellow.sks */,
 				95F17DB727BEF9B200A8EB71 /* MetEnergyParticles.sks */,
+				953BCD5727E25C6F005AF3BD /* StarsParticles.sks */,
 				95F17D9227BE7B7600A8EB71 /* StarsBackground.sks */,
 				2971212527D22C4A00303EE5 /* enemyExplosion.atlas */,
 				7F40023327B271E2001182EB /* Main.storyboard */,
@@ -338,6 +344,7 @@
 				9542BD8A27CD37E7006CB250 /* metHit3.atlas in Resources */,
 				950ABE4A27CFE8EA009E220E /* SpeedParticles.sks in Resources */,
 				2932F2A127BD127800A7ED80 /* AdventPro-Thin.ttf in Resources */,
+				953BCD5827E25C6F005AF3BD /* StarsParticles.sks in Resources */,
 				2932F2A327BD127800A7ED80 /* AdventPro-SemiBold.ttf in Resources */,
 				9542BD8927CD37E7006CB250 /* metHit2.atlas in Resources */,
 				95635A0D27CE8F4C00066EFA /* ExplosionYellow.sks in Resources */,
@@ -367,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29E6641527C4FBA400430F59 /* MenuScreen.swift in Sources */,
+				953BCD5627E258D0005AF3BD /* StarsNode.swift in Sources */,
 				958CD55827D1124600E141CF /* LittleCircleNode.swift in Sources */,
 				7FA70D6427C6288E00C12330 /* UIColor+RGB.swift in Sources */,
 				95A93A4E27BD8E5E00515A06 /* MeteoriteNode.swift in Sources */,

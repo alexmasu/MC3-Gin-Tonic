@@ -12,7 +12,7 @@ class EnemyNode: SKSpriteNode {
     var lastFiredTime: Double = 9
     var isFiring = true
 //    var jointAnchor : CGPoint = .zero
-    var life: Int = 1
+    var life: Int = 3
     let randomDouble : [Double] = [4.0, 5.0, 6.0, 7.0, 8.0]
     
     init(imageNamed: String) {
@@ -153,7 +153,9 @@ class EnemyNode: SKSpriteNode {
        
             let frames = makeAnimationFrames(from: "enemyExplosion")
             let animHit = SKAction.animate(with: frames, timePerFrame: 0.026, resize: false, restore: false)
-            
+        if let shadow = self.childNode(withName: "shadow") {
+            shadow.run(SKAction.scale(to: 0, duration: 0.5))
+        }
         self.run(animHit) {
             self.removeFromParent()
         }

@@ -107,15 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cannon.cannonChargeIndicator.position = CGPoint(x: frame.minX + cannon.cannonChargeIndicator.size.width * 1.1, y: frame.maxY - cannon.cannonChargeIndicator.size.width * 1.1)
         self.addChild(cannon.cannonChargeIndicator)
         
-        let pauseButton = SKSpriteNode(imageNamed: "PauseIcon")
-        pauseButton.size = CGSize(width: self.frame.width / 12 , height: self.frame.width / 12)
-        // Name the start node for touch detection:
-        pauseButton.name = "PauseBtn"
-        pauseButton.zPosition = 20
-        pauseButton.position = CGPoint(x: -cannon.cannonChargeIndicator.position.x, y: cannon.cannonChargeIndicator.position.y)
-        
-        addChild(pauseButton)
-        
+        addPauseButton()
         enemy.configureMovement(sceneSize: self.size)
         self.addChild(enemy)
 
@@ -147,6 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if nodeTouched.name == "PauseBtn" {
             self.playTapSound(action: popButtons, shouldPlayEffects: effects)
+            nodeTouched.removeFromParent()
                 self.pauseChilds(isPaused: true)
                 self.pause.zPosition = 30
                 self.addChild(self.pause)
@@ -154,6 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else if nodeTouched.name == "ResumeBtn" {
             self.playTapSound(action: popButtons, shouldPlayEffects: effects)
             pause.removeFromParent()
+            addPauseButton()
             pauseChilds(isPaused: false)
             
         } else if nodeTouched.name == "QuitBtn" {
@@ -359,7 +353,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
-    
+    func addPauseButton(){
+        let pauseButton = SKSpriteNode(imageNamed: "PauseIcon")
+        pauseButton.size = CGSize(width: self.frame.width / 12 , height: self.frame.width / 12)
+        // Name the start node for touch detection:
+        pauseButton.name = "PauseBtn"
+        pauseButton.zPosition = 20
+        pauseButton.position = CGPoint(x: -cannon.cannonChargeIndicator.position.x, y: cannon.cannonChargeIndicator.position.y)
+        
+        addChild(pauseButton)
+    }
     func makeExplosion(position: CGPoint, on parent: SKSpriteNode) {
         let fileName = parent.name == "enemy" ? "ExplosionYellow" : "Explosion"
         if let explosion = SKEmitterNode(fileNamed: fileName) {

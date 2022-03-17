@@ -15,7 +15,7 @@ class GameOverScene: SKScene {
     var backgroundMusicAV : AVAudioPlayer!
     let popSound = SKAction.playSoundFileNamed(SoundFile.popButtons, waitForCompletion: true)
 
-    init(size: CGSize, won:Bool) {
+    init(size: CGSize, won:Bool, playerLife: Int) {
 
         super.init(size: size)
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -27,24 +27,28 @@ class GameOverScene: SKScene {
         setUpBgMusic(fileName: "Abi22i (online-audio-converter.com).mp3")
         
         // GREEN BUTTON NODE
-        let greenButtonText = won ? "CONTINUE" : "RETRY"
+        let greenButtonText = won ? "NEW GAME" : "RETRY"
         let greenButton = GreenButtonNode(nodeName: "GreenButton", buttonType: .screen, parentSize: size, text: greenButtonText)
-        if won {
-            greenButton.position = .zero
-        }
+        
+        let maxScaledHeight = size.height * 0.08
+        
         addChild(greenButton)
          
+        /*
+        
         // LITTLE LABEL ATTACHED TO GREEN BUTTON
         let littleLabelText = won ? "TO PLANET-2".localized() : "PLANET-1".localized()
         greenButton.addLittleLabel(text: littleLabelText, labelPosition: won ? .bottomLabel : .upperLabel)
-        let maxScaledHeight = size.height * 0.08
+         */
         
         /*
          Won/Game Over label definition
          */
         let message = won ? SKSpriteNode(imageNamed: "PLANET EXPLORED") : SKSpriteNode(imageNamed: "GAME OVER")
-        message.position = CGPoint(x: 0, y: maxScaledHeight * 2)
-        
+        message.anchorPoint = CGPoint(x: 0.5, y: 0)
+        message.position = CGPoint(x: 0, y: maxScaledHeight * 1.1)
+        addChild(message)
+
 //        let message2 = won ? "PLANET" : "GAME"
 
         //---maybe replace this two label with svg image for the stroke
@@ -66,8 +70,9 @@ class GameOverScene: SKScene {
 //        label2.fontColor = UIColor(named: "alienGreen")
 //        label2.position = CGPoint(x: 0, y: maxScaledHeight * 2.2)
         
-        addChild(message)
 //        addChild(label2)
+        
+        /*
         guard let label = greenButton.childNode(withName: "littleLabel") as? SKLabelNode else {return}
         let labelPosition = label.convert(.zero, to: self)
 
@@ -80,9 +85,11 @@ class GameOverScene: SKScene {
         quitButton.anchorPoint = CGPoint(x: 0, y: 0.5)
         quitButton.position = CGPoint(x: greenButton.frame.minX, y: won ? labelPosition.y - quitButton.size.height / 1.2 : greenButton.position.y - quitButton.size.height * 1.2)
         quitButton.zPosition = 5
+
         
         self.addChild(quitButton)
         
+         
         let settingsButton = SKSpriteNode(imageNamed: "restart button")
         settingsButton.size = littleButtonsSize
         // Name the start node for touch detection:
@@ -93,6 +100,17 @@ class GameOverScene: SKScene {
         
         
         self.addChild(settingsButton)
+         */
+        
+        let blueButtonMessage = "BACK"
+        let blueButton = GreenButtonNode(nodeName: "blueButton", buttonType: .screen, parentSize: size, text: blueButtonMessage.localized(), itsBlue: true)
+        blueButton.position = CGPoint(x: 0 , y: greenButton.position.y - greenButton.size.height * 1.2)
+            addChild(blueButton)
+        
+        if won {
+            let stars = StarsNode(maxScaledHeight: maxScaledHeight, numOfStars: playerLife, effects: effects)
+            addChild(stars)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -115,7 +133,7 @@ class GameOverScene: SKScene {
             backgroundMusicAV.stop()
             greenButtonTouched = true
         }
-        if nodeTouched.name == "QuitBtn" {
+        if nodeTouched.name == "blueButton" {
             if let view = self.view {
                 let reveal = SKTransition.fade(withDuration: 0.5)
                 let menuScene = MenuScreen(size: self.size)
@@ -171,5 +189,4 @@ class GameOverScene: SKScene {
             self.backgroundMusicAV.volume = 0.5
         }
     }
-
 }

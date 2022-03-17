@@ -68,15 +68,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let cannonSound = SKAction.playSoundFileNamed(SoundFile.cannonSound, waitForCompletion: false)
     let powerUpSound = SKAction.playSoundFileNamed(SoundFile.powerUpSound, waitForCompletion: false)
     let wonSound = SKAction.playSoundFileNamed(SoundFile.wonSound, waitForCompletion: true)
+    let popButtons = SKAction.playSoundFileNamed(SoundFile.popButtons, waitForCompletion: true)
     
     var backgroundMusicAV : AVAudioPlayer!
-    
-    let popButtons = SKAction.playSoundFileNamed(SoundFile.popButtons, waitForCompletion: true)
     
     var music = UserDefaults.standard.bool(forKey: "music")
     var effects = UserDefaults.standard.bool(forKey: "effects")
 
-    var isPlayerAlive = true
     var enemyShouldFire = false
     var meteoritesShoulSpawn = false
     
@@ -109,15 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cannon.cannonChargeIndicator.position = CGPoint(x: frame.minX + cannon.cannonChargeIndicator.size.width * 1.1, y: frame.maxY - cannon.cannonChargeIndicator.size.width * 1.1)
         self.addChild(cannon.cannonChargeIndicator)
         
-        let pauseButton = SKSpriteNode(imageNamed: "PauseIcon")
-        pauseButton.size = CGSize(width: self.frame.width / 12 , height: self.frame.width / 12)
-        // Name the start node for touch detection:
-        pauseButton.name = "PauseBtn"
-        pauseButton.zPosition = 20
-        pauseButton.position = CGPoint(x: -cannon.cannonChargeIndicator.position.x, y: cannon.cannonChargeIndicator.position.y)
-        
-        addChild(pauseButton)
-        
+        addPauseButton()
         enemy.configureMovement(sceneSize: self.size)
         self.addChild(enemy)
 
@@ -149,6 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if nodeTouched.name == "PauseBtn" {
             self.playTapSound(action: popButtons, shouldPlayEffects: effects)
+            nodeTouched.removeFromParent()
                 self.pauseChilds(isPaused: true)
                 self.pause.zPosition = 30
                 self.addChild(self.pause)
@@ -156,6 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else if nodeTouched.name == "ResumeBtn" {
             self.playTapSound(action: popButtons, shouldPlayEffects: effects)
             pause.removeFromParent()
+            addPauseButton()
             pauseChilds(isPaused: false)
             
         } else if nodeTouched.name == "QuitBtn" {
@@ -302,7 +294,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     backgroundMusicAV.stop()
 
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                    let gameOverScene = GameOverScene(size: self.size, won: false)
+                    let gameOverScene = GameOverScene(size: self.size, won: false, playerLife: player.life)
                     self.run(SKAction.wait(forDuration: 0.4)){
                         self.view?.presentScene(gameOverScene, transition: reveal)
                     }
@@ -330,14 +322,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.reduceLife()
                 if enemy.life == 0 {
                     enemy.enemyBoom()
-                    run(wonSound)
-                    backgroundMusicAV.stop()
+                    if effects {
+                        run(wonSound)
+                    }
+                    
                     self.run(SKAction.wait(forDuration: 0.8)) {
+                        self.backgroundMusicAV.stop()
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                    let gameOverScene = GameOverScene(size: self.size, won: true)
+                        let gameOverScene = GameOverScene(size: self.size, won: true, playerLife: self.player.life)
                     
                         self.view?.presentScene(gameOverScene, transition: reveal)
-                    //                    print("YOU WON")
                         self.enemy.life = 3
                     }
                 }
@@ -359,7 +353,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
-    
+    func addPauseButton(){
+        let pauseButton = SKSpriteNode(imageNamed: "PauseIcon")
+        pauseButton.size = CGSize(width: self.frame.width / 12 , height: self.frame.width / 12)
+        // Name the start node for touch detection:
+        pauseButton.name = "PauseBtn"
+        pauseButton.zPosition = 20
+        pauseButton.position = CGPoint(x: -cannon.cannonChargeIndicator.position.x, y: cannon.cannonChargeIndicator.position.y)
+        
+        addChild(pauseButton)
+    }
     func makeExplosion(position: CGPoint, on parent: SKSpriteNode) {
         let fileName = parent.name == "enemy" ? "ExplosionYellow" : "Explosion"
         if let explosion = SKEmitterNode(fileNamed: fileName) {

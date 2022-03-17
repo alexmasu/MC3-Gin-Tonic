@@ -12,6 +12,12 @@
 
 "RETRY" = "REINTENTE";
 
+"NEW GAME" = "JUEGO NUEVO";
+
+"EXIT" = "SALIR";
+
+"PLAY" = "JUGAR";
+
 "EXPLORED" = "EXPLORADO";
 
 "PLANET" = "PLANETA";

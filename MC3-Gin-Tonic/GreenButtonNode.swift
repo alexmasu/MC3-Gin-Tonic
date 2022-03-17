@@ -15,12 +15,12 @@ class GreenButtonNode: SKSpriteNode {
         case screen, popUp
     }
     
-    init(nodeName: String, buttonType: buttonType, parentSize: CGSize, text: String) {
+    init(nodeName: String, buttonType: buttonType, parentSize: CGSize, text: String, itsBlue: Bool? = false) {
         
         let maxScaledWidth = parentSize.width * (buttonType == .screen ? 0.40 : 0.52)
         let maxScaledHeight = parentSize.height * (buttonType == .screen ? 0.08 : 0.23)
         
-        let texture = SKTexture(imageNamed: "button")
+        let texture = SKTexture(imageNamed: itsBlue! ? "blueButton" : "button")
                 
         super.init(texture: texture, color: .clear, size: parentSize)
                 
@@ -40,6 +40,9 @@ class GreenButtonNode: SKSpriteNode {
         textNode.fontSize = maxScaledWidth * 0.2
         textNode.fontColor = UIColor(rgb: 0x001273)
         textNode.zPosition = 20
+        if textNode.frame.width > size.width {
+            adjustLabelFontSizeToFitRect(labelNode: textNode, size: CGSize(width: size.width * 0.9, height: size.height * 0.9))
+        }
 
         self.addChild(textNode)
     }
@@ -65,5 +68,14 @@ class GreenButtonNode: SKSpriteNode {
         littleLabel.position = CGPoint(x: 0, y: labelPosition == .bottomLabel ? (-self.size.height * 0.8) : (self.size.height / 1.2))
         
         self.addChild(littleLabel)
+    }
+    
+    func adjustLabelFontSizeToFitRect(labelNode: SKLabelNode, size: CGSize) {
+        // Determine the font scaling factor that should let the label text fit in the given rectangle.
+        let scalingFactor = min(size.width / labelNode.frame.width, size.height / labelNode.frame.height)
+        
+        // Change the fontSize.
+        labelNode.fontSize *= scalingFactor
+        
     }
 }

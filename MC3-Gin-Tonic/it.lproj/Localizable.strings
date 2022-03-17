@@ -13,6 +13,14 @@
 
 "RETRY" = "RIAVVIA";
 
+"NEW GAME" = "NUOVA PARTITA";
+
+"EXIT" = "ESCI";
+
+"BACK" = "INDIETRO";
+
+"PLAY" = "GIOCA";
+
 "EXPLORED" = "ESPLORATO";
 
 "PLANET" = "PIANETA";

@@ -14,16 +14,21 @@ class EnemyNode: SKSpriteNode {
 //    var jointAnchor : CGPoint = .zero
     var life: Int = 3
     let randomDouble : [Double] = [4.0, 5.0, 6.0, 7.0, 8.0]
+    let screenSize = UIScreen.main.bounds.size
     
     init(imageNamed: String) {
         let texture = SKTexture(imageNamed: imageNamed)
-        super.init(texture: texture, color: .white, size: texture.size())
+        let propotion = texture.size().height / texture.size().width
+        let newHeight_W = screenSize.height / 6.68312757202
+        let newWidth_H = newHeight_W * propotion
+        let adjustedSize = CGSize(width: newHeight_W, height: newWidth_H)
+        super.init(texture: texture, color: .white, size: adjustedSize)
         
         name = "enemy"
         position.y = frame.minY
         zPosition = 2
         
-        physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
+        physicsBody = SKPhysicsBody(texture: texture, size: adjustedSize)
         physicsBody?.usesPreciseCollisionDetection = true
         physicsBody?.categoryBitMask = CollisionType.enemy.rawValue
         physicsBody?.collisionBitMask = CollisionType.cannonBullet.rawValue

@@ -12,13 +12,18 @@ class PlayerNode: SKSpriteNode {
     
     var lastFiredTime: Double = 0
     var isFiring = false
-//    var jointAnchor : CGPoint = .zero
     var life: Int = 3
     let bulletTexture = SKTexture(imageNamed: "playerBullet")
+//    let screenSize = UIScreen.main.bounds.size
 
     init(imageNamed: String) {
         
         let texture = SKTexture(imageNamed: imageNamed)
+//        let propotion = texture.size().height / texture.size().width
+//        let newHeight_W = screenSize.height / 12.3629719854
+//        let newWidth_H = newHeight_W * propotion
+//        let adjustedSize = CGSize(width: newHeight_W, height: newWidth_H)
+
         super.init(texture: texture, color: .white, size: texture.size())
         
         name = "player"

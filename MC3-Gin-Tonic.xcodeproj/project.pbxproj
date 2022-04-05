@@ -120,7 +120,6 @@
 		7FE1CA8A27C4ED9700FD7731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		950ABE4727CEB9A4009E220E /* TutorialSpriteLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialSpriteLabel.swift; sourceTree = "<group>"; };
 		950ABE4927CFE8EA009E220E /* SpeedParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpeedParticles.sks; sourceTree = "<group>"; };
-		950F2EC327C8315200794808 /* pianetino_1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pianetino_1.mp4; sourceTree = "<group>"; };
 		9533BC1F27BC4D910048C7B3 /* CannonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonNode.swift; sourceTree = "<group>"; };
 		95355B5827C66538007BC079 /* GreenButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButtonNode.swift; sourceTree = "<group>"; };
 		953BCD5527E258D0005AF3BD /* StarsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsNode.swift; sourceTree = "<group>"; };
@@ -252,7 +251,6 @@
 				7F40023327B271E2001182EB /* Main.storyboard */,
 				7F40023827B271E3001182EB /* LaunchScreen.storyboard */,
 				7F40023627B271E3001182EB /* Assets.xcassets */,
-				950F2EC327C8315200794808 /* pianetino_1.mp4 */,
 				291E913127C64B8E00AECC95 /* Sounds */,
 				9583AEA227C6279C009A5FA1 /* shieldAnim.atlas */,
 				9583AE9A27C500E2009A5FA1 /* cannonShot.atlas */,

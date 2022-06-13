@@ -151,7 +151,7 @@ class MetSpawner : SKNode {
 //            pathNode.lineWidth = 4
 //        scene?.addChild(pathNode)
         
-        let followPath = SKAction.follow(path.cgPath, asOffset: false, orientToPath: false, speed: CGFloat.random(in: 60...100))
+            let followPath = SKAction.follow(path.cgPath, asOffset: false, orientToPath: false, speed: CGFloat.random(in: 60*self.speed...100*self.speed))
         
         meteorite.run(followPath) {
             meteorite.removeFromParent()
@@ -168,5 +168,9 @@ class MetSpawner : SKNode {
         let seq = SKAction.sequence([waiting, spawn])
         let endlessSpawn = SKAction.repeatForever(seq)
         self.run(endlessSpawn)
+    }
+    func startIncreasingSpeed(){
+        let increase = SKAction.speed(by: 4, duration: 160)
+        self.run(increase, withKey: "increasingEnemySpeed")
     }
 }

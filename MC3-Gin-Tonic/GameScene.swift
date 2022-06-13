@@ -78,6 +78,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var enemyShouldFire = false
     var meteoritesShoulSpawn = false
     
+    var score: Double = 0
+    var scoreLabel2 = SKLabelNode(fontNamed: "AdventPro-Bold")
+
     override func didMove(to view: SKView) {
         notificationCenter.addObserver(self, selector: #selector(pauseGame), name: UIApplication.didBecomeActiveNotification, object: nil)
         
@@ -123,6 +126,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.run(wait2){
             self.metSpawner.endlessSpawning()
         }
+                
+        scoreLabel2.verticalAlignmentMode = .top
+        scoreLabel2.horizontalAlignmentMode = .center
+        scoreLabel2.fontSize = self.size.height * 0.04
+        scoreLabel2.fontColor = UIColor(named: "alienGreen")
+        scoreLabel2.position = CGPoint(x: 0, y: self.frame.maxY - self.size.height * 0.05)
+        scoreLabel2.addStroke()
+        self.addChild(scoreLabel2)
+
+        self.startCalculatingMeterScore()
+        enemy.startIncreasingSpeed()
+        metSpawner.startIncreasingSpeed()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -221,8 +236,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        scoreLabel2.text = String(format: "%.2f", score)
+
         if player.isFiring && player.isPaused == false {
-            if player.lastFiredTime + 0.6 <= currentTime {
+            if player.lastFiredTime + 0.6 - (player.fakeNode.speed*0.02) <= currentTime {
                 player.lastFiredTime = currentTime
                 player.fire()
                 if effects {
@@ -294,9 +311,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     backgroundMusicAV.stop()
 
                     let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                    let gameOverScene = GameOverScene(size: self.size, won: false, playerLife: player.life)
+                    let gameScoreScene = GameOverScoreScene(size: self.size, score: score, playerLife: player.life)
                     self.run(SKAction.wait(forDuration: 0.4)){
-                        self.view?.presentScene(gameOverScene, transition: reveal)
+                        self.view?.presentScene(gameScoreScene, transition: reveal)
                     }
                 }
             } else {
@@ -307,34 +324,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstNode.name == "meteorite" {
             secondNode.removeFromParent()
             guard let meteor = firstNode as? MeteoriteNode else {return}
+            if meteor.life == 2{
+                score += 2
+            } else if meteor.life == 1 {
+                score += 4
+            }
             if meteor.isDestroyedAfterHit() {
+                score += 6
             }
         }
         
         if firstNode.name == "cannonBullet" {
             if secondNode.name == "enemy" {
                 makeExplosion(position: contact.contactPoint, on: enemy)
+                self.score += 20
                 
                 firstNode.removeFromParent()
                 enemy.run(SKAction.colorize(with: .black, colorBlendFactor: 0.9, duration: 0.12)){
                     self.enemy.run(SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 0.12))
                 }
-                enemy.reduceLife()
-                if enemy.life == 0 {
-                    enemy.enemyBoom()
-                    if effects {
-                        run(wonSound)
-                    }
-                    
-                    self.run(SKAction.wait(forDuration: 0.8)) {
-                        self.backgroundMusicAV.stop()
-                    let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                        let gameOverScene = GameOverScene(size: self.size, won: true, playerLife: self.player.life)
-                    
-                        self.view?.presentScene(gameOverScene, transition: reveal)
-                        self.enemy.life = 3
-                    }
-                }
+//                enemy.reduceLife()
+//                if enemy.life == 0 {
+//                    enemy.enemyBoom()
+//                    if effects {
+//                        run(wonSound)
+//                    }
+//
+//                    self.run(SKAction.wait(forDuration: 0.8)) {
+//                        self.backgroundMusicAV.stop()
+////                    let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+////                        let gameOverScene = GameOverScene(size: self.size, won: true, playerLife: self.player.life)
+//
+////                        self.view?.presentScene(gameOverScene, transition: reveal)
+//                        self.enemy.life = 3
+//                    }
+//                }
             } else {
                 if secondNode.name == "enemyWeapon" {
                     secondNode.removeFromParent()
@@ -407,5 +431,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.backgroundMusicAV.numberOfLoops = -1
             self.backgroundMusicAV.volume = 0.5
         }
+    }
+    
+    func startCalculatingMeterScore() {
+        let wait = SKAction.wait(forDuration: 0.5)
+        let addScore = SKAction.run {
+            if self.player.isPaused == false{
+            self.score += 0.01
+                print(self.score)
+            }
+        }
+        let sequence = SKAction.sequence([wait, addScore])
+        self.run(SKAction.repeatForever(sequence))
     }
 }

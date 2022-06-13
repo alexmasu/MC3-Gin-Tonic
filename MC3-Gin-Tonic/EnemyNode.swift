@@ -74,7 +74,7 @@ class EnemyNode: SKSpriteNode {
         
 //        let speed: CGFloat = 1
 //        let adjustedRotation = zRotation + (CGFloat.pi / 2)
-        let actionMove = SKAction.move(to: realDest, duration: 6.5)
+        let actionMove = SKAction.move(to: realDest, duration: 6.5/self.speed)
 //        let dx = speed * cos(adjustedRotation)
 //        let dy = speed * sin(adjustedRotation)
         if shouldPlaySound {
@@ -167,12 +167,17 @@ class EnemyNode: SKSpriteNode {
     }
     
     func shouldFire(currentTime: TimeInterval) -> Bool {
-        let randomNum = Double.random(in: 4...8)
+        let randomNum = Double.random(in: 4...8/self.speed)
         print(randomNum)
         if self.lastFiredTime + randomNum <= currentTime {
             return true
         } else {
             return false
         }
+    }
+    
+    func startIncreasingSpeed(){
+        let increase = SKAction.speed(by: 4, duration: 160)
+        self.run(increase, withKey: "increasingEnemySpeed")
     }
 }

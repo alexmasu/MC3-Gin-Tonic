@@ -47,6 +47,7 @@
 		950ABE4A27CFE8EA009E220E /* SpeedParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 950ABE4927CFE8EA009E220E /* SpeedParticles.sks */; };
 		9533BC2027BC4D910048C7B3 /* CannonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533BC1F27BC4D910048C7B3 /* CannonNode.swift */; };
 		95355B5927C66538007BC079 /* GreenButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95355B5827C66538007BC079 /* GreenButtonNode.swift */; };
+		953ADA4C285790CA0000B9BC /* GameOverScoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953ADA4B285790CA0000B9BC /* GameOverScoreScene.swift */; };
 		953BCD5627E258D0005AF3BD /* StarsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953BCD5527E258D0005AF3BD /* StarsNode.swift */; };
 		953BCD5827E25C6F005AF3BD /* StarsParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 953BCD5727E25C6F005AF3BD /* StarsParticles.sks */; };
 		953BCD5D27E27DC8005AF3BD /* starSound3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 953BCD5927E27DC8005AF3BD /* starSound3.wav */; };
@@ -122,6 +123,7 @@
 		950ABE4927CFE8EA009E220E /* SpeedParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpeedParticles.sks; sourceTree = "<group>"; };
 		9533BC1F27BC4D910048C7B3 /* CannonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonNode.swift; sourceTree = "<group>"; };
 		95355B5827C66538007BC079 /* GreenButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButtonNode.swift; sourceTree = "<group>"; };
+		953ADA4B285790CA0000B9BC /* GameOverScoreScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScoreScene.swift; sourceTree = "<group>"; };
 		953BCD5527E258D0005AF3BD /* StarsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsNode.swift; sourceTree = "<group>"; };
 		953BCD5727E25C6F005AF3BD /* StarsParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarsParticles.sks; sourceTree = "<group>"; };
 		953BCD5927E27DC8005AF3BD /* starSound3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = starSound3.wav; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				29E6641427C4FBA400430F59 /* MenuScreen.swift */,
 				7F40022F27B271E2001182EB /* GameScene.swift */,
 				29514EEA27BC08C200E94576 /* GameOverScene.swift */,
+				953ADA4B285790CA0000B9BC /* GameOverScoreScene.swift */,
 				9548DBC627B71D7B002D5B12 /* PlayerNode.swift */,
 				9548DBC827B71DB8002D5B12 /* ShieldNode.swift */,
 				9533BC1F27BC4D910048C7B3 /* CannonNode.swift */,
@@ -404,6 +407,7 @@
 				7FA70D6627C6298F00C12330 /* SKscene+background.swift in Sources */,
 				9533BC2027BC4D910048C7B3 /* CannonNode.swift in Sources */,
 				29A0288627C3D5F3006BBBC7 /* PauseScreen.swift in Sources */,
+				953ADA4C285790CA0000B9BC /* GameOverScoreScene.swift in Sources */,
 				95521BEE27CC10E800F1E3EC /* MetSpawner.swift in Sources */,
 				9548DBC727B71D7B002D5B12 /* PlayerNode.swift in Sources */,
 				291E913F27C64C1500AECC95 /* Constants.swift in Sources */,

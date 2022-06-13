@@ -15,7 +15,7 @@ class PlayerNode: SKSpriteNode {
     var life: Int = 3
     let bulletTexture = SKTexture(imageNamed: "playerBullet")
 //    let screenSize = UIScreen.main.bounds.size
-
+    var fakeNode = SKNode()
     init(imageNamed: String) {
         
         let texture = SKTexture(imageNamed: imageNamed)
@@ -39,6 +39,7 @@ class PlayerNode: SKSpriteNode {
         self.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: -90, upperLimit: 90))]
         bulletTexture.preload {
         }
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -79,6 +80,11 @@ class PlayerNode: SKSpriteNode {
         }
     }
     
+    func startIncreasingSpeed(){
+        let increase = SKAction.speed(by: 4, duration: 160)
+        self.fakeNode.run(increase, withKey: "increasingSpeed")
+    }
+
     func fire() {
         let playerBullet = SKSpriteNode(texture: bulletTexture)
         
@@ -102,10 +108,11 @@ class PlayerNode: SKSpriteNode {
         let speed: CGFloat = 18
         
         playerBullet.makeShapeGlow(cornerRadius: 10, scaleSizeBy: 0.7, color: .cyan)
-
         
         scene?.addChild(playerBullet)
         playerBullet.name = "playerBullet"
+        
+        playerBullet.speed = fakeNode.speed
 
         let dx = speed * cos(playerAngleAdjusted)
         let dy = speed * sin(playerAngleAdjusted)

@@ -325,11 +325,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondNode.removeFromParent()
             guard let meteor = firstNode as? MeteoriteNode else {return}
             if meteor.life == 3{
+                animScore()
                 score += 200
             } else if meteor.life == 2 {
+                animScore()
                 score += 400
             }
             if meteor.isDestroyedAfterHit() {
+                animScore()
                 score += 600
             }
         }
@@ -337,6 +340,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstNode.name == "cannonBullet" {
             if secondNode.name == "enemy" {
                 makeExplosion(position: contact.contactPoint, on: enemy)
+                animScore()
                 self.score += 3000
                 
                 firstNode.removeFromParent()
@@ -443,5 +447,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         let sequence = SKAction.sequence([wait, addScore])
         self.run(SKAction.repeatForever(sequence))
+    }
+    
+    func animScore(){
+        let scale = SKAction.scale(by: 1.2, duration: 0.1)
+        let scaleSequence = SKAction.sequence([scale, scale.reversed()])
+        
+        self.scoreLabel2.run(scaleSequence)
     }
 }

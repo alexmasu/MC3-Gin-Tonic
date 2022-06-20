@@ -25,10 +25,14 @@ class GameOverScoreScene: SKScene {
         makePlanet()
         makeGlass()
         setUpBgMusic(fileName: "Abi22i (online-audio-converter.com).mp3")
+        if UserDefaults.standard.integer(forKey: "bestScore") < score{
+            UserDefaults.standard.set(score, forKey: "bestScore")
+        }
         
         // GREEN BUTTON NODE
         let greenButtonText = "NEW GAME"
         let greenButton = GreenButtonNode(nodeName: "GreenButton", buttonType: .screen, parentSize: size, text: greenButtonText)
+        greenButton.position = CGPoint(x: 0, y: -greenButton.size.height)
         
         let maxScaledHeight = size.height * 0.08
         
@@ -54,7 +58,7 @@ class GameOverScoreScene: SKScene {
         scoreLabel.text = "SCORE"
         scoreLabel.verticalAlignmentMode = .bottom
         scoreLabel.horizontalAlignmentMode = .center
-        scoreLabel.fontSize = maxScaledHeight * 0.85
+        scoreLabel.fontSize = maxScaledHeight * 0.8
         scoreLabel.fontColor = UIColor(named: "glassColor")
         scoreLabel.position = CGPoint(x: 0, y: positionLabel + 10)
         scoreLabel.addStroke()
@@ -64,7 +68,7 @@ class GameOverScoreScene: SKScene {
         
         scoreLabel2.verticalAlignmentMode = .top
         scoreLabel2.horizontalAlignmentMode = .center
-        scoreLabel2.fontSize = maxScaledHeight * 0.85
+        scoreLabel2.fontSize = maxScaledHeight * 0.8
         scoreLabel2.fontColor = UIColor(named: "alienGreen")
         scoreLabel2.position = CGPoint(x: 0, y: -10)
         scoreLabel2.addStroke()
@@ -98,7 +102,7 @@ class GameOverScoreScene: SKScene {
         if nodeTouched.name == "blueButton" {
             if let view = self.view {
                 let reveal = SKTransition.fade(withDuration: 0.5)
-                let menuScene = MenuScreen(size: self.size)
+                let menuScene = MenuBestScore(size: self.size)
                 self.playTapSound(action: popSound, shouldPlayEffects: effects)
                 backgroundMusicAV.stop()
                 view.presentScene(menuScene, transition: reveal)
@@ -173,4 +177,23 @@ extension SKLabelNode {
 
         self.attributedText = attributedString
    }
+    
+    func addStroke2(){
+        guard let labelText = self.text else { return }
+
+        let font = UIFont(name: self.fontName!, size: self.fontSize)
+
+        let attributedString:NSMutableAttributedString
+        if let labelAttributedText = self.attributedText {
+            attributedString = NSMutableAttributedString(attributedString: labelAttributedText)
+        } else {
+            attributedString = NSMutableAttributedString(string: labelText)
+        }
+
+       let attributes:[NSAttributedString.Key:Any] = [.strokeColor: UIColor.black, .strokeWidth: -3, .font: font!, .foregroundColor: self.fontColor!]
+        attributedString.addAttributes(attributes, range: NSMakeRange(0, attributedString.length))
+
+        self.attributedText = attributedString
+
+    }
 }

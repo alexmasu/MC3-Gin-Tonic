@@ -28,7 +28,7 @@ class GreenButtonNode: SKSpriteNode {
         // Name the start node for touch detection:
         name = nodeName
         zPosition = 10
-        position = CGPoint(x: 0, y: buttonType == .screen ? -maxScaledHeight : 0)
+        position = CGPoint(x: 0, y: buttonType == .screen ? 0 : 0)
         
         // Name the text node for touch detection:
         textNode.name = nodeName

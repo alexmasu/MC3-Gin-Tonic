@@ -171,7 +171,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.playTapSound(action: popButtons, shouldPlayEffects: effects)
                 backgroundMusicAV.stop()
                 let reveal = SKTransition.fade(withDuration: 0.5)
-                let menuScene = MenuScreen(size: self.size)
+                let menuScene = MenuBestScore(size: self.size)
                 
                 view.presentScene(menuScene, transition: reveal)
                 

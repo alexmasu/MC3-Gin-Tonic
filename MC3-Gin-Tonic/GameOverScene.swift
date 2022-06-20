@@ -136,7 +136,7 @@ class GameOverScene: SKScene {
         if nodeTouched.name == "blueButton" {
             if let view = self.view {
                 let reveal = SKTransition.fade(withDuration: 0.5)
-                let menuScene = MenuScreen(size: self.size)
+                let menuScene = MenuBestScore(size: self.size)
                 self.playTapSound(action: popSound, shouldPlayEffects: effects)
                 backgroundMusicAV.stop()
                 view.presentScene(menuScene, transition: reveal)

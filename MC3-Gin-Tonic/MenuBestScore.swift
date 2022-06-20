@@ -11,7 +11,7 @@ import SpriteKit
 
 
 class MenuBestScore: SKScene {
-
+    let bestScore = UserDefaults.standard.integer(forKey: "bestScore")
     var music = true
     var effects = true
     let popSound = SKAction.playSoundFileNamed(SoundFile.popButtons, waitForCompletion: true)
@@ -52,7 +52,7 @@ class MenuBestScore: SKScene {
 //        continueButton.addLittleLabel(text: littleLabelText, labelPosition: GreenButtonNode.labelPosition.upperLabel)
 
         let message = SKSpriteNode(imageNamed: "ABISSI")
-        message.position = CGPoint(x: 0, y: -continueButton.position.y * 1.3)
+        message.position = CGPoint(x: 0, y: continueButton.frame.maxY + continueButton.size.height * 2)
         message.zPosition = 10
         let proportion = message.texture!.size().width / message.texture!.size().height
         let propW = continueButton.size.width * 1.2
@@ -78,20 +78,20 @@ class MenuBestScore: SKScene {
         scoreLabel.text = "BEST"
         scoreLabel.verticalAlignmentMode = .bottom
         scoreLabel.horizontalAlignmentMode = .center
-        scoreLabel.fontSize = UIScreen.main.bounds.width * 0.25
+        scoreLabel.fontSize = message.size.height * 1.2
         scoreLabel.fontColor = UIColor(named: "glassColor")
-        scoreLabel.position = CGPoint(x: 0, y: continueButton.position.y - 30)
+        scoreLabel.position = CGPoint(x: 0, y: continueButton.frame.minY - continueButton.size.height * 1.5)
         scoreLabel.addStroke()
         self.addChild(scoreLabel)
         
         let scoreLabel2 = SKLabelNode(fontNamed: "AdventPro-Bold")
-        scoreLabel2.text = String(100)
+        scoreLabel2.text = String(bestScore)
         
         scoreLabel2.verticalAlignmentMode = .top
         scoreLabel2.horizontalAlignmentMode = .center
-        scoreLabel2.fontSize = UIScreen.main.bounds.width * 0.25
+        scoreLabel2.fontSize = message.size.height * 1.2
         scoreLabel2.fontColor = UIColor(named: "alienGreen")
-        scoreLabel2.position = CGPoint(x: 0, y: scoreLabel.position.y - 100)
+        scoreLabel2.position = CGPoint(x: 0, y: scoreLabel.frame.minY * 1.1)
         scoreLabel2.addStroke()
         self.addChild(scoreLabel2)
     }

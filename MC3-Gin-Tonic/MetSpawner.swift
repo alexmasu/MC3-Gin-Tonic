@@ -170,7 +170,7 @@ class MetSpawner : SKNode {
         self.run(endlessSpawn)
     }
     func startIncreasingSpeed(){
-        let increase = SKAction.speed(by: 4, duration: 160)
+        let increase = SKAction.speed(by: 3, duration: 120)
         self.run(increase, withKey: "increasingEnemySpeed")
     }
 }

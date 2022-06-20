@@ -78,7 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var enemyShouldFire = false
     var meteoritesShoulSpawn = false
     
-    var score: Double = 0
+    var score: Int = 0
     var scoreLabel2 = SKLabelNode(fontNamed: "AdventPro-Bold")
 
     override func didMove(to view: SKView) {
@@ -236,10 +236,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        scoreLabel2.text = String(format: "%.2f", score)
+        scoreLabel2.text = String(score)
 
         if player.isFiring && player.isPaused == false {
-            if player.lastFiredTime + 0.6 - (player.fakeNode.speed*0.02) <= currentTime {
+            if player.lastFiredTime + 0.6 - (player.fakeNode.speed*0.05) <= currentTime {
                 player.lastFiredTime = currentTime
                 player.fire()
                 if effects {
@@ -324,20 +324,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstNode.name == "meteorite" {
             secondNode.removeFromParent()
             guard let meteor = firstNode as? MeteoriteNode else {return}
-            if meteor.life == 2{
-                score += 2
-            } else if meteor.life == 1 {
-                score += 4
+            if meteor.life == 3{
+                score += 200
+            } else if meteor.life == 2 {
+                score += 400
             }
             if meteor.isDestroyedAfterHit() {
-                score += 6
+                score += 600
             }
         }
         
         if firstNode.name == "cannonBullet" {
             if secondNode.name == "enemy" {
                 makeExplosion(position: contact.contactPoint, on: enemy)
-                self.score += 20
+                self.score += 3000
                 
                 firstNode.removeFromParent()
                 enemy.run(SKAction.colorize(with: .black, colorBlendFactor: 0.9, duration: 0.12)){
@@ -434,10 +434,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func startCalculatingMeterScore() {
-        let wait = SKAction.wait(forDuration: 0.5)
+        let wait = SKAction.wait(forDuration: 0.1)
         let addScore = SKAction.run {
             if self.player.isPaused == false{
-            self.score += 0.01
+            self.score += 1
                 print(self.score)
             }
         }

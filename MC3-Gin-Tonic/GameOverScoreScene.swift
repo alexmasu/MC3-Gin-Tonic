@@ -15,7 +15,7 @@ class GameOverScoreScene: SKScene {
     var backgroundMusicAV : AVAudioPlayer!
     let popSound = SKAction.playSoundFileNamed(SoundFile.popButtons, waitForCompletion: true)
 
-    init(size: CGSize, score:Double, playerLife: Int) {
+    init(size: CGSize, score:Int, playerLife: Int) {
 
         super.init(size: size)
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -60,12 +60,12 @@ class GameOverScoreScene: SKScene {
         scoreLabel.addStroke()
         
         let scoreLabel2 = SKLabelNode(fontNamed: "AdventPro-Bold")
-        scoreLabel2.text = String(format: "%.2f", score)
+        scoreLabel2.text = String(score)
         
         scoreLabel2.verticalAlignmentMode = .top
         scoreLabel2.horizontalAlignmentMode = .center
         scoreLabel2.fontSize = maxScaledHeight * 0.85
-        scoreLabel2.fontColor = UIColor(named: "yellowMet")
+        scoreLabel2.fontColor = UIColor(named: "alienGreen")
         scoreLabel2.position = CGPoint(x: 0, y: -10)
         scoreLabel2.addStroke()
         scoreLabel.addChild(scoreLabel2)

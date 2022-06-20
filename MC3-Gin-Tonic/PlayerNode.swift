@@ -81,7 +81,7 @@ class PlayerNode: SKSpriteNode {
     }
     
     func startIncreasingSpeed(){
-        let increase = SKAction.speed(by: 4, duration: 160)
+        let increase = SKAction.speed(by: 4, duration: 100)
         self.fakeNode.run(increase, withKey: "increasingSpeed")
     }
 
@@ -105,7 +105,7 @@ class PlayerNode: SKSpriteNode {
         playerBullet.physicsBody?.contactTestBitMask = CollisionType.meteorite.rawValue
         
         playerBullet.physicsBody?.mass = 0.02
-        let speed: CGFloat = 18
+        let speed: CGFloat = 18 * fakeNode.speed
         
         playerBullet.makeShapeGlow(cornerRadius: 10, scaleSizeBy: 0.7, color: .cyan)
         
